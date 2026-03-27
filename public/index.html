@@ -391,7 +391,7 @@
     <div class="badge">Documento de Scope v1.1</div>
     <h1 style="margin-top: 16px;">DESC</h1>
     <p class="subtitle">Deliverable Engine for Service Control</p>
-    <p style="color: rgba(255,255,255,0.5); font-size: 0.9em; position: relative;">Sistema automatizado de proyeccion financiera y generacion de entregables profesionales</p>
+    <p style="color: rgba(255,255,255,0.5); font-size: 0.9em; position: relative;">Plataforma multi-tenant de proyeccion financiera y generacion automatizada de entregables profesionales</p>
   </header>
 
   <div class="container">
@@ -399,16 +399,20 @@
     <!-- QUE ES DESC -->
     <div class="section">
       <h2 class="section-title">Que es DESC?</h2>
-      <p class="section-subtitle">Un sistema que automatiza el ciclo completo: desde la proyeccion financiera del cliente hasta la entrega del documento final.</p>
+      <p class="section-subtitle">Plataforma SaaS multi-tenant que automatiza el ciclo completo: desde la proyeccion financiera hasta la entrega del documento final. Cada organizacion (firma de consultoria) opera con sus propios clientes, servicios y templates de forma aislada.</p>
 
-      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;">
+      <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px;">
         <div style="text-align: center; padding: 24px;">
           <div style="font-size: 2.5em; font-weight: 700; color: var(--cta); font-family: 'Poppins';">9</div>
           <div style="font-size: 0.9em; color: var(--text-muted);">Areas de servicio</div>
         </div>
         <div style="text-align: center; padding: 24px;">
           <div style="font-size: 2.5em; font-weight: 700; color: var(--cta); font-family: 'Poppins';">N</div>
-          <div style="font-size: 0.9em; color: var(--text-muted);">Clientes simultaneos</div>
+          <div style="font-size: 0.9em; color: var(--text-muted);">Clientes por organizacion</div>
+        </div>
+        <div style="text-align: center; padding: 24px;">
+          <div style="font-size: 2.5em; font-weight: 700; color: var(--cta); font-family: 'Poppins';">SaaS</div>
+          <div style="font-size: 0.9em; color: var(--text-muted);">Multi-tenant por suscripcion</div>
         </div>
         <div style="text-align: center; padding: 24px;">
           <div style="font-size: 2.5em; font-weight: 700; color: var(--cta); font-family: 'Poppins';">0</div>
@@ -459,20 +463,20 @@
       <p class="section-subtitle">Cada servicio contratado genera 4 documentos en orden secuencial.</p>
 
       <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;">
+        <div class="card" style="text-align: center; border-top: 3px solid var(--info);">
+          <div style="font-size: 2em; font-weight: 700; color: var(--info); font-family: 'Poppins';">1</div>
+          <h3>Proyeccion</h3>
+          <p>Distribucion mensual del presupuesto asignado al servicio</p>
+        </div>
         <div class="card" style="text-align: center; border-top: 3px solid var(--cta);">
-          <div style="font-size: 2em; font-weight: 700; color: var(--cta); font-family: 'Poppins';">1</div>
+          <div style="font-size: 2em; font-weight: 700; color: var(--cta); font-family: 'Poppins';">2</div>
           <h3>Cotizacion</h3>
           <p>Propuesta comercial con montos y alcance del servicio</p>
         </div>
         <div class="card" style="text-align: center; border-top: 3px solid var(--purple);">
-          <div style="font-size: 2em; font-weight: 700; color: var(--purple); font-family: 'Poppins';">2</div>
+          <div style="font-size: 2em; font-weight: 700; color: var(--purple); font-family: 'Poppins';">3</div>
           <h3>Contrato</h3>
           <p>Formalizacion legal del acuerdo de servicio</p>
-        </div>
-        <div class="card" style="text-align: center; border-top: 3px solid var(--info);">
-          <div style="font-size: 2em; font-weight: 700; color: var(--info); font-family: 'Poppins';">3</div>
-          <h3>Proyeccion</h3>
-          <p>Distribucion mensual del presupuesto asignado</p>
         </div>
         <div class="card" style="text-align: center; border-top: 3px solid var(--success);">
           <div style="font-size: 2em; font-weight: 700; color: var(--success); font-family: 'Poppins';">4</div>
@@ -553,7 +557,7 @@
     <!-- 6 MODULOS -->
     <div class="section">
       <h2 class="section-title">Modulos del Sistema</h2>
-      <p class="section-subtitle">7 modulos que cubren el ciclo completo de operacion.</p>
+      <p class="section-subtitle">8 modulos que cubren el ciclo completo de operacion.</p>
 
       <div class="card-grid">
         <div class="card">
@@ -610,6 +614,14 @@
           </div>
           <h3>7. Dashboard</h3>
           <p>Resumen financiero. Seguimiento de 4 documentos por servicio (cotizacion, contrato, proyeccion, entregable). Alertas.</p>
+        </div>
+
+        <div class="card">
+          <div class="card-icon" style="background: rgba(220,38,38,0.08); color: var(--danger);">
+            <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+          </div>
+          <h3>8. Admin Plataforma</h3>
+          <p>Gestion de organizaciones, suscripciones (Stripe), metricas globales. Solo accesible por Super Admin.</p>
         </div>
       </div>
     </div>
@@ -777,9 +789,19 @@
         <div class="tech-card">
           <h4>Integraciones</h4>
           <span class="tech-tag">Claude API</span>
+          <span class="tech-tag">Stripe (Billing)</span>
           <span class="tech-tag">Resend (Email)</span>
           <span class="tech-tag">react-pdf</span>
           <span class="tech-tag">Convex Cron</span>
+        </div>
+      </div>
+
+      <div style="margin-top: 20px; padding: 16px; background: rgba(22,163,74,0.05); border: 1px solid rgba(22,163,74,0.15); border-radius: 8px;">
+        <h4 style="color: var(--success); margin-bottom: 6px;">Costo estimado de APIs (60 clientes)</h4>
+        <div style="font-size: 0.88em; color: var(--text-muted);">
+          Con Claude API Sonnet, cada entregable cuesta ~$0.01-0.05 USD. Estimando 3 servicios activos por cliente con version corta + larga + auditoria:<br>
+          <strong>60 clientes x 3 servicios x 3 llamadas = ~540 llamadas/mes = $15-40 USD/mes</strong><br>
+          Significativamente mas barato que el tiempo humano que se ahorra.
         </div>
       </div>
     </div>
@@ -787,13 +809,26 @@
     <!-- BASE DE DATOS -->
     <div class="section">
       <h2 class="section-title">Modelo de Base de Datos</h2>
-      <p class="section-subtitle">9 tablas principales en Convex DB (documento-relacional, TypeScript-first).</p>
+      <p class="section-subtitle">10 tablas principales en Convex DB (documento-relacional, TypeScript-first). Todas las tablas llevan <code>orgId</code> para aislamiento multi-tenant.</p>
 
       <div class="schema-grid">
         <div class="schema-table">
+          <div class="schema-table-header" style="background: var(--danger);">organizations</div>
+          <div class="schema-table-body">
+            <div class="schema-field"><span class="schema-field-name">_id</span><span class="schema-field-type">Id</span></div>
+            <div class="schema-field"><span class="schema-field-name">clerkOrgId</span><span class="schema-field-type">string</span></div>
+            <div class="schema-field"><span class="schema-field-name">name</span><span class="schema-field-type">string</span></div>
+            <div class="schema-field"><span class="schema-field-name">stripeCustomerId</span><span class="schema-field-type">string</span></div>
+            <div class="schema-field"><span class="schema-field-name">plan</span><span class="schema-field-type">union</span></div>
+            <div class="schema-field"><span class="schema-field-name">createdAt</span><span class="schema-field-type">number (ms)</span></div>
+          </div>
+        </div>
+
+        <div class="schema-table">
           <div class="schema-table-header">clients</div>
           <div class="schema-table-body">
-            <div class="schema-field"><span class="schema-field-name">id</span><span class="schema-field-type">Id</span></div>
+            <div class="schema-field"><span class="schema-field-name">_id</span><span class="schema-field-type">Id</span></div>
+            <div class="schema-field"><span class="schema-field-name">orgId</span><span class="schema-field-type">string</span></div>
             <div class="schema-field"><span class="schema-field-name">name</span><span class="schema-field-type">text</span></div>
             <div class="schema-field"><span class="schema-field-name">rfc</span><span class="schema-field-type">text</span></div>
             <div class="schema-field"><span class="schema-field-name">industry</span><span class="schema-field-type">text</span></div>
@@ -931,12 +966,17 @@
               <td><span class="status status-active">Evento</span></td>
             </tr>
             <tr>
-              <td><strong>Pago confirmado</strong></td>
-              <td>Genera factura, dispara generacion del entregable del mes/servicio</td>
+              <td><strong>Cliente solicita factura</strong></td>
+              <td>Ejecutivo ajusta monto segun proyeccion, genera factura del servicio</td>
               <td><span class="status status-active">Evento</span></td>
             </tr>
             <tr>
-              <td><strong>Contratacion primer servicio</strong></td>
+              <td><strong>Pago confirmado</strong></td>
+              <td>Se da destino al dinero, se habilita la generacion del entregable</td>
+              <td><span class="status status-active">Evento</span></td>
+            </tr>
+            <tr>
+              <td><strong>Servicio activado en proyeccion</strong></td>
               <td>Genera cotizacion y contrato automaticamente</td>
               <td><span class="status status-active">Evento</span></td>
             </tr>
@@ -950,15 +990,52 @@
       </div>
     </div>
 
+    <!-- FLUJO DE FACTURACION -->
+    <div class="section">
+      <h2 class="section-title">Flujo de Facturacion</h2>
+      <p class="section-subtitle">Proceso real desde que el cliente solicita la factura hasta la generacion del entregable.</p>
+
+      <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px;">
+        <div class="card" style="border-left: 3px solid var(--cta);">
+          <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+            <div style="width: 28px; height: 28px; border-radius: 50%; background: var(--cta); color: white; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.85em; flex-shrink: 0;">a</div>
+            <h3 style="margin: 0;">Cliente solicita factura</h3>
+          </div>
+          <p>El cliente se comunica con el ejecutivo de cuenta. Se asigna el monto requerido y se ajusta en base a la proyeccion.</p>
+        </div>
+        <div class="card" style="border-left: 3px solid var(--info);">
+          <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+            <div style="width: 28px; height: 28px; border-radius: 50%; background: var(--info); color: white; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.85em; flex-shrink: 0;">b</div>
+            <h3 style="margin: 0;">Se genera la factura</h3>
+          </div>
+          <p>Se emite la factura al cliente con el concepto y monto del servicio correspondiente.</p>
+        </div>
+        <div class="card" style="border-left: 3px solid var(--success);">
+          <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+            <div style="width: 28px; height: 28px; border-radius: 50%; background: var(--success); color: white; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.85em; flex-shrink: 0;">c</div>
+            <h3 style="margin: 0;">Cliente realiza el pago</h3>
+          </div>
+          <p>El cliente paga la factura. Al dia siguiente se da destino al dinero.</p>
+        </div>
+        <div class="card" style="border-left: 3px solid var(--purple);">
+          <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+            <div style="width: 28px; height: 28px; border-radius: 50%; background: var(--purple); color: white; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.85em; flex-shrink: 0;">d</div>
+            <h3 style="margin: 0;">Se genera el entregable</h3>
+          </div>
+          <p>Con el pago confirmado, el sistema genera el entregable (version corta + larga) automaticamente.</p>
+        </div>
+      </div>
+    </div>
+
     <!-- VARIABLES DE FACTURACION -->
     <div class="section">
       <h2 class="section-title">Variables de Facturacion por Cliente</h2>
-      <p class="section-subtitle">Cada cliente puede tener una frecuencia diferente segun su operacion.</p>
+      <p class="section-subtitle">Cada cliente tiene un valor predefinido para evitar ajustes manuales cada mes. Las comisiones se usan como comodin para cuadrar variaciones.</p>
 
       <div class="card-grid" style="grid-template-columns: repeat(3, 1fr);">
         <div class="card" style="text-align: center;">
           <h3>Semanal</h3>
-          <p>Para clientes que usan la factura para pagar nomina. Se divide el monto mensual entre 4.</p>
+          <p>Para clientes que usan la factura para pagar nomina. Se divide el monto mensual entre 4. Sujeto a variaciones por altas/bajas/liquidaciones.</p>
         </div>
         <div class="card" style="text-align: center;">
           <h3>Quincenal</h3>
@@ -969,27 +1046,31 @@
           <p>Default. Para clientes que requieren sacar utilidades al cierre del mes.</p>
         </div>
       </div>
+      <div style="margin-top: 16px; padding: 14px; background: rgba(37,99,235,0.05); border: 1px solid rgba(37,99,235,0.15); border-radius: 8px; font-size: 0.88em; color: var(--text-muted);">
+        <strong>Nota:</strong> Se predefinira un valor base por cliente pero siempre habra variaciones (nomina con altas, bajas, liquidaciones). El comodin de comisiones/ventas permite ajustar lo que el cliente requiere sin recalcular manualmente cada mes.
+      </div>
     </div>
 
     <!-- FASES -->
     <div class="section">
       <h2 class="section-title">Fases de Desarrollo</h2>
-      <p class="section-subtitle">Desarrollo incremental en 5 fases.</p>
+      <p class="section-subtitle">Desarrollo incremental en 6 fases.</p>
 
       <div class="phase">
         <div class="phase-header">
           <div class="phase-number" style="background: var(--info);">1</div>
           <div>
-            <div class="phase-title">Fundamentos</div>
-            <div style="font-size: 0.82em; color: var(--text-muted);">Setup del proyecto, base de datos, auth</div>
+            <div class="phase-title">Fundamentos + Multi-Tenant</div>
+            <div style="font-size: 0.82em; color: var(--text-muted);">Setup, base de datos, auth, aislamiento por organizacion</div>
           </div>
         </div>
         <div class="phase-body">
           <ul>
             <li>Setup Next.js + Convex + Tailwind + shadcn/ui</li>
-            <li>Modelo de datos en Convex (9 tablas + schema tipado)</li>
-            <li>Autenticacion del equipo interno (Clerk + Convex)</li>
-            <li>CRUD de clientes</li>
+            <li>Modelo de datos en Convex (schema tipado con orgId en todas las tablas)</li>
+            <li>Clerk Organizations + Convex Auth (multi-tenant)</li>
+            <li>Roles: Super Admin, Admin, Ejecutivo, Viewer</li>
+            <li>CRUD de clientes (filtrado por organizacion)</li>
             <li>Seed de servicios base (9 servicios con benchmarks)</li>
           </ul>
         </div>
@@ -1068,8 +1149,27 @@
             <li>Cron jobs mensuales (revision de matriz)</li>
             <li>Notificaciones por email (Resend)</li>
             <li>Envio automatico de cuestionario unificado al cliente</li>
-            <li>Triggers de pago y generacion automatica</li>
+            <li>Flujo de facturacion (solicitud → factura → pago → entregable)</li>
             <li>Pruebas con cliente piloto</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="phase">
+        <div class="phase-header">
+          <div class="phase-number" style="background: var(--danger);">6</div>
+          <div>
+            <div class="phase-title">Plataforma SaaS y Billing</div>
+            <div style="font-size: 0.82em; color: var(--text-muted);">Suscripciones, onboarding, admin plataforma</div>
+          </div>
+        </div>
+        <div class="phase-body">
+          <ul>
+            <li>Integracion Stripe (planes de suscripcion, webhooks)</li>
+            <li>Panel de Super Admin (gestionar organizaciones)</li>
+            <li>Onboarding para nuevas organizaciones</li>
+            <li>Landing page comercial</li>
+            <li>Metricas de uso y limites por plan</li>
           </ul>
         </div>
       </div>
@@ -1080,19 +1180,72 @@
       </div>
     </div>
 
-    <!-- USUARIO -->
+    <!-- MULTI-TENANT -->
     <div class="section">
-      <h2 class="section-title">Usuarios del Sistema</h2>
-      <p class="section-subtitle">Sistema de uso interno exclusivo.</p>
+      <h2 class="section-title">Arquitectura Multi-Tenant</h2>
+      <p class="section-subtitle">Cada organizacion (firma de consultoria) tiene su espacio aislado con sus propios clientes, servicios y templates. El sistema se comercializa por suscripcion.</p>
 
-      <div class="card" style="max-width: 500px;">
-        <h3>Equipo Interno</h3>
-        <p style="margin-bottom: 12px;">El usuario principal es el equipo operativo de la firma de consultoria.</p>
-        <div style="font-size: 0.85em; color: var(--text-muted);">
-          <div style="padding: 4px 0;">Da de alta clientes y configura sus proyecciones</div>
-          <div style="padding: 4px 0;">Monitorea estatus de entregables y pagos</div>
-          <div style="padding: 4px 0;">Revisa dashboard financiero</div>
-          <div style="padding: 4px 0;">Gestiona conceptos SAT para facturacion</div>
+      <div class="card-grid" style="grid-template-columns: repeat(2, 1fr);">
+        <div class="card" style="border-left: 4px solid var(--cta);">
+          <h3>Aislamiento por Organizacion</h3>
+          <p style="margin-bottom: 10px;">Cada firma opera de forma independiente. Sus datos, clientes, proyecciones y entregables son invisibles para otras organizaciones.</p>
+          <div style="font-size: 0.82em; padding: 8px; background: rgba(15,23,42,0.03); border-radius: 6px;">
+            <strong>Tecnico:</strong> Cada registro en la BD lleva un <code>orgId</code>. Todas las queries filtran por organizacion automaticamente via Clerk Organizations + Convex.
+          </div>
+        </div>
+        <div class="card" style="border-left: 4px solid var(--info);">
+          <h3>Suscripcion (Stripe)</h3>
+          <p style="margin-bottom: 10px;">Las organizaciones pagan una suscripcion mensual para usar la plataforma. Diferentes planes segun volumen de clientes o funcionalidades.</p>
+          <div style="font-size: 0.82em; padding: 8px; background: rgba(15,23,42,0.03); border-radius: 6px;">
+            <strong>Tecnico:</strong> Stripe para billing. Webhook de Stripe actualiza el estatus de la suscripcion en Convex.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ROLES -->
+    <div class="section">
+      <h2 class="section-title">Usuarios y Roles</h2>
+      <p class="section-subtitle">3 roles dentro de cada organizacion + 1 rol de plataforma.</p>
+
+      <div class="card-grid" style="grid-template-columns: repeat(2, 1fr);">
+        <div class="card">
+          <h3 style="color: var(--danger);">Super Admin (Plataforma)</h3>
+          <p style="margin-bottom: 8px;">Administra la plataforma completa. Ve todas las organizaciones, gestiona suscripciones, monitorea uso.</p>
+          <div style="font-size: 0.82em; color: var(--text-muted);">
+            <div style="padding: 3px 0;">Gestionar organizaciones y suscripciones</div>
+            <div style="padding: 3px 0;">Ver metricas globales de la plataforma</div>
+            <div style="padding: 3px 0;">Configurar servicios base y benchmarks default</div>
+          </div>
+        </div>
+        <div class="card">
+          <h3 style="color: var(--cta);">Admin (Organizacion)</h3>
+          <p style="margin-bottom: 8px;">Administra su firma. Configura servicios, benchmarks, templates y gestiona al equipo.</p>
+          <div style="font-size: 0.82em; color: var(--text-muted);">
+            <div style="padding: 3px 0;">Configurar servicios y benchmarks</div>
+            <div style="padding: 3px 0;">Gestionar templates de entregables</div>
+            <div style="padding: 3px 0;">Invitar/remover miembros del equipo</div>
+            <div style="padding: 3px 0;">Ver dashboard financiero completo</div>
+          </div>
+        </div>
+        <div class="card">
+          <h3 style="color: var(--info);">Ejecutivo de Cuenta</h3>
+          <p style="margin-bottom: 8px;">Opera con sus clientes asignados. Gestiona proyecciones, procesa facturas y monitorea entregables.</p>
+          <div style="font-size: 0.82em; color: var(--text-muted);">
+            <div style="padding: 3px 0;">CRUD de sus clientes asignados</div>
+            <div style="padding: 3px 0;">Crear y ajustar proyecciones</div>
+            <div style="padding: 3px 0;">Procesar facturas y registrar pagos</div>
+            <div style="padding: 3px 0;">Monitorear estatus de entregables</div>
+          </div>
+        </div>
+        <div class="card">
+          <h3 style="color: var(--success);">Viewer</h3>
+          <p style="margin-bottom: 8px;">Solo lectura. Ve dashboard, reportes y estatus sin poder modificar nada.</p>
+          <div style="font-size: 0.82em; color: var(--text-muted);">
+            <div style="padding: 3px 0;">Ver dashboard y reportes</div>
+            <div style="padding: 3px 0;">Consultar estatus de entregables</div>
+            <div style="padding: 3px 0;">Descargar documentos generados</div>
+          </div>
         </div>
       </div>
     </div>
@@ -1100,7 +1253,7 @@
   </div>
 
   <footer class="footer">
-    DESC - Deliverable Engine for Service Control &mdash; Scope Document v1.2 &mdash; Marzo 2026
+    DESC - Deliverable Engine for Service Control &mdash; Scope Document v1.3 &mdash; Marzo 2026
   </footer>
 
 </body>
