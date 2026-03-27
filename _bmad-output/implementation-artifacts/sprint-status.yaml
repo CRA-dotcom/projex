@@ -1,0 +1,241 @@
+project: DESC
+current_sprint: 1
+sprints:
+  1:
+    name: "Project Setup & Multi-Tenant Foundation"
+    stories:
+      1.1:
+        title: "Initialize Next.js + Convex Project"
+        epic: 1
+        status: backlog
+      1.2:
+        title: "Define Complete Convex Schema"
+        epic: 1
+        status: backlog
+      1.3:
+        title: "Configure Clerk + Convex Authentication"
+        epic: 1
+        status: backlog
+      1.4:
+        title: "Implement Auth Middleware & Role Helpers"
+        epic: 1
+        status: backlog
+      1.5:
+        title: "Seed Default Services"
+        epic: 1
+        status: backlog
+      1.6:
+        title: "Organization CRUD & Super Admin Queries"
+        epic: 1
+        status: backlog
+      1.7:
+        title: "App Shell Layout with Sidebar Navigation"
+        epic: 1
+        status: backlog
+  2:
+    name: "Client Management"
+    stories:
+      2.1:
+        title: "Client List and Create Mutations"
+        epic: 2
+        status: backlog
+      2.2:
+        title: "Role-Based Client Filtering"
+        epic: 2
+        status: backlog
+      2.3:
+        title: "New Client Form UI"
+        epic: 2
+        status: backlog
+      2.4:
+        title: "Edit Client"
+        epic: 2
+        status: backlog
+      2.5:
+        title: "Archive Client (Soft Delete)"
+        epic: 2
+        status: backlog
+      2.6:
+        title: "Client List Page with Search & Filters"
+        epic: 2
+        status: backlog
+      2.7:
+        title: "Client Detail Page"
+        epic: 2
+        status: backlog
+  3:
+    name: "Projection Engine Core"
+    stories:
+      3.1:
+        title: "Implement Pure Projection Engine Library"
+        epic: 3
+        status: backlog
+      3.2:
+        title: "Projection Engine Unit Tests"
+        epic: 3
+        status: backlog
+      3.3:
+        title: "Create Projection Mutation"
+        epic: 3
+        status: backlog
+      3.4:
+        title: "Projection Queries (getByClient, getById)"
+        epic: 3
+        status: backlog
+      3.5:
+        title: "Recalculate Projection Mutation"
+        epic: 3
+        status: backlog
+      3.6:
+        title: "Projection Input Form (Step 1 - Basic Data)"
+        epic: 3
+        status: backlog
+  4:
+    name: "Service Matrix & Seasonality"
+    stories:
+      4.1:
+        title: "Service List Queries"
+        epic: 4
+        status: backlog
+      4.2:
+        title: "Service Configuration Page"
+        epic: 4
+        status: backlog
+      4.3:
+        title: "Service Configurator in Projection Wizard (Step 3)"
+        epic: 4
+        status: backlog
+      4.4:
+        title: "Projection Services & Monthly Assignment Queries"
+        epic: 4
+        status: backlog
+      4.5:
+        title: "Projection Matrix View (12x9 Grid)"
+        epic: 4
+        status: backlog
+      4.6:
+        title: "Matrix Summary Totals"
+        epic: 4
+        status: backlog
+      4.7:
+        title: "Matrix Cell Detail Panel & Filters"
+        epic: 4
+        status: backlog
+      5.1:
+        title: "Monthly Sales Input Form (Wizard Step 2)"
+        epic: 5
+        status: backlog
+      5.2:
+        title: "Seasonality Bar Chart"
+        epic: 5
+        status: backlog
+      5.3:
+        title: "Projection Review Step (Wizard Step 4)"
+        epic: 5
+        status: backlog
+      5.4:
+        title: "Manual Monthly Amount Override"
+        epic: 5
+        status: backlog
+      5.5:
+        title: "Toggle Service Active/Inactive and Recalculate"
+        epic: 5
+        status: backlog
+  5:
+    name: "Billing & Dashboard"
+    stories:
+      6.1:
+        title: "Invoice Status Mutation"
+        epic: 6
+        status: backlog
+      6.2:
+        title: "Billing Frequency Amount Breakdown"
+        epic: 6
+        status: backlog
+      6.3:
+        title: "Invoice Tracking View"
+        epic: 6
+        status: backlog
+      6.4:
+        title: "Monthly Assignment Status Updates"
+        epic: 6
+        status: backlog
+      6.5:
+        title: "Overdue Assignment Query"
+        epic: 6
+        status: backlog
+      7.1:
+        title: "Dashboard Financial Summary Query"
+        epic: 7
+        status: backlog
+      7.2:
+        title: "Financial Overview Chart (Sales vs. Payments)"
+        epic: 7
+        status: backlog
+      7.3:
+        title: "Deliverable Status Summary"
+        epic: 7
+        status: backlog
+      7.4:
+        title: "Per-Client Summary Cards"
+        epic: 7
+        status: backlog
+      7.5:
+        title: "Dashboard Alerts & Filters"
+        epic: 7
+        status: backlog
+      7.6:
+        title: "Dashboard Export (CSV)"
+        epic: 7
+        status: backlog
+  6:
+    name: "Questionnaire & Quotation/Contract"
+    stories:
+      8.1:
+        title: "Questionnaire Generation Logic"
+        epic: 8
+        status: backlog
+      8.2:
+        title: "Questionnaire Queries & Status Tracking"
+        epic: 8
+        status: backlog
+      8.3:
+        title: "Questionnaire Form UI (Client-Facing)"
+        epic: 8
+        status: backlog
+      8.4:
+        title: "Questionnaire Management UI (Ejecutivo)"
+        epic: 8
+        status: backlog
+      8.5:
+        title: "Ejecutivo Response Review & Edit"
+        epic: 8
+        status: backlog
+      8.6:
+        title: "Admin Questionnaire Template Configuration"
+        epic: 8
+        status: backlog
+      9.1:
+        title: "Quotation Generation Mutation"
+        epic: 9
+        status: backlog
+      9.2:
+        title: "Quotation Lifecycle Management"
+        epic: 9
+        status: backlog
+      9.3:
+        title: "Contract Generation from Approved Quotation"
+        epic: 9
+        status: backlog
+      9.4:
+        title: "Contract Lifecycle Management"
+        epic: 9
+        status: backlog
+      9.5:
+        title: "PDF Generation for Quotations & Contracts"
+        epic: 9
+        status: backlog
+      9.6:
+        title: "Document Cycle Tracking UI"
+        epic: 9
+        status: backlog
