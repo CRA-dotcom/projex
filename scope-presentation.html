@@ -755,7 +755,7 @@
     <!-- STACK TECNICO -->
     <div class="section">
       <h2 class="section-title">Stack Tecnologico</h2>
-      <p class="section-subtitle">Full-stack monolito con Next.js y Supabase.</p>
+      <p class="section-subtitle">Full-stack monolito con Next.js y Convex.</p>
 
       <div class="tech-grid">
         <div class="tech-card">
@@ -768,18 +768,18 @@
         </div>
         <div class="tech-card">
           <h4>Backend & Data</h4>
-          <span class="tech-tag">Supabase</span>
-          <span class="tech-tag">PostgreSQL</span>
-          <span class="tech-tag">Supabase Auth</span>
-          <span class="tech-tag">Supabase Storage</span>
-          <span class="tech-tag">API Routes</span>
+          <span class="tech-tag">Convex</span>
+          <span class="tech-tag">Convex DB</span>
+          <span class="tech-tag">Clerk (Auth)</span>
+          <span class="tech-tag">Convex Storage</span>
+          <span class="tech-tag">Server Functions</span>
         </div>
         <div class="tech-card">
           <h4>Integraciones</h4>
           <span class="tech-tag">Claude API</span>
           <span class="tech-tag">Resend (Email)</span>
           <span class="tech-tag">react-pdf</span>
-          <span class="tech-tag">Vercel Cron</span>
+          <span class="tech-tag">Convex Cron</span>
         </div>
       </div>
     </div>
@@ -787,30 +787,30 @@
     <!-- BASE DE DATOS -->
     <div class="section">
       <h2 class="section-title">Modelo de Base de Datos</h2>
-      <p class="section-subtitle">9 tablas principales en PostgreSQL (Supabase).</p>
+      <p class="section-subtitle">9 tablas principales en Convex DB (documento-relacional, TypeScript-first).</p>
 
       <div class="schema-grid">
         <div class="schema-table">
           <div class="schema-table-header">clients</div>
           <div class="schema-table-body">
-            <div class="schema-field"><span class="schema-field-name">id</span><span class="schema-field-type">uuid PK</span></div>
+            <div class="schema-field"><span class="schema-field-name">id</span><span class="schema-field-type">Id</span></div>
             <div class="schema-field"><span class="schema-field-name">name</span><span class="schema-field-type">text</span></div>
             <div class="schema-field"><span class="schema-field-name">rfc</span><span class="schema-field-type">text</span></div>
             <div class="schema-field"><span class="schema-field-name">industry</span><span class="schema-field-type">text</span></div>
-            <div class="schema-field"><span class="schema-field-name">annual_revenue</span><span class="schema-field-type">decimal</span></div>
-            <div class="schema-field"><span class="schema-field-name">billing_frequency</span><span class="schema-field-type">enum</span></div>
-            <div class="schema-field"><span class="schema-field-name">created_at</span><span class="schema-field-type">timestamp</span></div>
+            <div class="schema-field"><span class="schema-field-name">annual_revenue</span><span class="schema-field-type">number</span></div>
+            <div class="schema-field"><span class="schema-field-name">billing_frequency</span><span class="schema-field-type">union</span></div>
+            <div class="schema-field"><span class="schema-field-name">created_at</span><span class="schema-field-type">number (ms)</span></div>
           </div>
         </div>
 
         <div class="schema-table">
           <div class="schema-table-header">projections</div>
           <div class="schema-table-body">
-            <div class="schema-field"><span class="schema-field-name">id</span><span class="schema-field-type">uuid PK</span></div>
-            <div class="schema-field"><span class="schema-field-name">client_id</span><span class="schema-field-type">uuid FK</span></div>
+            <div class="schema-field"><span class="schema-field-name">id</span><span class="schema-field-type">Id</span></div>
+            <div class="schema-field"><span class="schema-field-name">client_id</span><span class="schema-field-type">Id (ref)</span></div>
             <div class="schema-field"><span class="schema-field-name">year</span><span class="schema-field-type">int</span></div>
-            <div class="schema-field"><span class="schema-field-name">total_budget</span><span class="schema-field-type">decimal</span></div>
-            <div class="schema-field"><span class="schema-field-name">commission_rate</span><span class="schema-field-type">decimal</span></div>
+            <div class="schema-field"><span class="schema-field-name">total_budget</span><span class="schema-field-type">number</span></div>
+            <div class="schema-field"><span class="schema-field-name">commission_rate</span><span class="schema-field-type">number</span></div>
             <div class="schema-field"><span class="schema-field-name">seasonality_data</span><span class="schema-field-type">jsonb</span></div>
           </div>
         </div>
@@ -818,88 +818,88 @@
         <div class="schema-table">
           <div class="schema-table-header">services</div>
           <div class="schema-table-body">
-            <div class="schema-field"><span class="schema-field-name">id</span><span class="schema-field-type">uuid PK</span></div>
+            <div class="schema-field"><span class="schema-field-name">id</span><span class="schema-field-type">Id</span></div>
             <div class="schema-field"><span class="schema-field-name">name</span><span class="schema-field-type">text</span></div>
-            <div class="schema-field"><span class="schema-field-name">type</span><span class="schema-field-type">enum</span></div>
-            <div class="schema-field"><span class="schema-field-name">min_pct</span><span class="schema-field-type">decimal</span></div>
-            <div class="schema-field"><span class="schema-field-name">max_pct</span><span class="schema-field-type">decimal</span></div>
-            <div class="schema-field"><span class="schema-field-name">default_pct</span><span class="schema-field-type">decimal</span></div>
+            <div class="schema-field"><span class="schema-field-name">type</span><span class="schema-field-type">union</span></div>
+            <div class="schema-field"><span class="schema-field-name">min_pct</span><span class="schema-field-type">number</span></div>
+            <div class="schema-field"><span class="schema-field-name">max_pct</span><span class="schema-field-type">number</span></div>
+            <div class="schema-field"><span class="schema-field-name">default_pct</span><span class="schema-field-type">number</span></div>
           </div>
         </div>
 
         <div class="schema-table">
           <div class="schema-table-header">projection_services</div>
           <div class="schema-table-body">
-            <div class="schema-field"><span class="schema-field-name">id</span><span class="schema-field-type">uuid PK</span></div>
-            <div class="schema-field"><span class="schema-field-name">projection_id</span><span class="schema-field-type">uuid FK</span></div>
-            <div class="schema-field"><span class="schema-field-name">service_id</span><span class="schema-field-type">uuid FK</span></div>
-            <div class="schema-field"><span class="schema-field-name">chosen_pct</span><span class="schema-field-type">decimal</span></div>
+            <div class="schema-field"><span class="schema-field-name">id</span><span class="schema-field-type">Id</span></div>
+            <div class="schema-field"><span class="schema-field-name">projection_id</span><span class="schema-field-type">Id (ref)</span></div>
+            <div class="schema-field"><span class="schema-field-name">service_id</span><span class="schema-field-type">Id (ref)</span></div>
+            <div class="schema-field"><span class="schema-field-name">chosen_pct</span><span class="schema-field-type">number</span></div>
             <div class="schema-field"><span class="schema-field-name">is_active</span><span class="schema-field-type">boolean</span></div>
-            <div class="schema-field"><span class="schema-field-name">annual_amount</span><span class="schema-field-type">decimal</span></div>
+            <div class="schema-field"><span class="schema-field-name">annual_amount</span><span class="schema-field-type">number</span></div>
           </div>
         </div>
 
         <div class="schema-table">
           <div class="schema-table-header">monthly_assignments</div>
           <div class="schema-table-body">
-            <div class="schema-field"><span class="schema-field-name">id</span><span class="schema-field-type">uuid PK</span></div>
-            <div class="schema-field"><span class="schema-field-name">proj_service_id</span><span class="schema-field-type">uuid FK</span></div>
+            <div class="schema-field"><span class="schema-field-name">id</span><span class="schema-field-type">Id</span></div>
+            <div class="schema-field"><span class="schema-field-name">proj_service_id</span><span class="schema-field-type">Id (ref)</span></div>
             <div class="schema-field"><span class="schema-field-name">month</span><span class="schema-field-type">int (1-12)</span></div>
-            <div class="schema-field"><span class="schema-field-name">amount</span><span class="schema-field-type">decimal</span></div>
-            <div class="schema-field"><span class="schema-field-name">fe_factor</span><span class="schema-field-type">decimal</span></div>
-            <div class="schema-field"><span class="schema-field-name">status</span><span class="schema-field-type">enum</span></div>
-            <div class="schema-field"><span class="schema-field-name">invoice_status</span><span class="schema-field-type">enum</span></div>
+            <div class="schema-field"><span class="schema-field-name">amount</span><span class="schema-field-type">number</span></div>
+            <div class="schema-field"><span class="schema-field-name">fe_factor</span><span class="schema-field-type">number</span></div>
+            <div class="schema-field"><span class="schema-field-name">status</span><span class="schema-field-type">union</span></div>
+            <div class="schema-field"><span class="schema-field-name">invoice_status</span><span class="schema-field-type">union</span></div>
           </div>
         </div>
 
         <div class="schema-table">
           <div class="schema-table-header">questionnaire_responses</div>
           <div class="schema-table-body">
-            <div class="schema-field"><span class="schema-field-name">id</span><span class="schema-field-type">uuid PK</span></div>
-            <div class="schema-field"><span class="schema-field-name">client_id</span><span class="schema-field-type">uuid FK</span></div>
-            <div class="schema-field"><span class="schema-field-name">projection_id</span><span class="schema-field-type">uuid FK</span></div>
+            <div class="schema-field"><span class="schema-field-name">id</span><span class="schema-field-type">Id</span></div>
+            <div class="schema-field"><span class="schema-field-name">client_id</span><span class="schema-field-type">Id (ref)</span></div>
+            <div class="schema-field"><span class="schema-field-name">projection_id</span><span class="schema-field-type">Id (ref)</span></div>
             <div class="schema-field"><span class="schema-field-name">responses</span><span class="schema-field-type">jsonb</span></div>
-            <div class="schema-field"><span class="schema-field-name">status</span><span class="schema-field-type">enum</span></div>
-            <div class="schema-field"><span class="schema-field-name">completed_at</span><span class="schema-field-type">timestamp</span></div>
+            <div class="schema-field"><span class="schema-field-name">status</span><span class="schema-field-type">union</span></div>
+            <div class="schema-field"><span class="schema-field-name">completed_at</span><span class="schema-field-type">number (ms)</span></div>
           </div>
         </div>
 
         <div class="schema-table">
           <div class="schema-table-header">quotations</div>
           <div class="schema-table-body">
-            <div class="schema-field"><span class="schema-field-name">id</span><span class="schema-field-type">uuid PK</span></div>
-            <div class="schema-field"><span class="schema-field-name">proj_service_id</span><span class="schema-field-type">uuid FK</span></div>
+            <div class="schema-field"><span class="schema-field-name">id</span><span class="schema-field-type">Id</span></div>
+            <div class="schema-field"><span class="schema-field-name">proj_service_id</span><span class="schema-field-type">Id (ref)</span></div>
             <div class="schema-field"><span class="schema-field-name">content</span><span class="schema-field-type">text</span></div>
             <div class="schema-field"><span class="schema-field-name">pdf_url</span><span class="schema-field-type">text</span></div>
-            <div class="schema-field"><span class="schema-field-name">status</span><span class="schema-field-type">enum</span></div>
-            <div class="schema-field"><span class="schema-field-name">created_at</span><span class="schema-field-type">timestamp</span></div>
+            <div class="schema-field"><span class="schema-field-name">status</span><span class="schema-field-type">union</span></div>
+            <div class="schema-field"><span class="schema-field-name">created_at</span><span class="schema-field-type">number (ms)</span></div>
           </div>
         </div>
 
         <div class="schema-table">
           <div class="schema-table-header">contracts</div>
           <div class="schema-table-body">
-            <div class="schema-field"><span class="schema-field-name">id</span><span class="schema-field-type">uuid PK</span></div>
-            <div class="schema-field"><span class="schema-field-name">quotation_id</span><span class="schema-field-type">uuid FK</span></div>
+            <div class="schema-field"><span class="schema-field-name">id</span><span class="schema-field-type">Id</span></div>
+            <div class="schema-field"><span class="schema-field-name">quotation_id</span><span class="schema-field-type">Id (ref)</span></div>
             <div class="schema-field"><span class="schema-field-name">content</span><span class="schema-field-type">text</span></div>
             <div class="schema-field"><span class="schema-field-name">pdf_url</span><span class="schema-field-type">text</span></div>
-            <div class="schema-field"><span class="schema-field-name">status</span><span class="schema-field-type">enum</span></div>
-            <div class="schema-field"><span class="schema-field-name">signed_at</span><span class="schema-field-type">timestamp</span></div>
+            <div class="schema-field"><span class="schema-field-name">status</span><span class="schema-field-type">union</span></div>
+            <div class="schema-field"><span class="schema-field-name">signed_at</span><span class="schema-field-type">number (ms)</span></div>
           </div>
         </div>
 
         <div class="schema-table">
           <div class="schema-table-header">deliverables</div>
           <div class="schema-table-body">
-            <div class="schema-field"><span class="schema-field-name">id</span><span class="schema-field-type">uuid PK</span></div>
-            <div class="schema-field"><span class="schema-field-name">assignment_id</span><span class="schema-field-type">uuid FK</span></div>
-            <div class="schema-field"><span class="schema-field-name">template_id</span><span class="schema-field-type">uuid FK</span></div>
+            <div class="schema-field"><span class="schema-field-name">id</span><span class="schema-field-type">Id</span></div>
+            <div class="schema-field"><span class="schema-field-name">assignment_id</span><span class="schema-field-type">Id (ref)</span></div>
+            <div class="schema-field"><span class="schema-field-name">template_id</span><span class="schema-field-type">Id (ref)</span></div>
             <div class="schema-field"><span class="schema-field-name">short_content</span><span class="schema-field-type">text</span></div>
             <div class="schema-field"><span class="schema-field-name">long_content</span><span class="schema-field-type">text</span></div>
             <div class="schema-field"><span class="schema-field-name">short_pdf_url</span><span class="schema-field-type">text</span></div>
             <div class="schema-field"><span class="schema-field-name">long_pdf_url</span><span class="schema-field-type">text</span></div>
-            <div class="schema-field"><span class="schema-field-name">audit_status</span><span class="schema-field-type">enum</span></div>
-            <div class="schema-field"><span class="schema-field-name">delivered_at</span><span class="schema-field-type">timestamp</span></div>
+            <div class="schema-field"><span class="schema-field-name">audit_status</span><span class="schema-field-type">union</span></div>
+            <div class="schema-field"><span class="schema-field-name">delivered_at</span><span class="schema-field-type">number (ms)</span></div>
           </div>
         </div>
       </div>
@@ -986,9 +986,9 @@
         </div>
         <div class="phase-body">
           <ul>
-            <li>Setup Next.js + Supabase + Tailwind + shadcn/ui</li>
-            <li>Modelo de datos en PostgreSQL (9 tablas + migraciones)</li>
-            <li>Autenticacion del equipo interno (Supabase Auth)</li>
+            <li>Setup Next.js + Convex + Tailwind + shadcn/ui</li>
+            <li>Modelo de datos en Convex (9 tablas + schema tipado)</li>
+            <li>Autenticacion del equipo interno (Clerk + Convex)</li>
             <li>CRUD de clientes</li>
             <li>Seed de servicios base (9 servicios con benchmarks)</li>
           </ul>
@@ -1050,7 +1050,7 @@
             <li>Sistema de templates por servicio (cuestionario + corto + largo)</li>
             <li>Generacion de entregable version corta y version larga</li>
             <li>Generacion de PDF con branding (react-pdf)</li>
-            <li>Storage de entregables en Supabase Storage</li>
+            <li>Storage de entregables en Convex Storage</li>
           </ul>
         </div>
       </div>
@@ -1100,7 +1100,7 @@
   </div>
 
   <footer class="footer">
-    DESC - Deliverable Engine for Service Control &mdash; Scope Document v1.1 &mdash; Marzo 2026
+    DESC - Deliverable Engine for Service Control &mdash; Scope Document v1.2 &mdash; Marzo 2026
   </footer>
 
 </body>
