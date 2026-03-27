@@ -84,10 +84,13 @@ La calculadora tiene 5 hojas interconectadas:
 
 ### Etapa 2: Generacion de Entregables (Ejecucion)
 
-**Que hace:** Para cada servicio asignado en un mes, genera automaticamente:
-1. **Cotizacion** - Se genera al momento de contratar (primera vez)
-2. **Contrato** - Se genera al contratar el primer servicio
-3. **Entregable** - Se genera al emitir la factura del mes/servicio correspondiente
+**Que hace:** Para cada servicio asignado en un mes, genera automaticamente un ciclo de 4 documentos:
+1. **Cotizacion** - Se genera como primer documento del ciclo, antes del contrato
+2. **Contrato** - Se genera despues de la cotizacion, como segundo documento
+3. **Proyeccion** - Distribucion del presupuesto por mes (ya existente desde la Etapa 1)
+4. **Entregable** - Se genera al emitir la factura del mes/servicio correspondiente, en version corta y version larga
+
+> **Nota:** La generacion de cotizacion y contrato es un proceso separado e intermedio que ocurre entre la proyeccion y la generacion del entregable.
 
 **Variables de facturacion por cliente:**
 - Semanal (clientes que usan la factura para pagar nomina)
@@ -127,28 +130,28 @@ Cada area requiere informacion especifica del cliente para poder generar entrega
 ## Flujo de Trabajo Automatizado
 
 ```
-[Calendario: Inicio de Mes]
+[Alta Cliente]
         |
         v
-[Revisar Matriz de Proyeccion]
+[Configurar: datos financieros y servicios requeridos]
         |
         v
-[Filtrar: Que servicios tocan este mes para cada cliente?]
+[Proyeccion: genera Matriz de Proyeccion anual]
         |
         v
-[Enviar solicitud personalizada al cliente]
-  (solo pide los inputs del servicio activo)
+[Cuestionario Unificado]
+  - Un solo formulario para todos los servicios activos del cliente
+  - Preguntas deduplicadas: si aplican a varios servicios, se preguntan una sola vez
+  - El sistema mapea cada respuesta al/los servicios correspondientes
         |
         v
-[Cliente envia informacion] -----> [Se marca "Recibida" en BD]
-        |
-        v
-[Se confirma pago / se genera factura]
+[Cotizacion + Contrato] <-- proceso separado e intermedio
+  - Se generan antes de proceder a la produccion del entregable
         |
         v
 [Agente Creador (IA)]
   - Recibe: plantilla del servicio + datos del cliente + mes
-  - Genera: entregable en formato profesional
+  - Genera: Entregable version corta + Entregable version larga
         |
         v
 [Agente Auditor (IA)]
@@ -158,10 +161,10 @@ Cada area requiere informacion especifica del cliente para poder generar entrega
   - Si esta correcto: aprueba
         |
         v
-[Generar PDF con branding]
+[Generar PDF con branding (version corta y version larga)]
         |
         v
-[Subir a carpeta compartida del cliente]
+[Entregar: subir a carpeta compartida del cliente]
         |
         v
 [Marcar como "Entregado" en Matriz de Control]
@@ -206,9 +209,20 @@ Cada area requiere informacion especifica del cliente para poder generar entrega
 **Tabla: Plantillas de Servicio**
 - Servicio
 - Tipo de Entregable
-- Plantilla (template para IA)
+- Plantilla Cuestionario (template unificado - preguntas compartidas entre servicios se guardan una sola vez)
+- Plantilla Entregable Version Corta (template para IA)
+- Plantilla Entregable Version Larga (template para IA)
 - Inputs requeridos
 - Criterios de validacion (para el Agente Auditor)
+
+> Cada servicio tiene 3 componentes de plantilla: Cuestionario, Entregable version corta, Entregable version larga.
+
+**Tabla: Cuestionario Unificado**
+- ID Pregunta
+- Texto de la Pregunta
+- Servicios que la requieren (relacion multiple)
+- Respuesta del Cliente
+- ID Cliente (relacion)
 
 **Tabla: Entregables Generados**
 - ID Entregable
@@ -227,7 +241,7 @@ Cada area requiere informacion especifica del cliente para poder generar entrega
 
 El nucleo del proyecto es que cada entregable tenga **calidad profesional real**, no un documento generico. Esto requiere:
 
-1. **Plantillas maestras por servicio** - Templates detallados que definan estructura, tono, profundidad y formato de cada tipo de entregable
+1. **Plantillas maestras por servicio (3 componentes cada una)** - Cuestionario unificado (con deduplicacion inteligente de preguntas entre servicios), Entregable version corta y Entregable version larga. Las plantillas se estan generando pero requieren pulido. **[BLOQUEANTE - en progreso]**
 2. **Prompts especializados por area** - Cada servicio necesita un prompt que haga a la IA actuar como un especialista de esa industria
 3. **Datos de contexto del cliente** - La personalizacion depende de que tan buena sea la informacion recolectada
 4. **Doble validacion (Creador + Auditor)** - El agente auditor asegura que no se entregue basura
