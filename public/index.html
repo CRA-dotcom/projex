@@ -388,7 +388,7 @@
 
   <!-- HERO -->
   <header class="hero">
-    <div class="badge">Documento de Scope v1.0</div>
+    <div class="badge">Documento de Scope v1.1</div>
     <h1 style="margin-top: 16px;">DESC</h1>
     <p class="subtitle">Deliverable Engine for Service Control</p>
     <p style="color: rgba(255,255,255,0.5); font-size: 0.9em; position: relative;">Sistema automatizado de proyeccion financiera y generacion de entregables profesionales</p>
@@ -419,10 +419,10 @@
 
     <!-- ETAPAS DEL PROCESO -->
     <div class="section">
-      <h2 class="section-title">Las 2 Etapas del Proceso</h2>
-      <p class="section-subtitle">El sistema opera en dos fases secuenciales para cada cliente.</p>
+      <h2 class="section-title">Las 3 Etapas del Proceso</h2>
+      <p class="section-subtitle">El sistema opera en tres fases secuenciales para cada cliente.</p>
 
-      <div class="card-grid">
+      <div class="card-grid" style="grid-template-columns: repeat(3, 1fr);">
         <div class="card" style="border-left: 4px solid var(--cta);">
           <h3>Etapa 1: Proyeccion Financiera</h3>
           <p style="margin-bottom: 12px;">Distribuye el presupuesto anual del cliente entre los servicios activos, ajustado por benchmarks de mercado y estacionalidad de ventas.</p>
@@ -432,14 +432,76 @@
             <div><strong>Output:</strong> Matriz de 12 meses x 9 servicios con montos ajustados por FE</div>
           </div>
         </div>
+        <div class="card" style="border-left: 4px solid var(--purple);">
+          <h3>Etapa 2: Cotizacion y Contrato</h3>
+          <p style="margin-bottom: 12px;">Proceso intermedio que genera la documentacion comercial antes de ejecutar los entregables. Se activa por servicio contratado.</p>
+          <div style="font-size: 0.82em;">
+            <div style="margin-bottom: 6px;"><strong>Trigger:</strong> Servicio activado en la proyeccion</div>
+            <div style="margin-bottom: 6px;"><strong>Genera:</strong> 1. Cotizacion del servicio → 2. Contrato formalizado</div>
+            <div><strong>Output:</strong> Documentos comerciales listos para firma</div>
+          </div>
+        </div>
         <div class="card" style="border-left: 4px solid var(--info);">
-          <h3>Etapa 2: Generacion de Entregables</h3>
-          <p style="margin-bottom: 12px;">Para cada servicio asignado en un mes, genera automaticamente cotizacion, contrato y entregable profesional via IA.</p>
+          <h3>Etapa 3: Generacion de Entregables</h3>
+          <p style="margin-bottom: 12px;">Para cada servicio con contrato activo, genera entregables en dos versiones via IA: corta y larga.</p>
           <div style="font-size: 0.82em;">
             <div style="margin-bottom: 6px;"><strong>Trigger:</strong> Pago confirmado / factura generada</div>
             <div style="margin-bottom: 6px;"><strong>Proceso:</strong> Claude API (Creador) + Claude API (Auditor)</div>
-            <div><strong>Output:</strong> PDF con branding subido a storage</div>
+            <div><strong>Output:</strong> Entregable corto + Entregable largo en PDF</div>
           </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CICLO DE DOCUMENTOS -->
+    <div class="section">
+      <h2 class="section-title">Ciclo de Documentos por Servicio</h2>
+      <p class="section-subtitle">Cada servicio contratado genera 4 documentos en orden secuencial.</p>
+
+      <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;">
+        <div class="card" style="text-align: center; border-top: 3px solid var(--cta);">
+          <div style="font-size: 2em; font-weight: 700; color: var(--cta); font-family: 'Poppins';">1</div>
+          <h3>Cotizacion</h3>
+          <p>Propuesta comercial con montos y alcance del servicio</p>
+        </div>
+        <div class="card" style="text-align: center; border-top: 3px solid var(--purple);">
+          <div style="font-size: 2em; font-weight: 700; color: var(--purple); font-family: 'Poppins';">2</div>
+          <h3>Contrato</h3>
+          <p>Formalizacion legal del acuerdo de servicio</p>
+        </div>
+        <div class="card" style="text-align: center; border-top: 3px solid var(--info);">
+          <div style="font-size: 2em; font-weight: 700; color: var(--info); font-family: 'Poppins';">3</div>
+          <h3>Proyeccion</h3>
+          <p>Distribucion mensual del presupuesto asignado</p>
+        </div>
+        <div class="card" style="text-align: center; border-top: 3px solid var(--success);">
+          <div style="font-size: 2em; font-weight: 700; color: var(--success); font-family: 'Poppins';">4</div>
+          <h3>Entregable</h3>
+          <p>Documento final en version corta y version larga</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ESTRUCTURA DE TEMPLATES -->
+    <div class="section">
+      <h2 class="section-title">Estructura de Templates</h2>
+      <p class="section-subtitle">Cada servicio tiene 3 componentes de template.</p>
+
+      <div class="card-grid" style="grid-template-columns: repeat(3, 1fr);">
+        <div class="card" style="border-top: 3px solid var(--warning);">
+          <h3>Cuestionario Unificado</h3>
+          <p style="margin-bottom: 10px;">Un solo formulario inteligente para todos los servicios. Las preguntas que aplican a multiples areas se hacen una sola vez.</p>
+          <div style="font-size: 0.82em; padding: 8px; background: rgba(245,158,11,0.06); border-radius: 6px;">
+            <strong>Clave:</strong> Evita que el cliente llene 50 cuestionarios con preguntas repetidas. El sistema mapea cada respuesta a los servicios correspondientes.
+          </div>
+        </div>
+        <div class="card" style="border-top: 3px solid var(--info);">
+          <h3>Entregable Version Corta</h3>
+          <p>Resumen ejecutivo del entregable. Documento conciso con los puntos clave, hallazgos principales y recomendaciones prioritarias.</p>
+        </div>
+        <div class="card" style="border-top: 3px solid var(--success);">
+          <h3>Entregable Version Larga</h3>
+          <p>Documento completo y detallado con analisis profundo, metodologia, datos de soporte, conclusiones y plan de accion.</p>
         </div>
       </div>
     </div>
@@ -453,32 +515,37 @@
         <div class="flow-step">
           <div class="flow-circle">1</div>
           <div class="flow-label">Alta Cliente</div>
-          <div class="flow-desc">Datos fiscales, industria, facturacion anual</div>
+          <div class="flow-desc">Datos fiscales, industria, facturacion</div>
         </div>
         <div class="flow-step">
           <div class="flow-circle">2</div>
           <div class="flow-label">Configurar</div>
-          <div class="flow-desc">Benchmarks, servicios activos, estacionalidad</div>
+          <div class="flow-desc">Benchmarks, servicios, estacionalidad</div>
         </div>
         <div class="flow-step">
           <div class="flow-circle">3</div>
           <div class="flow-label">Proyeccion</div>
-          <div class="flow-desc">Motor calcula matriz anual automaticamente</div>
+          <div class="flow-desc">Motor calcula matriz anual</div>
         </div>
         <div class="flow-step">
           <div class="flow-circle">4</div>
-          <div class="flow-label">Solicitar Info</div>
-          <div class="flow-desc">Sistema pide inputs al cliente por servicio</div>
+          <div class="flow-label">Cuestionario</div>
+          <div class="flow-desc">Formulario unificado al cliente</div>
         </div>
         <div class="flow-step">
           <div class="flow-circle">5</div>
-          <div class="flow-label">Generar</div>
-          <div class="flow-desc">IA crea entregable + auditor valida</div>
+          <div class="flow-label">Cotizacion</div>
+          <div class="flow-desc">Genera cotizacion + contrato</div>
         </div>
         <div class="flow-step">
           <div class="flow-circle">6</div>
+          <div class="flow-label">Generar</div>
+          <div class="flow-desc">IA crea entregable corto + largo</div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-circle">7</div>
           <div class="flow-label">Entregar</div>
-          <div class="flow-desc">PDF a storage, marca como entregado</div>
+          <div class="flow-desc">PDF a storage, marca entregado</div>
         </div>
       </div>
     </div>
@@ -486,7 +553,7 @@
     <!-- 6 MODULOS -->
     <div class="section">
       <h2 class="section-title">Modulos del Sistema</h2>
-      <p class="section-subtitle">6 modulos que cubren el ciclo completo de operacion.</p>
+      <p class="section-subtitle">7 modulos que cubren el ciclo completo de operacion.</p>
 
       <div class="card-grid">
         <div class="card">
@@ -517,24 +584,32 @@
           <div class="card-icon" style="background: rgba(245,158,11,0.1); color: var(--warning);">
             <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
           </div>
-          <h3>4. Facturacion</h3>
-          <p>Concepto del servicio y clave SAT por cada servicio activo. Montos vinculados a la matriz. Sin integracion directa con SAT.</p>
+          <h3>4. Cuestionario Unificado</h3>
+          <p>Formulario inteligente que consolida preguntas de todos los servicios. Evita duplicados y mapea respuestas automaticamente.</p>
+        </div>
+
+        <div class="card">
+          <div class="card-icon" style="background: rgba(124,58,237,0.08); color: var(--purple);">
+            <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+          </div>
+          <h3>5. Cotizacion y Contrato</h3>
+          <p>Generacion automatica de cotizaciones y contratos por servicio. Proceso intermedio entre proyeccion y entregable.</p>
         </div>
 
         <div class="card">
           <div class="card-icon" style="background: rgba(202,138,4,0.1); color: var(--cta);">
             <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
           </div>
-          <h3>5. Generador de Entregables</h3>
-          <p>Claude API como motor de generacion. Agente Creador + Agente Auditor. Templates por servicio. Genera PDF con branding corporativo.</p>
+          <h3>6. Generador de Entregables</h3>
+          <p>Claude API como motor. Agente Creador + Auditor. Genera version corta y larga. PDF con branding corporativo.</p>
         </div>
 
         <div class="card">
           <div class="card-icon" style="background: rgba(15,23,42,0.08); color: var(--primary);">
             <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
           </div>
-          <h3>6. Dashboard</h3>
-          <p>Resumen financiero global. Graficos de ventas vs servicios. Estatus de entregables por cliente. Alertas y pendientes.</p>
+          <h3>7. Dashboard</h3>
+          <p>Resumen financiero. Seguimiento de 4 documentos por servicio (cotizacion, contrato, proyeccion, entregable). Alertas.</p>
         </div>
       </div>
     </div>
@@ -712,7 +787,7 @@
     <!-- BASE DE DATOS -->
     <div class="section">
       <h2 class="section-title">Modelo de Base de Datos</h2>
-      <p class="section-subtitle">6 tablas principales en PostgreSQL (Supabase).</p>
+      <p class="section-subtitle">9 tablas principales en PostgreSQL (Supabase).</p>
 
       <div class="schema-grid">
         <div class="schema-table">
@@ -778,13 +853,51 @@
         </div>
 
         <div class="schema-table">
+          <div class="schema-table-header">questionnaire_responses</div>
+          <div class="schema-table-body">
+            <div class="schema-field"><span class="schema-field-name">id</span><span class="schema-field-type">uuid PK</span></div>
+            <div class="schema-field"><span class="schema-field-name">client_id</span><span class="schema-field-type">uuid FK</span></div>
+            <div class="schema-field"><span class="schema-field-name">projection_id</span><span class="schema-field-type">uuid FK</span></div>
+            <div class="schema-field"><span class="schema-field-name">responses</span><span class="schema-field-type">jsonb</span></div>
+            <div class="schema-field"><span class="schema-field-name">status</span><span class="schema-field-type">enum</span></div>
+            <div class="schema-field"><span class="schema-field-name">completed_at</span><span class="schema-field-type">timestamp</span></div>
+          </div>
+        </div>
+
+        <div class="schema-table">
+          <div class="schema-table-header">quotations</div>
+          <div class="schema-table-body">
+            <div class="schema-field"><span class="schema-field-name">id</span><span class="schema-field-type">uuid PK</span></div>
+            <div class="schema-field"><span class="schema-field-name">proj_service_id</span><span class="schema-field-type">uuid FK</span></div>
+            <div class="schema-field"><span class="schema-field-name">content</span><span class="schema-field-type">text</span></div>
+            <div class="schema-field"><span class="schema-field-name">pdf_url</span><span class="schema-field-type">text</span></div>
+            <div class="schema-field"><span class="schema-field-name">status</span><span class="schema-field-type">enum</span></div>
+            <div class="schema-field"><span class="schema-field-name">created_at</span><span class="schema-field-type">timestamp</span></div>
+          </div>
+        </div>
+
+        <div class="schema-table">
+          <div class="schema-table-header">contracts</div>
+          <div class="schema-table-body">
+            <div class="schema-field"><span class="schema-field-name">id</span><span class="schema-field-type">uuid PK</span></div>
+            <div class="schema-field"><span class="schema-field-name">quotation_id</span><span class="schema-field-type">uuid FK</span></div>
+            <div class="schema-field"><span class="schema-field-name">content</span><span class="schema-field-type">text</span></div>
+            <div class="schema-field"><span class="schema-field-name">pdf_url</span><span class="schema-field-type">text</span></div>
+            <div class="schema-field"><span class="schema-field-name">status</span><span class="schema-field-type">enum</span></div>
+            <div class="schema-field"><span class="schema-field-name">signed_at</span><span class="schema-field-type">timestamp</span></div>
+          </div>
+        </div>
+
+        <div class="schema-table">
           <div class="schema-table-header">deliverables</div>
           <div class="schema-table-body">
             <div class="schema-field"><span class="schema-field-name">id</span><span class="schema-field-type">uuid PK</span></div>
             <div class="schema-field"><span class="schema-field-name">assignment_id</span><span class="schema-field-type">uuid FK</span></div>
             <div class="schema-field"><span class="schema-field-name">template_id</span><span class="schema-field-type">uuid FK</span></div>
-            <div class="schema-field"><span class="schema-field-name">content</span><span class="schema-field-type">text</span></div>
-            <div class="schema-field"><span class="schema-field-name">pdf_url</span><span class="schema-field-type">text</span></div>
+            <div class="schema-field"><span class="schema-field-name">short_content</span><span class="schema-field-type">text</span></div>
+            <div class="schema-field"><span class="schema-field-name">long_content</span><span class="schema-field-type">text</span></div>
+            <div class="schema-field"><span class="schema-field-name">short_pdf_url</span><span class="schema-field-type">text</span></div>
+            <div class="schema-field"><span class="schema-field-name">long_pdf_url</span><span class="schema-field-type">text</span></div>
             <div class="schema-field"><span class="schema-field-name">audit_status</span><span class="schema-field-type">enum</span></div>
             <div class="schema-field"><span class="schema-field-name">delivered_at</span><span class="schema-field-type">timestamp</span></div>
           </div>
@@ -861,7 +974,7 @@
     <!-- FASES -->
     <div class="section">
       <h2 class="section-title">Fases de Desarrollo</h2>
-      <p class="section-subtitle">Desarrollo incremental en 4 fases.</p>
+      <p class="section-subtitle">Desarrollo incremental en 5 fases.</p>
 
       <div class="phase">
         <div class="phase-header">
@@ -874,7 +987,7 @@
         <div class="phase-body">
           <ul>
             <li>Setup Next.js + Supabase + Tailwind + shadcn/ui</li>
-            <li>Modelo de datos en PostgreSQL (migraciones)</li>
+            <li>Modelo de datos en PostgreSQL (9 tablas + migraciones)</li>
             <li>Autenticacion del equipo interno (Supabase Auth)</li>
             <li>CRUD de clientes</li>
             <li>Seed de servicios base (9 servicios con benchmarks)</li>
@@ -904,18 +1017,38 @@
 
       <div class="phase">
         <div class="phase-header">
-          <div class="phase-number" style="background: var(--cta);">3</div>
+          <div class="phase-number" style="background: var(--purple);">3</div>
+          <div>
+            <div class="phase-title">Cuestionario y Documentos Comerciales</div>
+            <div style="font-size: 0.82em; color: var(--text-muted);">Cuestionario unificado + Cotizacion + Contrato</div>
+          </div>
+        </div>
+        <div class="phase-body">
+          <ul>
+            <li>Sistema de cuestionario unificado con deduplicacion de preguntas</li>
+            <li>Mapeo de respuestas a multiples servicios</li>
+            <li>Generacion automatica de cotizaciones por servicio</li>
+            <li>Generacion automatica de contratos</li>
+            <li>Seguimiento del ciclo de documentos (4 docs por servicio)</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="phase">
+        <div class="phase-header">
+          <div class="phase-number" style="background: var(--cta);">4</div>
           <div>
             <div class="phase-title">Generacion de Entregables</div>
-            <div style="font-size: 0.82em; color: var(--text-muted);">IA + Templates + PDF</div>
+            <div style="font-size: 0.82em; color: var(--text-muted);">IA + Templates + PDF (version corta y larga)</div>
           </div>
-          <span class="status status-blocked" style="margin-left: auto;">BLOCKER: Templates</span>
+          <span class="status status-pending" style="margin-left: auto;">EN PROGRESO: Templates</span>
         </div>
         <div class="phase-body">
           <ul>
             <li>Integracion Claude API (Agente Creador)</li>
             <li>Integracion Claude API (Agente Auditor)</li>
-            <li>Sistema de templates por servicio</li>
+            <li>Sistema de templates por servicio (cuestionario + corto + largo)</li>
+            <li>Generacion de entregable version corta y version larga</li>
             <li>Generacion de PDF con branding (react-pdf)</li>
             <li>Storage de entregables en Supabase Storage</li>
           </ul>
@@ -924,7 +1057,7 @@
 
       <div class="phase">
         <div class="phase-header">
-          <div class="phase-number" style="background: var(--purple);">4</div>
+          <div class="phase-number" style="background: rgba(15,23,42,0.8);">5</div>
           <div>
             <div class="phase-title">Automatizacion</div>
             <div style="font-size: 0.82em; color: var(--text-muted);">Triggers, notificaciones, cron jobs</div>
@@ -934,16 +1067,16 @@
           <ul>
             <li>Cron jobs mensuales (revision de matriz)</li>
             <li>Notificaciones por email (Resend)</li>
-            <li>Formularios de recoleccion de info del cliente</li>
+            <li>Envio automatico de cuestionario unificado al cliente</li>
             <li>Triggers de pago y generacion automatica</li>
             <li>Pruebas con cliente piloto</li>
           </ul>
         </div>
       </div>
 
-      <div class="blocker">
-        <h3>BLOCKER: Templates de Entregables</h3>
-        <p>Los templates de cada servicio (Legal, Contable, Marketing, RH, etc.) estan siendo desarrollados por otro equipo. El Modulo 5 (Generador de Entregables) no puede activarse hasta que los templates esten listos. Las Fases 1 y 2 pueden avanzar independientemente.</p>
+      <div class="blocker" style="border-color: rgba(245,158,11,0.3); background: rgba(245,158,11,0.05);">
+        <h3 style="color: var(--warning);">EN PROGRESO: Templates de Entregables</h3>
+        <p>Los templates de cada servicio estan siendo generados actualmente. Cada template tiene 3 componentes: cuestionario, entregable corto y entregable largo. Necesitan retoque antes de integrarse al sistema. Las Fases 1-3 pueden avanzar independientemente.</p>
       </div>
     </div>
 
@@ -967,7 +1100,7 @@
   </div>
 
   <footer class="footer">
-    DESC - Deliverable Engine for Service Control &mdash; Scope Document v1.0 &mdash; Marzo 2026
+    DESC - Deliverable Engine for Service Control &mdash; Scope Document v1.1 &mdash; Marzo 2026
   </footer>
 
 </body>
