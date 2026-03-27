@@ -621,7 +621,7 @@
             <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
           </div>
           <h3>8. Admin Plataforma</h3>
-          <p>Gestion de organizaciones, suscripciones (Stripe), metricas globales. Solo accesible por Super Admin.</p>
+          <p>Vista de todas las cuentas rentadas. Setup de nuevas organizaciones. Gestion de suscripciones manuales. Solo Super Admin.</p>
         </div>
       </div>
     </div>
@@ -789,7 +789,7 @@
         <div class="tech-card">
           <h4>Integraciones</h4>
           <span class="tech-tag">Claude API</span>
-          <span class="tech-tag">Stripe (Billing)</span>
+          <span class="tech-tag">Clerk Organizations</span>
           <span class="tech-tag">Resend (Email)</span>
           <span class="tech-tag">react-pdf</span>
           <span class="tech-tag">Convex Cron</span>
@@ -818,7 +818,7 @@
             <div class="schema-field"><span class="schema-field-name">_id</span><span class="schema-field-type">Id</span></div>
             <div class="schema-field"><span class="schema-field-name">clerkOrgId</span><span class="schema-field-type">string</span></div>
             <div class="schema-field"><span class="schema-field-name">name</span><span class="schema-field-type">string</span></div>
-            <div class="schema-field"><span class="schema-field-name">stripeCustomerId</span><span class="schema-field-type">string</span></div>
+            <div class="schema-field"><span class="schema-field-name">status</span><span class="schema-field-type">union</span></div>
             <div class="schema-field"><span class="schema-field-name">plan</span><span class="schema-field-type">union</span></div>
             <div class="schema-field"><span class="schema-field-name">createdAt</span><span class="schema-field-type">number (ms)</span></div>
           </div>
@@ -1165,11 +1165,11 @@
         </div>
         <div class="phase-body">
           <ul>
-            <li>Integracion Stripe (planes de suscripcion, webhooks)</li>
-            <li>Panel de Super Admin (gestionar organizaciones)</li>
-            <li>Onboarding para nuevas organizaciones</li>
+            <li>Panel de Admin General (ver todas las cuentas rentadas)</li>
+            <li>Setup de nuevas organizaciones desde admin</li>
+            <li>Activar/desactivar/gestionar cuentas manualmente</li>
             <li>Landing page comercial</li>
-            <li>Metricas de uso y limites por plan</li>
+            <li>Metricas de uso por organizacion</li>
           </ul>
         </div>
       </div>
@@ -1194,10 +1194,10 @@
           </div>
         </div>
         <div class="card" style="border-left: 4px solid var(--info);">
-          <h3>Suscripcion (Stripe)</h3>
-          <p style="margin-bottom: 10px;">Las organizaciones pagan una suscripcion mensual para usar la plataforma. Diferentes planes segun volumen de clientes o funcionalidades.</p>
+          <h3>Onboarding Asistido</h3>
+          <p style="margin-bottom: 10px;">Las nuevas organizaciones se dan de alta por el equipo interno de la plataforma. El pago se gestiona directamente con un asesor, sin pasarela de pagos.</p>
           <div style="font-size: 0.82em; padding: 8px; background: rgba(15,23,42,0.03); border-radius: 6px;">
-            <strong>Tecnico:</strong> Stripe para billing. Webhook de Stripe actualiza el estatus de la suscripcion en Convex.
+            <strong>Admin general:</strong> Panel para ver todas las cuentas rentadas, crear nuevas organizaciones, activar/desactivar cuentas y gestionar planes manualmente.
           </div>
         </div>
       </div>
