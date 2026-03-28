@@ -34,11 +34,25 @@ export default function ClientDetailPage() {
   const restoreClient = useMutation(api.functions.clients.mutations.restore);
   const [archiving, setArchiving] = useState(false);
 
-  if (client === undefined || client === null) {
+  if (client === undefined) {
     return (
       <div className="space-y-4">
         <div className="h-8 w-48 animate-pulse rounded bg-secondary" />
         <div className="h-64 animate-pulse rounded-lg border border-border bg-card" />
+      </div>
+    );
+  }
+
+  if (client === null) {
+    return (
+      <div className="space-y-4">
+        <Link href="/clientes" className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground cursor-pointer">
+          <ArrowLeft size={14} /> Volver a Clientes
+        </Link>
+        <div className="rounded-lg border border-border bg-card p-12 text-center">
+          <p className="text-lg font-medium">Cliente no encontrado</p>
+          <p className="mt-1 text-sm text-muted-foreground">Este cliente no existe o fue eliminado.</p>
+        </div>
       </div>
     );
   }

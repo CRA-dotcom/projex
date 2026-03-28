@@ -17,11 +17,19 @@ export default function EditarClientePage() {
     id: clientId,
   });
 
-  if (client === undefined || client === null) {
+  if (client === undefined) {
     return (
       <div className="space-y-4">
         <div className="h-8 w-48 animate-pulse rounded bg-secondary" />
         <div className="h-96 animate-pulse rounded-lg border border-border bg-card" />
+      </div>
+    );
+  }
+
+  if (client === null) {
+    return (
+      <div className="rounded-lg border border-border bg-card p-12 text-center">
+        <p className="text-lg font-medium">Cliente no encontrado</p>
       </div>
     );
   }
@@ -42,7 +50,7 @@ export default function EditarClientePage() {
       </div>
 
       <div className="rounded-lg border border-border bg-card p-6">
-        <ClientForm initialData={client!} mode="edit" />
+        <ClientForm initialData={client} mode="edit" />
       </div>
     </div>
   );

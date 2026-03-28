@@ -140,7 +140,7 @@ function NuevaProyeccionContent() {
       });
       router.push(`/proyecciones/${projId}`);
     } catch (err) {
-      console.error(err);
+      alert((err as Error).message || "Error al crear la proyección");
     } finally {
       setLoading(false);
     }
@@ -347,10 +347,9 @@ function NuevaProyeccionContent() {
                     monthlySales.reduce((a, b) => a + b, 0)
                   )}{" "}
                   / {formatCurrency(annualSales)} (
-                  {(
-                    (monthlySales.reduce((a, b) => a + b, 0) / annualSales) *
-                    100
-                  ).toFixed(1)}
+                  {annualSales > 0
+                    ? ((monthlySales.reduce((a, b) => a + b, 0) / annualSales) * 100).toFixed(1)
+                    : "0.0"}
                   %)
                 </p>
               </div>

@@ -29,11 +29,24 @@ export default function ProjectionDetailPage() {
     projectionId,
   });
 
-  if (matrix === undefined || matrix === null) {
+  if (matrix === undefined) {
     return (
       <div className="space-y-4">
         <div className="h-8 w-48 animate-pulse rounded bg-secondary" />
         <div className="h-96 animate-pulse rounded-lg border border-border bg-card" />
+      </div>
+    );
+  }
+
+  if (matrix === null) {
+    return (
+      <div className="space-y-4">
+        <Link href="/proyecciones" className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground cursor-pointer">
+          <ArrowLeft size={14} /> Volver a Proyecciones
+        </Link>
+        <div className="rounded-lg border border-border bg-card p-12 text-center">
+          <p className="text-lg font-medium">Proyección no encontrada</p>
+        </div>
       </div>
     );
   }
