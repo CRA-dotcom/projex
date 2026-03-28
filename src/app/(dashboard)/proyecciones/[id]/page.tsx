@@ -30,6 +30,7 @@ export default function ProjectionDetailPage() {
   const matrix = useQuery(api.functions.projections.queries.getMatrix, {
     projectionId,
   });
+  const [selectedAssignment, setSelectedAssignment] = useState<Doc<"monthlyAssignments"> | null>(null);
 
   if (matrix === undefined) {
     return (
@@ -55,7 +56,6 @@ export default function ProjectionDetailPage() {
 
   const { projection, services, assignments } = matrix;
   const activeServices = services.filter((s) => s.isActive);
-  const [selectedAssignment, setSelectedAssignment] = useState<Doc<"monthlyAssignments"> | null>(null);
 
   return (
     <div className="space-y-6">

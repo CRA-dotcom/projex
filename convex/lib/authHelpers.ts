@@ -1,6 +1,4 @@
-import { QueryCtx, MutationCtx, ActionCtx } from "../_generated/server";
-
-export type AuthContext = QueryCtx | MutationCtx | ActionCtx;
+import { QueryCtx, MutationCtx } from "../_generated/server";
 
 export async function requireAuth(ctx: QueryCtx | MutationCtx) {
   const identity = await ctx.auth.getUserIdentity();
@@ -29,11 +27,6 @@ export async function getOrgIdSafe(ctx: QueryCtx | MutationCtx): Promise<string 
   return (identity.orgId as string | undefined) ?? null;
 }
 
-export async function getUserRole(ctx: QueryCtx | MutationCtx): Promise<string> {
-  const identity = await requireAuth(ctx);
-  return (identity.orgRole as string) ?? "org:member";
-}
-
 export async function requireAdmin(ctx: QueryCtx | MutationCtx) {
   const identity = await requireAuth(ctx);
   const role = (identity.orgRole as string) ?? "org:member";
@@ -43,17 +36,10 @@ export async function requireAdmin(ctx: QueryCtx | MutationCtx) {
   return identity;
 }
 
-export async function isSuperAdmin(ctx: QueryCtx | MutationCtx): Promise<boolean> {
-  const identity = await ctx.auth.getUserIdentity();
-  if (!identity) return false;
-  const metadata = identity.publicMetadata as Record<string, unknown> | undefined;
-  return metadata?.role === "super_admin";
-}
-
 export async function requireSuperAdmin(ctx: QueryCtx | MutationCtx) {
   const identity = await requireAuth(ctx);
-  const isSuper = await isSuperAdmin(ctx);
-  if (!isSuper) {
+  const metadata = identity.publicMetadata as Record<string, unknown> | undefined;
+  if (metadata?.role !== "super_admin") {
     throw new Error("Acceso denegado. Se requiere rol de Super Admin.");
   }
   return identity;

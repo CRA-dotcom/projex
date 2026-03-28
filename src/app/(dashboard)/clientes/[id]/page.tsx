@@ -30,6 +30,9 @@ export default function ClientDetailPage() {
   const client = useQuery(api.functions.clients.queries.getById, {
     id: clientId,
   });
+  const projections = useQuery(api.functions.projections.queries.getByClient, {
+    clientId,
+  });
   const archiveClient = useMutation(api.functions.clients.mutations.archive);
   const restoreClient = useMutation(api.functions.clients.mutations.restore);
   const [archiving, setArchiving] = useState(false);
@@ -159,15 +162,32 @@ export default function ClientDetailPage() {
             Nueva Proyección
           </Link>
         </div>
-        <div className="mt-4 text-center py-8">
-          <TrendingUp
-            className="mx-auto mb-3 text-muted-foreground"
-            size={36}
-          />
-          <p className="text-sm text-muted-foreground">
-            No hay proyecciones para este cliente.
-          </p>
-        </div>
+        {!projections || projections.length === 0 ? (
+          <div className="mt-4 text-center py-8">
+            <TrendingUp className="mx-auto mb-3 text-muted-foreground" size={36} />
+            <p className="text-sm text-muted-foreground">
+              No hay proyecciones para este cliente.
+            </p>
+          </div>
+        ) : (
+          <div className="mt-4 space-y-2">
+            {projections.map((proj) => (
+              <Link
+                key={proj._id}
+                href={`/proyecciones/${proj._id}`}
+                className="flex items-center justify-between rounded-md border border-border p-3 hover:border-accent/30 transition-colors cursor-pointer"
+              >
+                <div>
+                  <p className="font-medium">Año {proj.year}</p>
+                  <p className="text-xs text-muted-foreground">
+                    Comisión {(proj.commissionRate * 100).toFixed(1)}% &middot; {proj.status === "draft" ? "Borrador" : proj.status === "active" ? "Activa" : "Archivada"}
+                  </p>
+                </div>
+                <p className="font-medium text-accent">{formatCurrency(proj.totalBudget)}</p>
+              </Link>
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );

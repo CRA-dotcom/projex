@@ -11,7 +11,7 @@ import {
   generateSeasonalityData,
 } from "../../../../../convex/lib/projectionEngine";
 import { SeasonalityChart } from "@/components/projections/seasonality-chart";
-import { formatCurrency, formatPercent } from "@/lib/utils";
+import { formatCurrency } from "@/lib/utils";
 import {
   TrendingUp,
   ArrowLeft,

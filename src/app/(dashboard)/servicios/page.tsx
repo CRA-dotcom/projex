@@ -6,7 +6,7 @@ import { Briefcase } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 export default function ServiciosPage() {
-  const services = useQuery(api.functions.services.queries.listGlobal);
+  const services = useQuery(api.functions.services.queries.listByOrg);
 
   return (
     <div className="space-y-6">
