@@ -10,6 +10,7 @@ import {
   generateEvenSeasonality,
   generateSeasonalityData,
 } from "../../../../../convex/lib/projectionEngine";
+import { SeasonalityChart } from "@/components/projections/seasonality-chart";
 import { formatCurrency, formatPercent } from "@/lib/utils";
 import {
   TrendingUp,
@@ -337,6 +338,10 @@ function NuevaProyeccionContent() {
                   ({formatCurrency(annualSales / 12)}/mes).
                 </p>
               </div>
+            )}
+
+            {useSeasonality && seasonalityData.length === 12 && (
+              <SeasonalityChart data={seasonalityData} />
             )}
 
             {useSeasonality && (

@@ -1,13 +1,15 @@
 "use client";
 
+import { useState } from "react";
 import { useQuery } from "convex/react";
 import { api } from "../../../../../convex/_generated/api";
-import { Id } from "../../../../../convex/_generated/dataModel";
+import { Id, Doc } from "../../../../../convex/_generated/dataModel";
 import { useParams } from "next/navigation";
 import { ArrowLeft, TrendingUp } from "lucide-react";
 import Link from "next/link";
 import { formatCurrency } from "@/lib/utils";
 import { cn } from "@/lib/utils";
+import { MatrixCellDetail } from "@/components/projections/matrix-cell-detail";
 
 const MONTH_NAMES = [
   "Ene", "Feb", "Mar", "Abr", "May", "Jun",
@@ -53,6 +55,7 @@ export default function ProjectionDetailPage() {
 
   const { projection, services, assignments } = matrix;
   const activeServices = services.filter((s) => s.isActive);
+  const [selectedAssignment, setSelectedAssignment] = useState<Doc<"monthlyAssignments"> | null>(null);
 
   return (
     <div className="space-y-6">
@@ -133,7 +136,14 @@ export default function ProjectionDetailPage() {
                   {MONTH_NAMES.map((_, i) => {
                     const ma = svcAssignments.find((a) => a.month === i + 1);
                     return (
-                      <td key={i} className="px-2 py-2 text-center">
+                      <td
+                        key={i}
+                        className={cn(
+                          "px-2 py-2 text-center",
+                          ma && "cursor-pointer hover:bg-accent/5 transition-colors"
+                        )}
+                        onClick={() => ma && setSelectedAssignment(ma)}
+                      >
                         {ma ? (
                           <div className="space-y-1">
                             <p className="text-xs">
@@ -190,6 +200,14 @@ export default function ProjectionDetailPage() {
           </tbody>
         </table>
       </div>
+
+      {/* Cell Detail Panel */}
+      {selectedAssignment && (
+        <MatrixCellDetail
+          assignment={selectedAssignment}
+          onClose={() => setSelectedAssignment(null)}
+        />
+      )}
     </div>
   );
 }
