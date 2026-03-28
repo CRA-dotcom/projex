@@ -29,7 +29,7 @@ export default function ProjectionDetailPage() {
     projectionId,
   });
 
-  if (matrix === undefined) {
+  if (matrix === undefined || matrix === null) {
     return (
       <div className="space-y-4">
         <div className="h-8 w-48 animate-pulse rounded bg-secondary" />

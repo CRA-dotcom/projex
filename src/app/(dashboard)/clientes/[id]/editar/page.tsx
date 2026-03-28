@@ -17,7 +17,7 @@ export default function EditarClientePage() {
     id: clientId,
   });
 
-  if (client === undefined) {
+  if (client === undefined || client === null) {
     return (
       <div className="space-y-4">
         <div className="h-8 w-48 animate-pulse rounded bg-secondary" />
@@ -42,7 +42,7 @@ export default function EditarClientePage() {
       </div>
 
       <div className="rounded-lg border border-border bg-card p-6">
-        <ClientForm initialData={client} mode="edit" />
+        <ClientForm initialData={client!} mode="edit" />
       </div>
     </div>
   );

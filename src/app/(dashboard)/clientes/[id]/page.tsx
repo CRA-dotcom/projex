@@ -34,7 +34,7 @@ export default function ClientDetailPage() {
   const restoreClient = useMutation(api.functions.clients.mutations.restore);
   const [archiving, setArchiving] = useState(false);
 
-  if (client === undefined) {
+  if (client === undefined || client === null) {
     return (
       <div className="space-y-4">
         <div className="h-8 w-48 animate-pulse rounded bg-secondary" />
