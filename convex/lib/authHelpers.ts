@@ -10,7 +10,8 @@ export async function requireAuth(ctx: QueryCtx | MutationCtx) {
 
 export async function getOrgId(ctx: QueryCtx | MutationCtx): Promise<string> {
   const identity = await requireAuth(ctx);
-  const orgId = identity.orgId as string | undefined;
+  // Clerk JWT may use org_id (snake_case) or orgId (camelCase) depending on version
+  const orgId = (identity.orgId ?? (identity as Record<string, unknown>).org_id) as string | undefined;
   if (!orgId) {
     throw new Error("No se encontró la organización. Selecciona una organización.");
   }
@@ -24,7 +25,7 @@ export async function getOrgId(ctx: QueryCtx | MutationCtx): Promise<string> {
 export async function getOrgIdSafe(ctx: QueryCtx | MutationCtx): Promise<string | null> {
   const identity = await ctx.auth.getUserIdentity();
   if (!identity) return null;
-  return (identity.orgId as string | undefined) ?? null;
+  return ((identity.orgId ?? (identity as Record<string, unknown>).org_id) as string | undefined) ?? null;
 }
 
 export async function requireAdmin(ctx: QueryCtx | MutationCtx) {
