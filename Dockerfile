@@ -27,4 +27,4 @@ ENV NODE_ENV=production
 ENV PORT=3000
 EXPOSE 3000
 
-CMD ["npx", "next", "start", "-p", "3000"]
+CMD ["sh", "-c", "npx next start -p ${PORT:-3000}"]
