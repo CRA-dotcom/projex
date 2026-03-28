@@ -10,10 +10,15 @@
 
 import type * as functions_clients_mutations from "../functions/clients/mutations.js";
 import type * as functions_clients_queries from "../functions/clients/queries.js";
+import type * as functions_monthlyAssignments_mutations from "../functions/monthlyAssignments/mutations.js";
+import type * as functions_monthlyAssignments_queries from "../functions/monthlyAssignments/queries.js";
 import type * as functions_organizations_mutations from "../functions/organizations/mutations.js";
 import type * as functions_organizations_queries from "../functions/organizations/queries.js";
+import type * as functions_projectionServices_mutations from "../functions/projectionServices/mutations.js";
+import type * as functions_projectionServices_queries from "../functions/projectionServices/queries.js";
 import type * as functions_projections_mutations from "../functions/projections/mutations.js";
 import type * as functions_projections_queries from "../functions/projections/queries.js";
+import type * as functions_services_mutations from "../functions/services/mutations.js";
 import type * as functions_services_queries from "../functions/services/queries.js";
 import type * as functions_services_seed from "../functions/services/seed.js";
 import type * as lib_authHelpers from "../lib/authHelpers.js";
@@ -29,10 +34,15 @@ import type {
 declare const fullApi: ApiFromModules<{
   "functions/clients/mutations": typeof functions_clients_mutations;
   "functions/clients/queries": typeof functions_clients_queries;
+  "functions/monthlyAssignments/mutations": typeof functions_monthlyAssignments_mutations;
+  "functions/monthlyAssignments/queries": typeof functions_monthlyAssignments_queries;
   "functions/organizations/mutations": typeof functions_organizations_mutations;
   "functions/organizations/queries": typeof functions_organizations_queries;
+  "functions/projectionServices/mutations": typeof functions_projectionServices_mutations;
+  "functions/projectionServices/queries": typeof functions_projectionServices_queries;
   "functions/projections/mutations": typeof functions_projections_mutations;
   "functions/projections/queries": typeof functions_projections_queries;
+  "functions/services/mutations": typeof functions_services_mutations;
   "functions/services/queries": typeof functions_services_queries;
   "functions/services/seed": typeof functions_services_seed;
   "lib/authHelpers": typeof lib_authHelpers;
