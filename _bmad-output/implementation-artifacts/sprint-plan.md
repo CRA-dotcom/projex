@@ -1,4 +1,4 @@
-# DESC - Sprint Plan
+# Projex - Sprint Plan
 
 ## Overview
 

@@ -1,4 +1,4 @@
-# DESC - Deliverable Engine for Service Control
+# Projex - Automated Projection & Deliverable Engine
 
 ## Project Overview
 Multi-tenant SaaS platform for automated financial projection and professional deliverable generation for consulting firms.

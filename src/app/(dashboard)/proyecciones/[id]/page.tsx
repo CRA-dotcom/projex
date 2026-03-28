@@ -1,0 +1,182 @@
+"use client";
+
+import { useQuery } from "convex/react";
+import { api } from "../../../../../convex/_generated/api";
+import { Id } from "../../../../../convex/_generated/dataModel";
+import { useParams } from "next/navigation";
+import { ArrowLeft, TrendingUp } from "lucide-react";
+import Link from "next/link";
+import { formatCurrency } from "@/lib/utils";
+import { cn } from "@/lib/utils";
+
+const MONTH_NAMES = [
+  "Ene", "Feb", "Mar", "Abr", "May", "Jun",
+  "Jul", "Ago", "Sep", "Oct", "Nov", "Dic",
+];
+
+const STATUS_COLORS: Record<string, string> = {
+  pending: "bg-muted-foreground/20 text-muted-foreground",
+  info_received: "bg-info/20 text-info",
+  in_progress: "bg-warning/20 text-warning",
+  delivered: "bg-accent/20 text-accent",
+};
+
+export default function ProjectionDetailPage() {
+  const params = useParams();
+  const projectionId = params.id as Id<"projections">;
+
+  const matrix = useQuery(api.functions.projections.queries.getMatrix, {
+    projectionId,
+  });
+
+  if (matrix === undefined) {
+    return (
+      <div className="space-y-4">
+        <div className="h-8 w-48 animate-pulse rounded bg-secondary" />
+        <div className="h-96 animate-pulse rounded-lg border border-border bg-card" />
+      </div>
+    );
+  }
+
+  const { projection, services, assignments } = matrix;
+  const activeServices = services.filter((s) => s.isActive);
+
+  return (
+    <div className="space-y-6">
+      <Link
+        href="/proyecciones"
+        className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
+      >
+        <ArrowLeft size={14} />
+        Volver a Proyecciones
+      </Link>
+
+      <div className="flex items-center gap-3">
+        <TrendingUp className="text-accent" size={28} />
+        <h1 className="text-2xl font-bold">
+          Proyección {projection.year}
+        </h1>
+      </div>
+
+      {/* Summary */}
+      <div className="grid grid-cols-4 gap-4">
+        <div className="rounded-lg border border-border bg-card p-4">
+          <p className="text-xs text-muted-foreground">Venta Anual</p>
+          <p className="mt-1 text-lg font-bold">
+            {formatCurrency(projection.annualSales)}
+          </p>
+        </div>
+        <div className="rounded-lg border border-border bg-card p-4">
+          <p className="text-xs text-muted-foreground">Presupuesto</p>
+          <p className="mt-1 text-lg font-bold">
+            {formatCurrency(projection.totalBudget)}
+          </p>
+        </div>
+        <div className="rounded-lg border border-border bg-card p-4">
+          <p className="text-xs text-muted-foreground">Comisión</p>
+          <p className="mt-1 text-lg font-bold">
+            {(projection.commissionRate * 100).toFixed(1)}%
+          </p>
+        </div>
+        <div className="rounded-lg border border-border bg-card p-4">
+          <p className="text-xs text-muted-foreground">Servicios Activos</p>
+          <p className="mt-1 text-lg font-bold text-accent">
+            {activeServices.length}
+          </p>
+        </div>
+      </div>
+
+      {/* Projection Matrix (12x N grid) */}
+      <div className="rounded-lg border border-border bg-card overflow-x-auto">
+        <table className="w-full text-sm">
+          <thead>
+            <tr className="border-b border-border">
+              <th className="sticky left-0 bg-card px-4 py-3 text-left font-medium">
+                Servicio
+              </th>
+              {MONTH_NAMES.map((m) => (
+                <th
+                  key={m}
+                  className="px-3 py-3 text-center font-medium text-muted-foreground"
+                >
+                  {m}
+                </th>
+              ))}
+              <th className="px-4 py-3 text-right font-medium text-accent">
+                Total
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            {activeServices.map((svc) => {
+              const svcAssignments = assignments.filter(
+                (a) => a.projServiceId === svc._id
+              );
+              return (
+                <tr key={svc._id} className="border-b border-border/50">
+                  <td className="sticky left-0 bg-card px-4 py-2.5 font-medium">
+                    {svc.serviceName}
+                  </td>
+                  {MONTH_NAMES.map((_, i) => {
+                    const ma = svcAssignments.find((a) => a.month === i + 1);
+                    return (
+                      <td key={i} className="px-2 py-2 text-center">
+                        {ma ? (
+                          <div className="space-y-1">
+                            <p className="text-xs">
+                              {formatCurrency(ma.amount)}
+                            </p>
+                            <span
+                              className={cn(
+                                "inline-block rounded-full px-1.5 py-0.5 text-[10px]",
+                                STATUS_COLORS[ma.status]
+                              )}
+                            >
+                              {ma.status === "pending"
+                                ? "Pend."
+                                : ma.status === "info_received"
+                                  ? "Info"
+                                  : ma.status === "in_progress"
+                                    ? "Prog."
+                                    : "Ent."}
+                            </span>
+                          </div>
+                        ) : (
+                          <span className="text-muted-foreground">—</span>
+                        )}
+                      </td>
+                    );
+                  })}
+                  <td className="px-4 py-2.5 text-right font-medium text-accent">
+                    {formatCurrency(svc.annualAmount)}
+                  </td>
+                </tr>
+              );
+            })}
+            {/* Totals row */}
+            <tr className="bg-secondary/30 font-medium">
+              <td className="sticky left-0 bg-secondary/30 px-4 py-3">
+                Total
+              </td>
+              {MONTH_NAMES.map((_, i) => {
+                const monthTotal = assignments
+                  .filter((a) => a.month === i + 1)
+                  .reduce((sum, a) => sum + a.amount, 0);
+                return (
+                  <td key={i} className="px-2 py-3 text-center text-xs">
+                    {formatCurrency(monthTotal)}
+                  </td>
+                );
+              })}
+              <td className="px-4 py-3 text-right text-accent">
+                {formatCurrency(
+                  activeServices.reduce((sum, s) => sum + s.annualAmount, 0)
+                )}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  );
+}

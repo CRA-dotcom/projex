@@ -4,9 +4,9 @@ inputDocuments: [project-overview.md, scope-presentation.html]
 workflowType: 'prd'
 ---
 
-# Product Requirements Document - DESC
+# Product Requirements Document - Projex
 
-**Deliverable Engine for Service Control**
+**Automated Projection & Deliverable Engine**
 
 **Author:** Christian
 **Date:** 2026-03-27
@@ -17,9 +17,9 @@ workflowType: 'prd'
 
 ## 1. Executive Summary
 
-DESC (Deliverable Engine for Service Control) is a multi-tenant SaaS platform that automates the complete lifecycle of professional deliverable generation for multidisciplinary consulting firms. The platform replaces manual Excel-based financial projections and ad-hoc document creation with an integrated system that handles budget distribution, commercial documentation, and AI-powered deliverable generation.
+Projex is a multi-tenant SaaS platform that automates the complete lifecycle of professional deliverable generation for multidisciplinary consulting firms. The platform replaces manual Excel-based financial projections and ad-hoc document creation with an integrated system that handles budget distribution, commercial documentation, and AI-powered deliverable generation.
 
-The system serves consulting firms ("organizations") who manage multiple clients across up to 9 service areas (Legal, Contable, TI, Marketing, RH, Admin, Comisiones, Logistica, Construccion). For each client, DESC distributes an annual budget across active services using market benchmarks and seasonality factors, then generates a sequential document cycle per service: Projection, Quotation, Contract, and Deliverable (short + long versions).
+The system serves consulting firms ("organizations") who manage multiple clients across up to 9 service areas (Legal, Contable, TI, Marketing, RH, Admin, Comisiones, Logistica, Construccion). For each client, Projex distributes an annual budget across active services using market benchmarks and seasonality factors, then generates a sequential document cycle per service: Projection, Quotation, Contract, and Deliverable (short + long versions).
 
 The end goal is zero human intervention from the moment a client contracts a service to the moment they receive their deliverable in the cloud.
 

@@ -3,11 +3,11 @@ stepsCompleted: [01,02,03,04,05]
 inputDocuments: [prd.md, architecture.md]
 ---
 
-# DESC - Epic Breakdown
+# Projex - Epic Breakdown
 
 ## Overview
 
-This document breaks down the DESC MVP (Phases 1-3) into 9 epics and 52 stories. Each story is scoped to 1-4 hours of implementation work. Stories are ordered so that dependencies flow naturally: schema before functions, functions before UI, backend before frontend. Phase 4 (AI Deliverables), Phase 5 (Automation), and Phase 6 (Platform SaaS) are excluded as they are blocked by template completion or out of MVP scope.
+This document breaks down the Projex MVP (Phases 1-3) into 9 epics and 52 stories. Each story is scoped to 1-4 hours of implementation work. Stories are ordered so that dependencies flow naturally: schema before functions, functions before UI, backend before frontend. Phase 4 (AI Deliverables), Phase 5 (Automation), and Phase 6 (Platform SaaS) are excluded as they are blocked by template completion or out of MVP scope.
 
 ---
 
@@ -1360,7 +1360,7 @@ So that I can share reports with stakeholders who do not have platform access.
 - Create a utility function `lib/exportCsv.ts` that converts JSON data to CSV and triggers a download
 - Button in the dashboard header area
 - CSV columns: Mes, Ventas Proyectadas, Pagos de Servicios, Varianza
-- Filename format: `DESC_Resumen_{OrgName}_{Year}.csv`
+- Filename format: `Projex_Resumen_{OrgName}_{Year}.csv`
 - Client-side only -- no backend function needed
 
 **Files to create/modify:**

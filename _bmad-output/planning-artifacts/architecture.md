@@ -2,14 +2,14 @@
 stepsCompleted: [01,02,03,04,05,06,07,08]
 inputDocuments: [prd.md, project-overview.md]
 workflowType: 'architecture'
-project_name: 'DESC - Deliverable Engine for Service Control'
+project_name: 'Projex - Automated Projection & Deliverable Engine'
 user_name: 'Christian'
 date: '2026-03-27'
 ---
 
-# Architecture Decision Document - DESC
+# Architecture Decision Document - Projex
 
-**Deliverable Engine for Service Control**
+**Automated Projection & Deliverable Engine**
 
 **Author:** Christian
 **Date:** 2026-03-27
@@ -22,7 +22,7 @@ date: '2026-03-27'
 
 ### 1.1 System Overview
 
-DESC follows a three-tier architecture with a clear separation between the presentation layer (Next.js on Vercel), the backend-as-a-service layer (Convex Cloud), and external integrations (Claude API, Clerk, Resend).
+Projex follows a three-tier architecture with a clear separation between the presentation layer (Next.js on Vercel), the backend-as-a-service layer (Convex Cloud), and external integrations (Claude API, Clerk, Resend).
 
 ```
                                  +-----------------+
@@ -790,7 +790,7 @@ function mapClerkRole(clerkRole: string | undefined): Role {
 
 ### 5.1 Isolation Strategy
 
-DESC uses **query-level tenant isolation** with `orgId` as the partition key. This is enforced at the Convex server function layer, not the database layer, meaning:
+Projex uses **query-level tenant isolation** with `orgId` as the partition key. This is enforced at the Convex server function layer, not the database layer, meaning:
 
 1. Every table (except `organizations`) has an `orgId` field.
 2. Every query filters by `orgId` as the first index predicate.
@@ -1117,7 +1117,7 @@ export const create = mutation({
 
 ### 7.1 Dual-Agent Architecture
 
-DESC uses two Claude API agents working in sequence:
+Projex uses two Claude API agents working in sequence:
 
 ```
 [Payment Confirmed]
@@ -1420,7 +1420,7 @@ RootLayout (app/layout.tsx)
 
 ### 9.4 State Management
 
-DESC does **not** use a client-side state management library (no Redux, Zustand, etc.). All server state is managed through Convex's reactive queries, which provide real-time subscriptions out of the box.
+Projex does **not** use a client-side state management library (no Redux, Zustand, etc.). All server state is managed through Convex's reactive queries, which provide real-time subscriptions out of the box.
 
 ```typescript
 // Example: Real-time client list
@@ -1466,7 +1466,7 @@ export const sendQuestionnaireLink = action({
   },
   handler: async (ctx, args) => {
     await resend.emails.send({
-      from: `${args.orgName} <noreply@desc-platform.com>`,
+      from: `${args.orgName} <noreply@projex-platform.com>`,
       to: args.clientEmail,
       subject: `${args.orgName} - Cuestionario de servicios`,
       html: buildQuestionnaireEmailHtml(args),
@@ -1522,7 +1522,7 @@ export default crons;
 
 ### 10.3 Webhook Patterns
 
-DESC does not currently expose webhooks. However, Clerk sends webhooks for organization membership changes. These are handled via a Next.js API route:
+Projex does not currently expose webhooks. However, Clerk sends webhooks for organization membership changes. These are handled via a Next.js API route:
 
 ```
 app/api/webhooks/clerk/route.ts  --> Handles org membership sync
@@ -1591,7 +1591,7 @@ if (args.monthlyData.length !== 12) {
 
 ### ADR-1: Convex as the Single Backend
 
-**Context:** DESC needs a database, server functions, file storage, cron jobs, and real-time subscriptions. The team evaluated separate services (Supabase + Vercel API routes + S3 + separate cron service) versus an integrated backend-as-a-service.
+**Context:** Projex needs a database, server functions, file storage, cron jobs, and real-time subscriptions. The team evaluated separate services (Supabase + Vercel API routes + S3 + separate cron service) versus an integrated backend-as-a-service.
 
 **Decision:** Use Convex as the single backend layer providing document database, server functions (queries, mutations, actions), file storage, cron scheduling, and real-time reactive queries.
 
@@ -1606,7 +1606,7 @@ if (args.monthlyData.length !== 12) {
 
 ### ADR-2: Clerk Organizations for Multi-Tenancy
 
-**Context:** DESC is a multi-tenant SaaS platform. Each consulting firm is a separate tenant. The system needs organization-scoped authentication, role-based access control, and invitation management.
+**Context:** Projex is a multi-tenant SaaS platform. Each consulting firm is a separate tenant. The system needs organization-scoped authentication, role-based access control, and invitation management.
 
 **Decision:** Use Clerk Organizations as the identity and tenancy provider. Each consulting firm maps to one Clerk Organization. Roles (`org:admin`, `org:ejecutivo`, `org:viewer`) are defined in Clerk and extracted from the JWT in Convex functions.
 
@@ -1649,7 +1649,7 @@ if (args.monthlyData.length !== 12) {
 
 ### ADR-5: Dual-Agent AI Architecture (Creator + Auditor)
 
-**Context:** The core value proposition of DESC is generating "agency-quality" professional deliverables via AI. Single-shot AI generation may produce inconsistent quality.
+**Context:** The core value proposition of Projex is generating "agency-quality" professional deliverables via AI. Single-shot AI generation may produce inconsistent quality.
 
 **Decision:** Use a dual-agent architecture where the Creator Agent generates the deliverable and the Auditor Agent validates it against quality criteria. If the Auditor rejects, the Creator retries with feedback (up to 3 times). This runs as a Convex action pipeline.
 
@@ -1680,7 +1680,7 @@ if (args.monthlyData.length !== 12) {
 
 ### ADR-7: react-pdf for PDF Generation
 
-**Context:** DESC needs to generate branded PDF documents (quotations, contracts, deliverables) from AI-generated content. Options include Google Docs API, Puppeteer/Playwright (HTML-to-PDF), LaTeX, or react-pdf.
+**Context:** Projex needs to generate branded PDF documents (quotations, contracts, deliverables) from AI-generated content. Options include Google Docs API, Puppeteer/Playwright (HTML-to-PDF), LaTeX, or react-pdf.
 
 **Decision:** Use `@react-pdf/renderer` to generate PDFs. Templates are defined as React components with the react-pdf primitives (`Document`, `Page`, `View`, `Text`, `Image`). Rendering happens in Convex actions (Node.js environment).
 
@@ -1695,7 +1695,7 @@ if (args.monthlyData.length !== 12) {
 
 ### ADR-8: No Payment Gateway (Manual Billing)
 
-**Context:** DESC needs subscription management for consulting firms. The team considered Stripe integration for automated billing.
+**Context:** Projex needs subscription management for consulting firms. The team considered Stripe integration for automated billing.
 
 **Decision:** Do not integrate Stripe or any payment gateway. Subscriptions are managed manually by the platform team. Organization plan and status are updated directly in the admin panel.
 
@@ -1710,7 +1710,7 @@ if (args.monthlyData.length !== 12) {
 
 ### ADR-9: Spanish-Only UI with English Codebase
 
-**Context:** DESC targets Mexican consulting firms. The primary users are Spanish speakers. However, the development team works in English.
+**Context:** Projex targets Mexican consulting firms. The primary users are Spanish speakers. However, the development team works in English.
 
 **Decision:** All code (variable names, comments, function names, schema fields) is written in English. The user-facing UI (labels, messages, button text) is in Spanish. Business domain terms that are inherently Spanish (e.g., "ejecutivo", "cotizacion", "entregable") are kept in Spanish in the UI but use English translations in the codebase (e.g., `quotation`, `deliverable`, `accountExecutive`).
 

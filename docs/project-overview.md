@@ -1,8 +1,8 @@
-# DESC - Deliverable Engine for Service Control
+# Projex - Automated Projection & Deliverable Engine
 
 ## Resumen Ejecutivo
 
-DESC es un sistema automatizado de generacion y control de entregables profesionales para una firma de consultoria multidisciplinaria. El sistema reemplaza el trabajo manual de crear cotizaciones, contratos y entregables mes a mes, delegando la generacion a IA y la orquestacion a workflows automatizados.
+Projex es un sistema automatizado de generacion y control de entregables profesionales para una firma de consultoria multidisciplinaria. El sistema reemplaza el trabajo manual de crear cotizaciones, contratos y entregables mes a mes, delegando la generacion a IA y la orquestacion a workflows automatizados.
 
 El objetivo final: **cero intervencion humana** desde que un cliente contrata un servicio hasta que recibe su entregable en la nube.
 
@@ -16,7 +16,7 @@ Actualmente el proceso es manual:
 - La calidad del entregable depende de quien lo haga y cuanto tiempo le dedique
 - No hay estandarizacion: cada entregable se ve diferente aunque sea el mismo servicio
 
-DESC automatiza todo este flujo para que los entregables se generen con calidad de agencia profesional, de forma consistente y sin intervencion.
+Projex automatiza todo este flujo para que los entregables se generen con calidad de agencia profesional, de forma consistente y sin intervencion.
 
 ---
 
