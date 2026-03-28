@@ -218,6 +218,7 @@ export function calculateProjection(input: ProjectionInput): ProjectionResult {
  */
 export function validateServiceLimits(
   services: ServiceAllocation[],
+  serviceConfigs: ServiceConfig[],
   annualSales: number
 ): { valid: boolean; violations: string[] } {
   const violations: string[] = [];
@@ -225,9 +226,15 @@ export function validateServiceLimits(
   for (const service of services) {
     if (!service.isActive || service.serviceName === "Comisiones") continue;
 
+    const config = serviceConfigs.find((c) => c.serviceId === service.serviceId);
+    if (!config) continue;
+
     const pctOfRevenue = annualSales > 0 ? service.annualAmount / annualSales : 0;
-    // We don't have maxPct on ServiceAllocation, but the caller should check
-    // against the original service config
+    if (pctOfRevenue > config.maxPct) {
+      violations.push(
+        `${service.serviceName}: ${(pctOfRevenue * 100).toFixed(1)}% excede el máximo de ${(config.maxPct * 100).toFixed(1)}%`
+      );
+    }
   }
 
   return { valid: violations.length === 0, violations };
