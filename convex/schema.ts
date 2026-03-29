@@ -76,8 +76,8 @@ export default defineSchema({
     maxPct: v.number(),
     defaultPct: v.number(),
     isDefault: v.boolean(),
-    isCommission: v.optional(v.boolean()),
-    isCustom: v.optional(v.boolean()),
+    isCommission: v.boolean(),
+    isCustom: v.boolean(),
     sortOrder: v.number(),
   })
     .index("by_orgId", ["orgId"])
