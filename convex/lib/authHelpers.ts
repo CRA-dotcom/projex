@@ -39,8 +39,11 @@ export async function requireAdmin(ctx: QueryCtx | MutationCtx) {
 
 export async function requireSuperAdmin(ctx: QueryCtx | MutationCtx) {
   const identity = await requireAuth(ctx);
-  const metadata = identity.publicMetadata as Record<string, unknown> | undefined;
-  if (metadata?.role !== "super_admin") {
+  // Check publicMetadata (Convex standard) or metadata claim (custom JWT)
+  const publicMeta = identity.publicMetadata as Record<string, unknown> | undefined;
+  const customMeta = (identity as Record<string, unknown>).metadata as Record<string, unknown> | undefined;
+  const role = publicMeta?.role ?? customMeta?.role;
+  if (role !== "super_admin") {
     throw new Error("Acceso denegado. Se requiere rol de Super Admin.");
   }
   return identity;
