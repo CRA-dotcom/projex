@@ -19,6 +19,8 @@ import type * as functions_dashboard_documentCycle from "../functions/dashboard/
 import type * as functions_dashboard_queries from "../functions/dashboard/queries.js";
 import type * as functions_deliverableTemplates_mutations from "../functions/deliverableTemplates/mutations.js";
 import type * as functions_deliverableTemplates_queries from "../functions/deliverableTemplates/queries.js";
+import type * as functions_deliverables_actions from "../functions/deliverables/actions.js";
+import type * as functions_deliverables_internalQueries from "../functions/deliverables/internalQueries.js";
 import type * as functions_deliverables_mutations from "../functions/deliverables/mutations.js";
 import type * as functions_deliverables_queries from "../functions/deliverables/queries.js";
 import type * as functions_email_send from "../functions/email/send.js";
@@ -66,6 +68,8 @@ declare const fullApi: ApiFromModules<{
   "functions/dashboard/queries": typeof functions_dashboard_queries;
   "functions/deliverableTemplates/mutations": typeof functions_deliverableTemplates_mutations;
   "functions/deliverableTemplates/queries": typeof functions_deliverableTemplates_queries;
+  "functions/deliverables/actions": typeof functions_deliverables_actions;
+  "functions/deliverables/internalQueries": typeof functions_deliverables_internalQueries;
   "functions/deliverables/mutations": typeof functions_deliverables_mutations;
   "functions/deliverables/queries": typeof functions_deliverables_queries;
   "functions/email/send": typeof functions_email_send;
