@@ -9,25 +9,28 @@ import {
   Settings,
   Briefcase,
   Receipt,
+  Shield,
   ChevronLeft,
   ChevronRight,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useState } from "react";
-import { OrganizationSwitcher, UserButton } from "@clerk/nextjs";
+import { OrganizationSwitcher, UserButton, useUser } from "@clerk/nextjs";
 
 const navigation = [
   { name: "Dashboard", href: "/", icon: LayoutDashboard },
   { name: "Clientes", href: "/clientes", icon: Users },
   { name: "Proyecciones", href: "/proyecciones", icon: TrendingUp },
   { name: "Servicios", href: "/servicios", icon: Briefcase },
-  { name: "Facturacion", href: "/facturacion", icon: Receipt },
+  { name: "Facturación", href: "/facturacion", icon: Receipt },
   { name: "Configuración", href: "/configuracion", icon: Settings },
 ];
 
 export function Sidebar() {
   const pathname = usePathname();
   const [collapsed, setCollapsed] = useState(false);
+  const { user } = useUser();
+  const isSuperAdmin = (user?.publicMetadata as Record<string, unknown>)?.role === "super_admin";
 
   return (
     <aside
@@ -88,6 +91,24 @@ export function Sidebar() {
             </Link>
           );
         })}
+
+        {/* Super Admin Button */}
+        {isSuperAdmin && (
+          <>
+            <div className="my-3 border-t border-border" />
+            <Link
+              href="/platform"
+              className={cn(
+                "flex items-center gap-3 rounded-md px-3 py-2.5 text-sm font-medium transition-colors cursor-pointer",
+                "bg-purple-500/10 text-purple-400 hover:bg-purple-500/20"
+              )}
+              title={collapsed ? "Panel de Plataforma" : undefined}
+            >
+              <Shield size={20} />
+              {!collapsed && <span>Panel de Plataforma</span>}
+            </Link>
+          </>
+        )}
       </nav>
 
       {/* User */}
