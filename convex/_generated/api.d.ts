@@ -8,9 +8,13 @@
  * @module
  */
 
+import type * as crons from "../crons.js";
 import type * as functions_clients_mutations from "../functions/clients/mutations.js";
 import type * as functions_clients_queries from "../functions/clients/queries.js";
+import type * as functions_cron_monthlyCheck from "../functions/cron/monthlyCheck.js";
+import type * as functions_cron_overdueCheck from "../functions/cron/overdueCheck.js";
 import type * as functions_email_send from "../functions/email/send.js";
+import type * as functions_monthlyAssignments_billingQueries from "../functions/monthlyAssignments/billingQueries.js";
 import type * as functions_monthlyAssignments_mutations from "../functions/monthlyAssignments/mutations.js";
 import type * as functions_monthlyAssignments_queries from "../functions/monthlyAssignments/queries.js";
 import type * as functions_orgConfigs_mutations from "../functions/orgConfigs/mutations.js";
@@ -36,9 +40,13 @@ import type {
 } from "convex/server";
 
 declare const fullApi: ApiFromModules<{
+  crons: typeof crons;
   "functions/clients/mutations": typeof functions_clients_mutations;
   "functions/clients/queries": typeof functions_clients_queries;
+  "functions/cron/monthlyCheck": typeof functions_cron_monthlyCheck;
+  "functions/cron/overdueCheck": typeof functions_cron_overdueCheck;
   "functions/email/send": typeof functions_email_send;
+  "functions/monthlyAssignments/billingQueries": typeof functions_monthlyAssignments_billingQueries;
   "functions/monthlyAssignments/mutations": typeof functions_monthlyAssignments_mutations;
   "functions/monthlyAssignments/queries": typeof functions_monthlyAssignments_queries;
   "functions/orgConfigs/mutations": typeof functions_orgConfigs_mutations;
