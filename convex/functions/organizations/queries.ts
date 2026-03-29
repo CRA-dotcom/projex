@@ -5,7 +5,11 @@ import { requireSuperAdmin, getOrgIdSafe } from "../../lib/authHelpers";
 export const list = query({
   args: {},
   handler: async (ctx) => {
-    await requireSuperAdmin(ctx);
+    try {
+      await requireSuperAdmin(ctx);
+    } catch {
+      return [];
+    }
     return await ctx.db.query("organizations").collect();
   },
 });
@@ -39,7 +43,11 @@ export const getById = query({
 export const getByIdForAdmin = query({
   args: { id: v.id("organizations") },
   handler: async (ctx, args) => {
-    await requireSuperAdmin(ctx);
+    try {
+      await requireSuperAdmin(ctx);
+    } catch {
+      return null;
+    }
     return await ctx.db.get(args.id);
   },
 });

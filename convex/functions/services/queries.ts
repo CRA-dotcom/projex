@@ -18,7 +18,11 @@ export const listAllForAdmin = query({
   args: {},
   handler: async (ctx) => {
     const { requireSuperAdmin } = await import("../../lib/authHelpers");
-    await requireSuperAdmin(ctx);
+    try {
+      await requireSuperAdmin(ctx);
+    } catch {
+      return [];
+    }
     return await ctx.db.query("services").collect();
   },
 });

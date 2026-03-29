@@ -17,7 +17,11 @@ export const getByOrgId = query({
 export const getByOrgIdForAdmin = query({
   args: { orgId: v.string() },
   handler: async (ctx, args) => {
-    await requireSuperAdmin(ctx);
+    try {
+      await requireSuperAdmin(ctx);
+    } catch {
+      return null;
+    }
     return await ctx.db
       .query("orgConfigs")
       .withIndex("by_orgId", (q) => q.eq("orgId", args.orgId))

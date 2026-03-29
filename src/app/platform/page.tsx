@@ -68,10 +68,6 @@ export default function PlatformPage() {
           <div className="flex items-center justify-center py-12">
             <div className="h-6 w-6 animate-spin rounded-full border-2 border-accent border-t-transparent" />
           </div>
-        ) : orgs instanceof Error ? (
-          <div className="px-6 py-12 text-center text-sm text-red-400">
-            Error al cargar organizaciones. Verifica que tienes permisos de Super Admin.
-          </div>
         ) : orgs.length === 0 ? (
           <div className="flex flex-col items-center justify-center py-12 text-muted-foreground">
             <Building2 size={40} className="mb-3 opacity-40" />
