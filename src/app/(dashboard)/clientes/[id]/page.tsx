@@ -11,6 +11,7 @@ import {
   Archive,
   RotateCcw,
   TrendingUp,
+  GitBranchPlus,
 } from "lucide-react";
 import Link from "next/link";
 import { formatCurrency } from "@/lib/utils";
@@ -103,6 +104,13 @@ export default function ClientDetailPage() {
           )}
         </div>
         <div className="flex gap-2">
+          <Link
+            href={`/clientes/${clientId}/ciclo`}
+            className="flex items-center gap-2 rounded-md bg-accent/10 border border-accent/30 px-3 py-2 text-sm text-accent hover:bg-accent/20 transition-colors cursor-pointer"
+          >
+            <GitBranchPlus size={14} />
+            Ver Ciclo Documental
+          </Link>
           <Link
             href={`/clientes/${clientId}/editar`}
             className="flex items-center gap-2 rounded-md border border-border px-3 py-2 text-sm text-muted-foreground hover:bg-secondary transition-colors cursor-pointer"
