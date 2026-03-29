@@ -12,6 +12,7 @@ export type ServiceConfig = {
   maxPct: number;
   chosenPct: number;
   isActive: boolean;
+  isCommission?: boolean;
   fixedMonthlyAmount?: number;
 };
 
@@ -132,13 +133,13 @@ export function calculateProjection(
 
   // Step 3: Get active non-commission services
   const activeServices = services.filter(
-    (s) => s.isActive && s.serviceName !== "Comisiones"
+    (s) => s.isActive && !s.isCommission
   );
   const commissionService = services.find(
-    (s) => s.serviceName === "Comisiones"
+    (s) => s.isCommission === true
   );
 
-  // Step 4: Sum weights of active services (excl. Comisiones)
+  // Step 4: Sum weights of active services (excl. commission service)
   const totalWeight = activeServices.reduce((sum, s) => sum + s.chosenPct, 0);
 
   // Step 5: Calculate allocations
@@ -161,7 +162,7 @@ export function calculateProjection(
       };
     }
 
-    if (service.serviceName === "Comisiones") {
+    if (service.isCommission === true) {
       if (resolvedConfig.commissionMode === "fixed_monthly") {
         // Fixed monthly commission: commissionRate * totalBudget / 12 per month
         const fixedMonthly = commissionRate * totalBudget / 12;
@@ -184,7 +185,7 @@ export function calculateProjection(
         };
       }
 
-      // Comisiones: proportional to monthly sales, not normalized
+      // Commission service: proportional to monthly sales, not normalized
       const monthlyAmounts: MonthlyAmount[] = effectiveSeasonality.map((m) => {
         const monthlyCommission = m.monthlySales * commissionRate;
         return {
@@ -292,10 +293,8 @@ export function validateServiceLimits(
   const violations: string[] = [];
 
   for (const service of services) {
-    if (!service.isActive || service.serviceName === "Comisiones") continue;
-
     const config = serviceConfigs.find((c) => c.serviceId === service.serviceId);
-    if (!config) continue;
+    if (!service.isActive || !config || config.isCommission) continue;
 
     const pctOfRevenue = annualSales > 0 ? service.annualAmount / annualSales : 0;
     if (pctOfRevenue > config.maxPct) {

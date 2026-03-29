@@ -6,6 +6,7 @@ import {
   generateEvenSeasonality,
   type ServiceConfig,
   type MonthlyData,
+  type EngineConfig,
 } from "../../lib/projectionEngine";
 
 export const create = mutation({
@@ -53,6 +54,7 @@ export const create = mutation({
           maxPct: service.maxPct,
           chosenPct: sc.chosenPct,
           isActive: sc.isActive,
+          isCommission: service.isCommission ?? false,
         } satisfies ServiceConfig;
       })
     );
@@ -62,14 +64,31 @@ export const create = mutation({
         ? args.seasonalityData
         : generateEvenSeasonality(args.annualSales);
 
+    // Fetch org config for engine settings
+    const orgConfig = await ctx.db
+      .query("orgConfigs")
+      .withIndex("by_orgId", (q) => q.eq("orgId", orgId))
+      .unique();
+
+    const engineConfig: EngineConfig | undefined = orgConfig
+      ? {
+          calculationMode: orgConfig.calculationMode,
+          commissionMode: orgConfig.commissionMode,
+          seasonalityEnabled: orgConfig.seasonalityEnabled,
+        }
+      : undefined;
+
     // Calculate projection
-    const result = calculateProjection({
-      annualSales: args.annualSales,
-      totalBudget: args.totalBudget,
-      commissionRate: args.commissionRate,
-      services: serviceDetails,
-      seasonalityData: seasonality,
-    });
+    const result = calculateProjection(
+      {
+        annualSales: args.annualSales,
+        totalBudget: args.totalBudget,
+        commissionRate: args.commissionRate,
+        services: serviceDetails,
+        seasonalityData: seasonality,
+      },
+      engineConfig
+    );
 
     const now = Date.now();
 
@@ -191,17 +210,35 @@ export const recalculate = mutation({
           maxPct: service?.maxPct ?? 0,
           chosenPct: update?.chosenPct ?? ps.chosenPct,
           isActive: update?.isActive ?? ps.isActive,
+          isCommission: service?.isCommission ?? false,
         };
       })
     );
 
-    const result = calculateProjection({
-      annualSales,
-      totalBudget,
-      commissionRate,
-      services: serviceConfigs,
-      seasonalityData: seasonality,
-    });
+    // Fetch org config for engine settings
+    const orgConfig = await ctx.db
+      .query("orgConfigs")
+      .withIndex("by_orgId", (q) => q.eq("orgId", orgId))
+      .unique();
+
+    const engineConfig: EngineConfig | undefined = orgConfig
+      ? {
+          calculationMode: orgConfig.calculationMode,
+          commissionMode: orgConfig.commissionMode,
+          seasonalityEnabled: orgConfig.seasonalityEnabled,
+        }
+      : undefined;
+
+    const result = calculateProjection(
+      {
+        annualSales,
+        totalBudget,
+        commissionRate,
+        services: serviceConfigs,
+        seasonalityData: seasonality,
+      },
+      engineConfig
+    );
 
     // Update projection
     await ctx.db.patch(args.projectionId, {

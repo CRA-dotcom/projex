@@ -26,6 +26,7 @@ function makeService(overrides: Partial<ServiceConfig> = {}): ServiceConfig {
     maxPct: 0.3,
     chosenPct: 0.2,
     isActive: true,
+    isCommission: false,
     ...overrides,
   };
 }
@@ -45,7 +46,7 @@ function makeInput(overrides: Partial<ProjectionInput> = {}): ProjectionInput {
       makeService({ serviceId: "svc-2", serviceName: "PPC", chosenPct: 0.2 }),
       makeService({
         serviceId: "svc-com",
-        serviceName: "Comisiones",
+        serviceName: "Comisiones", isCommission: true,
         chosenPct: 0.05,
       }),
     ],
@@ -138,7 +139,7 @@ describe("calculateProjection - budget distribution", () => {
       commissionRate: 0.05,
       services: [
         makeService({ serviceId: "svc-1", serviceName: "SEO", chosenPct: 1.0 }),
-        makeService({ serviceId: "svc-com", serviceName: "Comisiones", chosenPct: 0.05 }),
+        makeService({ serviceId: "svc-com", serviceName: "Comisiones", isCommission: true, chosenPct: 0.05 }),
       ],
     });
 
@@ -161,7 +162,7 @@ describe("calculateProjection - budget distribution", () => {
       services: [
         makeService({ serviceId: "svc-1", serviceName: "SEO", chosenPct: 0.3 }),
         makeService({ serviceId: "svc-2", serviceName: "PPC", chosenPct: 0.2 }),
-        makeService({ serviceId: "svc-com", serviceName: "Comisiones", chosenPct: 0.05 }),
+        makeService({ serviceId: "svc-com", serviceName: "Comisiones", isCommission: true, chosenPct: 0.05 }),
       ],
     });
 
@@ -185,7 +186,7 @@ describe("calculateProjection - budget distribution", () => {
       services: [
         makeService({ serviceId: "svc-1", serviceName: "SEO", isActive: false }),
         makeService({ serviceId: "svc-2", serviceName: "PPC", isActive: false }),
-        makeService({ serviceId: "svc-com", serviceName: "Comisiones", isActive: false }),
+        makeService({ serviceId: "svc-com", serviceName: "Comisiones", isCommission: true, isActive: false }),
       ],
     });
 
@@ -211,7 +212,7 @@ describe("calculateProjection - commissions", () => {
       totalBudget: 500,
       commissionRate: rate,
       services: [
-        makeService({ serviceId: "svc-com", serviceName: "Comisiones", chosenPct: rate }),
+        makeService({ serviceId: "svc-com", serviceName: "Comisiones", isCommission: true, chosenPct: rate }),
       ],
       seasonalityData: generateSeasonalityData(monthlySales, annual),
     });
@@ -330,12 +331,12 @@ describe("validateServiceLimits", () => {
 
   it("skips Comisiones service", () => {
     const configs: ServiceConfig[] = [
-      makeService({ serviceId: "svc-com", serviceName: "Comisiones", maxPct: 0.01 }),
+      makeService({ serviceId: "svc-com", serviceName: "Comisiones", isCommission: true, maxPct: 0.01 }),
     ];
     const allocations: ServiceAllocation[] = [
       {
         serviceId: "svc-com",
-        serviceName: "Comisiones",
+        serviceName: "Comisiones", isCommission: true,
         type: "base",
         chosenPct: 0.05,
         isActive: true,
@@ -413,7 +414,7 @@ describe("calculateProjection - fixed calculation mode", () => {
       services: [
         makeService({ serviceId: "svc-1", serviceName: "SEO", chosenPct: 0.3, fixedMonthlyAmount: 2000 }),
         makeService({ serviceId: "svc-2", serviceName: "PPC", chosenPct: 0.2, fixedMonthlyAmount: 3000 }),
-        makeService({ serviceId: "svc-com", serviceName: "Comisiones", chosenPct: 0.05 }),
+        makeService({ serviceId: "svc-com", serviceName: "Comisiones", isCommission: true, chosenPct: 0.05 }),
       ],
     });
 
@@ -438,7 +439,7 @@ describe("calculateProjection - fixed calculation mode", () => {
     const input = makeInput({
       services: [
         makeService({ serviceId: "svc-1", serviceName: "SEO", chosenPct: 0.3 }), // no fixedMonthlyAmount
-        makeService({ serviceId: "svc-com", serviceName: "Comisiones", chosenPct: 0.05 }),
+        makeService({ serviceId: "svc-com", serviceName: "Comisiones", isCommission: true, chosenPct: 0.05 }),
       ],
     });
 
@@ -461,7 +462,7 @@ describe("calculateProjection - fixed calculation mode", () => {
       commissionRate: 0.1,
       services: [
         makeService({ serviceId: "svc-1", serviceName: "SEO", chosenPct: 0.3, fixedMonthlyAmount: 100 }),
-        makeService({ serviceId: "svc-com", serviceName: "Comisiones", chosenPct: 0.1 }),
+        makeService({ serviceId: "svc-com", serviceName: "Comisiones", isCommission: true, chosenPct: 0.1 }),
       ],
       seasonalityData: generateSeasonalityData(monthlySales, annual),
     });
@@ -492,7 +493,7 @@ describe("calculateProjection - fixed_monthly commission mode", () => {
       totalBudget: budget,
       commissionRate: rate,
       services: [
-        makeService({ serviceId: "svc-com", serviceName: "Comisiones", chosenPct: rate }),
+        makeService({ serviceId: "svc-com", serviceName: "Comisiones", isCommission: true, chosenPct: rate }),
       ],
       seasonalityData: generateSeasonalityData(monthlySales, annual),
     });
