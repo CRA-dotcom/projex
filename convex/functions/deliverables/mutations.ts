@@ -1,6 +1,6 @@
 import { mutation, internalMutation } from "../../_generated/server";
 import { v } from "convex/values";
-import { getOrgId } from "../../lib/authHelpers";
+import { getOrgId, requireAuth } from "../../lib/authHelpers";
 import { internal } from "../../_generated/api";
 
 // ─── Public mutations ────────────────────────────────────────────────
@@ -104,18 +104,14 @@ export const deliver = mutation({
     deliverableId: v.id("deliverables"),
   },
   handler: async (ctx, args) => {
-    const identity = await ctx.auth.getUserIdentity();
-    if (!identity) {
-      throw new Error("Not authenticated");
-    }
+    const identity = await requireAuth(ctx);
+    const orgId = await getOrgId(ctx);
 
     const deliverable = await ctx.db.get(args.deliverableId);
     if (!deliverable) {
       throw new Error("Deliverable not found");
     }
 
-    const orgId =
-      (identity as Record<string, unknown>).org_id ?? identity.tokenIdentifier;
     if (deliverable.orgId !== orgId) {
       throw new Error("Unauthorized: org mismatch");
     }
@@ -136,12 +132,14 @@ export const deliver = mutation({
 
     const client = await ctx.db.get(deliverable.clientId);
     const clientName = client?.name ?? "Cliente";
+    // TODO: Add an `email` field to the clients table. For now, derive a placeholder email from the client RFC.
+    const clientEmail = client ? `${client.rfc}@placeholder.com` : "unknown@placeholder.com";
 
     await ctx.scheduler.runAfter(
       0,
       internal.functions.email.send.sendEmailInternal,
       {
-        to: "cliente@projex-platform.com",
+        to: clientEmail,
         subject: `Entregable disponible - ${deliverable.serviceName}`,
         html: `<p>Estimado ${clientName}, su entregable de ${deliverable.serviceName} para ${deliverable.month}/${deliverable.year} esta disponible.</p>`,
       }

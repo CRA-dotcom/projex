@@ -11,6 +11,7 @@ import {
   ClipboardList,
   FileText,
   FileSignature,
+  FileOutput,
   Receipt,
   Shield,
   ChevronLeft,
@@ -28,6 +29,7 @@ const navigation = [
   { name: "Cuestionarios", href: "/cuestionarios", icon: ClipboardList },
   { name: "Cotizaciones", href: "/cotizaciones", icon: FileText },
   { name: "Contratos", href: "/contratos", icon: FileSignature },
+  { name: "Entregables", href: "/entregables", icon: FileOutput },
   { name: "Facturación", href: "/facturacion", icon: Receipt },
   { name: "Configuración", href: "/configuracion", icon: Settings },
 ];

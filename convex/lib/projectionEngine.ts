@@ -48,6 +48,7 @@ export type ServiceAllocation = {
   type: "base" | "comodin";
   chosenPct: number;
   isActive: boolean;
+  isCommission?: boolean;
   normalizedWeight: number;
   annualAmount: number;
   monthlyAmounts: MonthlyAmount[];

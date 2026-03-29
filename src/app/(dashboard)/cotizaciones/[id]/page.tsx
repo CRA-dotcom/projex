@@ -56,6 +56,7 @@ export default function QuotationDetailPage() {
   const setPdfStorageId = useMutation(
     api.functions.quotations.mutations.setPdfStorageId
   );
+  const orgBranding = useQuery(api.functions.orgBranding.queries.getByOrgId);
 
   const { generate: generatePdf, download: downloadPdf, state: pdfState } =
     usePdfGenerator();
@@ -98,15 +99,16 @@ export default function QuotationDetailPage() {
     }
   };
 
+  const branding = {
+    companyName: orgBranding?.companyName ?? client?.name ?? "Empresa",
+    primaryColor: orgBranding?.primaryColor ?? "#1a1a2e",
+    secondaryColor: orgBranding?.secondaryColor ?? "#6c63ff",
+    fontFamily: orgBranding?.fontFamily ?? "Arial, sans-serif",
+  };
+
   const handleGeneratePdf = async () => {
     if (!quotation) return;
     try {
-      const branding = {
-        companyName: client?.name ?? "Empresa",
-        primaryColor: "#1a1a2e",
-        secondaryColor: "#6c63ff",
-        fontFamily: "Arial, sans-serif",
-      };
       const filename = `cotizacion-${quotation.serviceName.toLowerCase().replace(/\s+/g, "-")}-${client?.name?.toLowerCase().replace(/\s+/g, "-") ?? "cliente"}.pdf`;
       const result = await generatePdf(quotation.content, branding, filename);
       await setPdfStorageId({
@@ -121,12 +123,6 @@ export default function QuotationDetailPage() {
   const handleDownloadPdf = async () => {
     if (!quotation) return;
     try {
-      const branding = {
-        companyName: client?.name ?? "Empresa",
-        primaryColor: "#1a1a2e",
-        secondaryColor: "#6c63ff",
-        fontFamily: "Arial, sans-serif",
-      };
       const filename = `cotizacion-${quotation.serviceName.toLowerCase().replace(/\s+/g, "-")}-${client?.name?.toLowerCase().replace(/\s+/g, "-") ?? "cliente"}.pdf`;
       await downloadPdf(quotation.content, branding, filename);
     } catch (err) {
