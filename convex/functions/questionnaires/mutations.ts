@@ -78,12 +78,19 @@ export const generate = mutation({
       });
     }
 
+    // Generate unique access token for public link
+    const accessToken =
+      Math.random().toString(36).slice(2) +
+      Date.now().toString(36) +
+      Math.random().toString(36).slice(2);
+
     const id = await ctx.db.insert("questionnaireResponses", {
       orgId,
       clientId: projection.clientId,
       projectionId: args.projectionId,
       responses,
       status: "draft",
+      accessToken,
       createdAt: Date.now(),
     });
 

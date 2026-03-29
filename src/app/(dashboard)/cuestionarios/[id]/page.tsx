@@ -12,6 +12,8 @@ import {
   CheckCircle2,
   Edit3,
   Save,
+  Copy,
+  Check,
 } from "lucide-react";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
@@ -63,6 +65,7 @@ export default function QuestionnaireDetailPage() {
     }>
   >([]);
   const [saving, setSaving] = useState(false);
+  const [copied, setCopied] = useState(false);
 
   const startEditing = () => {
     if (questionnaire) {
@@ -247,19 +250,40 @@ export default function QuestionnaireDetailPage() {
         </div>
       )}
 
-      {/* Link to client-facing form */}
-      {!isCompleted &&
-        (questionnaire.status === "sent" ||
-          questionnaire.status === "in_progress") && (
-          <div className="rounded-lg border border-border bg-secondary/30 p-4">
-            <p className="text-sm text-muted-foreground">
-              Enlace para el cliente:{" "}
-              <code className="rounded bg-secondary px-2 py-0.5 text-xs text-foreground">
-                /cuestionarios/{questionnaire._id}/responder
-              </code>
-            </p>
+      {/* Public link for client */}
+      {questionnaire.accessToken && (
+        <div className="rounded-lg border border-border bg-secondary/30 p-4">
+          <p className="text-sm text-muted-foreground mb-2">
+            Link para el cliente:
+          </p>
+          <div className="flex items-center gap-2">
+            <code className="flex-1 rounded bg-secondary px-3 py-1.5 text-xs text-foreground truncate">
+              {typeof window !== "undefined"
+                ? `${window.location.origin}/q/${questionnaire.accessToken}`
+                : `/q/${questionnaire.accessToken}`}
+            </code>
+            <button
+              onClick={() => {
+                const url = `${window.location.origin}/q/${questionnaire.accessToken}`;
+                navigator.clipboard.writeText(url);
+                setCopied(true);
+                setTimeout(() => setCopied(false), 2000);
+              }}
+              className="flex items-center gap-1.5 rounded-md border border-border px-3 py-1.5 text-xs font-medium text-foreground hover:bg-secondary transition-colors cursor-pointer"
+            >
+              {copied ? (
+                <>
+                  <Check size={14} className="text-accent" /> Copiado
+                </>
+              ) : (
+                <>
+                  <Copy size={14} /> Copiar
+                </>
+              )}
+            </button>
           </div>
-        )}
+        </div>
+      )}
 
       {/* Questions grouped by service */}
       {Array.from(serviceGroups.entries()).map(([serviceName, questions]) => (

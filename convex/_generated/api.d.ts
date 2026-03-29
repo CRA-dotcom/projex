@@ -20,7 +20,6 @@ import type * as functions_dashboard_queries from "../functions/dashboard/querie
 import type * as functions_deliverableTemplates_mutations from "../functions/deliverableTemplates/mutations.js";
 import type * as functions_deliverableTemplates_queries from "../functions/deliverableTemplates/queries.js";
 import type * as functions_deliverableTemplates_seed from "../functions/deliverableTemplates/seed.js";
-import type * as functions_deliverableTemplates_verify from "../functions/deliverableTemplates/verify.js";
 import type * as functions_deliverables_actions from "../functions/deliverables/actions.js";
 import type * as functions_deliverables_internalQueries from "../functions/deliverables/internalQueries.js";
 import type * as functions_deliverables_mutations from "../functions/deliverables/mutations.js";
@@ -40,6 +39,8 @@ import type * as functions_projectionServices_queries from "../functions/project
 import type * as functions_projections_mutations from "../functions/projections/mutations.js";
 import type * as functions_projections_queries from "../functions/projections/queries.js";
 import type * as functions_questionnaires_mutations from "../functions/questionnaires/mutations.js";
+import type * as functions_questionnaires_publicMutations from "../functions/questionnaires/publicMutations.js";
+import type * as functions_questionnaires_publicQueries from "../functions/questionnaires/publicQueries.js";
 import type * as functions_questionnaires_queries from "../functions/questionnaires/queries.js";
 import type * as functions_quotations_mutations from "../functions/quotations/mutations.js";
 import type * as functions_quotations_queries from "../functions/quotations/queries.js";
@@ -71,7 +72,6 @@ declare const fullApi: ApiFromModules<{
   "functions/deliverableTemplates/mutations": typeof functions_deliverableTemplates_mutations;
   "functions/deliverableTemplates/queries": typeof functions_deliverableTemplates_queries;
   "functions/deliverableTemplates/seed": typeof functions_deliverableTemplates_seed;
-  "functions/deliverableTemplates/verify": typeof functions_deliverableTemplates_verify;
   "functions/deliverables/actions": typeof functions_deliverables_actions;
   "functions/deliverables/internalQueries": typeof functions_deliverables_internalQueries;
   "functions/deliverables/mutations": typeof functions_deliverables_mutations;
@@ -91,6 +91,8 @@ declare const fullApi: ApiFromModules<{
   "functions/projections/mutations": typeof functions_projections_mutations;
   "functions/projections/queries": typeof functions_projections_queries;
   "functions/questionnaires/mutations": typeof functions_questionnaires_mutations;
+  "functions/questionnaires/publicMutations": typeof functions_questionnaires_publicMutations;
+  "functions/questionnaires/publicQueries": typeof functions_questionnaires_publicQueries;
   "functions/questionnaires/queries": typeof functions_questionnaires_queries;
   "functions/quotations/mutations": typeof functions_quotations_mutations;
   "functions/quotations/queries": typeof functions_quotations_queries;

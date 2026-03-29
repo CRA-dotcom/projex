@@ -145,13 +145,15 @@ export default defineSchema({
       v.literal("in_progress"),
       v.literal("completed")
     ),
+    accessToken: v.optional(v.string()),
     completedAt: v.optional(v.number()),
     createdAt: v.number(),
   })
     .index("by_orgId", ["orgId"])
     .index("by_clientId", ["clientId"])
     .index("by_projectionId", ["projectionId"])
-    .index("by_orgId_status", ["orgId", "status"]),
+    .index("by_orgId_status", ["orgId", "status"])
+    .index("by_accessToken", ["accessToken"]),
 
   quotations: defineTable({
     orgId: v.string(),
