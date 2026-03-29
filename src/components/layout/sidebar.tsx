@@ -10,6 +10,7 @@ import {
   Briefcase,
   ClipboardList,
   FileText,
+  FileSignature,
   Receipt,
   Shield,
   ChevronLeft,
@@ -26,6 +27,7 @@ const navigation = [
   { name: "Servicios", href: "/servicios", icon: Briefcase },
   { name: "Cuestionarios", href: "/cuestionarios", icon: ClipboardList },
   { name: "Cotizaciones", href: "/cotizaciones", icon: FileText },
+  { name: "Contratos", href: "/contratos", icon: FileSignature },
   { name: "Facturación", href: "/facturacion", icon: Receipt },
   { name: "Configuración", href: "/configuracion", icon: Settings },
 ];
