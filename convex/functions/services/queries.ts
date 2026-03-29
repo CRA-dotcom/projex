@@ -21,6 +21,21 @@ export const listByOrg = query({
     const orgId = await getOrgIdSafe(ctx);
     if (!orgId) return [];
 
+    // Check if the organization has assignedServiceIds
+    const org = await ctx.db
+      .query("organizations")
+      .withIndex("by_clerkOrgId", (q) => q.eq("clerkOrgId", orgId))
+      .unique();
+
+    if (org?.assignedServiceIds && org.assignedServiceIds.length > 0) {
+      // Return only the specifically assigned services
+      const services = await Promise.all(
+        org.assignedServiceIds.map((id) => ctx.db.get(id))
+      );
+      return services.filter((s) => s !== null);
+    }
+
+    // Fall back to org-specific overrides or global defaults
     const orgServices = await ctx.db
       .query("services")
       .withIndex("by_orgId", (q) => q.eq("orgId", orgId))
