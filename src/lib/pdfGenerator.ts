@@ -46,21 +46,36 @@ export async function generatePDF(
       background: white;
     }
 
-    /* Page break control */
-    h1, h2, h3, h4 {
-      page-break-after: avoid;
-      break-after: avoid;
+    /* Page break control — aggressive rules */
+    h1, h2, h3, h4, h5, h6 {
+      page-break-after: avoid !important;
+      break-after: avoid !important;
+      /* Keep heading with at least 3 lines of next content */
+      orphans: 3;
+      widows: 3;
     }
 
-    table, figure, .section, .card, .kpi-card, .finding-card {
-      page-break-inside: avoid;
-      break-inside: avoid;
+    /* Never break inside these elements */
+    table, figure, blockquote, pre, ul, ol,
+    .section, .card, .kpi-card, .finding-card,
+    div > p + ul, div > p + ol {
+      page-break-inside: avoid !important;
+      break-inside: avoid !important;
     }
 
     tr {
-      page-break-inside: avoid;
-      break-inside: avoid;
+      page-break-inside: avoid !important;
+      break-inside: avoid !important;
     }
+
+    /* Keep a heading with its following content block together */
+    h2 + *, h3 + *, h4 + * {
+      page-break-before: avoid !important;
+      break-before: avoid !important;
+    }
+
+    /* Wrap each "section" (h2/h3 followed by content) as a group.
+       This JS below will auto-wrap content for better breaks */
 
     /* Ensure tables look good */
     table {
@@ -175,6 +190,12 @@ export async function generatePDF(
       margin-top: 40pt;
       margin-bottom: 6pt;
     }
+    /* Auto-wrapped sections */
+    .print-section {
+      page-break-inside: avoid !important;
+      break-inside: avoid !important;
+      margin-bottom: 8pt;
+    }
   </style>
 </head>
 <body>
@@ -182,6 +203,34 @@ export async function generatePDF(
   <div class="doc-footer">
     ${branding.footerText || branding.companyName} — Documento confidencial — ${new Date().toLocaleDateString('es-MX', { year: 'numeric', month: 'long', day: 'numeric' })}
   </div>
+  <script>
+    // Auto-wrap content sections for better page breaks
+    // Group each heading with its following content into a div.print-section
+    document.querySelectorAll('h2, h3, h4, strong').forEach(function(heading) {
+      // If the heading's parent is already a print-section, skip
+      if (heading.parentElement && heading.parentElement.classList.contains('print-section')) return;
+
+      var wrapper = document.createElement('div');
+      wrapper.className = 'print-section';
+      heading.parentNode.insertBefore(wrapper, heading);
+      wrapper.appendChild(heading);
+
+      // Move following siblings into the wrapper until we hit another heading or have enough content
+      var next = wrapper.nextSibling;
+      var count = 0;
+      while (next && count < 6) {
+        var tag = next.nodeName;
+        // Stop at next heading of same or higher level
+        if (tag === 'H1' || tag === 'H2' || tag === 'H3' || tag === 'HR') break;
+        // Stop at another strong that looks like a sub-heading
+        if (tag === 'P' && next.querySelector && next.querySelector('strong:first-child') && count > 0) break;
+        var toMove = next;
+        next = next.nextSibling;
+        wrapper.appendChild(toMove);
+        count++;
+      }
+    });
+  </script>
 </body>
 </html>`;
 
