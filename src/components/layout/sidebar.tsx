@@ -8,6 +8,7 @@ import {
   TrendingUp,
   Settings,
   Briefcase,
+  ClipboardList,
   Receipt,
   Shield,
   ChevronLeft,
@@ -22,6 +23,7 @@ const navigation = [
   { name: "Clientes", href: "/clientes", icon: Users },
   { name: "Proyecciones", href: "/proyecciones", icon: TrendingUp },
   { name: "Servicios", href: "/servicios", icon: Briefcase },
+  { name: "Cuestionarios", href: "/cuestionarios", icon: ClipboardList },
   { name: "Facturación", href: "/facturacion", icon: Receipt },
   { name: "Configuración", href: "/configuracion", icon: Settings },
 ];
