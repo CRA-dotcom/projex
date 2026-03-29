@@ -5,7 +5,7 @@ import { useQuery, useMutation } from "convex/react";
 import { api } from "../../../../../convex/_generated/api";
 import { Id } from "../../../../../convex/_generated/dataModel";
 import { useState, useEffect, useCallback } from "react";
-import { ArrowLeft, Save, Loader2 } from "lucide-react";
+import { ArrowLeft, Save, Loader2, Palette } from "lucide-react";
 import Link from "next/link";
 
 type FeatureFlags = {
@@ -201,7 +201,7 @@ export default function OrgDetailPage() {
         >
           <ArrowLeft size={20} />
         </Link>
-        <div>
+        <div className="flex-1">
           <h1 className="text-2xl font-bold text-foreground">
             {isNew ? "Nueva Organizacion" : org?.name}
           </h1>
@@ -211,6 +211,15 @@ export default function OrgDetailPage() {
             </p>
           )}
         </div>
+        {!isNew && (
+          <Link
+            href={`/platform/orgs/${orgId}/branding`}
+            className="inline-flex items-center gap-2 rounded-md border border-border bg-secondary px-4 py-2 text-sm font-medium text-foreground hover:bg-secondary/80 transition-colors"
+          >
+            <Palette size={16} />
+            Branding
+          </Link>
+        )}
       </div>
 
       {/* Error / Success banners */}

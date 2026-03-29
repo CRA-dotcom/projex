@@ -18,6 +18,8 @@ import type * as functions_email_send from "../functions/email/send.js";
 import type * as functions_monthlyAssignments_billingQueries from "../functions/monthlyAssignments/billingQueries.js";
 import type * as functions_monthlyAssignments_mutations from "../functions/monthlyAssignments/mutations.js";
 import type * as functions_monthlyAssignments_queries from "../functions/monthlyAssignments/queries.js";
+import type * as functions_orgBranding_mutations from "../functions/orgBranding/mutations.js";
+import type * as functions_orgBranding_queries from "../functions/orgBranding/queries.js";
 import type * as functions_orgConfigs_mutations from "../functions/orgConfigs/mutations.js";
 import type * as functions_orgConfigs_queries from "../functions/orgConfigs/queries.js";
 import type * as functions_organizations_mutations from "../functions/organizations/mutations.js";
@@ -51,6 +53,8 @@ declare const fullApi: ApiFromModules<{
   "functions/monthlyAssignments/billingQueries": typeof functions_monthlyAssignments_billingQueries;
   "functions/monthlyAssignments/mutations": typeof functions_monthlyAssignments_mutations;
   "functions/monthlyAssignments/queries": typeof functions_monthlyAssignments_queries;
+  "functions/orgBranding/mutations": typeof functions_orgBranding_mutations;
+  "functions/orgBranding/queries": typeof functions_orgBranding_queries;
   "functions/orgConfigs/mutations": typeof functions_orgConfigs_mutations;
   "functions/orgConfigs/queries": typeof functions_orgConfigs_queries;
   "functions/organizations/mutations": typeof functions_organizations_mutations;
