@@ -14,6 +14,8 @@ import type * as functions_clients_queries from "../functions/clients/queries.js
 import type * as functions_cron_monthlyCheck from "../functions/cron/monthlyCheck.js";
 import type * as functions_cron_overdueCheck from "../functions/cron/overdueCheck.js";
 import type * as functions_dashboard_queries from "../functions/dashboard/queries.js";
+import type * as functions_deliverableTemplates_mutations from "../functions/deliverableTemplates/mutations.js";
+import type * as functions_deliverableTemplates_queries from "../functions/deliverableTemplates/queries.js";
 import type * as functions_email_send from "../functions/email/send.js";
 import type * as functions_monthlyAssignments_billingQueries from "../functions/monthlyAssignments/billingQueries.js";
 import type * as functions_monthlyAssignments_mutations from "../functions/monthlyAssignments/mutations.js";
@@ -28,6 +30,8 @@ import type * as functions_projectionServices_mutations from "../functions/proje
 import type * as functions_projectionServices_queries from "../functions/projectionServices/queries.js";
 import type * as functions_projections_mutations from "../functions/projections/mutations.js";
 import type * as functions_projections_queries from "../functions/projections/queries.js";
+import type * as functions_questionnaires_mutations from "../functions/questionnaires/mutations.js";
+import type * as functions_questionnaires_queries from "../functions/questionnaires/queries.js";
 import type * as functions_services_backfill from "../functions/services/backfill.js";
 import type * as functions_services_mutations from "../functions/services/mutations.js";
 import type * as functions_services_queries from "../functions/services/queries.js";
@@ -49,6 +53,8 @@ declare const fullApi: ApiFromModules<{
   "functions/cron/monthlyCheck": typeof functions_cron_monthlyCheck;
   "functions/cron/overdueCheck": typeof functions_cron_overdueCheck;
   "functions/dashboard/queries": typeof functions_dashboard_queries;
+  "functions/deliverableTemplates/mutations": typeof functions_deliverableTemplates_mutations;
+  "functions/deliverableTemplates/queries": typeof functions_deliverableTemplates_queries;
   "functions/email/send": typeof functions_email_send;
   "functions/monthlyAssignments/billingQueries": typeof functions_monthlyAssignments_billingQueries;
   "functions/monthlyAssignments/mutations": typeof functions_monthlyAssignments_mutations;
@@ -63,6 +69,8 @@ declare const fullApi: ApiFromModules<{
   "functions/projectionServices/queries": typeof functions_projectionServices_queries;
   "functions/projections/mutations": typeof functions_projections_mutations;
   "functions/projections/queries": typeof functions_projections_queries;
+  "functions/questionnaires/mutations": typeof functions_questionnaires_mutations;
+  "functions/questionnaires/queries": typeof functions_questionnaires_queries;
   "functions/services/backfill": typeof functions_services_backfill;
   "functions/services/mutations": typeof functions_services_mutations;
   "functions/services/queries": typeof functions_services_queries;
