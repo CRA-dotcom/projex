@@ -19,6 +19,8 @@ import type * as functions_dashboard_documentCycle from "../functions/dashboard/
 import type * as functions_dashboard_queries from "../functions/dashboard/queries.js";
 import type * as functions_deliverableTemplates_mutations from "../functions/deliverableTemplates/mutations.js";
 import type * as functions_deliverableTemplates_queries from "../functions/deliverableTemplates/queries.js";
+import type * as functions_deliverableTemplates_seed from "../functions/deliverableTemplates/seed.js";
+import type * as functions_deliverableTemplates_verify from "../functions/deliverableTemplates/verify.js";
 import type * as functions_deliverables_actions from "../functions/deliverables/actions.js";
 import type * as functions_deliverables_internalQueries from "../functions/deliverables/internalQueries.js";
 import type * as functions_deliverables_mutations from "../functions/deliverables/mutations.js";
@@ -68,6 +70,8 @@ declare const fullApi: ApiFromModules<{
   "functions/dashboard/queries": typeof functions_dashboard_queries;
   "functions/deliverableTemplates/mutations": typeof functions_deliverableTemplates_mutations;
   "functions/deliverableTemplates/queries": typeof functions_deliverableTemplates_queries;
+  "functions/deliverableTemplates/seed": typeof functions_deliverableTemplates_seed;
+  "functions/deliverableTemplates/verify": typeof functions_deliverableTemplates_verify;
   "functions/deliverables/actions": typeof functions_deliverables_actions;
   "functions/deliverables/internalQueries": typeof functions_deliverables_internalQueries;
   "functions/deliverables/mutations": typeof functions_deliverables_mutations;
