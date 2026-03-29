@@ -232,4 +232,77 @@ export default defineSchema({
     .index("by_clientId", ["clientId"])
     .index("by_orgId_auditStatus", ["orgId", "auditStatus"])
     .index("by_orgId_year_month", ["orgId", "year", "month"]),
+
+  orgConfigs: defineTable({
+    orgId: v.string(),
+    calculationMode: v.union(
+      v.literal("weighted"),
+      v.literal("fixed")
+    ),
+    commissionMode: v.union(
+      v.literal("proportional"),
+      v.literal("fixed_monthly")
+    ),
+    seasonalityEnabled: v.boolean(),
+    featureFlags: v.object({
+      advancedConfigVisible: v.boolean(),
+      customServicesVisible: v.boolean(),
+      seasonalityEditable: v.boolean(),
+      manualOverrideAllowed: v.boolean(),
+    }),
+    currency: v.optional(v.string()),
+    fiscalYearStartMonth: v.optional(v.number()),
+    updatedAt: v.number(),
+  })
+    .index("by_orgId", ["orgId"]),
+
+  orgBranding: defineTable({
+    orgId: v.string(),
+    companyName: v.string(),
+    logoStorageId: v.optional(v.id("_storage")),
+    primaryColor: v.string(),
+    secondaryColor: v.string(),
+    accentColor: v.optional(v.string()),
+    fontFamily: v.string(),
+    headerText: v.optional(v.string()),
+    footerText: v.optional(v.string()),
+    updatedAt: v.number(),
+  })
+    .index("by_orgId", ["orgId"]),
+
+  deliverableTemplates: defineTable({
+    orgId: v.optional(v.string()),
+    serviceId: v.optional(v.id("services")),
+    serviceName: v.string(),
+    type: v.union(
+      v.literal("quotation"),
+      v.literal("contract"),
+      v.literal("deliverable_short"),
+      v.literal("deliverable_long"),
+      v.literal("questionnaire")
+    ),
+    name: v.string(),
+    htmlTemplate: v.string(),
+    variables: v.array(
+      v.object({
+        key: v.string(),
+        label: v.string(),
+        source: v.union(
+          v.literal("client"),
+          v.literal("projection"),
+          v.literal("service"),
+          v.literal("ai"),
+          v.literal("manual")
+        ),
+        required: v.boolean(),
+      })
+    ),
+    version: v.number(),
+    isActive: v.boolean(),
+    createdAt: v.number(),
+    updatedAt: v.number(),
+  })
+    .index("by_orgId", ["orgId"])
+    .index("by_serviceId", ["serviceId"])
+    .index("by_type", ["type"]),
 });
