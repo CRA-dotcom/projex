@@ -15,6 +15,7 @@ export default defineSchema({
       v.literal("pro"),
       v.literal("enterprise")
     ),
+    assignedServiceIds: v.optional(v.array(v.id("services"))),
     createdAt: v.number(),
   })
     .index("by_clerkOrgId", ["clerkOrgId"])
@@ -75,6 +76,8 @@ export default defineSchema({
     maxPct: v.number(),
     defaultPct: v.number(),
     isDefault: v.boolean(),
+    isCommission: v.optional(v.boolean()),
+    isCustom: v.optional(v.boolean()),
     sortOrder: v.number(),
   })
     .index("by_orgId", ["orgId"])

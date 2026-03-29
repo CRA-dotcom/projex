@@ -10,14 +10,18 @@
 
 import type * as functions_clients_mutations from "../functions/clients/mutations.js";
 import type * as functions_clients_queries from "../functions/clients/queries.js";
+import type * as functions_email_send from "../functions/email/send.js";
 import type * as functions_monthlyAssignments_mutations from "../functions/monthlyAssignments/mutations.js";
 import type * as functions_monthlyAssignments_queries from "../functions/monthlyAssignments/queries.js";
+import type * as functions_orgConfigs_mutations from "../functions/orgConfigs/mutations.js";
+import type * as functions_orgConfigs_queries from "../functions/orgConfigs/queries.js";
 import type * as functions_organizations_mutations from "../functions/organizations/mutations.js";
 import type * as functions_organizations_queries from "../functions/organizations/queries.js";
 import type * as functions_projectionServices_mutations from "../functions/projectionServices/mutations.js";
 import type * as functions_projectionServices_queries from "../functions/projectionServices/queries.js";
 import type * as functions_projections_mutations from "../functions/projections/mutations.js";
 import type * as functions_projections_queries from "../functions/projections/queries.js";
+import type * as functions_services_backfill from "../functions/services/backfill.js";
 import type * as functions_services_mutations from "../functions/services/mutations.js";
 import type * as functions_services_queries from "../functions/services/queries.js";
 import type * as functions_services_seed from "../functions/services/seed.js";
@@ -34,14 +38,18 @@ import type {
 declare const fullApi: ApiFromModules<{
   "functions/clients/mutations": typeof functions_clients_mutations;
   "functions/clients/queries": typeof functions_clients_queries;
+  "functions/email/send": typeof functions_email_send;
   "functions/monthlyAssignments/mutations": typeof functions_monthlyAssignments_mutations;
   "functions/monthlyAssignments/queries": typeof functions_monthlyAssignments_queries;
+  "functions/orgConfigs/mutations": typeof functions_orgConfigs_mutations;
+  "functions/orgConfigs/queries": typeof functions_orgConfigs_queries;
   "functions/organizations/mutations": typeof functions_organizations_mutations;
   "functions/organizations/queries": typeof functions_organizations_queries;
   "functions/projectionServices/mutations": typeof functions_projectionServices_mutations;
   "functions/projectionServices/queries": typeof functions_projectionServices_queries;
   "functions/projections/mutations": typeof functions_projections_mutations;
   "functions/projections/queries": typeof functions_projections_queries;
+  "functions/services/backfill": typeof functions_services_backfill;
   "functions/services/mutations": typeof functions_services_mutations;
   "functions/services/queries": typeof functions_services_queries;
   "functions/services/seed": typeof functions_services_seed;
