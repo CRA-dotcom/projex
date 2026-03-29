@@ -1,5 +1,5 @@
 import { query } from "../../_generated/server";
-import { getOrgIdSafe } from "../../lib/authHelpers";
+import { getOrgIdSafe, requireSuperAdmin } from "../../lib/authHelpers";
 
 export const listGlobal = query({
   args: {},
@@ -17,7 +17,6 @@ export const listGlobal = query({
 export const listAllForAdmin = query({
   args: {},
   handler: async (ctx) => {
-    const { requireSuperAdmin } = await import("../../lib/authHelpers");
     try {
       await requireSuperAdmin(ctx);
     } catch {

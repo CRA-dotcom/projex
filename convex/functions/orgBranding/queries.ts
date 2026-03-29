@@ -43,6 +43,11 @@ export const getByOrgIdForAdmin = query({
 export const getLogoUrl = query({
   args: { storageId: v.id("_storage") },
   handler: async (ctx, args) => {
+    try {
+      await requireSuperAdmin(ctx);
+    } catch {
+      return null;
+    }
     return await ctx.storage.getUrl(args.storageId);
   },
 });
