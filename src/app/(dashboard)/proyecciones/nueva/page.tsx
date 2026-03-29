@@ -21,6 +21,7 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
+import { useOrgConfig } from "@/lib/useOrgConfig";
 
 export default function NuevaProyeccionWrapper() {
   return (
@@ -76,6 +77,7 @@ function NuevaProyeccionContent() {
   // Step 3: Services
   const [serviceStates, setServiceStates] = useState<ServiceFormState[]>([]);
 
+  const { flags } = useOrgConfig();
   const clients = useQuery(api.functions.clients.queries.list, {});
   const services = useQuery(api.functions.services.queries.listGlobal);
   const createProjection = useMutation(
@@ -269,93 +271,107 @@ function NuevaProyeccionContent() {
 
         {step === 1 && (
           <div className="space-y-5">
-            <div className="flex items-center justify-between">
-              <label className="flex items-center gap-2 cursor-pointer">
-                <input
-                  type="checkbox"
-                  checked={useSeasonality}
-                  onChange={(e) => {
-                    setUseSeasonality(e.target.checked);
-                    if (e.target.checked && monthlySales.every((v) => v === 0)) {
-                      distributeEvenly();
-                    }
-                  }}
-                  className="accent-accent"
-                />
-                <span className="text-sm font-medium">
-                  Usar estacionalidad personalizada
-                </span>
-              </label>
-              {useSeasonality && (
-                <button
-                  onClick={distributeEvenly}
-                  className="text-xs text-accent hover:underline cursor-pointer"
-                >
-                  Distribuir uniformemente
-                </button>
-              )}
-            </div>
+            {flags.seasonalityEditable ? (
+              <>
+                <div className="flex items-center justify-between">
+                  <label className="flex items-center gap-2 cursor-pointer">
+                    <input
+                      type="checkbox"
+                      checked={useSeasonality}
+                      onChange={(e) => {
+                        setUseSeasonality(e.target.checked);
+                        if (e.target.checked && monthlySales.every((v) => v === 0)) {
+                          distributeEvenly();
+                        }
+                      }}
+                      className="accent-accent"
+                    />
+                    <span className="text-sm font-medium">
+                      Usar estacionalidad personalizada
+                    </span>
+                  </label>
+                  {useSeasonality && (
+                    <button
+                      onClick={distributeEvenly}
+                      className="text-xs text-accent hover:underline cursor-pointer"
+                    >
+                      Distribuir uniformemente
+                    </button>
+                  )}
+                </div>
 
-            {useSeasonality ? (
-              <div className="grid grid-cols-3 gap-3">
-                {MONTH_NAMES.map((name, i) => {
-                  const fe = seasonalityData[i]?.feFactor ?? 1;
-                  return (
-                    <div key={name} className="space-y-1">
-                      <div className="flex items-center justify-between">
-                        <label className="text-xs font-medium">{name}</label>
-                        <span
-                          className={cn(
-                            "text-xs",
-                            fe > 1.1
-                              ? "text-accent"
-                              : fe < 0.9
-                                ? "text-warning"
-                                : "text-muted-foreground"
-                          )}
-                        >
-                          FE: {fe.toFixed(2)}
-                        </span>
-                      </div>
-                      <input
-                        type="number"
-                        value={monthlySales[i] || ""}
-                        onChange={(e) => {
-                          const updated = [...monthlySales];
-                          updated[i] = Number(e.target.value);
-                          setMonthlySales(updated);
-                        }}
-                        className="w-full rounded-md border border-border bg-secondary px-2 py-1.5 text-sm focus:border-accent focus:outline-none"
-                      />
-                    </div>
-                  );
-                })}
-              </div>
+                {useSeasonality ? (
+                  <div className="grid grid-cols-3 gap-3">
+                    {MONTH_NAMES.map((name, i) => {
+                      const fe = seasonalityData[i]?.feFactor ?? 1;
+                      return (
+                        <div key={name} className="space-y-1">
+                          <div className="flex items-center justify-between">
+                            <label className="text-xs font-medium">{name}</label>
+                            <span
+                              className={cn(
+                                "text-xs",
+                                fe > 1.1
+                                  ? "text-accent"
+                                  : fe < 0.9
+                                    ? "text-warning"
+                                    : "text-muted-foreground"
+                              )}
+                            >
+                              FE: {fe.toFixed(2)}
+                            </span>
+                          </div>
+                          <input
+                            type="number"
+                            value={monthlySales[i] || ""}
+                            onChange={(e) => {
+                              const updated = [...monthlySales];
+                              updated[i] = Number(e.target.value);
+                              setMonthlySales(updated);
+                            }}
+                            className="w-full rounded-md border border-border bg-secondary px-2 py-1.5 text-sm focus:border-accent focus:outline-none"
+                          />
+                        </div>
+                      );
+                    })}
+                  </div>
+                ) : (
+                  <div className="rounded-md bg-secondary/50 p-4 text-center">
+                    <p className="text-sm text-muted-foreground">
+                      Sin estacionalidad: las ventas se distribuirán uniformemente
+                      ({formatCurrency(annualSales / 12)}/mes).
+                    </p>
+                  </div>
+                )}
+
+                {useSeasonality && seasonalityData.length === 12 && (
+                  <SeasonalityChart data={seasonalityData} />
+                )}
+
+                {useSeasonality && (
+                  <div className="rounded-md bg-secondary/50 p-3">
+                    <p className="text-xs text-muted-foreground">
+                      Total ingresado:{" "}
+                      {formatCurrency(
+                        monthlySales.reduce((a, b) => a + b, 0)
+                      )}{" "}
+                      / {formatCurrency(annualSales)} (
+                      {annualSales > 0
+                        ? ((monthlySales.reduce((a, b) => a + b, 0) / annualSales) * 100).toFixed(1)
+                        : "0.0"}
+                      %)
+                    </p>
+                  </div>
+                )}
+              </>
             ) : (
               <div className="rounded-md bg-secondary/50 p-4 text-center">
                 <p className="text-sm text-muted-foreground">
                   Sin estacionalidad: las ventas se distribuirán uniformemente
                   ({formatCurrency(annualSales / 12)}/mes).
                 </p>
-              </div>
-            )}
-
-            {useSeasonality && seasonalityData.length === 12 && (
-              <SeasonalityChart data={seasonalityData} />
-            )}
-
-            {useSeasonality && (
-              <div className="rounded-md bg-secondary/50 p-3">
-                <p className="text-xs text-muted-foreground">
-                  Total ingresado:{" "}
-                  {formatCurrency(
-                    monthlySales.reduce((a, b) => a + b, 0)
-                  )}{" "}
-                  / {formatCurrency(annualSales)} (
-                  {annualSales > 0
-                    ? ((monthlySales.reduce((a, b) => a + b, 0) / annualSales) * 100).toFixed(1)
-                    : "0.0"}
-                  %)
+                <p className="text-xs text-muted-foreground mt-2 italic">
+                  La estacionalidad está configurada por el administrador
                 </p>
               </div>
             )}

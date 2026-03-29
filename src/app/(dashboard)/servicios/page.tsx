@@ -4,9 +4,12 @@ import { useQuery } from "convex/react";
 import { api } from "../../../../convex/_generated/api";
 import { Briefcase } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useOrgConfig } from "@/lib/useOrgConfig";
 
 export default function ServiciosPage() {
   const services = useQuery(api.functions.services.queries.listByOrg);
+  const { flags } = useOrgConfig();
+  const showBenchmarks = flags.advancedConfigVisible;
 
   return (
     <div className="space-y-6">
@@ -32,9 +35,13 @@ export default function ServiciosPage() {
               <tr className="border-b border-border">
                 <th className="px-4 py-3 text-left font-medium">Servicio</th>
                 <th className="px-4 py-3 text-left font-medium">Tipo</th>
-                <th className="px-4 py-3 text-center font-medium">Min %</th>
-                <th className="px-4 py-3 text-center font-medium">Max %</th>
-                <th className="px-4 py-3 text-center font-medium">Default %</th>
+                {showBenchmarks && (
+                  <>
+                    <th className="px-4 py-3 text-center font-medium">Min %</th>
+                    <th className="px-4 py-3 text-center font-medium">Max %</th>
+                    <th className="px-4 py-3 text-center font-medium">Default %</th>
+                  </>
+                )}
               </tr>
             </thead>
             <tbody>
@@ -51,20 +58,30 @@ export default function ServiciosPage() {
                         {service.type === "base" ? "Base" : "Comodín"}
                       </span>
                     </td>
-                    <td className="px-4 py-3 text-center">
-                      {service.name === "Comisiones" ? "—" : `${(service.minPct * 100).toFixed(1)}%`}
-                    </td>
-                    <td className="px-4 py-3 text-center">
-                      {service.name === "Comisiones" ? "—" : `${(service.maxPct * 100).toFixed(1)}%`}
-                    </td>
-                    <td className="px-4 py-3 text-center font-medium text-accent">
-                      {service.name === "Comisiones" ? "= Tasa" : `${(service.defaultPct * 100).toFixed(1)}%`}
-                    </td>
+                    {showBenchmarks && (
+                      <>
+                        <td className="px-4 py-3 text-center">
+                          {service.name === "Comisiones" ? "—" : `${(service.minPct * 100).toFixed(1)}%`}
+                        </td>
+                        <td className="px-4 py-3 text-center">
+                          {service.name === "Comisiones" ? "—" : `${(service.maxPct * 100).toFixed(1)}%`}
+                        </td>
+                        <td className="px-4 py-3 text-center font-medium text-accent">
+                          {service.name === "Comisiones" ? "= Tasa" : `${(service.defaultPct * 100).toFixed(1)}%`}
+                        </td>
+                      </>
+                    )}
                   </tr>
                 ))}
             </tbody>
           </table>
         </div>
+      )}
+
+      {!showBenchmarks && (
+        <p className="text-xs text-muted-foreground italic">
+          Contacta al administrador para ajustar benchmarks
+        </p>
       )}
     </div>
   );

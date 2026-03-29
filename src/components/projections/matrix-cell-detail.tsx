@@ -6,6 +6,7 @@ import { Doc } from "../../../convex/_generated/dataModel";
 import { X } from "lucide-react";
 import { formatCurrency } from "@/lib/utils";
 import { useState } from "react";
+import { useOrgConfig } from "@/lib/useOrgConfig";
 
 const STATUS_OPTIONS = [
   { value: "pending" as const, label: "Pendiente", color: "bg-muted-foreground/20 text-muted-foreground" },
@@ -27,6 +28,7 @@ export function MatrixCellDetail({
   assignment: Doc<"monthlyAssignments">;
   onClose: () => void;
 }) {
+  const { flags } = useOrgConfig();
   const updateStatus = useMutation(api.functions.monthlyAssignments.mutations.updateStatus);
   const updateInvoice = useMutation(api.functions.monthlyAssignments.mutations.updateInvoiceStatus);
   const updateAmount = useMutation(api.functions.monthlyAssignments.mutations.updateAmount);
@@ -52,7 +54,7 @@ export function MatrixCellDetail({
 
         <div>
           <p className="text-xs text-muted-foreground mb-1">Monto</p>
-          {editAmount ? (
+          {editAmount && flags.manualOverrideAllowed ? (
             <div className="flex gap-2">
               <input
                 type="number"
@@ -79,12 +81,14 @@ export function MatrixCellDetail({
           ) : (
             <div className="flex items-center gap-2">
               <p className="text-xl font-bold text-accent">{formatCurrency(assignment.amount)}</p>
-              <button
-                onClick={() => setEditAmount(true)}
-                className="text-xs text-muted-foreground hover:text-foreground cursor-pointer"
-              >
-                Editar
-              </button>
+              {flags.manualOverrideAllowed && (
+                <button
+                  onClick={() => setEditAmount(true)}
+                  className="text-xs text-muted-foreground hover:text-foreground cursor-pointer"
+                >
+                  Editar
+                </button>
+              )}
             </div>
           )}
         </div>
