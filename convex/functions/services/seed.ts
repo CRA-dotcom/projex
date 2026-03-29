@@ -1,5 +1,4 @@
-import { mutation } from "../../_generated/server";
-import { requireSuperAdmin } from "../../lib/authHelpers";
+import { internalMutation } from "../../_generated/server";
 
 const DEFAULT_SERVICES = [
   { name: "Legal", type: "base" as const, minPct: 0.01, maxPct: 0.03, defaultPct: 0.02, sortOrder: 1 },
@@ -13,10 +12,9 @@ const DEFAULT_SERVICES = [
   { name: "Construcción", type: "comodin" as const, minPct: 0.02, maxPct: 0.05, defaultPct: 0.035, sortOrder: 9 },
 ];
 
-export const seedDefaultServices = mutation({
+export const seedDefaultServices = internalMutation({
   args: {},
   handler: async (ctx) => {
-    await requireSuperAdmin(ctx);
     const existing = await ctx.db.query("services").filter((q) => q.eq(q.field("isDefault"), true)).collect();
     if (existing.length > 0) {
       return { seeded: false, message: "Los servicios por defecto ya existen." };
