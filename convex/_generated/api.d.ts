@@ -36,6 +36,7 @@ import type * as functions_services_backfill from "../functions/services/backfil
 import type * as functions_services_mutations from "../functions/services/mutations.js";
 import type * as functions_services_queries from "../functions/services/queries.js";
 import type * as functions_services_seed from "../functions/services/seed.js";
+import type * as functions_storage_mutations from "../functions/storage/mutations.js";
 import type * as lib_authHelpers from "../lib/authHelpers.js";
 import type * as lib_projectionEngine from "../lib/projectionEngine.js";
 import type * as lib_validators from "../lib/validators.js";
@@ -75,6 +76,7 @@ declare const fullApi: ApiFromModules<{
   "functions/services/mutations": typeof functions_services_mutations;
   "functions/services/queries": typeof functions_services_queries;
   "functions/services/seed": typeof functions_services_seed;
+  "functions/storage/mutations": typeof functions_storage_mutations;
   "lib/authHelpers": typeof lib_authHelpers;
   "lib/projectionEngine": typeof lib_projectionEngine;
   "lib/validators": typeof lib_validators;
