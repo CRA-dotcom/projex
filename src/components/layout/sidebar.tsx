@@ -8,6 +8,7 @@ import {
   TrendingUp,
   Settings,
   Briefcase,
+  Receipt,
   ChevronLeft,
   ChevronRight,
 } from "lucide-react";
@@ -20,6 +21,7 @@ const navigation = [
   { name: "Clientes", href: "/clientes", icon: Users },
   { name: "Proyecciones", href: "/proyecciones", icon: TrendingUp },
   { name: "Servicios", href: "/servicios", icon: Briefcase },
+  { name: "Facturacion", href: "/facturacion", icon: Receipt },
   { name: "Configuración", href: "/configuracion", icon: Settings },
 ];
 

@@ -43,7 +43,7 @@ export const listAssignmentsForMonth = internalQuery({
  * Monthly cron action: review active projections and assignments due this month.
  * Runs on the 1st of each month.
  */
-export const run = internalAction({
+export const run: ReturnType<typeof internalAction> = internalAction({
   args: {},
   handler: async (ctx) => {
     const now = new Date();

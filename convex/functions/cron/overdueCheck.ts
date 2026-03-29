@@ -24,7 +24,7 @@ export const listAllPendingAssignments = internalQuery({
 /**
  * Daily cron action: identify overdue assignments (pending for past months).
  */
-export const run = internalAction({
+export const run: ReturnType<typeof internalAction> = internalAction({
   args: {},
   handler: async (ctx) => {
     const now = new Date();
