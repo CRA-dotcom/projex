@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Informe Mensual de Gobierno Contable y Fiscal &mdash; {{branding_company_name}}</title>
+  <style>
+    /* ===== RESET & BASE ===== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 11pt; color: #222; background: #fff; }
+
+    /* ===== PAGE ===== */
+    .page { width: 210mm; min-height: 297mm; margin: 0 auto; padding: 0; position: relative; page-break-after: always; }
+
+    /* ===== HEADER ===== */
+    .header { background: #2d3e50; color: #fff; padding: 24px 32px 18px; }
+    .header h1 { font-size: 22pt; font-weight: 800; }
+    .header .subtitle { font-size: 10pt; opacity: 0.85; margin-top: 2px; }
+    .header h2 { font-size: 14pt; color: #5dade2; margin-top: 10px; font-weight: 700; }
+    .header .confidential { font-size: 9pt; opacity: 0.7; margin-top: 4px; }
+    .header-compact { background: #2d3e50; color: #fff; padding: 12px 32px; display: flex; justify-content: space-between; align-items: center; }
+    .header-compact h1 { font-size: 14pt; font-weight: 700; }
+    .header-compact .subtitle { font-size: 9pt; opacity: 0.7; }
+    .header-compact .page-info { text-align: right; font-size: 10pt; font-weight: 700; }
+    .header-compact .page-info .sub { font-size: 8pt; opacity: 0.7; }
+
+    /* ===== FOOTER ===== */
+    .footer { background: #2d3e50; color: #fff; padding: 8px 32px; font-size: 8pt; display: flex; justify-content: space-between; position: absolute; bottom: 0; left: 0; right: 0; }
+
+    /* ===== CONTENT ===== */
+    .content { padding: 20px 32px 60px; }
+
+    /* ===== SECTION HEADERS ===== */
+    .section-title { background: #e67e22; color: #fff; font-size: 10pt; font-weight: 700; padding: 6px 14px; margin: 18px 0 10px; border-radius: 2px; }
+    .section-title.blue { background: #5dade2; }
+    .section-title.dark { background: #2d3e50; }
+
+    /* ===== META ROW ===== */
+    .meta-row { display: flex; gap: 16px; margin-bottom: 10px; flex-wrap: wrap; border: 1px solid #ccc; padding: 8px 12px; background: #fafafa; }
+    .meta-field { display: flex; align-items: center; gap: 6px; font-size: 10pt; flex: 1; }
+    .meta-field label { font-weight: 700; white-space: nowrap; }
+    .meta-field .value { border-bottom: 1.5px solid #e67e22; min-width: 100px; padding: 2px 6px; flex: 1; }
+
+    /* ===== KPI CARDS ===== */
+    .kpi-container { display: flex; gap: 10px; margin: 10px 0 16px; flex-wrap: wrap; }
+    .kpi-card { flex: 1; min-width: 130px; border: 1.5px solid #ccc; padding: 10px; background: #fff; }
+    .kpi-card .kpi-label { font-size: 8.5pt; font-weight: 700; color: #555; text-align: center; margin-bottom: 6px; }
+    .kpi-card .kpi-value { font-size: 13pt; font-weight: 800; text-align: center; border: 1.5px solid #e67e22; padding: 4px; color: #222; }
+    .kpi-card .kpi-var { font-size: 8pt; color: #888; margin-top: 4px; display: flex; align-items: center; gap: 4px; }
+    .kpi-card .kpi-var .var-value { border-bottom: 1px solid #ccc; min-width: 50px; padding: 1px 4px; }
+
+    /* ===== NARRATIVE BOX ===== */
+    .narrative-box { border: 1px solid #ccc; background: #faf8f4; min-height: 80px; padding: 12px; margin: 8px 0 14px; font-size: 9.5pt; color: #333; line-height: 1.6; }
+
+    /* ===== SEMAPHORES ===== */
+    .semaphore-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 24px; margin: 10px 0 16px; }
+    .semaphore-row { display: flex; align-items: center; gap: 10px; font-size: 9.5pt; }
+    .semaphore-row .sem-label { font-weight: 700; min-width: 140px; }
+    .semaphore-row .sem-options { display: flex; gap: 6px; }
+    .sem-badge { padding: 3px 12px; font-size: 8pt; font-weight: 700; border-radius: 2px; color: #fff; }
+    .sem-bajo { background: #27ae60; }
+    .sem-medio { background: #e67e22; }
+    .sem-alto { background: #e74c3c; }
+    .sem-box { width: 14px; height: 14px; border: 1.5px solid #999; display: inline-block; vertical-align: middle; }
+
+    /* ===== TABLE ===== */
+    table { width: 100%; border-collapse: collapse; margin: 8px 0 14px; font-size: 9.5pt; }
+    table th { background: #2d3e50; color: #fff; padding: 7px 10px; text-align: left; font-weight: 600; }
+    table td { padding: 6px 10px; border: 1px solid #ddd; }
+    table tr:nth-child(even) td { background: #f8f8f8; }
+    .row-bold td { font-weight: 700; background: #eee !important; }
+    .row-total td { font-weight: 800; background: #2d3e50 !important; color: #fff; }
+
+    /* ===== FINDING TABLE ===== */
+    .finding-impact { padding: 2px 8px; border-radius: 2px; font-size: 8pt; font-weight: 700; color: #fff; display: inline-block; }
+
+    /* ===== SUMMARY GRID ===== */
+    .summary-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin: 10px 0; }
+    .summary-cell { border: 1px solid #ccc; padding: 8px; }
+    .summary-cell .sc-label { font-size: 8.5pt; color: #666; margin-bottom: 4px; }
+    .summary-cell .sc-value { font-size: 12pt; font-weight: 700; border-bottom: 1.5px solid #e67e22; padding: 2px 4px; }
+
+    /* ===== SIGNATURE BLOCK ===== */
+    .sig-container { display: flex; gap: 24px; margin-top: 14px; }
+    .sig-block { flex: 1; border: 1px solid #ccc; padding: 14px; }
+    .sig-block .sig-header { background: #2d3e50; color: #fff; text-align: center; padding: 6px; font-size: 9.5pt; font-weight: 700; margin: -14px -14px 12px; }
+    .sig-block .sig-area { height: 60px; border-bottom: 1px solid #999; margin-bottom: 4px; }
+    .sig-block .sig-label { text-align: center; font-size: 8pt; color: #888; }
+    .sig-block .sig-field { display: flex; gap: 6px; align-items: center; font-size: 9pt; margin-top: 6px; }
+    .sig-block .sig-field label { font-weight: 700; }
+    .sig-block .sig-field .value { border-bottom: 1px solid #e67e22; flex: 1; min-height: 16px; }
+
+    /* ===== ACUSE ===== */
+    .acuse-box { border: 1.5px solid #e67e22; padding: 10px 14px; margin-top: 14px; display: flex; gap: 16px; align-items: center; font-size: 9pt; }
+    .acuse-box label { font-weight: 700; }
+    .acuse-box .value { border-bottom: 1px solid #e67e22; min-width: 100px; padding: 2px 6px; }
+
+    @media print { .page { margin: 0; width: 100%; } }
+  </style>
+</head>
+<body>
+
+<!-- ==================== PAGE 1 / 5 ==================== -->
+<div class="page">
+  <div class="header">
+    <h1>{{branding_company_name}}</h1>
+    <div class="subtitle">{{branding_company_legal_name}} | Estrategia Contable Premium</div>
+    <h2>INFORME MENSUAL DE GOBIERNO CONTABLE Y FISCAL</h2>
+    <div class="confidential">Confidencial &mdash; Entregable Exclusivo para la Direcci&oacute;n General</div>
+  </div>
+
+  <div class="content">
+    <!-- Client / Period -->
+    <div class="meta-row">
+      <div class="meta-field"><label>Empresa:</label><span class="value">{{client_name}}</span></div>
+      <div class="meta-field"><label>Per&iacute;odo:</label><span class="value">{{report_period}}</span></div>
+      <div class="meta-field"><label>Asesor:</label><span class="value">{{advisor_name}}</span></div>
+    </div>
+
+    <!-- 1. KPI Dashboard -->
+    <div class="section-title">1. TABLERO DE KPIS DEL MES</div>
+    <div class="kpi-container">
+      <div class="kpi-card">
+        <div class="kpi-label">Ingresos Totales</div>
+        <div class="kpi-value">{{ai_kpi_ingresos}}</div>
+        <div class="kpi-var">Var. vs mes ant.: <span class="var-value">{{ai_kpi_ingresos_var}}</span></div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Egresos Totales</div>
+        <div class="kpi-value">{{ai_kpi_egresos}}</div>
+        <div class="kpi-var">Var. vs mes ant.: <span class="var-value">{{ai_kpi_egresos_var}}</span></div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Utilidad Bruta</div>
+        <div class="kpi-value">{{ai_kpi_utilidad_bruta}}</div>
+        <div class="kpi-var">Var. vs mes ant.: <span class="var-value">{{ai_kpi_utilidad_bruta_var}}</span></div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Saldo Bancario</div>
+        <div class="kpi-value">{{ai_kpi_saldo_bancario}}</div>
+        <div class="kpi-var">Var. vs mes ant.: <span class="var-value">{{ai_kpi_saldo_bancario_var}}</span></div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">CxC Vigente</div>
+        <div class="kpi-value">{{ai_kpi_cxc_vigente}}</div>
+        <div class="kpi-var">Var. vs mes ant.: <span class="var-value">{{ai_kpi_cxc_vigente_var}}</span></div>
+      </div>
+    </div>
+
+    <!-- 2. Executive Summary -->
+    <div class="section-title">2. RESUMEN EJECUTIVO DEL MES</div>
+    <p style="font-size:9pt; color:#666; margin-bottom:4px;">Narrativa ejecutiva del per&iacute;odo (principales hechos y situaci&oacute;n general):</p>
+    <div class="narrative-box">{{ai_executive_summary}}</div>
+
+    <!-- 3. Risk Semaphores -->
+    <div class="section-title">3. SEM&Aacute;FOROS DE RIESGO GLOBAL</div>
+    <div class="semaphore-grid">
+      <div class="semaphore-row">
+        <span class="sem-label">Situaci&oacute;n Fiscal:</span>
+        <span>Sem&aacute;foro:</span>
+        <div class="sem-options">
+          <span class="sem-badge sem-bajo">BAJO</span><span class="sem-box"></span>
+          <span class="sem-badge sem-medio">MEDIO</span><span class="sem-box"></span>
+          <span class="sem-badge sem-alto">ALTO</span><span class="sem-box"></span>
+        </div>
+        <!-- AI value: {{ai_risk_fiscal}} -->
+      </div>
+      <div class="semaphore-row">
+        <span class="sem-label">Situaci&oacute;n Contable:</span>
+        <span>Sem&aacute;foro:</span>
+        <div class="sem-options">
+          <span class="sem-badge sem-bajo">BAJO</span><span class="sem-box"></span>
+          <span class="sem-badge sem-medio">MEDIO</span><span class="sem-box"></span>
+          <span class="sem-badge sem-alto">ALTO</span><span class="sem-box"></span>
+        </div>
+        <!-- AI value: {{ai_risk_contable}} -->
+      </div>
+      <div class="semaphore-row">
+        <span class="sem-label">N&oacute;mina / IMSS:</span>
+        <span>Sem&aacute;foro:</span>
+        <div class="sem-options">
+          <span class="sem-badge sem-bajo">BAJO</span><span class="sem-box"></span>
+          <span class="sem-badge sem-medio">MEDIO</span><span class="sem-box"></span>
+          <span class="sem-badge sem-alto">ALTO</span><span class="sem-box"></span>
+        </div>
+        <!-- AI value: {{ai_risk_nomina}} -->
+      </div>
+      <div class="semaphore-row">
+        <span class="sem-label">Flujo de Efectivo:</span>
+        <span>Sem&aacute;foro:</span>
+        <div class="sem-options">
+          <span class="sem-badge sem-bajo">BAJO</span><span class="sem-box"></span>
+          <span class="sem-badge sem-medio">MEDIO</span><span class="sem-box"></span>
+          <span class="sem-badge sem-alto">ALTO</span><span class="sem-box"></span>
+        </div>
+        <!-- AI value: {{ai_risk_flujo_efectivo}} -->
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <span>{{branding_company_name}} &mdash; Documento Confidencial para Uso del Cliente</span>
+    <span>&copy; {{branding_year}} {{branding_company_legal_name}}</span>
+  </div>
+</div>
+
+<!-- ==================== PAGE 2 / 5 ==================== -->
+<div class="page">
+  <div class="header-compact">
+    <div>
+      <h1>{{branding_company_name}}</h1>
+      <div class="subtitle">Reporte Mensual de Gobierno Contable</div>
+    </div>
+    <div class="page-info">INFORME MENSUAL EJECUTIVO<br><span class="sub">P&aacute;gina 2 de 5</span></div>
+  </div>
+
+  <div class="content">
+    <!-- 4. P&L -->
+    <div class="section-title">4. ESTADO DE RESULTADOS SIMPLIFICADO DEL PER&Iacute;ODO</div>
+    <table>
+      <thead>
+        <tr>
+          <th style="width:40%">Concepto</th>
+          <th>Mes Actual</th>
+          <th>Mes Anterior</th>
+          <th>Variaci&oacute;n %</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="row-bold"><td>(+) Ingresos Netos</td><td>{{ai_pl_ingresos}}</td><td>{{ai_pl_ingresos_prev}}</td><td>{{ai_pl_ingresos_var}}</td></tr>
+        <tr><td>(-) Costo de Ventas / Servicios</td><td>{{ai_pl_costos}}</td><td>{{ai_pl_costos_prev}}</td><td>{{ai_pl_costos_var}}</td></tr>
+        <tr class="row-bold"><td>(=) UTILIDAD BRUTA</td><td>{{ai_pl_utilidad_bruta}}</td><td>{{ai_pl_utilidad_bruta_prev}}</td><td>{{ai_pl_utilidad_bruta_var}}</td></tr>
+        <tr><td>(-) Gastos de Operaci&oacute;n</td><td>{{ai_pl_gastos_operacion}}</td><td>{{ai_pl_gastos_operacion_prev}}</td><td>{{ai_pl_gastos_operacion_var}}</td></tr>
+        <tr><td>(-) Gastos de Administraci&oacute;n</td><td>{{ai_pl_gastos_admin}}</td><td>{{ai_pl_gastos_admin_prev}}</td><td>{{ai_pl_gastos_admin_var}}</td></tr>
+        <tr><td>(-) Depreciaciones</td><td>{{ai_pl_depreciaciones}}</td><td>{{ai_pl_depreciaciones_prev}}</td><td>{{ai_pl_depreciaciones_var}}</td></tr>
+        <tr class="row-bold"><td>(=) UTILIDAD OPERATIVA (EBITDA)</td><td>{{ai_pl_ebitda}}</td><td>{{ai_pl_ebitda_prev}}</td><td>{{ai_pl_ebitda_var}}</td></tr>
+        <tr><td>(-) Gastos Financieros</td><td>{{ai_pl_gastos_financieros}}</td><td>{{ai_pl_gastos_financieros_prev}}</td><td>{{ai_pl_gastos_financieros_var}}</td></tr>
+        <tr><td>(+/-) Otros Ingresos/Egresos</td><td>{{ai_pl_otros}}</td><td>{{ai_pl_otros_prev}}</td><td>{{ai_pl_otros_var}}</td></tr>
+        <tr class="row-bold"><td>(=) UTILIDAD ANTES DE IMPUESTOS</td><td>{{ai_pl_utilidad_antes_isr}}</td><td>{{ai_pl_utilidad_antes_isr_prev}}</td><td>{{ai_pl_utilidad_antes_isr_var}}</td></tr>
+        <tr><td>(-) ISR Provisional del Per&iacute;odo</td><td>{{ai_pl_isr}}</td><td>{{ai_pl_isr_prev}}</td><td>{{ai_pl_isr_var}}</td></tr>
+        <tr class="row-total"><td>(=) UTILIDAD NETA DEL PER&Iacute;ODO</td><td>{{ai_pl_utilidad_neta}}</td><td>{{ai_pl_utilidad_neta_prev}}</td><td>{{ai_pl_utilidad_neta_var}}</td></tr>
+      </tbody>
+    </table>
+
+    <!-- 5. Balanza -->
+    <div class="section-title">5. OBSERVACIONES DE BALANZA DE COMPROBACI&Oacute;N</div>
+    <p style="font-size:9pt; color:#666; margin-bottom:4px;">Cuentas con movimientos o saldos relevantes a destacar este mes:</p>
+    <div class="narrative-box">{{ai_balanza_observaciones}}</div>
+
+    <!-- 6. Bank Reconciliation -->
+    <div class="section-title blue">6. CONCILIACI&Oacute;N BANCARIA &mdash; RESUMEN</div>
+    <table>
+      <thead>
+        <tr>
+          <th>Banco / Cuenta</th>
+          <th>Saldo Banco (MXN)</th>
+          <th>Saldo Libros (MXN)</th>
+          <th>Diferencia</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>{{ai_bank_1_name}}</td><td>{{ai_bank_1_saldo_banco}}</td><td>{{ai_bank_1_saldo_libros}}</td><td>{{ai_bank_1_diferencia}}</td><td>{{ai_bank_1_status}}</td></tr>
+        <tr><td>{{ai_bank_2_name}}</td><td>{{ai_bank_2_saldo_banco}}</td><td>{{ai_bank_2_saldo_libros}}</td><td>{{ai_bank_2_diferencia}}</td><td>{{ai_bank_2_status}}</td></tr>
+        <tr><td>{{ai_bank_3_name}}</td><td>{{ai_bank_3_saldo_banco}}</td><td>{{ai_bank_3_saldo_libros}}</td><td>{{ai_bank_3_diferencia}}</td><td>{{ai_bank_3_status}}</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="footer">
+    <span>{{branding_company_name}} &mdash; Documento Confidencial para Uso del Cliente</span>
+    <span>&copy; {{branding_year}} {{branding_company_legal_name}}</span>
+  </div>
+</div>
+
+<!-- ==================== PAGE 3 / 5 ==================== -->
+<div class="page">
+  <div class="header-compact">
+    <div>
+      <h1>{{branding_company_name}}</h1>
+      <div class="subtitle">Reporte Mensual de Gobierno Contable</div>
+    </div>
+    <div class="page-info">INFORME MENSUAL EJECUTIVO<br><span class="sub">P&aacute;gina 3 de 5</span></div>
+  </div>
+
+  <div class="content">
+    <!-- 7. Tax Declarations -->
+    <div class="section-title">7. DECLARACIONES FISCALES DEL MES</div>
+    <table>
+      <thead>
+        <tr>
+          <th>Impuesto</th>
+          <th>Base Gravable</th>
+          <th>Tasa</th>
+          <th>Monto a Cargo</th>
+          <th>Saldo a Favor</th>
+          <th>Fecha Pago</th>
+          <th>Acuse</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>IVA Mensual</td><td>{{ai_tax_iva_base}}</td><td>{{ai_tax_iva_tasa}}</td><td>{{ai_tax_iva_cargo}}</td><td>{{ai_tax_iva_favor}}</td><td>{{ai_tax_iva_fecha}}</td><td>{{ai_tax_iva_acuse}}</td></tr>
+        <tr><td>ISR Provisional</td><td>{{ai_tax_isr_base}}</td><td>{{ai_tax_isr_tasa}}</td><td>{{ai_tax_isr_cargo}}</td><td>{{ai_tax_isr_favor}}</td><td>{{ai_tax_isr_fecha}}</td><td>{{ai_tax_isr_acuse}}</td></tr>
+        <tr><td>IEPS (si aplica)</td><td>{{ai_tax_ieps_base}}</td><td>{{ai_tax_ieps_tasa}}</td><td>{{ai_tax_ieps_cargo}}</td><td>{{ai_tax_ieps_favor}}</td><td>{{ai_tax_ieps_fecha}}</td><td>{{ai_tax_ieps_acuse}}</td></tr>
+      </tbody>
+    </table>
+    <p style="font-size:9pt; color:#666; margin-bottom:4px;">Observaciones fiscales del mes (discrepancias, pagos, saldos pendientes):</p>
+    <div class="narrative-box">{{ai_tax_observaciones}}</div>
+
+    <!-- 8. Payroll -->
+    <div class="section-title">8. RESUMEN DE N&Oacute;MINA Y SEGURIDAD SOCIAL</div>
+    <table>
+      <thead>
+        <tr>
+          <th style="width:50%">Concepto</th>
+          <th>Mes Actual</th>
+          <th>Mes Anterior</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Total de trabajadores activos en el per&iacute;odo</td><td>{{ai_payroll_trabajadores}}</td><td>{{ai_payroll_trabajadores_prev}}</td></tr>
+        <tr><td>Total de percepciones brutas (MXN)</td><td>{{ai_payroll_percepciones}}</td><td>{{ai_payroll_percepciones_prev}}</td></tr>
+        <tr><td>Total de deducciones (ISR + IMSS trabajador)</td><td>{{ai_payroll_deducciones}}</td><td>{{ai_payroll_deducciones_prev}}</td></tr>
+        <tr><td>Neto pagado a trabajadores (MXN)</td><td>{{ai_payroll_neto}}</td><td>{{ai_payroll_neto_prev}}</td></tr>
+        <tr><td>Cuotas patronales IMSS (MXN)</td><td>{{ai_payroll_imss}}</td><td>{{ai_payroll_imss_prev}}</td></tr>
+        <tr><td>Aportaciones INFONAVIT (MXN)</td><td>{{ai_payroll_infonavit}}</td><td>{{ai_payroll_infonavit_prev}}</td></tr>
+        <tr class="row-bold"><td>Total costo de n&oacute;mina empresa (MXN)</td><td>{{ai_payroll_total}}</td><td>{{ai_payroll_total_prev}}</td></tr>
+      </tbody>
+    </table>
+    <p style="font-size:9pt; color:#666; margin: 4px 0;">Incidencias relevantes de n&oacute;mina del mes:</p>
+    <div class="narrative-box">{{ai_payroll_incidencias}}</div>
+
+    <!-- 9. CxC / CxP -->
+    <div class="section-title">9. RESUMEN CUENTAS POR COBRAR Y POR PAGAR</div>
+    <table>
+      <thead>
+        <tr>
+          <th style="width:50%">Concepto</th>
+          <th>Mes Actual</th>
+          <th>Mes Anterior</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="row-bold"><td>Saldo CxC Total</td><td>{{ai_cxc_total}}</td><td>{{ai_cxc_total_prev}}</td></tr>
+        <tr><td>CxC Corriente (0-30 d&iacute;as)</td><td>{{ai_cxc_corriente}}</td><td>{{ai_cxc_corriente_prev}}</td></tr>
+        <tr><td>CxC Vencida (31-90 d&iacute;as)</td><td>{{ai_cxc_vencida}}</td><td>{{ai_cxc_vencida_prev}}</td></tr>
+        <tr><td>CxC Muy Vencida (+90 d&iacute;as)</td><td>{{ai_cxc_muy_vencida}}</td><td>{{ai_cxc_muy_vencida_prev}}</td></tr>
+        <tr class="row-bold"><td>Saldo CxP Total</td><td>{{ai_cxp_total}}</td><td>{{ai_cxp_total_prev}}</td></tr>
+        <tr><td>CxP Corriente (0-30 d&iacute;as)</td><td>{{ai_cxp_corriente}}</td><td>{{ai_cxp_corriente_prev}}</td></tr>
+        <tr><td>CxP Vencida (+30 d&iacute;as)</td><td>{{ai_cxp_vencida}}</td><td>{{ai_cxp_vencida_prev}}</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="footer">
+    <span>{{branding_company_name}} &mdash; Documento Confidencial para Uso del Cliente</span>
+    <span>&copy; {{branding_year}} {{branding_company_legal_name}}</span>
+  </div>
+</div>
+
+<!-- ==================== PAGE 4 / 5 ==================== -->
+<div class="page">
+  <div class="header-compact">
+    <div>
+      <h1>{{branding_company_name}}</h1>
+      <div class="subtitle">Reporte Mensual de Gobierno Contable</div>
+    </div>
+    <div class="page-info">INFORME MENSUAL EJECUTIVO<br><span class="sub">P&aacute;gina 4 de 5</span></div>
+  </div>
+
+  <div class="content">
+    <!-- 10. Findings -->
+    <div class="section-title">10. TABLERO DE HALLAZGOS Y ACCIONES RECOMENDADAS</div>
+    <p style="font-size:9pt; color:#666; margin-bottom:6px;">Registre los hallazgos del per&iacute;odo con su nivel de impacto y acci&oacute;n recomendada:</p>
+    <table>
+      <thead>
+        <tr>
+          <th style="width:4%">#</th>
+          <th style="width:12%">&Aacute;rea</th>
+          <th style="width:24%">Descripci&oacute;n del Hallazgo</th>
+          <th style="width:10%">Impacto</th>
+          <th style="width:24%">Acci&oacute;n Recomendada</th>
+          <th style="width:14%">Responsable</th>
+          <th style="width:12%">Fecha L&iacute;mite</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>1</td><td>{{ai_finding_1_area}}</td><td>{{ai_finding_1}}</td><td>{{ai_finding_1_impact}}</td><td>{{ai_recommendation_1}}</td><td>{{ai_finding_1_responsible}}</td><td>{{ai_finding_1_deadline}}</td></tr>
+        <tr><td>2</td><td>{{ai_finding_2_area}}</td><td>{{ai_finding_2}}</td><td>{{ai_finding_2_impact}}</td><td>{{ai_recommendation_2}}</td><td>{{ai_finding_2_responsible}}</td><td>{{ai_finding_2_deadline}}</td></tr>
+        <tr><td>3</td><td>{{ai_finding_3_area}}</td><td>{{ai_finding_3}}</td><td>{{ai_finding_3_impact}}</td><td>{{ai_recommendation_3}}</td><td>{{ai_finding_3_responsible}}</td><td>{{ai_finding_3_deadline}}</td></tr>
+        <tr><td>4</td><td>{{ai_finding_4_area}}</td><td>{{ai_finding_4}}</td><td>{{ai_finding_4_impact}}</td><td>{{ai_recommendation_4}}</td><td>{{ai_finding_4_responsible}}</td><td>{{ai_finding_4_deadline}}</td></tr>
+        <tr><td>5</td><td>{{ai_finding_5_area}}</td><td>{{ai_finding_5}}</td><td>{{ai_finding_5_impact}}</td><td>{{ai_recommendation_5}}</td><td>{{ai_finding_5_responsible}}</td><td>{{ai_finding_5_deadline}}</td></tr>
+        <tr><td>6</td><td>{{ai_finding_6_area}}</td><td>{{ai_finding_6}}</td><td>{{ai_finding_6_impact}}</td><td>{{ai_recommendation_6}}</td><td>{{ai_finding_6_responsible}}</td><td>{{ai_finding_6_deadline}}</td></tr>
+        <tr><td>7</td><td>{{ai_finding_7_area}}</td><td>{{ai_finding_7}}</td><td>{{ai_finding_7_impact}}</td><td>{{ai_recommendation_7}}</td><td>{{ai_finding_7_responsible}}</td><td>{{ai_finding_7_deadline}}</td></tr>
+        <tr><td>8</td><td>{{ai_finding_8_area}}</td><td>{{ai_finding_8}}</td><td>{{ai_finding_8_impact}}</td><td>{{ai_recommendation_8}}</td><td>{{ai_finding_8_responsible}}</td><td>{{ai_finding_8_deadline}}</td></tr>
+      </tbody>
+    </table>
+
+    <!-- 11. Follow-up -->
+    <div class="section-title">11. SEGUIMIENTO A ACCIONES DEL MES ANTERIOR</div>
+    <p style="font-size:9pt; color:#666; margin-bottom:4px;">&iquest;Se resolvieron los hallazgos del per&iacute;odo anterior?</p>
+    <div class="narrative-box">{{ai_followup_previous}}</div>
+
+    <!-- 12. Projections -->
+    <div class="section-title">12. PROYECCI&Oacute;N Y ALERTAS PARA EL PR&Oacute;XIMO MES</div>
+    <p style="font-size:9pt; color:#666; margin-bottom:4px;">Eventos relevantes, fechas l&iacute;mite fiscales y proyecciones financieras para el siguiente mes:</p>
+    <div class="narrative-box">{{ai_projections_next_month}}</div>
+  </div>
+
+  <div class="footer">
+    <span>{{branding_company_name}} &mdash; Documento Confidencial para Uso del Cliente</span>
+    <span>&copy; {{branding_year}} {{branding_company_legal_name}}</span>
+  </div>
+</div>
+
+<!-- ==================== PAGE 5 / 5 ==================== -->
+<div class="page">
+  <div class="header-compact">
+    <div>
+      <h1>{{branding_company_name}}</h1>
+      <div class="subtitle">Reporte Mensual de Gobierno Contable</div>
+    </div>
+    <div class="page-info">INFORME MENSUAL EJECUTIVO<br><span class="sub">P&aacute;gina 5 de 5</span></div>
+  </div>
+
+  <div class="content">
+    <!-- 13. Summary Grid -->
+    <div class="section-title dark">13. CIFRAS CLAVE DEL PER&Iacute;ODO &mdash; CUADRO RESUMEN FINAL</div>
+    <div class="summary-grid">
+      <div class="summary-cell"><div class="sc-label">Ingresos Totales del Mes</div><div class="sc-value">{{ai_summary_ingresos}}</div></div>
+      <div class="summary-cell"><div class="sc-label">Egresos Totales del Mes</div><div class="sc-value">{{ai_summary_egresos}}</div></div>
+      <div class="summary-cell"><div class="sc-label">Utilidad Neta del Per&iacute;odo</div><div class="sc-value">{{ai_summary_utilidad_neta}}</div></div>
+      <div class="summary-cell"><div class="sc-label">ISR Provisional Pagado</div><div class="sc-value">{{ai_summary_isr}}</div></div>
+      <div class="summary-cell"><div class="sc-label">IVA Cargo / (Favor)</div><div class="sc-value">{{ai_summary_iva}}</div></div>
+      <div class="summary-cell"><div class="sc-label">Costo Total de N&oacute;mina</div><div class="sc-value">{{ai_summary_nomina}}</div></div>
+      <div class="summary-cell"><div class="sc-label">Saldo Bancario al Cierre</div><div class="sc-value">{{ai_summary_saldo_bancario}}</div></div>
+      <div class="summary-cell"><div class="sc-label">CxC Total Vigente</div><div class="sc-value">{{ai_summary_cxc}}</div></div>
+      <div class="summary-cell"><div class="sc-label">CxP Total Vigente</div><div class="sc-value">{{ai_summary_cxp}}</div></div>
+    </div>
+
+    <!-- 14. Conclusion -->
+    <div class="section-title">14. CONCLUSI&Oacute;N Y OPINI&Oacute;N DEL ASESOR</div>
+    <div class="narrative-box" style="min-height:90px;">{{ai_conclusion}}</div>
+
+    <!-- 15. Signatures -->
+    <div class="section-title dark">15. FIRMAS Y CONFORMIDAD</div>
+    <div class="sig-container">
+      <div class="sig-block">
+        <div class="sig-header">ASESOR {{branding_company_name}}</div>
+        <div class="sig-area"></div>
+        <div class="sig-label">Firma</div>
+        <div class="sig-field"><label>Nombre:</label><span class="value">{{sig_advisor_name}}</span></div>
+        <div class="sig-field"><label>Fecha:</label><span class="value">{{sig_advisor_date}}</span></div>
+      </div>
+      <div class="sig-block">
+        <div class="sig-header">CLIENTE &mdash; DIRECCI&Oacute;N GENERAL</div>
+        <div class="sig-area"></div>
+        <div class="sig-label">Firma</div>
+        <div class="sig-field"><label>Nombre:</label><span class="value">{{sig_client_name}}</span></div>
+        <div class="sig-field"><label>Fecha:</label><span class="value">{{sig_client_date}}</span></div>
+      </div>
+    </div>
+
+    <!-- Acuse -->
+    <div class="acuse-box">
+      <label>ACUSE DE ENTREGA:</label>
+      <label>Folio:</label><span class="value">{{delivery_folio}}</span>
+      <label>Fecha de entrega:</label><span class="value">{{delivery_date}}</span>
+      <label>M&eacute;todo:</label><span class="value">{{delivery_method}}</span>
+    </div>
+  </div>
+
+  <div class="footer">
+    <span>{{branding_company_name}} &mdash; Documento Confidencial para Uso del Cliente</span>
+    <span>&copy; {{branding_year}} {{branding_company_legal_name}}</span>
+  </div>
+</div>
+
+</body>
+</html>

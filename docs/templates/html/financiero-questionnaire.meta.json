@@ -1,0 +1,77 @@
+{
+  "template_id": "financiero-questionnaire",
+  "name": "Cuestionario Diagnostico Financiero",
+  "service_line": "Financiero",
+  "type": "questionnaire",
+  "version": "1.0",
+  "source_file": "Copia de Cuestionario_Diagnostico_Financiero.docx",
+  "variables": {
+    "client_info": {
+      "client_name": { "type": "string", "source": "client_record" },
+      "client_industry": { "type": "string", "source": "client_record" },
+      "current_date": { "type": "date", "source": "system" },
+      "branding_company_name": { "type": "string", "source": "org_settings" }
+    },
+    "corporate_profile": [
+      "ai_financial_business_model", "ai_financial_years_operating",
+      "ai_financial_employees_micro", "ai_financial_employees_small", "ai_financial_employees_medium",
+      "ai_financial_employees_large", "ai_financial_employees_corp",
+      "ai_financial_geo_local", "ai_financial_geo_regional", "ai_financial_geo_national", "ai_financial_geo_international",
+      "ai_financial_corporate_structure",
+      "ai_financial_group_yes", "ai_financial_group_no", "ai_financial_group_holding", "ai_financial_group_name",
+      "ai_financial_top_products", "ai_financial_client_concentration", "ai_financial_competitors",
+      "ai_financial_audited_yes", "ai_financial_auditor_name", "ai_financial_limited_review",
+      "ai_financial_audited_no", "ai_financial_audit_in_progress"
+    ],
+    "strategic_context": [
+      "ai_financial_strategic_objectives", "ai_financial_relevant_events",
+      "ai_financial_debt_none", "ai_financial_debt_simple", "ai_financial_debt_revolving",
+      "ai_financial_debt_bond", "ai_financial_debt_factoring",
+      "ai_financial_funding_sources", "ai_financial_dividends", "ai_financial_capex_plans",
+      "ai_financial_credit_policy", "ai_financial_payment_policy", "ai_financial_contingencies",
+      "ai_financial_budget_available", "ai_financial_budget_confidential",
+      "ai_financial_budget_wip", "ai_financial_budget_none"
+    ],
+    "balance_sheet": {
+      "description": "3-year balance sheet fields with _y2, _y1, _y0 suffixes",
+      "prefix": "ai_financial_bs_",
+      "rows": [
+        "total_assets", "current_assets", "cash", "receivables", "other_receivables",
+        "inventory", "prepaid", "other_current", "noncurrent_assets", "ppe",
+        "intangibles", "investments", "other_noncurrent", "total_liabilities",
+        "current_liabilities", "payables", "st_debt", "cpltd", "taxes_payable",
+        "other_cl", "noncurrent_liab", "lt_debt", "leases", "other_ncl",
+        "equity", "share_capital", "retained", "net_income", "other_equity"
+      ]
+    },
+    "income_statement": {
+      "description": "3-year P&L fields with _y2, _y1, _y0 suffixes",
+      "prefix": "ai_financial_pl_",
+      "rows": [
+        "revenue", "product_sales", "service_sales", "other_income", "cogs",
+        "gross_profit", "gross_margin", "opex", "selling", "admin", "da",
+        "ebit", "ebit_margin", "rif", "interest_exp", "interest_inc", "fx",
+        "other_fin", "ebt", "isr", "ptu", "net_income", "net_margin",
+        "ebitda", "depreciation", "amortization", "capex", "cfo"
+      ]
+    },
+    "operational_data": {
+      "prefix": "ai_financial_op_",
+      "rows": ["dso", "dio", "dpo", "headcount", "rev_per_emp", "capacity"]
+    },
+    "additional": [
+      "ai_financial_debt_detail",
+      "ai_financial_cost_low_fixed", "ai_financial_cost_balanced",
+      "ai_financial_cost_high_fixed", "ai_financial_cost_na",
+      "ai_financial_benchmarking", "ai_financial_additional_notes"
+    ]
+  },
+  "sections": [
+    "Seccion 1 - Perfil Corporativo y Modelo de Negocio",
+    "Seccion 2 - Contexto Estrategico y Financiero",
+    "Seccion 3 - Balance General (3 anos)",
+    "Seccion 4 - Estado de Resultados (3 anos)",
+    "Seccion 5 - Datos Operativos y Adicionales",
+    "Seccion 6 - Declaracion de Responsabilidad y Firma"
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "name": "Legal - Cotizacion Gobierno Corporativo",
+  "service": "Legal",
+  "type": "quotation",
+  "description": "Propuesta de servicios profesionales para proyecto de gobierno corporativo de alta direccion. Incluye metodologia, fases de trabajo, honorarios y generacion de valor (ROG).",
+  "variables": [
+    { "key": "branding_company_name", "label": "Nombre de la Firma Consultora", "source": "branding", "required": true },
+    { "key": "client_name", "label": "Nombre del Cliente / Empresa", "source": "client", "required": true },
+    { "key": "client_contact_name", "label": "Nombre del Contacto Principal", "source": "client", "required": true },
+    { "key": "current_date", "label": "Fecha del Documento", "source": "system", "required": true },
+    { "key": "proposal_city", "label": "Ciudad de Emision", "source": "consultant", "required": true },
+    { "key": "consultant_name", "label": "Nombre del Socio Senior", "source": "consultant", "required": true },
+    { "key": "service_amount_phase_1", "label": "Honorarios Fase 1 (MXN + IVA)", "source": "service", "required": true },
+    { "key": "service_amount_phase_2", "label": "Honorarios Fase 2 (MXN + IVA)", "source": "service", "required": true },
+    { "key": "service_amount_phase_3", "label": "Honorarios Fase 3 (MXN + IVA)", "source": "service", "required": true },
+    { "key": "service_amount_phase_4", "label": "Honorarios Fase 4 (MXN + IVA)", "source": "service", "required": true },
+    { "key": "service_amount_total", "label": "Honorarios Totales del Proyecto (MXN + IVA)", "source": "service", "required": true }
+  ]
+}

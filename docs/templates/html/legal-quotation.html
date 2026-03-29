@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Propuesta de Servicios - Gobierno Corporativo</title>
+<style>
+  @page { margin: 2cm; size: letter; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: Georgia, 'Times New Roman', serif; color: #1a1a1a; line-height: 1.6; font-size: 11pt; }
+  .page-break { page-break-before: always; }
+
+  /* Cover page */
+  .cover { text-align: center; padding: 120px 40px 60px; min-height: 90vh; display: flex; flex-direction: column; justify-content: center; }
+  .cover .brand { font-size: 28pt; font-weight: bold; letter-spacing: 4px; color: #1a1a1a; }
+  .cover .subtitle { font-size: 12pt; letter-spacing: 3px; color: #b8860b; margin-top: 8px; text-transform: uppercase; }
+  .cover .divider { width: 80px; height: 3px; background: #b8860b; margin: 40px auto; }
+  .cover h1 { font-size: 22pt; font-weight: bold; color: #1a1a1a; margin-bottom: 8px; }
+  .cover h2 { font-size: 14pt; font-weight: normal; color: #333; margin-bottom: 30px; }
+  .cover .tagline { font-size: 10pt; color: #666; font-style: italic; line-height: 1.8; max-width: 500px; margin: 0 auto 40px; }
+  .cover .confidential { font-size: 8pt; letter-spacing: 2px; text-transform: uppercase; color: #999; margin-top: 40px; }
+  .cover-meta { margin-top: 30px; font-size: 9pt; color: #666; }
+  .cover-meta table { margin: 0 auto; border-collapse: collapse; }
+  .cover-meta td { padding: 4px 16px; text-align: left; }
+
+  /* Headers */
+  h1 { font-size: 16pt; color: #1a1a1a; border-bottom: 2px solid #b8860b; padding-bottom: 8px; margin: 30px 0 16px; }
+  h2 { font-size: 13pt; color: #b8860b; margin: 24px 0 12px; }
+  h3 { font-size: 11pt; color: #333; margin: 16px 0 8px; }
+
+  /* Content */
+  .content { max-width: 700px; margin: 0 auto; padding: 20px 40px; }
+  p { margin-bottom: 12px; text-align: justify; }
+  ul, ol { margin: 8px 0 16px 24px; }
+  li { margin-bottom: 6px; }
+
+  /* Tables */
+  table { width: 100%; border-collapse: collapse; margin: 16px 0 24px; font-size: 10pt; }
+  th { background: #1a1a1a; color: #fff; text-align: left; padding: 10px 12px; font-weight: bold; }
+  td { padding: 8px 12px; border-bottom: 1px solid #ddd; vertical-align: top; }
+  tr:nth-child(even) td { background: #f9f7f2; }
+  .table-highlight td { font-weight: bold; background: #f0ead6; }
+
+  /* Signature block */
+  .signature { margin-top: 40px; text-align: left; }
+  .signature .name { font-weight: bold; margin-top: 40px; }
+  .signature .role { color: #666; font-size: 10pt; }
+
+  /* Footer */
+  .footer { text-align: center; font-size: 8pt; color: #999; margin-top: 60px; border-top: 1px solid #ddd; padding-top: 12px; }
+</style>
+</head>
+<body>
+
+<!-- COVER PAGE -->
+<div class="cover">
+  <div class="brand">{{branding_company_name}}</div>
+  <div class="subtitle">Consultoria de Alta Direccion</div>
+  <div class="divider"></div>
+  <h1>PROPUESTA DE SERVICIOS</h1>
+  <h2>GOBIERNO CORPORATIVO DE ALTA DIRECCION</h2>
+  <p class="tagline">Transformacion de Negocios Operativos en Instituciones Solidas, Transparentes y Preparadas para la Inversion o Sucesion.</p>
+  <p class="confidential">Documento Confidencial -- Exclusivo para el Cliente</p>
+  <div class="cover-meta">
+    <table>
+      <tr><td><strong>Preparado por:</strong></td><td>Equipo {{branding_company_name}}</td></tr>
+      <tr><td><strong>Fecha:</strong></td><td>{{current_date}}</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- INDEX -->
+<div class="content page-break">
+  <h1>INDICE DE CONTENIDOS</h1>
+  <ol>
+    <li>Carta de Presentacion</li>
+    <li>Diagnostico de Valor -- Retorno sobre la Gobernanza (ROG)</li>
+    <li>Fases de Trabajo y Metodologia</li>
+    <li>Estructura de Honorarios</li>
+    <li>Generacion de Valor -- Retorno sobre la Gobernanza (ROG)</li>
+  </ol>
+</div>
+
+<!-- I. CARTA DE PRESENTACION -->
+<div class="content page-break">
+  <h1>I. CARTA DE PRESENTACION</h1>
+  <p>{{proposal_city}}, {{current_date}}</p>
+  <p>Estimado {{client_contact_name}},</p>
+  <p>Es un honor para {{branding_company_name}} presentar a usted y a su organizacion esta propuesta integral de Servicios de Gobierno Corporativo. Nuestra firma se especializa en la institucionalizacion de empresas familiares y corporativas, con un enfoque profundo en derecho mercantil, finanzas corporativas y la resolucion preventiva de conflictos.</p>
+  <p>Entendemos que su empresa ha construido un legado de valor a traves de anos de trabajo y vision. Nuestro proposito es proteger ese legado y potenciarlo mediante la implementacion de estructuras de gobierno que eleven a su organizacion a los estandares de las instituciones de clase mundial.</p>
+  <p>El presente documento detalla nuestra metodologia, las fases de trabajo, los entregables especificos y los honorarios asociados a la ejecucion del proyecto. Cada elemento ha sido disenado para generar un Retorno sobre la Gobernanza (ROG) medible y sostenible.</p>
+  <p>Confiamos en que este documento refleje la profundidad de nuestro compromiso con la excelencia y la institucionalizacion de su patrimonio empresarial.</p>
+  <div class="signature">
+    <p>Atentamente,</p>
+    <p class="name">{{consultant_name}}</p>
+    <p class="role">Socio Senior de Gobierno Corporativo</p>
+    <p class="role">{{branding_company_name}}</p>
+  </div>
+</div>
+
+<!-- II. DIAGNOSTICO DE VALOR -->
+<div class="content page-break">
+  <h1>II. DIAGNOSTICO DE VALOR -- RETORNO SOBRE LA GOBERNANZA (ROG)</h1>
+  <p>El Retorno sobre la Gobernanza (ROG) es la metrica propietaria de {{branding_company_name}} que cuantifica el impacto economico y estrategico de implementar un sistema de gobierno corporativo robusto. No se trata unicamente de cumplimiento normativo; es una inversion con rendimientos tangibles y mensurables.</p>
+
+  <h2>2.1 Dimensiones del Valor Generado</h2>
+  <table>
+    <thead>
+      <tr><th>Dimension</th><th>Indicador Clave</th><th>Impacto Esperado</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Acceso a Capital</td><td>Costo de financiamiento / Calificacion crediticia</td><td>Reduccion 80-150 puntos base en tasa de interes</td></tr>
+      <tr><td>Valoracion Empresarial</td><td>Multiplo EBITDA / EV</td><td>Premium de 1.5x a 3.0x sobre empresa sin gobierno</td></tr>
+      <tr><td>Prevencion de Conflictos</td><td>Costo de litigios societarios</td><td>Ahorro potencial superior a $5M MXN en arbitrajes</td></tr>
+      <tr><td>Eficiencia Operativa</td><td>Velocidad de toma de decisiones</td><td>Reduccion del 40% en tiempos de aprobacion</td></tr>
+      <tr><td>Atraccion de Talento</td><td>Indice de retencion directiva</td><td>Incremento del 25-35% en retencion de ejecutivos</td></tr>
+      <tr><td>Sucesion / Exit</td><td>Readiness para M&amp;A o IPO</td><td>Incremento sustancial en la probabilidad de exito</td></tr>
+    </tbody>
+  </table>
+
+  <h2>2.2 Diagnostico de Madurez Inicial</h2>
+  <p>Previo a la propuesta economica, {{branding_company_name}} realiza un Diagnostico de Madurez sin costo que evalua cinco dimensiones criticas de gobierno:</p>
+  <ul>
+    <li>Estructura societaria y claridad de roles (Matriz de Roles)</li>
+    <li>Existencia y vigencia de acuerdos entre accionistas (Shareholders' Agreement)</li>
+    <li>Mecanismos de resolucion de conflictos y clausulas Deadlock</li>
+    <li>Politicas financieras documentadas (CAPEX, dividendos, Partes Relacionadas)</li>
+    <li>Madurez del Consejo de Administracion y sus comites</li>
+  </ul>
+</div>
+
+<!-- III. FASES DE TRABAJO Y METODOLOGIA -->
+<div class="content page-break">
+  <h1>III. FASES DE TRABAJO Y METODOLOGIA</h1>
+  <p>El proyecto de institucionalizacion de gobierno corporativo se estructura en cuatro fases secuenciales, cada una con entregables especificos y criterios de aceptacion definidos.</p>
+
+  <h2>FASE 1 -- Diagnostico y Onboarding (Semanas 1-3)</h2>
+  <table>
+    <thead>
+      <tr><th>Actividad</th><th>Responsable</th><th>Entregable</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Cuestionario de Onboarding (12 preguntas estrategicas)</td><td>{{branding_company_name}} + Cliente</td><td>Cuestionario completado y validado</td></tr>
+      <tr><td>Integracion del Data Room (Actas, EF, Contratos)</td><td>Cliente con apoyo {{branding_company_name}}</td><td>Data Room organizado en 7 categorias</td></tr>
+      <tr><td>Entrevistas con accionistas y directivos clave</td><td>Socio Senior {{branding_company_name}}</td><td>Minutas de entrevistas confidenciales</td></tr>
+      <tr><td>Analisis de documentos fundacionales</td><td>Equipo {{branding_company_name}}</td><td>Matriz de Riesgos Inicial</td></tr>
+    </tbody>
+  </table>
+
+  <h2>FASE 2 -- Analisis y Diseno (Semanas 4-8)</h2>
+  <table>
+    <thead>
+      <tr><th>Actividad</th><th>Responsable</th><th>Entregable</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Analisis de Matriz de Roles y estructura de poder</td><td>Equipo {{branding_company_name}}</td><td>Executive Governance Brief (Version Corta)</td></tr>
+      <tr><td>Diseno de estructura de Consejo y Comites</td><td>Socio Senior {{branding_company_name}}</td><td>Propuesta de estructura de Comites</td></tr>
+      <tr><td>Desarrollo de politicas financieras genericas</td><td>Equipo {{branding_company_name}}</td><td>Manual de Politicas Financieras</td></tr>
+      <tr><td>Redaccion de clausulas de proteccion y salida</td><td>Asesor Legal {{branding_company_name}}</td><td>Borradores de clausulas Drag-along / Tag-along</td></tr>
+    </tbody>
+  </table>
+
+  <h2>FASE 3 -- Implementacion Documental (Semanas 9-16)</h2>
+  <table>
+    <thead>
+      <tr><th>Actividad</th><th>Responsable</th><th>Entregable</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Redaccion del Master Corporate Governance Blueprint</td><td>Equipo {{branding_company_name}}</td><td>Documento Maestro (20-50 pags)</td></tr>
+      <tr><td>Manuales de Comites: Auditoria, Practicas y Finanzas</td><td>Equipo {{branding_company_name}}</td><td>3 Manuales de Comites con Reglamentos</td></tr>
+      <tr><td>Protocolo de Sucesion (si aplica)</td><td>Socio Senior {{branding_company_name}}</td><td>Protocolo de Familia (empresas familiares)</td></tr>
+      <tr><td>Formatos de Actas y Documentos para firma</td><td>Equipo {{branding_company_name}}</td><td>Apendices listos para firma</td></tr>
+    </tbody>
+  </table>
+
+  <h2>FASE 4 -- Capacitacion y Activacion (Semanas 17-20)</h2>
+  <table>
+    <thead>
+      <tr><th>Actividad</th><th>Responsable</th><th>Entregable</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Taller de Induccion al Consejo de Administracion</td><td>Socio Senior {{branding_company_name}}</td><td>Directivos capacitados y certificados</td></tr>
+      <tr><td>Primera Asamblea de Accionistas bajo nuevo gobierno</td><td>{{branding_company_name}} + Notario</td><td>Acta de Primera Asamblea Formal</td></tr>
+      <tr><td>Activacion de Comite de Auditoria</td><td>Equipo {{branding_company_name}}</td><td>Primera sesion de Comite documentada</td></tr>
+      <tr><td>Entrega del Sistema de Gobierno Completo</td><td>Socio Senior {{branding_company_name}}</td><td>Governance Standard -- Version Final</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- IV. ESTRUCTURA DE HONORARIOS -->
+<div class="content page-break">
+  <h1>IV. ESTRUCTURA DE HONORARIOS</h1>
+  <p>Los honorarios de {{branding_company_name}} estan estructurados para garantizar la alineacion de incentivos entre nuestra firma y el cliente. Nuestra politica de transparencia implica que todos los costos son fijos, sin sorpresas, y las condiciones de pago son flexibles.</p>
+
+  <h2>4.1 Esquema de Honorarios por Fase</h2>
+  <table>
+    <thead>
+      <tr><th>Fase</th><th>Descripcion</th><th>Honorarios (MXN)</th><th>Condicion de Pago</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Fase 1</td><td>Diagnostico y Onboarding</td><td>{{service_amount_phase_1}}</td><td>50% inicio / 50% entrega</td></tr>
+      <tr><td>Fase 2</td><td>Analisis y Diseno</td><td>{{service_amount_phase_2}}</td><td>50% inicio / 50% entrega</td></tr>
+      <tr><td>Fase 3</td><td>Implementacion Documental</td><td>{{service_amount_phase_3}}</td><td>50% inicio / 50% entrega</td></tr>
+      <tr><td>Fase 4</td><td>Capacitacion y Activacion</td><td>{{service_amount_phase_4}}</td><td>100% al inicio</td></tr>
+      <tr class="table-highlight"><td>TOTAL DEL PROYECTO</td><td>20 semanas de implementacion</td><td>{{service_amount_total}}</td><td>Ver esquema arriba</td></tr>
+    </tbody>
+  </table>
+
+  <h2>4.2 Condiciones Generales</h2>
+  <ul>
+    <li>Los honorarios no incluyen gastos notariales, registrales ni honorarios de abogados externos.</li>
+    <li>Los viajes fuera de la ciudad de origen se facturan por separado a costo real documentado.</li>
+    <li>El cliente podra acceder a descuentos por referidos (10%) y por contratacion de fases adicionales.</li>
+    <li>La propuesta economica tiene una vigencia de 30 dias a partir de la fecha de emision.</li>
+  </ul>
+
+  <h2>4.3 Garantia de Satisfaccion {{branding_company_name}}</h2>
+  <p>{{branding_company_name}} garantiza la calidad de todos los entregables bajo un protocolo de revision de hasta tres iteraciones por documento, sin costo adicional. Si al termino de la Fase 2 el cliente no esta satisfecho con los resultados, {{branding_company_name}} reembolsara el 50% de los honorarios de dicha fase.</p>
+
+  <h2>4.4 Inversion en Perspectiva</h2>
+  <p>El costo promedio de un litigio societario no resuelto en Mexico supera los $8 millones de pesos, sin incluir el costo de oportunidad por la paralizacion de decisiones estrategicas. La implementacion de un sistema de gobierno corporativo solido representa una fraccion de este costo, con un retorno garantizado en terminos de valoracion, acceso a capital y continuidad del negocio.</p>
+</div>
+
+<!-- V. GENERACION DE VALOR -->
+<div class="content page-break">
+  <h1>V. GENERACION DE VALOR -- RETORNO SOBRE LA GOBERNANZA (ROG)</h1>
+  <p>La gobernanza corporativa no es un costo; es la inversion con mayor potencial de multiplicacion del patrimonio empresarial. A continuacion, presentamos el marco de valor que sustenta nuestra propuesta:</p>
+
+  <h2>5.1 Generadores de Valor Clave</h2>
+  <ul>
+    <li><strong>PREVENCION DE CONFLICTOS:</strong> Un Deadlock no resuelto puede paralizar operaciones durante meses. Las clausulas de salida (Drag-along, Tag-along, Put/Call) son el blindaje mas efectivo.</li>
+    <li><strong>ACCESO A CAPITAL:</strong> Los fondos de capital privado (PE) y la banca de inversion exigen estructuras de gobierno como condicion de inversion. Sin gobierno, no hay capital institucional.</li>
+    <li><strong>VALORACION PREMIUM:</strong> Empresas con gobierno formal obtienen multiplos de valoracion 1.5x-3.0x superiores en procesos de M&amp;A versus empresas sin estructura.</li>
+    <li><strong>CONTINUIDAD:</strong> El 70% de las empresas familiares no sobreviven a la tercera generacion. El Protocolo de Sucesion es el activo mas valioso de largo plazo.</li>
+  </ul>
+
+  <h2>5.2 Proximos Pasos</h2>
+  <ol>
+    <li>Aprobar la presente propuesta mediante firma del Convenio de Confidencialidad y Propuesta Aceptada.</li>
+    <li>Programar sesion de Kick-off con el equipo de {{branding_company_name}} y los principales accionistas.</li>
+    <li>Completar el Cuestionario de Onboarding (Documento 2 del sistema {{branding_company_name}}).</li>
+    <li>Conformar el Data Room con los documentos societarios requeridos.</li>
+    <li>Iniciar Fase 1 del proyecto en la fecha acordada.</li>
+  </ol>
+  <p>Para cualquier consulta adicional, el Socio Senior de Gobierno Corporativo de {{branding_company_name}} esta disponible para una reunion sin costo ni compromiso.</p>
+
+  <div class="footer">
+    <p>-- {{branding_company_name}} -- Gobierno Corporativo de Clase Mundial --</p>
+  </div>
+</div>
+
+</body>
+</html>

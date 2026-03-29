@@ -1,0 +1,82 @@
+{
+  "template_id": "ti-quotation",
+  "name": "Plantilla de Cotizacion TI",
+  "service_line": "TI",
+  "type": "quotation",
+  "version": "1.0",
+  "source_file": "Copia de 05_Plantilla_Cotizacion.docx",
+  "variables": {
+    "client_info": {
+      "client_name": { "type": "string", "source": "client_record" },
+      "client_contact_name": { "type": "string", "source": "client_record" },
+      "client_email": { "type": "string", "source": "client_record" },
+      "client_phone": { "type": "string", "source": "client_record" },
+      "client_tax_id": { "type": "string", "source": "client_record" },
+      "current_date": { "type": "date", "source": "system" },
+      "document_folio": { "type": "string", "source": "system", "description": "COT-AAAA-NNN" },
+      "diagnostic_folio": { "type": "string", "source": "system" },
+      "quotation_valid_until": { "type": "date", "source": "calculated" }
+    },
+    "consultant_info": {
+      "branding_company_name": { "type": "string", "source": "org_settings" },
+      "consultant_name": { "type": "string", "source": "org_settings" },
+      "consultant_email": { "type": "string", "source": "org_settings" },
+      "consultant_phone": { "type": "string", "source": "org_settings" },
+      "consultant_tax_id": { "type": "string", "source": "org_settings" }
+    },
+    "scoring": {
+      "ai_score_total": { "type": "number", "source": "calculated" },
+      "ai_assigned_route": { "type": "string", "source": "calculated" },
+      "ai_service_modality": { "type": "string", "source": "calculated" }
+    },
+    "ai_generated": {
+      "ai_quotation_summary": { "type": "text", "source": "ai" },
+      "ai_service_description": { "type": "text", "source": "ai" },
+      "ai_included_service_1": { "type": "text", "source": "ai" },
+      "ai_included_service_2": { "type": "text", "source": "ai" },
+      "ai_included_service_3": { "type": "text", "source": "ai" },
+      "ai_included_service_4": { "type": "text", "source": "ai" },
+      "ai_included_service_5": { "type": "text", "source": "ai" },
+      "ai_exclusion_1": { "type": "text", "source": "ai" },
+      "ai_exclusion_2": { "type": "text", "source": "ai" },
+      "ai_exclusion_3": { "type": "text", "source": "ai" },
+      "ai_exclusion_4": { "type": "text", "source": "ai" },
+      "ai_line_item_1_name": { "type": "string", "source": "ai" },
+      "ai_line_item_1_desc": { "type": "string", "source": "ai" },
+      "ai_line_item_1_freq": { "type": "string", "source": "ai" },
+      "ai_line_item_1_price": { "type": "string", "source": "ai" },
+      "ai_line_item_2_name": { "type": "string", "source": "ai" },
+      "ai_line_item_2_desc": { "type": "string", "source": "ai" },
+      "ai_line_item_2_freq": { "type": "string", "source": "ai" },
+      "ai_line_item_2_price": { "type": "string", "source": "ai" },
+      "ai_line_item_3_name": { "type": "string", "source": "ai" },
+      "ai_line_item_3_desc": { "type": "string", "source": "ai" },
+      "ai_line_item_3_freq": { "type": "string", "source": "ai" },
+      "ai_line_item_3_price": { "type": "string", "source": "ai" },
+      "ai_line_item_4_name": { "type": "string", "source": "ai" },
+      "ai_line_item_4_desc": { "type": "string", "source": "ai" },
+      "ai_line_item_4_freq": { "type": "string", "source": "ai" },
+      "ai_line_item_4_price": { "type": "string", "source": "ai" },
+      "ai_line_item_5_name": { "type": "string", "source": "ai" },
+      "ai_line_item_5_desc": { "type": "string", "source": "ai" },
+      "ai_line_item_5_freq": { "type": "string", "source": "ai" },
+      "ai_line_item_5_price": { "type": "string", "source": "ai" },
+      "ai_total_monthly": { "type": "string", "source": "ai" },
+      "ai_annual_discount": { "type": "string", "source": "ai" },
+      "ai_onboarding_cost": { "type": "string", "source": "ai" },
+      "ai_payment_method": { "type": "string", "source": "ai" },
+      "ai_contract_duration": { "type": "string", "source": "ai" },
+      "ai_cancellation_penalty": { "type": "string", "source": "ai" },
+      "ai_annual_price_adjustment": { "type": "string", "source": "ai" },
+      "ai_currency": { "type": "string", "source": "ai" }
+    }
+  },
+  "sections": [
+    "Resumen Ejecutivo de la Propuesta",
+    "Alcance y Entregables",
+    "Desglose de Servicios y Precios",
+    "Acuerdos de Nivel de Servicio (SLAs)",
+    "Condiciones Comerciales",
+    "Aceptacion y Firmas"
+  ]
+}

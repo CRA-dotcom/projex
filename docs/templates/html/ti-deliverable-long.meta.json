@@ -1,0 +1,93 @@
+{
+  "template_id": "ti-deliverable-long",
+  "name": "Diagnostico Tecnologico Profundo (Largo)",
+  "service_line": "TI",
+  "type": "deliverable",
+  "variant": "long",
+  "version": "1.0",
+  "source_file": "Copia de 04_Diagnostico_Largo.docx",
+  "variables": {
+    "client_info": {
+      "client_name": { "type": "string", "source": "client_record" },
+      "client_industry": { "type": "string", "source": "client_record" },
+      "client_it_contact": { "type": "string", "source": "client_record", "description": "Responsable TI del cliente" },
+      "current_date": { "type": "date", "source": "system" },
+      "branding_company_name": { "type": "string", "source": "org_settings" },
+      "document_folio": { "type": "string", "source": "system", "description": "Folio DLP-AAAA-NNN" }
+    },
+    "scoring": {
+      "ai_score_infrastructure": { "type": "number", "source": "calculated" },
+      "ai_score_security": { "type": "number", "source": "calculated" },
+      "ai_score_pain_points": { "type": "number", "source": "calculated" },
+      "ai_score_business_objectives": { "type": "number", "source": "calculated" },
+      "ai_score_total": { "type": "number", "source": "calculated" },
+      "ai_maturity_classification": { "type": "string", "source": "calculated" }
+    },
+    "ai_generated": {
+      "executive_summary": [
+        "ai_executive_paragraph_1", "ai_executive_paragraph_2", "ai_executive_paragraph_3",
+        "ai_executive_paragraph_4", "ai_executive_paragraph_5"
+      ],
+      "methodology": [
+        "ai_interviewee_1", "ai_interviewee_2", "ai_scope_description"
+      ],
+      "findings_infrastructure": [
+        "ai_finding_a1", "ai_finding_a2", "ai_finding_a3", "ai_finding_a4", "ai_finding_a5",
+        "ai_observation_infrastructure"
+      ],
+      "findings_security": [
+        "ai_finding_b1", "ai_finding_b2", "ai_finding_b3", "ai_finding_b4", "ai_finding_b5",
+        "ai_observation_security"
+      ],
+      "findings_pain_points": [
+        "ai_finding_c1", "ai_finding_c2", "ai_finding_c3", "ai_finding_c4", "ai_finding_c5",
+        "ai_observation_pain_points"
+      ],
+      "findings_business": [
+        "ai_finding_d1", "ai_finding_d2", "ai_finding_d3", "ai_finding_d4", "ai_finding_d5",
+        "ai_observation_business"
+      ],
+      "risks": [
+        "ai_risk_1_area", "ai_risk_1_description",
+        "ai_risk_2_area", "ai_risk_2_description",
+        "ai_risk_3_area", "ai_risk_3_description",
+        "ai_risk_4_area", "ai_risk_4_description",
+        "ai_risk_5_area", "ai_risk_5_description",
+        "ai_risk_6_area", "ai_risk_6_description",
+        "ai_risk_7_area", "ai_risk_7_description"
+      ],
+      "recommendations": [
+        "ai_quick_win_1", "ai_quick_win_2", "ai_quick_win_3",
+        "ai_initiative_cp1", "ai_initiative_cp2", "ai_initiative_cp3",
+        "ai_initiative_mp1", "ai_initiative_mp2", "ai_initiative_mp3",
+        "ai_initiative_e1", "ai_initiative_e2"
+      ],
+      "roadmap": [
+        "ai_roadmap_phase1_action", "ai_roadmap_phase1_result", "ai_roadmap_phase1_kpi",
+        "ai_roadmap_phase2_action", "ai_roadmap_phase2_result", "ai_roadmap_phase2_kpi",
+        "ai_roadmap_phase3_action", "ai_roadmap_phase3_result", "ai_roadmap_phase3_kpi",
+        "ai_roadmap_phase4_action", "ai_roadmap_phase4_result", "ai_roadmap_phase4_kpi",
+        "ai_roadmap_phase5_action", "ai_roadmap_phase5_result", "ai_roadmap_phase5_kpi",
+        "ai_roadmap_phase6_action", "ai_roadmap_phase6_result", "ai_roadmap_phase6_kpi"
+      ],
+      "roi": [
+        "ai_roi_initiative_1", "ai_roi_investment_1", "ai_roi_benefit_1", "ai_roi_percent_1",
+        "ai_roi_initiative_2", "ai_roi_investment_2", "ai_roi_benefit_2", "ai_roi_percent_2",
+        "ai_roi_initiative_3", "ai_roi_investment_3", "ai_roi_benefit_3", "ai_roi_percent_3",
+        "ai_roi_initiative_4", "ai_roi_investment_4", "ai_roi_benefit_4", "ai_roi_percent_4",
+        "ai_roi_total_investment", "ai_roi_total_benefit", "ai_roi_total_percent"
+      ],
+      "conclusions": ["ai_conclusion_1", "ai_conclusion_2", "ai_conclusion_3"]
+    }
+  },
+  "sections": [
+    "Resumen Ejecutivo",
+    "Metodologia y Alcance",
+    "Hallazgos Detallados por Area (A-D)",
+    "Analisis de Riesgos",
+    "Recomendaciones Estrategicas (Quick Wins, CP, MP, Estrategicas)",
+    "Hoja de Ruta de Implementacion",
+    "Analisis de ROI Estimado",
+    "Conclusiones y Declaracion Final"
+  ]
+}

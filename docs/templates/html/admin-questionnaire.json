@@ -1,0 +1,56 @@
+{
+  "template_id": "admin-questionnaire",
+  "name": "Cuestionario de Diagnostico Integral - Administracion",
+  "description": "Instrumento de recoleccion estrategica de 30 preguntas organizadas en 5 pilares (Gobierno, Finanzas, Operaciones, Comercial, Capital Humano) mas checklist de documentacion requerida.",
+  "service_type": "administracion",
+  "document_type": "questionnaire",
+  "source_file": "Copia de GEN_Activo1_Cuestionario.pdf",
+  "pages": 8,
+  "language": "es",
+  "variables": {
+    "branding": {
+      "branding_company_name": { "type": "string", "source": "org_record", "description": "Nombre de la firma consultora" }
+    },
+    "manual_fields": {
+      "manual_p01_ownership": { "type": "text", "source": "manual_input", "description": "P01: Estructura de propiedad" },
+      "manual_p02_orgchart": { "type": "text", "source": "manual_input", "description": "P02: Organigrama formal" },
+      "manual_p03_decisions": { "type": "text", "source": "manual_input", "description": "P03: Toma de decisiones estrategicas" },
+      "manual_p04_authorization": { "type": "text", "source": "manual_input", "description": "P04: Niveles de autorizacion financiera" },
+      "manual_p05_regulations": { "type": "text", "source": "manual_input", "description": "P05: Reglamento interno / Codigo de etica" },
+      "manual_p06_strategic_plan": { "type": "text", "source": "manual_input", "description": "P06: Plan estrategico anual" },
+      "manual_p07_budget_process": { "type": "text", "source": "manual_input", "description": "P07: Proceso de presupuesto" },
+      "manual_p08_cashflow": { "type": "text", "source": "manual_input", "description": "P08: Gestion de flujo de caja" },
+      "manual_p09_collections": { "type": "text", "source": "manual_input", "description": "P09: Politica de cobranza" },
+      "manual_p10_payments": { "type": "text", "source": "manual_input", "description": "P10: Plazos de pago a proveedores" },
+      "manual_p11_tax_compliance": { "type": "text", "source": "manual_input", "description": "P11: Cumplimiento fiscal" },
+      "manual_p12_sod": { "type": "text", "source": "manual_input", "description": "P12: Segregacion de funciones en pagos" },
+      "manual_p13_procurement": { "type": "text", "source": "manual_input", "description": "P13: Proceso de compras" },
+      "manual_p14_inventory": { "type": "text", "source": "manual_input", "description": "P14: Gestion de inventario" },
+      "manual_p15_leadtime": { "type": "text", "source": "manual_input", "description": "P15: Lead time OC a entrega" },
+      "manual_p16_poes": { "type": "text", "source": "manual_input", "description": "P16: Procedimientos operativos documentados" },
+      "manual_p17_shrinkage": { "type": "text", "source": "manual_input", "description": "P17: Control de mermas" },
+      "manual_p18_capacity": { "type": "text", "source": "manual_input", "description": "P18: Capacidad instalada vs utilizada" },
+      "manual_p19_sales_process": { "type": "text", "source": "manual_input", "description": "P19: Proceso de ventas" },
+      "manual_p20_crm": { "type": "text", "source": "manual_input", "description": "P20: CRM y gestion de clientes" },
+      "manual_p21_segmentation": { "type": "text", "source": "manual_input", "description": "P21: Segmentacion de clientes" },
+      "manual_p22_retention": { "type": "text", "source": "manual_input", "description": "P22: Tasa de retencion y NPS" },
+      "manual_p23_acquisition": { "type": "text", "source": "manual_input", "description": "P23: Canales de adquisicion y CAC" },
+      "manual_p24_complaints": { "type": "text", "source": "manual_input", "description": "P24: Proceso de atencion a quejas" },
+      "manual_p25_payroll": { "type": "text", "source": "manual_input", "description": "P25: Estructura de nomina" },
+      "manual_p26_contracts": { "type": "text", "source": "manual_input", "description": "P26: Contratos y cumplimiento IMSS" },
+      "manual_p27_turnover": { "type": "text", "source": "manual_input", "description": "P27: Tasa de rotacion" },
+      "manual_p28_job_descriptions": { "type": "text", "source": "manual_input", "description": "P28: Descripciones de puestos" },
+      "manual_p29_performance": { "type": "text", "source": "manual_input", "description": "P29: Evaluaciones de desempeno" },
+      "manual_p30_compliance": { "type": "text", "source": "manual_input", "description": "P30: Cumplimiento normativo" }
+    }
+  },
+  "sections": [
+    "Portada y Ficha Tecnica",
+    "Pilar I: Gobierno y Estructura Corporativa (P01-P06)",
+    "Pilar II: Ciclo Financiero y Tesoreria (P07-P12)",
+    "Pilar III: Operaciones y Cadena de Valor (P13-P18)",
+    "Pilar IV: Comercial y Estrategia de Crecimiento (P19-P24)",
+    "Pilar V: Capital Humano y Cumplimiento Normativo (P25-P30)",
+    "Seccion VI: Documentacion Requerida al Cliente"
+  ]
+}

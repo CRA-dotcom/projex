@@ -1,0 +1,113 @@
+{
+  "template_id": "contabilidad-quotation",
+  "name": "Propuesta Economica - Contabilidad Premium",
+  "service_line": "contabilidad",
+  "service_tier": "premium",
+  "document_type": "quotation",
+  "frequency": "on_demand",
+  "pages": 2,
+  "source_pdf": "Copia de 03_Plantilla_Cotizacion_Servicio.pdf",
+  "version": "1.0.0",
+  "created_at": "2026-03-27",
+  "sections": [
+    "header",
+    "client_data",
+    "advisor_data",
+    "services_table",
+    "totals",
+    "ans_terms",
+    "payment_conditions",
+    "additional_notes",
+    "acceptance",
+    "signatures"
+  ],
+  "variables": {
+    "branding": [
+      "branding_company_name",
+      "branding_company_legal_name",
+      "branding_year"
+    ],
+    "quotation_meta": [
+      "quotation_folio",
+      "quotation_date",
+      "quotation_validity",
+      "quotation_version",
+      "quotation_additional_notes"
+    ],
+    "client": [
+      "client_name",
+      "client_rfc",
+      "client_contact_name",
+      "client_contact_role",
+      "client_email",
+      "client_phone",
+      "client_industry"
+    ],
+    "advisor": [
+      "advisor_name",
+      "advisor_email"
+    ],
+    "services": [
+      "svc_cierre_contable_price",
+      "svc_cierre_contable_applies",
+      "svc_cierre_contable_subtotal",
+      "svc_estados_financieros_price",
+      "svc_estados_financieros_applies",
+      "svc_estados_financieros_subtotal",
+      "svc_conciliacion_price",
+      "svc_conciliacion_applies",
+      "svc_conciliacion_subtotal",
+      "svc_declaraciones_price",
+      "svc_declaraciones_applies",
+      "svc_declaraciones_subtotal",
+      "svc_nomina_price",
+      "svc_nomina_applies",
+      "svc_nomina_subtotal",
+      "svc_cxc_cxp_price",
+      "svc_cxc_cxp_applies",
+      "svc_cxc_cxp_subtotal",
+      "svc_costos_price",
+      "svc_costos_applies",
+      "svc_costos_subtotal",
+      "svc_inventarios_price",
+      "svc_inventarios_applies",
+      "svc_inventarios_subtotal",
+      "svc_auditoria_price",
+      "svc_auditoria_applies",
+      "svc_auditoria_subtotal",
+      "svc_activos_fijos_price",
+      "svc_activos_fijos_applies",
+      "svc_activos_fijos_subtotal",
+      "svc_diot_price",
+      "svc_diot_applies",
+      "svc_diot_subtotal",
+      "svc_declaracion_anual_price",
+      "svc_declaracion_anual_applies",
+      "svc_declaracion_anual_subtotal"
+    ],
+    "totals": [
+      "subtotal_mensual",
+      "subtotal_trimestral",
+      "subtotal_anual",
+      "total_mensual_sin_iva",
+      "total_iva",
+      "total_con_iva"
+    ],
+    "payment": [
+      "payment_billing_name",
+      "payment_billing_rfc",
+      "payment_bank_account",
+      "payment_bank_name",
+      "payment_day",
+      "payment_late_penalty"
+    ],
+    "signatures": [
+      "sig_client_name",
+      "sig_client_role",
+      "sig_client_date",
+      "sig_advisor_name",
+      "sig_advisor_role",
+      "sig_advisor_date"
+    ]
+  }
+}

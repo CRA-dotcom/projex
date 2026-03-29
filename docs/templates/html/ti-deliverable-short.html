@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Diagnostico Tecnologico Corto - {{client_name}}</title>
+  <style>
+    :root { --primary: #1a1a2e; --accent: #e94560; --bg: #fff; --text: #1a1a2e; --border: #ddd; --header-bg: #f8f9fa; --section-bg: #f0f2f5; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color: var(--text); line-height: 1.6; max-width: 900px; margin: 0 auto; padding: 40px 20px; }
+    .cover { text-align: center; margin-bottom: 40px; padding: 40px 20px; border: 2px solid var(--primary); }
+    .cover .tag { font-size: 0.85rem; letter-spacing: 3px; color: var(--accent); margin-bottom: 8px; }
+    .cover h1 { font-size: 1.6rem; margin-bottom: 4px; }
+    .cover .subtitle { font-size: 1rem; color: #555; margin-bottom: 12px; }
+    .cover .route { font-size: 0.85rem; color: #777; }
+    .info-table { width: 100%; border-collapse: collapse; margin-bottom: 30px; }
+    .info-table td { padding: 8px 12px; border: 1px solid var(--border); }
+    .info-table td:first-child { font-weight: 600; width: 200px; background: var(--header-bg); }
+    h1 { font-size: 1.3rem; color: var(--primary); margin: 30px 0 12px; border-bottom: 2px solid var(--accent); padding-bottom: 6px; }
+    h2 { font-size: 1.1rem; color: var(--primary); margin: 20px 0 10px; }
+    p { margin-bottom: 10px; font-size: 0.95rem; }
+    .score-banner { display: flex; justify-content: space-between; align-items: center; background: var(--primary); color: #fff; padding: 16px 24px; margin-bottom: 20px; border-radius: 4px; }
+    .score-banner .total { font-size: 1.4rem; font-weight: 700; }
+    .score-banner .classification { font-size: 1rem; color: var(--accent); }
+    .score-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 24px; }
+    .score-card { background: var(--header-bg); border: 1px solid var(--border); padding: 12px; text-align: center; border-radius: 4px; }
+    .score-card .label { font-size: 0.75rem; color: #777; text-transform: uppercase; }
+    .score-card .value { font-size: 1.2rem; font-weight: 700; color: var(--primary); }
+    .finding { margin-bottom: 6px; padding-left: 16px; position: relative; font-size: 0.95rem; }
+    .finding::before { content: "\25B8"; position: absolute; left: 0; color: var(--accent); }
+    table.data-table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
+    table.data-table th { background: var(--primary); color: #fff; padding: 8px 10px; text-align: left; font-size: 0.85rem; }
+    table.data-table td { padding: 6px 10px; border: 1px solid var(--border); font-size: 0.85rem; }
+    table.data-table tr:nth-child(even) { background: var(--header-bg); }
+    .risk-high { color: #dc3545; font-weight: 700; }
+    .risk-medium { color: #ffc107; font-weight: 700; }
+    .risk-low { color: #28a745; font-weight: 700; }
+    .disclaimer { font-size: 0.8rem; color: #777; margin-top: 30px; border-top: 1px solid var(--border); padding-top: 12px; }
+    @media print { body { padding: 20px; } .cover { page-break-after: always; } }
+  </style>
+</head>
+<body>
+
+  <!-- COVER -->
+  <div class="cover">
+    <div class="tag">DIAGNOSTICO TECNOLOGICO</div>
+    <h1>DIAGNOSTICO CORTO</h1>
+    <div class="subtitle">Evaluacion Focalizada de Madurez Tecnologica</div>
+    <div class="route">Ruta: Madurez Media | Score 40-64 pts | Version 1.0</div>
+  </div>
+
+  <!-- CLIENT INFO -->
+  <table class="info-table">
+    <tr><td>EMPRESA</td><td>{{client_name}}</td></tr>
+    <tr><td>INDUSTRIA</td><td>{{client_industry}}</td></tr>
+    <tr><td>FECHA DIAGNOSTICO</td><td>{{current_date}}</td></tr>
+    <tr><td>CONSULTOR</td><td>{{branding_company_name}}</td></tr>
+    <tr><td>FOLIO</td><td>{{document_folio}}</td></tr>
+  </table>
+
+  <!-- 1. RESUMEN EJECUTIVO -->
+  <h1>1. RESUMEN EJECUTIVO</h1>
+
+  <div class="score-banner">
+    <div>PUNTAJE OBTENIDO</div>
+    <div class="total">{{ai_score_total}} / 100</div>
+    <div class="classification">{{ai_maturity_classification}}</div>
+  </div>
+
+  <div class="score-grid">
+    <div class="score-card"><div class="label">A &mdash; Infraestructura</div><div class="value">{{ai_score_infrastructure}} / 25</div></div>
+    <div class="score-card"><div class="label">B &mdash; Seguridad</div><div class="value">{{ai_score_security}} / 25</div></div>
+    <div class="score-card"><div class="label">C &mdash; Puntos de Dolor</div><div class="value">{{ai_score_pain_points}} / 25</div></div>
+    <div class="score-card"><div class="label">D &mdash; Obj. de Negocio</div><div class="value">{{ai_score_business_objectives}} / 25</div></div>
+  </div>
+
+  <p>El presente Diagnostico Corto documenta los hallazgos clave identificados durante la evaluacion tecnologica de la empresa {{client_name}} realizada el {{current_date}}. La evaluacion abarco las cuatro dimensiones del Cuestionario de Calificacion Tecnologica: Infraestructura, Seguridad, Puntos de Dolor y Objetivos de Negocio.</p>
+  <p>{{ai_executive_summary}}</p>
+
+  <!-- 2. HALLAZGOS CLAVE POR AREA -->
+  <h1>2. HALLAZGOS CLAVE POR AREA</h1>
+
+  <h2>2.1 Infraestructura</h2>
+  <p>{{ai_infrastructure_overview}}</p>
+  <div class="finding">{{ai_finding_infra_1}}</div>
+  <div class="finding">{{ai_finding_infra_2}}</div>
+  <div class="finding">{{ai_finding_infra_3}}</div>
+
+  <h2>2.2 Seguridad</h2>
+  <p>{{ai_security_overview}}</p>
+  <div class="finding">{{ai_finding_security_1}}</div>
+  <div class="finding">{{ai_finding_security_2}}</div>
+  <div class="finding">{{ai_finding_security_3}}</div>
+
+  <h2>2.3 Puntos de Dolor Operativos</h2>
+  <p>{{ai_pain_points_overview}}</p>
+  <div class="finding">{{ai_finding_pain_1}}</div>
+  <div class="finding">{{ai_finding_pain_2}}</div>
+  <div class="finding">{{ai_finding_pain_3}}</div>
+
+  <h2>2.4 Objetivos de Negocio y Madurez Estrategica</h2>
+  <p>{{ai_business_overview}}</p>
+  <div class="finding">{{ai_finding_business_1}}</div>
+  <div class="finding">{{ai_finding_business_2}}</div>
+  <div class="finding">{{ai_finding_business_3}}</div>
+
+  <!-- 3. MAPA DE RIESGOS PRIORITARIOS -->
+  <h1>3. MAPA DE RIESGOS PRIORITARIOS</h1>
+  <p>Los siguientes riesgos fueron identificados durante la evaluacion y clasificados por nivel de impacto potencial al negocio. Los riesgos ALTO requieren atencion inmediata.</p>
+
+  <table class="data-table">
+    <thead>
+      <tr><th>AREA / HALLAZGO</th><th>DESCRIPCION</th><th>NIVEL RIESGO</th><th>PRIORIDAD</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>{{ai_risk_1_area}}</td><td>{{ai_risk_1_description}}</td><td class="risk-high">{{ai_risk_1_level}}</td><td>1</td></tr>
+      <tr><td>{{ai_risk_2_area}}</td><td>{{ai_risk_2_description}}</td><td class="risk-high">{{ai_risk_2_level}}</td><td>2</td></tr>
+      <tr><td>{{ai_risk_3_area}}</td><td>{{ai_risk_3_description}}</td><td class="risk-medium">{{ai_risk_3_level}}</td><td>3</td></tr>
+      <tr><td>{{ai_risk_4_area}}</td><td>{{ai_risk_4_description}}</td><td class="risk-medium">{{ai_risk_4_level}}</td><td>4</td></tr>
+      <tr><td>{{ai_risk_5_area}}</td><td>{{ai_risk_5_description}}</td><td class="risk-low">{{ai_risk_5_level}}</td><td>5</td></tr>
+    </tbody>
+  </table>
+
+  <!-- 4. RECOMENDACIONES INMEDIATAS -->
+  <h1>4. RECOMENDACIONES INMEDIATAS</h1>
+  <p>Se presentan las recomendaciones priorizadas derivadas de los hallazgos del diagnostico. Cada recomendacion incluye una justificacion de negocio y el plazo de implementacion sugerido.</p>
+
+  <table class="data-table">
+    <thead>
+      <tr><th>#</th><th>RECOMENDACION</th><th>JUSTIFICACION</th><th>PLAZO</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>1</td><td>{{ai_recommendation_1}}</td><td>{{ai_recommendation_1_justification}}</td><td>Inmediato (0-30 dias)</td></tr>
+      <tr><td>2</td><td>{{ai_recommendation_2}}</td><td>{{ai_recommendation_2_justification}}</td><td>Corto plazo (30-60 dias)</td></tr>
+      <tr><td>3</td><td>{{ai_recommendation_3}}</td><td>{{ai_recommendation_3_justification}}</td><td>Corto plazo (30-90 dias)</td></tr>
+      <tr><td>4</td><td>{{ai_recommendation_4}}</td><td>{{ai_recommendation_4_justification}}</td><td>Mediano plazo (90 dias)</td></tr>
+      <tr><td>5</td><td>{{ai_recommendation_5}}</td><td>{{ai_recommendation_5_justification}}</td><td>Mediano plazo (90-180 dias)</td></tr>
+    </tbody>
+  </table>
+
+  <!-- 5. PROXIMOS PASOS -->
+  <h1>5. PROXIMOS PASOS</h1>
+
+  <table class="data-table">
+    <thead>
+      <tr><th>PASO</th><th>PLAZO</th><th>ACCION</th><th>RESPONSABLE</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>1</td><td>Esta semana</td><td>Revisar y validar los hallazgos del diagnostico con el equipo directivo del cliente</td><td>Consultor + Dir. TI Cliente</td></tr>
+      <tr><td>2</td><td>Proximos 5 dias habiles</td><td>Preparar y entregar la propuesta de servicio con alcance y SLA especificos</td><td>Consultor + Dir. Comercial</td></tr>
+      <tr><td>3</td><td>Al aprobar la propuesta</td><td>Iniciar proceso de onboarding y firma de contratos</td><td>Ambas partes</td></tr>
+      <tr><td>4</td><td>Mes 1</td><td>Implementar Quick Wins (recomendaciones inmediatas) en paralelo al servicio</td><td>Consultor Tecnico</td></tr>
+      <tr><td>5</td><td>Mes 3</td><td>Primera revision de KPIs y ajuste del plan de trabajo</td><td>Consultor Lider</td></tr>
+    </tbody>
+  </table>
+
+  <p class="disclaimer">La vigencia de este diagnostico es de 90 dias a partir de la fecha de emision. Los hallazgos y recomendaciones estan basados exclusivamente en la informacion declarada por el cliente durante la sesion de evaluacion.</p>
+
+</body>
+</html>

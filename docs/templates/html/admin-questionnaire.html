@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cuestionario de Diagnostico Integral - Administracion</title>
+  <style>
+    :root{--bg:#f8f9fa;--bg2:#fff;--green:#2d6a4f;--green-light:#40916c;--green-bg:rgba(45,106,79,.05);--red:#c62828;--red-bg:rgba(198,40,40,.08);--text:#1a1a1a;--text2:#666;--border:#e0e0e0;--accent:#388e3c}
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+    .page{max-width:900px;margin:0 auto;padding:40px 30px;page-break-after:always}.page:last-child{page-break-after:avoid}
+    .header{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--border);padding-bottom:12px;margin-bottom:30px;font-size:12px}
+    .header .brand{font-weight:700;color:var(--green)}
+    .header .conf{color:var(--red);font-weight:700;text-transform:uppercase;letter-spacing:1px}
+    .cover-box{background:var(--green);color:#fff;padding:40px;text-align:center;margin-bottom:30px;border-radius:8px}
+    .cover-box h1{font-size:36px;font-weight:700;margin-bottom:8px}
+    .cover-box .sub{font-size:16px;font-style:italic;color:rgba(255,255,255,.8);margin-bottom:16px}
+    .cover-box .dots{letter-spacing:4px;color:var(--accent);margin-bottom:16px}
+    .cover-box .note{font-size:13px;color:rgba(255,255,255,.7)}
+    .cover-box .version{font-size:12px;color:rgba(255,255,255,.5);margin-top:12px}
+    .info-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:var(--border);border:1px solid var(--border);margin-bottom:30px}
+    .info-cell{background:#fff;padding:16px}
+    .info-cell .label{font-size:11px;text-transform:uppercase;font-weight:700;color:var(--green);margin-bottom:4px}
+    .info-cell .value{font-size:13px;color:var(--text2)}
+    .pilar-header{background:var(--green);color:#fff;padding:16px 20px;font-size:14px;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:0;border-radius:4px 4px 0 0}
+    .pilar-sub{display:flex;align-items:center;gap:12px;background:var(--green-light);color:#fff;padding:12px 20px;margin-bottom:16px}
+    .pilar-sub .roman{font-size:18px;font-weight:700}
+    .pilar-sub .title{font-size:16px;font-weight:700}
+    .pilar-sub .topics{font-size:12px;font-style:italic;color:rgba(255,255,255,.8);margin-left:auto}
+    .pilar-objective{font-size:13px;color:var(--text2);margin-bottom:20px;padding:0 4px}
+    table.q-table{width:100%;border-collapse:collapse;margin-bottom:20px}
+    table.q-table th{background:var(--green);color:#fff;font-size:11px;text-transform:uppercase;padding:10px 12px;text-align:left}
+    table.q-table td{padding:10px 12px;font-size:13px;border-bottom:1px solid var(--border);vertical-align:top}
+    table.q-table tr:nth-child(even){background:var(--green-bg)}
+    .critical-alert{background:var(--red-bg);border-left:4px solid var(--red);padding:12px 16px;margin-bottom:20px;font-size:13px;color:var(--red)}
+    .strategy-note{background:var(--green-bg);border-left:4px solid var(--green);padding:12px 16px;margin-bottom:20px;font-size:13px;font-style:italic;color:var(--text2)}
+    .doc-table{width:100%;border-collapse:collapse;margin-bottom:20px}
+    .doc-table th{background:var(--green);color:#fff;font-size:11px;text-transform:uppercase;padding:10px 12px;text-align:left}
+    .doc-table td{padding:10px 12px;font-size:13px;border-bottom:1px solid var(--border)}
+    .doc-table .priority{font-weight:700;font-size:12px}
+    .doc-table .status-box{width:18px;height:18px;border:2px solid var(--border);display:inline-block;vertical-align:middle}
+    .answer-field{background:#f0f4f0;border:1px solid var(--border);padding:10px;min-height:40px;border-radius:4px;color:#333;font-size:13px}
+    .footer{text-align:left;font-size:11px;color:var(--text2);margin-top:30px;padding-top:12px;border-top:1px solid var(--border);display:flex;justify-content:space-between}
+    .impact-box{background:var(--green-bg);border-left:4px solid var(--green);padding:16px 20px;margin-top:20px}
+    .impact-box h4{color:var(--green);margin-bottom:6px}
+    .impact-box p{font-size:13px;color:var(--text2)}
+    @media print{body{background:#fff}}
+  </style>
+</head>
+<body>
+
+<!-- PAGE 1: COVER -->
+<div class="page">
+  <div class="header"><span class="brand">{{branding_company_name}} | Cuestionario de Diagnostico Integral</span><span class="conf">CONFIDENCIAL</span></div>
+  <div class="cover-box">
+    <p style="font-size:14px;margin-bottom:8px">{{branding_company_name}}</p>
+    <p style="font-size:13px;font-style:italic;color:rgba(255,255,255,.7);margin-bottom:20px">Optimizacion de Procesos y Manuales Administrativos</p>
+    <h1>CUESTIONARIO DE<br>DIAGNOSTICO INTEGRAL</h1>
+    <p class="sub">Instrumento de Recoleccion Estrategica -- 30 Preguntas &middot; 5 Pilares</p>
+    <p class="dots">&#9632;&#9632;&#9632;&#9632;&#9632;&#9632;&#9632;&#9632;&#9632;&#9632;&#9632;&#9632;&#9632;&#9632;&#9632;&#9632;&#9632;&#9632;&#9632;&#9632;</p>
+    <p class="note">Aplicar antes de cualquier analisis documental &middot; Responder con evidencia</p>
+    <p class="version">Version 1.0 &middot; CONFIDENCIAL -- Uso Exclusivo del Consultor Senior</p>
+  </div>
+  <div class="info-grid">
+    <div class="info-cell"><div class="label">OBJETIVO</div><div class="value">Recolectar informacion estrategica para construir el diagnostico AS-IS con nivel de confianza > 85%.</div></div>
+    <div class="info-cell"><div class="label">ALCANCE</div><div class="value">CEO, CFO y Directores de Area. Aplicar ANTES de cualquier analisis documental.</div></div>
+    <div class="info-cell"><div class="label">INSTRUCCION</div><div class="value">Responder con evidencia documental. Si no aplica, indicar 'N/A' con justificacion.</div></div>
+  </div>
+  <div class="footer"><span>Optimizacion de Procesos y Manuales Administrativos</span><span>Pagina 1</span></div>
+</div>
+
+<!-- PAGE 2: PILAR I -->
+<div class="page">
+  <div class="header"><span class="brand">{{branding_company_name}} | Cuestionario de Diagnostico Integral</span><span class="conf">CONFIDENCIAL</span></div>
+  <div class="pilar-header">PILAR I: GOBIERNO Y ESTRUCTURA CORPORATIVA</div>
+  <div class="pilar-sub"><span class="roman">I</span><span class="title">GOBIERNO Y ESTRUCTURA</span><span class="topics">Propiedad &middot; Organigrama &middot; Toma de Decisiones</span></div>
+  <p class="pilar-objective">Objetivo: Mapear la arquitectura de poder, propiedad y toma de decisiones para identificar riesgos de concentracion de control y ausencia de gobierno corporativo formal.</p>
+  <table class="q-table">
+    <thead><tr><th>#</th><th>Pregunta Estrategica</th><th>Tipo de Respuesta</th><th>Area de Riesgo</th></tr></thead>
+    <tbody>
+      <tr><td>P01</td><td>Cual es la estructura de propiedad de la empresa? (socios, % accionario, regimen juridico: SA, SAPI, SRL)</td><td>Descriptiva + Documento</td><td>Gobierno Corporativo</td></tr>
+      <tr><td colspan="4"><div class="answer-field">{{manual_p01_ownership}}</div></td></tr>
+      <tr><td>P02</td><td>Existe organigrama formal, actualizado y comunicado a toda la organizacion? Cuando fue la ultima revision?</td><td>Si/No + Fecha</td><td>Estructura Organica</td></tr>
+      <tr><td colspan="4"><div class="answer-field">{{manual_p02_orgchart}}</div></td></tr>
+      <tr><td>P03</td><td>Como se toman las decisiones estrategicas? Existen comites directivos o Juntas de Accionistas con minutas documentadas?</td><td>Descriptiva</td><td>Control Ejecutivo</td></tr>
+      <tr><td colspan="4"><div class="answer-field">{{manual_p03_decisions}}</div></td></tr>
+      <tr><td>P04</td><td>Cuales son los niveles de autorizacion para compromisos financieros? (montos, firmantes, poderes notariales vigentes)</td><td>Tabla de Firmas</td><td>SoD / Riesgo Fraude</td></tr>
+      <tr><td colspan="4"><div class="answer-field">{{manual_p04_authorization}}</div></td></tr>
+      <tr><td>P05</td><td>Existe Reglamento Interno de Trabajo o Codigo de Etica vigente, firmado por todos los colaboradores?</td><td>Si/No + Documento</td><td>Compliance Interno</td></tr>
+      <tr><td colspan="4"><div class="answer-field">{{manual_p05_regulations}}</div></td></tr>
+      <tr><td>P06</td><td>Como se documenta, comunica y da seguimiento al plan estrategico anual? (BSC, OKRs u otro framework)</td><td>Descriptiva + Herramienta</td><td>Alineacion Estrategica</td></tr>
+      <tr><td colspan="4"><div class="answer-field">{{manual_p06_strategic_plan}}</div></td></tr>
+    </tbody>
+  </table>
+  <div class="critical-alert">CRITICO: Si P02 o P04 son NEGATIVAS: riesgo de concentracion de poder y fraude ALTO. Escalar a revision prioritaria.</div>
+  <div class="strategy-note">[ESTRATEGIA] La ausencia de organigrama formal y tabla de poderes notariales es el punto de entrada mas frecuente del fraude interno en empresas medianas.</div>
+  <div class="footer"><span>Optimizacion de Procesos y Manuales Administrativos</span><span>Pagina 2</span></div>
+</div>
+
+<!-- PAGE 3: PILAR II -->
+<div class="page">
+  <div class="header"><span class="brand">{{branding_company_name}} | Cuestionario de Diagnostico Integral</span><span class="conf">CONFIDENCIAL</span></div>
+  <div class="pilar-header">PILAR II: CICLO FINANCIERO Y TESORERIA</div>
+  <div class="pilar-sub"><span class="roman">II</span><span class="title">CICLO FINANCIERO</span><span class="topics">Tesoreria &middot; Cobranza &middot; Pagos &middot; Cumplimiento Fiscal</span></div>
+  <p class="pilar-objective">Objetivo: Radiografiar el flujo del dinero desde su generacion hasta su resguardo, identificando brechas de control que expongan a fraude, iliquidez o contingencias fiscales.</p>
+  <table class="q-table">
+    <thead><tr><th>#</th><th>Pregunta Estrategica</th><th>Tipo de Respuesta</th><th>Area de Riesgo</th></tr></thead>
+    <tbody>
+      <tr><td>P07</td><td>Cual es el proceso de elaboracion y aprobacion del presupuesto anual?</td><td>Descriptiva</td><td>Planificacion Financiera</td></tr>
+      <tr><td colspan="4"><div class="answer-field">{{manual_p07_budget_process}}</div></td></tr>
+      <tr><td>P08</td><td>Existe un proceso formal de gestion de flujo de caja (cash flow) semanal/mensual?</td><td>Si/No + Herramienta</td><td>Gestion de Liquidez</td></tr>
+      <tr><td colspan="4"><div class="answer-field">{{manual_p08_cashflow}}</div></td></tr>
+      <tr><td>P09</td><td>Cual es la politica de cobranza vigente? Que % de la cartera tiene mas de 30, 60 y 90 dias vencida?</td><td>% por Antiguedad</td><td>DSO / Cartera Vencida</td></tr>
+      <tr><td colspan="4"><div class="answer-field">{{manual_p09_collections}}</div></td></tr>
+      <tr><td>P10</td><td>Cuales son los plazos de pago a proveedores (DPO)? Existen controles para detectar pagos duplicados?</td><td>Dias + Control</td><td>Ciclo de Pagos</td></tr>
+      <tr><td colspan="4"><div class="answer-field">{{manual_p10_payments}}</div></td></tr>
+      <tr><td>P11</td><td>Como se gestiona el cumplimiento fiscal (IVA, ISR, IMSS, Infonavit)? Existe calendario fiscal con alertas?</td><td>Descriptiva + Calendario</td><td>Riesgo Fiscal</td></tr>
+      <tr><td colspan="4"><div class="answer-field">{{manual_p11_tax_compliance}}</div></td></tr>
+      <tr><td>P12</td><td>Existe segregacion de funciones (SoD) entre quien solicita, autoriza y ejecuta pagos en banco?</td><td>Si/No + Diagrama</td><td>SoD CRITICO</td></tr>
+      <tr><td colspan="4"><div class="answer-field">{{manual_p12_sod}}</div></td></tr>
+    </tbody>
+  </table>
+  <div class="critical-alert">CRITICO: P12 NEGATIVA: una persona autoriza Y ejecuta pagos. Riesgo de fraude MAXIMO. Quick Win #1: doble firma inmediata.</div>
+  <div class="footer"><span>Optimizacion de Procesos y Manuales Administrativos</span><span>Pagina 3</span></div>
+</div>
+
+<!-- PAGE 4: PILAR III -->
+<div class="page">
+  <div class="header"><span class="brand">{{branding_company_name}} | Cuestionario de Diagnostico Integral</span><span class="conf">CONFIDENCIAL</span></div>
+  <div class="pilar-header">PILAR III: OPERACIONES Y CADENA DE VALOR</div>
+  <div class="pilar-sub"><span class="roman">III</span><span class="title">OPERACIONES</span><span class="topics">Inventarios &middot; Compras &middot; Entregas &middot; Capacidad</span></div>
+  <p class="pilar-objective">Objetivo: Identificar cuellos de botella, mermas y oportunidades de eficiencia en la cadena de valor.</p>
+  <table class="q-table">
+    <thead><tr><th>#</th><th>Pregunta Estrategica</th><th>Tipo de Respuesta</th><th>Area de Riesgo</th></tr></thead>
+    <tbody>
+      <tr><td>P13</td><td>Cual es el proceso formal de compras? Existe padron de proveedores calificados?</td><td>Descriptiva + Padron</td><td>Riesgo de Proveedor</td></tr>
+      <tr><td colspan="4"><div class="answer-field">{{manual_p13_procurement}}</div></td></tr>
+      <tr><td>P14</td><td>Como se gestiona el inventario? Que sistema se utiliza? Se realizan conteos fisicos periodicos?</td><td>Sistema + Frecuencia</td><td>Control de Activos</td></tr>
+      <tr><td colspan="4"><div class="answer-field">{{manual_p14_inventory}}</div></td></tr>
+      <tr><td>P15</td><td>Cual es el lead time promedio desde la orden de compra hasta la entrega al cliente? Real vs. meta?</td><td>Dias: Real vs. Meta</td><td>OTIF / Satisfaccion</td></tr>
+      <tr><td colspan="4"><div class="answer-field">{{manual_p15_leadtime}}</div></td></tr>
+      <tr><td>P16</td><td>Existen procedimientos operativos documentados (POEs) para los 5 procesos mas criticos?</td><td>Si/No + Lista de POEs</td><td>Continuidad Operativa</td></tr>
+      <tr><td colspan="4"><div class="answer-field">{{manual_p16_poes}}</div></td></tr>
+      <tr><td>P17</td><td>Como se controlan, miden y reportan las mermas, devoluciones y perdidas operativas?</td><td>% Mensual + Reporte</td><td>Rentabilidad</td></tr>
+      <tr><td colspan="4"><div class="answer-field">{{manual_p17_shrinkage}}</div></td></tr>
+      <tr><td>P18</td><td>Cual es la capacidad instalada versus la capacidad utilizada actualmente?</td><td>% de Utilizacion</td><td>Crecimiento / CAPEX</td></tr>
+      <tr><td colspan="4"><div class="answer-field">{{manual_p18_capacity}}</div></td></tr>
+    </tbody>
+  </table>
+  <div class="footer"><span>Optimizacion de Procesos y Manuales Administrativos</span><span>Pagina 4</span></div>
+</div>
+
+<!-- PAGE 5: PILAR IV -->
+<div class="page">
+  <div class="header"><span class="brand">{{branding_company_name}} | Cuestionario de Diagnostico Integral</span><span class="conf">CONFIDENCIAL</span></div>
+  <div class="pilar-header">PILAR IV: COMERCIAL Y ESTRATEGIA DE CRECIMIENTO</div>
+  <div class="pilar-sub"><span class="roman">IV</span><span class="title">COMERCIAL &amp; GROWTH</span><span class="topics">Ventas &middot; CRM &middot; Marketing &middot; Retencion</span></div>
+  <p class="pilar-objective">Objetivo: Auditar el motor de generacion de ingresos e identificar el 'leaky bucket' -- el punto exacto donde se pierden prospectos calificados.</p>
+  <table class="q-table">
+    <thead><tr><th>#</th><th>Pregunta Estrategica</th><th>Tipo de Respuesta</th><th>Area de Riesgo</th></tr></thead>
+    <tbody>
+      <tr><td>P19</td><td>Cual es el proceso de ventas formal desde prospeccion hasta postventa?</td><td>Diagrama de Embudo</td><td>Ciclo de Venta</td></tr>
+      <tr><td colspan="4"><div class="answer-field">{{manual_p19_sales_process}}</div></td></tr>
+      <tr><td>P20</td><td>Se utiliza CRM u herramienta de gestion de clientes? Cual es el nivel de adopcion?</td><td>Herramienta + % Adopcion</td><td>Inteligencia Comercial</td></tr>
+      <tr><td colspan="4"><div class="answer-field">{{manual_p20_crm}}</div></td></tr>
+      <tr><td>P21</td><td>Como se segmenta la base de clientes? Existe perfil ICP documentado?</td><td>Criterios + Segmentos</td><td>Concentracion de Ingresos</td></tr>
+      <tr><td colspan="4"><div class="answer-field">{{manual_p21_segmentation}}</div></td></tr>
+      <tr><td>P22</td><td>Cual es la tasa de retencion en los ultimos 12 meses? Se mide NPS?</td><td>% Retencion + NPS</td><td>Churn / LTV</td></tr>
+      <tr><td colspan="4"><div class="answer-field">{{manual_p22_retention}}</div></td></tr>
+      <tr><td>P23</td><td>Cuales son los canales de adquisicion activos? Se mide el CAC por canal?</td><td>Canal + CAC ($)</td><td>ROI Comercial</td></tr>
+      <tr><td colspan="4"><div class="answer-field">{{manual_p23_acquisition}}</div></td></tr>
+      <tr><td>P24</td><td>Existe proceso formal de atencion a quejas y seguimiento postventa con SLA?</td><td>Si/No + SLA Definido</td><td>Riesgo Reputacional</td></tr>
+      <tr><td colspan="4"><div class="answer-field">{{manual_p24_complaints}}</div></td></tr>
+    </tbody>
+  </table>
+  <div class="critical-alert">ALTO: P20 NEGATIVA (sin CRM): inteligencia comercial en 'cajas negras' individuales. -15% a -25% en conversion estimada.</div>
+  <div class="footer"><span>Optimizacion de Procesos y Manuales Administrativos</span><span>Pagina 5</span></div>
+</div>
+
+<!-- PAGE 6: PILAR V -->
+<div class="page">
+  <div class="header"><span class="brand">{{branding_company_name}} | Cuestionario de Diagnostico Integral</span><span class="conf">CONFIDENCIAL</span></div>
+  <div class="pilar-header">PILAR V: CAPITAL HUMANO Y CUMPLIMIENTO NORMATIVO</div>
+  <div class="pilar-sub"><span class="roman">V</span><span class="title">CAPITAL HUMANO &amp; COMPLIANCE</span><span class="topics">Nomina &middot; Contratos &middot; Rotacion &middot; Normatividad</span></div>
+  <p class="pilar-objective">Objetivo: Evaluar la exposicion laboral, fiscal y normativa derivada de la gestion de personas.</p>
+  <table class="q-table">
+    <thead><tr><th>#</th><th>Pregunta Estrategica</th><th>Tipo de Respuesta</th><th>Area de Riesgo</th></tr></thead>
+    <tbody>
+      <tr><td>P25</td><td>Cual es la estructura de nomina (fijos vs. variables, esquemas mixtos)? Que % sobre ingresos?</td><td>% sobre Ingresos</td><td>Apalancamiento Operativo</td></tr>
+      <tr><td colspan="4"><div class="answer-field">{{manual_p25_payroll}}</div></td></tr>
+      <tr><td>P26</td><td>El 100% de los colaboradores tiene contrato formal y esta en IMSS/INFONAVIT?</td><td>% de Cumplimiento</td><td>Riesgo Laboral CRITICO</td></tr>
+      <tr><td colspan="4"><div class="answer-field">{{manual_p26_contracts}}</div></td></tr>
+      <tr><td>P27</td><td>Cual fue la tasa de rotacion en los ultimos 12 meses, diferenciada por nivel?</td><td>% por Nivel</td><td>Costo de Rotacion</td></tr>
+      <tr><td colspan="4"><div class="answer-field">{{manual_p27_turnover}}</div></td></tr>
+      <tr><td>P28</td><td>Existen descripciones de puestos (Job Descriptions) formales y actualizadas?</td><td>Si/No + % Cobertura</td><td>Claridad de Roles</td></tr>
+      <tr><td colspan="4"><div class="answer-field">{{manual_p28_job_descriptions}}</div></td></tr>
+      <tr><td>P29</td><td>Como se realizan las evaluaciones de desempeno? Existe sistema de objetivos?</td><td>Metodo + Periodicidad</td><td>Productividad / Retencion</td></tr>
+      <tr><td colspan="4"><div class="answer-field">{{manual_p29_performance}}</div></td></tr>
+      <tr><td>P30</td><td>Existe programa activo de cumplimiento normativo? (STPS, IMSS, SAT, LFPDPPP, REPSE)</td><td>Programa + Ultima Auditoria</td><td>Compliance Legal CRITICO</td></tr>
+      <tr><td colspan="4"><div class="answer-field">{{manual_p30_compliance}}</div></td></tr>
+    </tbody>
+  </table>
+  <div class="critical-alert">CRITICO: P26 < 100%: pasivo laboral latente + contingencia SAT. Multas IMSS: hasta 350 UMAs por trabajador no registrado.</div>
+  <div class="footer"><span>Optimizacion de Procesos y Manuales Administrativos</span><span>Pagina 6</span></div>
+</div>
+
+<!-- PAGE 7: DOCUMENTATION CHECKLIST -->
+<div class="page">
+  <div class="header"><span class="brand">{{branding_company_name}} | Cuestionario de Diagnostico Integral</span><span class="conf">CONFIDENCIAL</span></div>
+  <div class="pilar-header">SECCION VI: DOCUMENTACION REQUERIDA AL CLIENTE</div>
+  <div class="strategy-note">[ESTRATEGIA] La entrega de esta documentacion es condicion sine qua non para iniciar el analisis formal.</div>
+
+  <h4 style="margin-bottom:8px">A. DOCUMENTOS FINANCIEROS</h4>
+  <table class="doc-table">
+    <thead><tr><th>Documento</th><th>Detalle / Periodo</th><th>Prioridad</th><th>Estatus</th></tr></thead>
+    <tbody>
+      <tr><td>Estados Financieros (Balance + Estado de Resultados)</td><td>Ultimos 3 anos fiscales</td><td class="priority">CRITICA</td><td><span class="status-box"></span></td></tr>
+      <tr><td>Flujo de Caja real vs. presupuestado</td><td>Ultimos 12 meses</td><td class="priority">CRITICA</td><td><span class="status-box"></span></td></tr>
+      <tr><td>Reporte de Cartera con antiguedad de saldos</td><td>Al corte actual</td><td class="priority">CRITICA</td><td><span class="status-box"></span></td></tr>
+      <tr><td>Cedulas de impuestos declarados (IVA / ISR)</td><td>Ultimos 2 anos</td><td class="priority">ALTA</td><td><span class="status-box"></span></td></tr>
+      <tr><td>Presupuesto anual aprobado</td><td>Ano en curso</td><td class="priority">ALTA</td><td><span class="status-box"></span></td></tr>
+    </tbody>
+  </table>
+
+  <h4 style="margin-bottom:8px">B. DOCUMENTOS ORGANIZACIONALES</h4>
+  <table class="doc-table">
+    <thead><tr><th>Documento</th><th>Detalle</th><th>Prioridad</th><th>Estatus</th></tr></thead>
+    <tbody>
+      <tr><td>Organigrama vigente</td><td>Con nombres y puestos actuales</td><td class="priority">CRITICA</td><td><span class="status-box"></span></td></tr>
+      <tr><td>Escritura constitutiva y poderes notariales</td><td>Version vigente</td><td class="priority">CRITICA</td><td><span class="status-box"></span></td></tr>
+      <tr><td>Contratos laborales (muestra representativa)</td><td>5 contratos de distintos niveles</td><td class="priority">ALTA</td><td><span class="status-box"></span></td></tr>
+      <tr><td>Actas de Asamblea / Minutas de Consejo</td><td>Ultimas 3 sesiones</td><td class="priority">MEDIA</td><td><span class="status-box"></span></td></tr>
+      <tr><td>Manual de procedimientos previo (si existe)</td><td>Cualquier version disponible</td><td class="priority">MEDIA</td><td><span class="status-box"></span></td></tr>
+    </tbody>
+  </table>
+
+  <h4 style="margin-bottom:8px">C. DOCUMENTOS OPERATIVOS Y COMERCIALES</h4>
+  <table class="doc-table">
+    <thead><tr><th>Documento</th><th>Detalle</th><th>Prioridad</th><th>Estatus</th></tr></thead>
+    <tbody>
+      <tr><td>Reporte de ventas por cliente y canal</td><td>Ultimos 12 meses</td><td class="priority">CRITICA</td><td><span class="status-box"></span></td></tr>
+      <tr><td>Lista de proveedores principales (Top 20)</td><td>Con montos anuales de compra</td><td class="priority">ALTA</td><td><span class="status-box"></span></td></tr>
+      <tr><td>Reporte de rotacion de personal</td><td>Ultimos 2 anos</td><td class="priority">MEDIA</td><td><span class="status-box"></span></td></tr>
+      <tr><td>Inventario de sistemas y herramientas</td><td>Con licencias y costos activos</td><td class="priority">MEDIA</td><td><span class="status-box"></span></td></tr>
+    </tbody>
+  </table>
+
+  <div class="impact-box">
+    <h4>IMPACTO EN EL NEGOCIO</h4>
+    <p>Un cuestionario de diagnostico estructurado bajo el principio MECE reduce en un 40% el tiempo de analisis al eliminar re-trabajo por informacion incompleta.</p>
+  </div>
+  <div class="footer"><span>Optimizacion de Procesos y Manuales Administrativos</span><span>Pagina 7</span></div>
+</div>
+
+</body>
+</html>

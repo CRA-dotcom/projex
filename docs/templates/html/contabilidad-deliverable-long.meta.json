@@ -1,0 +1,203 @@
+{
+  "template_id": "contabilidad-deliverable-long",
+  "name": "Informe de Auditoria Interna y Cumplimiento Fiscal",
+  "service_line": "contabilidad",
+  "service_tier": "premium",
+  "document_type": "deliverable",
+  "frequency": "quarterly_annual",
+  "pages": 10,
+  "source_pdf": "Copia de 05_Entregable_Trimestral_Anual.pdf",
+  "version": "1.0.0",
+  "created_at": "2026-03-27",
+  "sections": [
+    "cover_and_index",
+    "risk_dashboard",
+    "executive_summary",
+    "kpi_indicators",
+    "income_statement_comparative",
+    "balance_sheet",
+    "fiscal_analysis",
+    "fiscal_symmetry_cfdi",
+    "payroll_audit",
+    "fixed_assets",
+    "cxc_cxp_aging",
+    "diot_informativas",
+    "annual_tax_return",
+    "cufin_cuca",
+    "ptu_calculation",
+    "financial_ratios",
+    "findings_action_plan",
+    "client_commitments",
+    "conclusions",
+    "next_steps",
+    "signatures",
+    "delivery_receipt"
+  ],
+  "variables": {
+    "branding": [
+      "branding_company_name",
+      "branding_company_legal_name",
+      "branding_year"
+    ],
+    "client": [
+      "client_name",
+      "client_rfc"
+    ],
+    "report_meta": [
+      "advisor_name",
+      "report_type",
+      "report_period",
+      "report_date"
+    ],
+    "ai_risk_semaphores": [
+      "ai_risk_fiscal",
+      "ai_risk_contable",
+      "ai_risk_laboral",
+      "ai_risk_cumplimiento",
+      "ai_risk_operativo",
+      "ai_risk_estrategico",
+      "ai_risk_global",
+      "ai_risk_simetria_fiscal"
+    ],
+    "ai_narrative": [
+      "ai_executive_summary",
+      "ai_financial_statements_obs",
+      "ai_fiscal_acciones_correctivas",
+      "ai_payroll_observaciones",
+      "ai_assets_observaciones",
+      "ai_aging_recomendaciones",
+      "ai_diot_observaciones",
+      "ai_annual_observaciones",
+      "ai_ratios_interpretacion",
+      "ai_conclusion"
+    ],
+    "ai_kpis": [
+      "ai_kpi_ingresos_acum", "ai_kpi_ingresos_acum_var",
+      "ai_kpi_egresos_acum", "ai_kpi_egresos_acum_var",
+      "ai_kpi_utilidad_acum", "ai_kpi_utilidad_acum_var",
+      "ai_kpi_isr_acum", "ai_kpi_isr_acum_var",
+      "ai_kpi_saldo_bancario", "ai_kpi_saldo_bancario_var",
+      "ai_kpi_cxc_trimestre", "ai_kpi_cxc_trimestre_var"
+    ],
+    "ai_income_statement": [
+      "ai_pl_ingresos_p1", "ai_pl_ingresos_p2", "ai_pl_ingresos_p3", "ai_pl_ingresos_total",
+      "ai_pl_costos_p1", "ai_pl_costos_p2", "ai_pl_costos_p3", "ai_pl_costos_total",
+      "ai_pl_utilidad_bruta_p1", "ai_pl_utilidad_bruta_p2", "ai_pl_utilidad_bruta_p3", "ai_pl_utilidad_bruta_total",
+      "ai_pl_gastos_op_p1", "ai_pl_gastos_op_p2", "ai_pl_gastos_op_p3", "ai_pl_gastos_op_total",
+      "ai_pl_gastos_admin_p1", "ai_pl_gastos_admin_p2", "ai_pl_gastos_admin_p3", "ai_pl_gastos_admin_total",
+      "ai_pl_depreciaciones_p1", "ai_pl_depreciaciones_p2", "ai_pl_depreciaciones_p3", "ai_pl_depreciaciones_total",
+      "ai_pl_ebitda_p1", "ai_pl_ebitda_p2", "ai_pl_ebitda_p3", "ai_pl_ebitda_total",
+      "ai_pl_gastos_fin_p1", "ai_pl_gastos_fin_p2", "ai_pl_gastos_fin_p3", "ai_pl_gastos_fin_total",
+      "ai_pl_otros_p1", "ai_pl_otros_p2", "ai_pl_otros_p3", "ai_pl_otros_total",
+      "ai_pl_uai_p1", "ai_pl_uai_p2", "ai_pl_uai_p3", "ai_pl_uai_total",
+      "ai_pl_isr_p1", "ai_pl_isr_p2", "ai_pl_isr_p3", "ai_pl_isr_total",
+      "ai_pl_ptu_p1", "ai_pl_ptu_p2", "ai_pl_ptu_p3", "ai_pl_ptu_total",
+      "ai_pl_utilidad_neta_p1", "ai_pl_utilidad_neta_p2", "ai_pl_utilidad_neta_p3", "ai_pl_utilidad_neta_total"
+    ],
+    "ai_balance_sheet": [
+      "ai_bs_activo_circ_inicio", "ai_bs_activo_circ_cierre", "ai_bs_activo_circ_var",
+      "ai_bs_activo_fijo_inicio", "ai_bs_activo_fijo_cierre", "ai_bs_activo_fijo_var",
+      "ai_bs_activo_total_inicio", "ai_bs_activo_total_cierre", "ai_bs_activo_total_var",
+      "ai_bs_pasivo_cp_inicio", "ai_bs_pasivo_cp_cierre", "ai_bs_pasivo_cp_var",
+      "ai_bs_pasivo_lp_inicio", "ai_bs_pasivo_lp_cierre", "ai_bs_pasivo_lp_var",
+      "ai_bs_pasivo_total_inicio", "ai_bs_pasivo_total_cierre", "ai_bs_pasivo_total_var",
+      "ai_bs_capital_inicio", "ai_bs_capital_cierre", "ai_bs_capital_var"
+    ],
+    "ai_fiscal_declarations": [
+      "ai_fiscal_p1_periodo", "ai_fiscal_p1_ingresos", "ai_fiscal_p1_iva", "ai_fiscal_p1_isr", "ai_fiscal_p1_diferencia", "ai_fiscal_p1_status",
+      "ai_fiscal_p2_periodo", "ai_fiscal_p2_ingresos", "ai_fiscal_p2_iva", "ai_fiscal_p2_isr", "ai_fiscal_p2_diferencia", "ai_fiscal_p2_status",
+      "ai_fiscal_p3_periodo", "ai_fiscal_p3_ingresos", "ai_fiscal_p3_iva", "ai_fiscal_p3_isr", "ai_fiscal_p3_diferencia", "ai_fiscal_p3_status"
+    ],
+    "ai_fiscal_symmetry": [
+      "ai_simetria_ingresos_cfdi", "ai_simetria_ingresos_sat", "ai_simetria_ingresos_diff", "ai_simetria_ingresos_diff_pct",
+      "ai_simetria_gastos_cfdi", "ai_simetria_gastos_sat", "ai_simetria_gastos_diff", "ai_simetria_gastos_diff_pct",
+      "ai_simetria_iva_cfdi", "ai_simetria_iva_sat", "ai_simetria_iva_diff", "ai_simetria_iva_diff_pct"
+    ],
+    "ai_payroll": [
+      "ai_payroll_m1_label", "ai_payroll_m1_workers", "ai_payroll_m1_gross", "ai_payroll_m1_ded", "ai_payroll_m1_net", "ai_payroll_m1_imss", "ai_payroll_m1_infonavit",
+      "ai_payroll_m2_label", "ai_payroll_m2_workers", "ai_payroll_m2_gross", "ai_payroll_m2_ded", "ai_payroll_m2_net", "ai_payroll_m2_imss", "ai_payroll_m2_infonavit",
+      "ai_payroll_m3_label", "ai_payroll_m3_workers", "ai_payroll_m3_gross", "ai_payroll_m3_ded", "ai_payroll_m3_net", "ai_payroll_m3_imss", "ai_payroll_m3_infonavit",
+      "ai_payroll_total_workers", "ai_payroll_total_gross", "ai_payroll_total_ded", "ai_payroll_total_net", "ai_payroll_total_imss", "ai_payroll_total_infonavit"
+    ],
+    "ai_fixed_assets": [
+      "ai_assets_maquinaria_qty", "ai_assets_maquinaria_orig", "ai_assets_maquinaria_dep", "ai_assets_maquinaria_net", "ai_assets_maquinaria_obs",
+      "ai_assets_computo_qty", "ai_assets_computo_orig", "ai_assets_computo_dep", "ai_assets_computo_net", "ai_assets_computo_obs",
+      "ai_assets_mobiliario_qty", "ai_assets_mobiliario_orig", "ai_assets_mobiliario_dep", "ai_assets_mobiliario_net", "ai_assets_mobiliario_obs",
+      "ai_assets_vehiculos_qty", "ai_assets_vehiculos_orig", "ai_assets_vehiculos_dep", "ai_assets_vehiculos_net", "ai_assets_vehiculos_obs",
+      "ai_assets_mejoras_qty", "ai_assets_mejoras_orig", "ai_assets_mejoras_dep", "ai_assets_mejoras_net", "ai_assets_mejoras_obs",
+      "ai_assets_otro_qty", "ai_assets_otro_orig", "ai_assets_otro_dep", "ai_assets_otro_net", "ai_assets_otro_obs"
+    ],
+    "ai_aging": [
+      "ai_aging_cxc_030", "ai_aging_cxc_030_pct", "ai_aging_cxp_030", "ai_aging_cxp_030_pct", "ai_aging_030_obs",
+      "ai_aging_cxc_3160", "ai_aging_cxc_3160_pct", "ai_aging_cxp_3160", "ai_aging_cxp_3160_pct", "ai_aging_3160_obs",
+      "ai_aging_cxc_6190", "ai_aging_cxc_6190_pct", "ai_aging_cxp_6190", "ai_aging_cxp_6190_pct", "ai_aging_6190_obs",
+      "ai_aging_cxc_91120", "ai_aging_cxc_91120_pct", "ai_aging_cxp_91120", "ai_aging_cxp_91120_pct", "ai_aging_91120_obs",
+      "ai_aging_cxc_120plus", "ai_aging_cxc_120plus_pct", "ai_aging_cxp_120plus", "ai_aging_cxp_120plus_pct", "ai_aging_120plus_obs",
+      "ai_aging_cxc_total", "ai_aging_cxp_total"
+    ],
+    "ai_diot": [
+      "ai_diot_m1_periodo", "ai_diot_m1_proveedores", "ai_diot_m1_iva", "ai_diot_m1_fecha", "ai_diot_m1_acuse", "ai_diot_m1_discrepancias",
+      "ai_diot_m2_periodo", "ai_diot_m2_proveedores", "ai_diot_m2_iva", "ai_diot_m2_fecha", "ai_diot_m2_acuse", "ai_diot_m2_discrepancias",
+      "ai_diot_m3_periodo", "ai_diot_m3_proveedores", "ai_diot_m3_iva", "ai_diot_m3_fecha", "ai_diot_m3_acuse", "ai_diot_m3_discrepancias"
+    ],
+    "ai_annual_tax_return": [
+      "ai_annual_ingresos", "ai_annual_ingresos_prev",
+      "ai_annual_deducciones", "ai_annual_deducciones_prev",
+      "ai_annual_resultado_fiscal", "ai_annual_resultado_fiscal_prev",
+      "ai_annual_ptu", "ai_annual_ptu_prev",
+      "ai_annual_perdidas", "ai_annual_perdidas_prev",
+      "ai_annual_isr_determinado", "ai_annual_isr_determinado_prev",
+      "ai_annual_pagos_prov", "ai_annual_pagos_prov_prev",
+      "ai_annual_isr_cargo", "ai_annual_isr_cargo_prev",
+      "ai_annual_isr_pagado", "ai_annual_isr_pagado_prev",
+      "ai_annual_cufin", "ai_annual_cuca",
+      "ai_annual_ptu_base", "ai_annual_ptu_total", "ai_annual_ptu_pagar", "ai_annual_ptu_fecha"
+    ],
+    "ai_financial_ratios": [
+      "ai_ratio_corriente", "ai_ratio_corriente_prev", "ai_ratio_corriente_var",
+      "ai_ratio_acida", "ai_ratio_acida_prev", "ai_ratio_acida_var",
+      "ai_ratio_capital_trabajo", "ai_ratio_capital_trabajo_prev", "ai_ratio_capital_trabajo_var",
+      "ai_ratio_margen_bruto", "ai_ratio_margen_bruto_prev", "ai_ratio_margen_bruto_var",
+      "ai_ratio_margen_ebitda", "ai_ratio_margen_ebitda_prev", "ai_ratio_margen_ebitda_var",
+      "ai_ratio_margen_neto", "ai_ratio_margen_neto_prev", "ai_ratio_margen_neto_var",
+      "ai_ratio_roe", "ai_ratio_roe_prev", "ai_ratio_roe_var",
+      "ai_ratio_dias_cobro", "ai_ratio_dias_cobro_prev", "ai_ratio_dias_cobro_var",
+      "ai_ratio_dias_pago", "ai_ratio_dias_pago_prev", "ai_ratio_dias_pago_var",
+      "ai_ratio_rotacion_inv", "ai_ratio_rotacion_inv_prev", "ai_ratio_rotacion_inv_var",
+      "ai_ratio_deuda_capital", "ai_ratio_deuda_capital_prev", "ai_ratio_deuda_capital_var",
+      "ai_ratio_deuda_activo", "ai_ratio_deuda_activo_prev", "ai_ratio_deuda_activo_var"
+    ],
+    "ai_findings": [
+      "ai_finding_1_area", "ai_finding_1", "ai_finding_1_risk", "ai_finding_1_impact", "ai_recommendation_1", "ai_finding_1_responsible", "ai_finding_1_deadline",
+      "ai_finding_2_area", "ai_finding_2", "ai_finding_2_risk", "ai_finding_2_impact", "ai_recommendation_2", "ai_finding_2_responsible", "ai_finding_2_deadline",
+      "ai_finding_3_area", "ai_finding_3", "ai_finding_3_risk", "ai_finding_3_impact", "ai_recommendation_3", "ai_finding_3_responsible", "ai_finding_3_deadline",
+      "ai_finding_4_area", "ai_finding_4", "ai_finding_4_risk", "ai_finding_4_impact", "ai_recommendation_4", "ai_finding_4_responsible", "ai_finding_4_deadline",
+      "ai_finding_5_area", "ai_finding_5", "ai_finding_5_risk", "ai_finding_5_impact", "ai_recommendation_5", "ai_finding_5_responsible", "ai_finding_5_deadline",
+      "ai_finding_6_area", "ai_finding_6", "ai_finding_6_risk", "ai_finding_6_impact", "ai_recommendation_6", "ai_finding_6_responsible", "ai_finding_6_deadline",
+      "ai_finding_7_area", "ai_finding_7", "ai_finding_7_risk", "ai_finding_7_impact", "ai_recommendation_7", "ai_finding_7_responsible", "ai_finding_7_deadline",
+      "ai_finding_8_area", "ai_finding_8", "ai_finding_8_risk", "ai_finding_8_impact", "ai_recommendation_8", "ai_finding_8_responsible", "ai_finding_8_deadline",
+      "ai_finding_9_area", "ai_finding_9", "ai_finding_9_risk", "ai_finding_9_impact", "ai_recommendation_9", "ai_finding_9_responsible", "ai_finding_9_deadline",
+      "ai_finding_10_area", "ai_finding_10", "ai_finding_10_risk", "ai_finding_10_impact", "ai_recommendation_10", "ai_finding_10_responsible", "ai_finding_10_deadline"
+    ],
+    "ai_commitments": [
+      "ai_commitment_1", "ai_commitment_1_responsible", "ai_commitment_1_date", "ai_commitment_1_status",
+      "ai_commitment_2", "ai_commitment_2_responsible", "ai_commitment_2_date", "ai_commitment_2_status",
+      "ai_commitment_3", "ai_commitment_3_responsible", "ai_commitment_3_date", "ai_commitment_3_status",
+      "ai_commitment_4", "ai_commitment_4_responsible", "ai_commitment_4_date", "ai_commitment_4_status"
+    ],
+    "ai_next_steps": [
+      "ai_next_step_1", "ai_next_step_1_area", "ai_next_step_1_responsible", "ai_next_step_1_date", "ai_next_step_1_priority",
+      "ai_next_step_2", "ai_next_step_2_area", "ai_next_step_2_responsible", "ai_next_step_2_date", "ai_next_step_2_priority",
+      "ai_next_step_3", "ai_next_step_3_area", "ai_next_step_3_responsible", "ai_next_step_3_date", "ai_next_step_3_priority",
+      "ai_next_step_4", "ai_next_step_4_area", "ai_next_step_4_responsible", "ai_next_step_4_date", "ai_next_step_4_priority",
+      "ai_next_step_5", "ai_next_step_5_area", "ai_next_step_5_responsible", "ai_next_step_5_date", "ai_next_step_5_priority"
+    ],
+    "signatures": [
+      "sig_advisor_name", "sig_advisor_role", "sig_advisor_date",
+      "sig_client_name", "sig_client_role", "sig_client_date"
+    ],
+    "delivery": [
+      "delivery_folio", "delivery_date", "delivery_by", "delivery_received_by"
+    ]
+  }
+}

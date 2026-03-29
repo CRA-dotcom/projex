@@ -1,0 +1,63 @@
+{
+  "template_id": "financiero-deliverable-short",
+  "name": "Diagnostico Financiero - Version Ejecutiva (Corta)",
+  "service_line": "Financiero",
+  "type": "deliverable",
+  "variant": "short",
+  "version": "1.0",
+  "source_file": "Copia de Reporte_Diagnostico_Version_Corta.docx",
+  "variables": {
+    "client_info": {
+      "client_name": { "type": "string", "source": "client_record" },
+      "client_industry": { "type": "string", "source": "client_record" },
+      "current_date": { "type": "date", "source": "system" },
+      "branding_company_name": { "type": "string", "source": "org_settings" }
+    },
+    "context": {
+      "ai_financial_period": { "type": "string", "source": "calculated", "description": "Periodo de analisis (Ano -2 - Ano Actual)" },
+      "ai_financial_currency_unit": { "type": "string", "source": "user_input", "description": "Moneda y unidad (e.g. MXN / Miles)" },
+      "ai_financial_analyst_opinion": { "type": "text", "source": "ai", "description": "Opinion ejecutiva 2-3 oraciones" }
+    },
+    "kpis": [
+      "ai_financial_kpi_revenue", "ai_financial_kpi_ebitda",
+      "ai_financial_kpi_ebitda_margin", "ai_financial_kpi_net_income",
+      "ai_ratio_current", "ai_ratio_net_debt_ebitda", "ai_ratio_roe", "ai_ratio_cce"
+    ],
+    "income_statement_summary": {
+      "description": "P&L 3-year summary with _y2, _y1, _y0, _var, _trend suffixes",
+      "fields": ["revenue", "cogs", "gross", "gm", "opex", "ebit", "em", "ebitda", "ebitdam", "ni", "nm"]
+    },
+    "balance_summary": {
+      "description": "Balance summary with _y2, _y1, _y0, _pct suffixes",
+      "fields": ["ca", "cash", "ar", "inv", "nca", "ta", "cl", "ncl", "tl", "eq"]
+    },
+    "ratios": {
+      "description": "Financial ratios with _y2, _y1, _y0, _signal, _status suffixes",
+      "categories": {
+        "liquidity": ["current", "acid"],
+        "solvency": ["de", "nd_ebitda", "icr"],
+        "efficiency": ["dso", "dio", "dpo", "cce"],
+        "profitability": ["gm", "em", "nm", "roe"]
+      }
+    },
+    "findings": {
+      "strengths": ["ai_financial_strength_1", "ai_financial_strength_2", "ai_financial_strength_3", "ai_financial_strength_4"],
+      "risks": ["ai_financial_risk_1", "ai_financial_risk_2", "ai_financial_risk_3", "ai_financial_risk_4"]
+    },
+    "recommendations": [
+      "ai_recommendation_1", "ai_recommendation_1_impact",
+      "ai_recommendation_2", "ai_recommendation_2_impact",
+      "ai_recommendation_3", "ai_recommendation_3_impact",
+      "ai_recommendation_4", "ai_recommendation_4_impact",
+      "ai_recommendation_5", "ai_recommendation_5_impact"
+    ]
+  },
+  "sections": [
+    "Resumen Ejecutivo y KPIs",
+    "Analisis de Tendencias (P&L y Balance)",
+    "Ratios Financieros Clave",
+    "Hallazgos Clave (Fortalezas y Riesgos)",
+    "Recomendaciones Ejecutivas",
+    "Caveats y Limitaciones"
+  ]
+}

@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cuestionario de Calificacion Tecnologica - {{client_name}}</title>
+  <style>
+    :root {
+      --primary: #1a1a2e;
+      --accent: #e94560;
+      --bg: #ffffff;
+      --text: #1a1a2e;
+      --border: #ddd;
+      --header-bg: #f8f9fa;
+      --section-bg: #f0f2f5;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color: var(--text); line-height: 1.6; max-width: 900px; margin: 0 auto; padding: 40px 20px; }
+    .cover { text-align: center; margin-bottom: 40px; padding: 40px 20px; border: 2px solid var(--primary); }
+    .cover .tag { font-size: 0.85rem; letter-spacing: 3px; color: var(--accent); margin-bottom: 8px; }
+    .cover h1 { font-size: 1.6rem; margin-bottom: 4px; }
+    .cover .subtitle { font-size: 1rem; color: #555; margin-bottom: 12px; }
+    .cover .frameworks { font-size: 0.85rem; color: #777; }
+    .cover .version { font-size: 0.8rem; color: #999; margin-top: 8px; }
+    .info-table { width: 100%; border-collapse: collapse; margin-bottom: 30px; }
+    .info-table td { padding: 8px 12px; border: 1px solid var(--border); }
+    .info-table td:first-child { font-weight: 600; width: 220px; background: var(--header-bg); }
+    h1 { font-size: 1.3rem; color: var(--primary); margin: 30px 0 12px; border-bottom: 2px solid var(--accent); padding-bottom: 6px; }
+    h2 { font-size: 1.1rem; color: var(--primary); margin: 20px 0 10px; }
+    p, li { margin-bottom: 8px; font-size: 0.95rem; }
+    ol { padding-left: 24px; }
+    .structure-table, .question-table, .scoring-table, .raci-table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
+    .structure-table th, .question-table th, .scoring-table th, .raci-table th { background: var(--primary); color: #fff; padding: 8px 10px; text-align: left; font-size: 0.85rem; }
+    .structure-table td, .question-table td, .scoring-table td, .raci-table td { padding: 6px 10px; border: 1px solid var(--border); font-size: 0.85rem; }
+    .structure-table tr:nth-child(even), .scoring-table tr:nth-child(even), .raci-table tr:nth-child(even) { background: var(--header-bg); }
+    .section-header { background: var(--section-bg); font-weight: 700; text-align: center; padding: 10px; font-size: 0.9rem; border: 1px solid var(--border); margin-top: 10px; }
+    .question-block { margin-bottom: 16px; border: 1px solid var(--border); }
+    .question-block .q-header { background: var(--header-bg); padding: 8px 10px; font-weight: 600; font-size: 0.9rem; }
+    .question-block table { width: 100%; border-collapse: collapse; }
+    .question-block td { padding: 5px 10px; border-top: 1px solid var(--border); font-size: 0.85rem; }
+    .question-block td:nth-child(1) { width: 40px; text-align: center; font-weight: 600; }
+    .question-block td:nth-child(3) { width: 40px; text-align: center; }
+    .question-block td:nth-child(4) { width: 40px; text-align: center; }
+    .observations-box { border: 1px solid var(--border); padding: 20px; min-height: 100px; margin-bottom: 20px; background: var(--header-bg); }
+    .raci-legend { font-size: 0.8rem; color: #666; margin-top: 8px; }
+    @media print { body { padding: 20px; } .cover { page-break-after: always; } }
+  </style>
+</head>
+<body>
+
+  <!-- COVER -->
+  <div class="cover">
+    <div class="tag">CONSULTORIA TECNOLOGICA</div>
+    <h1>CUESTIONARIO DE CALIFICACION UNIFICADO</h1>
+    <div class="subtitle">Instrumento de Evaluacion de Madurez Tecnologica</div>
+    <div class="frameworks">Marco de referencia: ITIL 4 &middot; COBIT 2019 &middot; ISO/IEC 27001</div>
+    <div class="version">Version 1.0 | {{current_date}} | Confidencial</div>
+  </div>
+
+  <!-- CLIENT INFO -->
+  <table class="info-table">
+    <tr><td>EMPRESA / CLIENTE</td><td>{{client_name}}</td></tr>
+    <tr><td>INDUSTRIA / SECTOR</td><td>{{client_industry}}</td></tr>
+    <tr><td>FECHA DE APLICACION</td><td>{{current_date}}</td></tr>
+    <tr><td>CONSULTOR</td><td>{{branding_company_name}}</td></tr>
+    <tr><td>FOLIO EXPEDIENTE</td><td>{{document_folio}}</td></tr>
+  </table>
+
+  <!-- INSTRUCCIONES -->
+  <h1>INSTRUCCIONES DE APLICACION</h1>
+  <p>Este cuestionario es el instrumento estandarizado de Consultoria para evaluar el nivel de madurez tecnologica de un prospecto o cliente. El resultado determina, de forma objetiva, la ruta de servicio optima alineada a los marcos ITIL 4 y COBIT 2019.</p>
+
+  <h2>ESTRUCTURA DEL INSTRUMENTO</h2>
+  <p>20 preguntas estrategicas distribuidas en 4 secciones de igual peso (25 pts c/u), total posible: 100 pts.</p>
+
+  <table class="structure-table">
+    <thead>
+      <tr><th>SECC.</th><th>AREA</th><th>ENFOQUE</th><th>PESO</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>A</td><td>Infraestructura</td><td>Inventario de activos, obsolescencia, monitoreo, backup y dimensionamiento</td><td>25 pts</td></tr>
+      <tr><td>B</td><td>Seguridad</td><td>Auditorias, MFA, gestion de parches, IR Plan y control de licencias</td><td>25 pts</td></tr>
+      <tr><td>C</td><td>Puntos de Dolor</td><td>Disponibilidad, MTTR, capital humano TI, SLAs y documentacion de procesos</td><td>25 pts</td></tr>
+      <tr><td>D</td><td>Objetivos de Negocio</td><td>IT Roadmap, presupuesto TI, transformacion digital y gobernanza ITIL/COBIT</td><td>25 pts</td></tr>
+    </tbody>
+  </table>
+
+  <h2>INSTRUCCIONES PARA EL CONSULTOR</h2>
+  <ol>
+    <li>Aplicar en sesion presencial o videollamada con el responsable de TI y, de ser posible, con el Director General del cliente.</li>
+    <li>Seleccionar UNA sola opcion por pregunta, la que mejor refleje la situacion actual del cliente.</li>
+    <li>Anotar el puntaje de cada respuesta en la columna PTS. Sumar el total por seccion al finalizar.</li>
+    <li>Consultar la Matriz de Scoring (seccion final) para determinar la ruta de servicio recomendada.</li>
+    <li>Registrar el folio y archivar en CRM con estatus Calificado.</li>
+    <li>Presentar el resultado al cliente en un debrief ejecutivo de maximo 30 minutos.</li>
+  </ol>
+
+  <!-- SECCION A -->
+  <h1>SECCION A &mdash; INFRAESTRUCTURA</h1>
+  <div class="section-header">SECCION A &mdash; INFRAESTRUCTURA | Peso maximo: 25 pts</div>
+
+  <div class="question-block">
+    <div class="q-header">P01 &mdash; &iquest;Cuenta con un inventario formal y actualizado de activos tecnologicos (hardware/software)?</div>
+    <table>
+      <tr><td>A</td><td>Sin inventario documentado.</td><td>0</td><td>{{q01_selected}}</td></tr>
+      <tr><td>B</td><td>Inventario parcial y desactualizado (&gt;6 meses sin revision).</td><td>2</td><td></td></tr>
+      <tr><td>C</td><td>Inventario completo con actualizacion manual esporadica.</td><td>3</td><td></td></tr>
+      <tr><td>D</td><td>Inventario automatizado, actualizado y bajo control formal de cambios.</td><td>5</td><td></td></tr>
+    </table>
+  </div>
+
+  <div class="question-block">
+    <div class="q-header">P02 &mdash; &iquest;Cual es la antiguedad promedio de su infraestructura de servidores y sistemas criticos?</div>
+    <table>
+      <tr><td>A</td><td>Mas de 7 anos. Alto riesgo de obsolescencia y fallo.</td><td>0</td><td>{{q02_selected}}</td></tr>
+      <tr><td>B</td><td>Entre 5 y 7 anos.</td><td>2</td><td></td></tr>
+      <tr><td>C</td><td>Entre 3 y 5 anos.</td><td>3</td><td></td></tr>
+      <tr><td>D</td><td>Menos de 3 anos o infraestructura gestionada en nube.</td><td>5</td><td></td></tr>
+    </table>
+  </div>
+
+  <div class="question-block">
+    <div class="q-header">P03 &mdash; &iquest;Tiene implementado un sistema de monitoreo proactivo de disponibilidad y rendimiento?</div>
+    <table>
+      <tr><td>A</td><td>Sin monitoreo. Los problemas se detectan cuando el usuario reporta.</td><td>0</td><td>{{q03_selected}}</td></tr>
+      <tr><td>B</td><td>Monitoreo basico reactivo (ping / uptime solamente).</td><td>2</td><td></td></tr>
+      <tr><td>C</td><td>Herramienta activa pero sin alertas formalmente definidas.</td><td>3</td><td></td></tr>
+      <tr><td>D</td><td>Monitoreo con alertas, umbrales y escalamiento definido por SLA.</td><td>5</td><td></td></tr>
+    </table>
+  </div>
+
+  <div class="question-block">
+    <div class="q-header">P04 &mdash; &iquest;Tiene solucion de backup con RPO y RTO definidos y probada en los ultimos 6 meses?</div>
+    <table>
+      <tr><td>A</td><td>Sin politica de backup formal o backups no verificados.</td><td>0</td><td>{{q04_selected}}</td></tr>
+      <tr><td>B</td><td>Backups existen sin pruebas de restauracion documentadas.</td><td>2</td><td></td></tr>
+      <tr><td>C</td><td>Backups regulares con pruebas ocasionales; RPO/RTO no formalizados.</td><td>3</td><td></td></tr>
+      <tr><td>D</td><td>Backups automatizados, RPO/RTO documentados y probados (&lt;6 meses).</td><td>5</td><td></td></tr>
+    </table>
+  </div>
+
+  <div class="question-block">
+    <div class="q-header">P05 &mdash; &iquest;Cuantos usuarios / endpoints gestiona actualmente su infraestructura TI?</div>
+    <table>
+      <tr><td>A</td><td>Menos de 10 usuarios (micro empresa).</td><td>1</td><td>{{q05_selected}}</td></tr>
+      <tr><td>B</td><td>Entre 10 y 50 usuarios.</td><td>3</td><td></td></tr>
+      <tr><td>C</td><td>Entre 51 y 200 usuarios.</td><td>4</td><td></td></tr>
+      <tr><td>D</td><td>Mas de 200 usuarios &mdash; infraestructura compleja o distribuida.</td><td>5</td><td></td></tr>
+    </table>
+  </div>
+
+  <!-- SECCION B -->
+  <h1>SECCION B &mdash; SEGURIDAD</h1>
+  <div class="section-header">SECCION B &mdash; SEGURIDAD | Peso maximo: 25 pts</div>
+
+  <div class="question-block">
+    <div class="q-header">P06 &mdash; &iquest;Ha realizado una auditoria de seguridad o prueba de penetracion formal en los ultimos 12 meses?</div>
+    <table>
+      <tr><td>A</td><td>Nunca se ha realizado ninguna evaluacion de seguridad.</td><td>0</td><td>{{q06_selected}}</td></tr>
+      <tr><td>B</td><td>Evaluacion informal interna, sin reporte ni plan de remediacion.</td><td>1</td><td></td></tr>
+      <tr><td>C</td><td>Auditoria hace &gt;12 meses con remediacion parcial.</td><td>3</td><td></td></tr>
+      <tr><td>D</td><td>Auditoria formal &lt;12 meses con plan de remediacion ejecutado.</td><td>5</td><td></td></tr>
+    </table>
+  </div>
+
+  <div class="question-block">
+    <div class="q-header">P07 &mdash; &iquest;Tiene implementado MFA (Autenticacion Multifactor) en sistemas criticos y correo corporativo?</div>
+    <table>
+      <tr><td>A</td><td>No existe MFA en ningun sistema.</td><td>0</td><td>{{q07_selected}}</td></tr>
+      <tr><td>B</td><td>MFA implementado solo en algunos sistemas no criticos.</td><td>2</td><td></td></tr>
+      <tr><td>C</td><td>MFA en la mayoria de sistemas criticos, pendiente en algunos.</td><td>3</td><td></td></tr>
+      <tr><td>D</td><td>MFA obligatorio en todos los accesos criticos y correo corporativo.</td><td>5</td><td></td></tr>
+    </table>
+  </div>
+
+  <div class="question-block">
+    <div class="q-header">P08 &mdash; &iquest;Cuenta con un Plan de Respuesta a Incidentes de Seguridad (IR Plan) documentado y probado?</div>
+    <table>
+      <tr><td>A</td><td>Sin plan de respuesta a incidentes.</td><td>0</td><td>{{q08_selected}}</td></tr>
+      <tr><td>B</td><td>Procedimientos informales, no documentados formalmente.</td><td>1</td><td></td></tr>
+      <tr><td>C</td><td>Plan documentado pero no probado o con &gt;12 meses sin revision.</td><td>3</td><td></td></tr>
+      <tr><td>D</td><td>IR Plan formal, probado con simulacros en los ultimos 12 meses.</td><td>5</td><td></td></tr>
+    </table>
+  </div>
+
+  <div class="question-block">
+    <div class="q-header">P09 &mdash; &iquest;Gestiona activamente el ciclo de vida de parches y actualizaciones de seguridad?</div>
+    <table>
+      <tr><td>A</td><td>Actualizaciones manuales esporadicas o inexistentes.</td><td>0</td><td>{{q09_selected}}</td></tr>
+      <tr><td>B</td><td>Actualizaciones aplicadas unicamente cuando el usuario las solicita.</td><td>2</td><td></td></tr>
+      <tr><td>C</td><td>Ciclo de parcheo mensual en sistemas criticos solamente.</td><td>3</td><td></td></tr>
+      <tr><td>D</td><td>Gestion automatizada con ventanas de mantenimiento definidas.</td><td>5</td><td></td></tr>
+    </table>
+  </div>
+
+  <div class="question-block">
+    <div class="q-header">P10 &mdash; &iquest;Tiene inventario de licencias de software actualizado y en cumplimiento regulatorio?</div>
+    <table>
+      <tr><td>A</td><td>Sin control de licencias; uso de software sin verificacion.</td><td>0</td><td>{{q10_selected}}</td></tr>
+      <tr><td>B</td><td>Control basico en hoja de calculo, sin auditoria.</td><td>2</td><td></td></tr>
+      <tr><td>C</td><td>Inventario actualizado con discrepancias pendientes de resolucion.</td><td>3</td><td></td></tr>
+      <tr><td>D</td><td>Gestion formal, auditoria reciente y cumplimiento verificado.</td><td>5</td><td></td></tr>
+    </table>
+  </div>
+
+  <!-- SECCION C -->
+  <h1>SECCION C &mdash; PUNTOS DE DOLOR</h1>
+  <div class="section-header">SECCION C &mdash; PUNTOS DE DOLOR | Peso maximo: 25 pts</div>
+
+  <div class="question-block">
+    <div class="q-header">P11 &mdash; &iquest;Con que frecuencia experimenta caidas o interrupciones en sus sistemas criticos de negocio?</div>
+    <table>
+      <tr><td>A</td><td>Frecuente: semanal o varias veces al mes.</td><td>0</td><td>{{q11_selected}}</td></tr>
+      <tr><td>B</td><td>Ocasional: aproximadamente una vez al mes.</td><td>2</td><td></td></tr>
+      <tr><td>C</td><td>Raro: una vez al trimestre o menos.</td><td>3</td><td></td></tr>
+      <tr><td>D</td><td>Muy raro o nunca &mdash; disponibilidad sostenida superior al 99.5%.</td><td>5</td><td></td></tr>
+    </table>
+  </div>
+
+  <div class="question-block">
+    <div class="q-header">P12 &mdash; &iquest;Cual es el tiempo promedio de resolucion (MTTR) de un incidente critico de TI?</div>
+    <table>
+      <tr><td>A</td><td>Mas de 8 horas &mdash; impacto severo en operaciones.</td><td>0</td><td>{{q12_selected}}</td></tr>
+      <tr><td>B</td><td>Entre 4 y 8 horas.</td><td>2</td><td></td></tr>
+      <tr><td>C</td><td>Entre 1 y 4 horas.</td><td>3</td><td></td></tr>
+      <tr><td>D</td><td>Menos de 1 hora &mdash; proceso de escalamiento claramente definido.</td><td>5</td><td></td></tr>
+    </table>
+  </div>
+
+  <div class="question-block">
+    <div class="q-header">P13 &mdash; &iquest;Tiene personal TI dedicado interno con roles y responsabilidades formalmente definidos?</div>
+    <table>
+      <tr><td>A</td><td>Sin personal TI; empleados se auto-soportan.</td><td>0</td><td>{{q13_selected}}</td></tr>
+      <tr><td>B</td><td>Personal multi-rol: TI es responsabilidad secundaria.</td><td>1</td><td></td></tr>
+      <tr><td>C</td><td>Al menos 1 persona dedicada a TI sin estructura organizacional formal.</td><td>3</td><td></td></tr>
+      <tr><td>D</td><td>Equipo TI con roles definidos: Help Desk, Infraestructura, Seguridad.</td><td>5</td><td></td></tr>
+    </table>
+  </div>
+
+  <div class="question-block">
+    <div class="q-header">P14 &mdash; &iquest;Cuenta con SLAs documentados y vigentes con sus proveedores tecnologicos criticos?</div>
+    <table>
+      <tr><td>A</td><td>Sin SLAs con ningun proveedor tecnologico.</td><td>0</td><td>{{q14_selected}}</td></tr>
+      <tr><td>B</td><td>Acuerdos verbales o informales con algunos proveedores.</td><td>1</td><td></td></tr>
+      <tr><td>C</td><td>SLAs formales con proveedor principal, no con todos los criticos.</td><td>3</td><td></td></tr>
+      <tr><td>D</td><td>SLAs formales con todos los proveedores criticos, revisados anualmente.</td><td>5</td><td></td></tr>
+    </table>
+  </div>
+
+  <div class="question-block">
+    <div class="q-header">P15 &mdash; &iquest;Tiene documentados y actualizados los procesos criticos de negocio que dependen de TI?</div>
+    <table>
+      <tr><td>A</td><td>Sin documentacion; conocimiento tacito concentrado en personas clave.</td><td>0</td><td>{{q15_selected}}</td></tr>
+      <tr><td>B</td><td>Documentacion parcial en algunos departamentos.</td><td>2</td><td></td></tr>
+      <tr><td>C</td><td>Mayoria de procesos documentados, pendiente revision anual.</td><td>3</td><td></td></tr>
+      <tr><td>D</td><td>100% de procesos criticos documentados, revisados y con owner asignado.</td><td>5</td><td></td></tr>
+    </table>
+  </div>
+
+  <!-- SECCION D -->
+  <h1>SECCION D &mdash; OBJETIVOS DE NEGOCIO</h1>
+  <div class="section-header">SECCION D &mdash; OBJETIVOS DE NEGOCIO | Peso maximo: 25 pts</div>
+
+  <div class="question-block">
+    <div class="q-header">P16 &mdash; &iquest;Tiene definida una hoja de ruta tecnologica (IT Roadmap) alineada al plan de negocio para 12-24 meses?</div>
+    <table>
+      <tr><td>A</td><td>Sin roadmap; decisiones TI reactivas y ad-hoc.</td><td>0</td><td>{{q16_selected}}</td></tr>
+      <tr><td>B</td><td>Ideas generales de evolucion sin formalizar.</td><td>2</td><td></td></tr>
+      <tr><td>C</td><td>Roadmap documentado pero no alineado a objetivos de negocio.</td><td>3</td><td></td></tr>
+      <tr><td>D</td><td>IT Roadmap formal, aprobado por direccion, alineado al plan estrategico.</td><td>5</td><td></td></tr>
+    </table>
+  </div>
+
+  <div class="question-block">
+    <div class="q-header">P17 &mdash; &iquest;Cual es su presupuesto anual aproximado destinado a TI (hardware, software y servicios)?</div>
+    <table>
+      <tr><td>A</td><td>Sin presupuesto TI definido o menor a $5,000 USD/ano.</td><td>1</td><td>{{q17_selected}}</td></tr>
+      <tr><td>B</td><td>Entre $5,000 y $25,000 USD/ano.</td><td>3</td><td></td></tr>
+      <tr><td>C</td><td>Entre $25,000 y $100,000 USD/ano.</td><td>4</td><td></td></tr>
+      <tr><td>D</td><td>Mas de $100,000 USD/ano con proceso formal de aprobacion.</td><td>5</td><td></td></tr>
+    </table>
+  </div>
+
+  <div class="question-block">
+    <div class="q-header">P18 &mdash; &iquest;Contempla alguna transformacion digital mayor (ERP, CRM, nube, RPA) en los proximos 12 meses?</div>
+    <table>
+      <tr><td>A</td><td>Sin planes. Foco en mantener la operacion actual.</td><td>2</td><td>{{q18_selected}}</td></tr>
+      <tr><td>B</td><td>Iniciativas identificadas sin presupuesto ni sponsor ejecutivo.</td><td>3</td><td></td></tr>
+      <tr><td>C</td><td>Proyecto aprobado en planeacion con recursos parcialmente asignados.</td><td>4</td><td></td></tr>
+      <tr><td>D</td><td>Iniciativa con sponsor ejecutivo, presupuesto y equipo definido.</td><td>5</td><td></td></tr>
+    </table>
+  </div>
+
+  <div class="question-block">
+    <div class="q-header">P19 &mdash; &iquest;Cuenta con un esquema de gobernanza TI formalizado (comite, politicas, gestion del cambio)?</div>
+    <table>
+      <tr><td>A</td><td>Sin gobernanza TI; no existen politicas ni comites formales.</td><td>0</td><td>{{q19_selected}}</td></tr>
+      <tr><td>B</td><td>Politicas informales, sin comite ni proceso de gestion del cambio.</td><td>1</td><td></td></tr>
+      <tr><td>C</td><td>Politicas basicas documentadas, sin comite formal de TI.</td><td>3</td><td></td></tr>
+      <tr><td>D</td><td>Gobernanza completa: politicas, comite TI, CAB y marcos ITIL 4 / COBIT.</td><td>5</td><td></td></tr>
+    </table>
+  </div>
+
+  <div class="question-block">
+    <div class="q-header">P20 &mdash; &iquest;Cual es el objetivo principal al contratar la Consultoria Tecnologica?</div>
+    <table>
+      <tr><td>A</td><td>Resolver una crisis operativa o brecha de seguridad inmediata.</td><td>1</td><td>{{q20_selected}}</td></tr>
+      <tr><td>B</td><td>Estabilizar la operacion y reducir incidentes recurrentes.</td><td>3</td><td></td></tr>
+      <tr><td>C</td><td>Optimizar costos TI y mejorar disponibilidad de servicios.</td><td>4</td><td></td></tr>
+      <tr><td>D</td><td>Transformacion estrategica: digitalizacion, escalabilidad y ventaja competitiva.</td><td>5</td><td></td></tr>
+    </table>
+  </div>
+
+  <!-- RESUMEN DE PUNTUACION -->
+  <h1>RESUMEN DE PUNTUACION Y RUTA DE SERVICIO</h1>
+
+  <table class="scoring-table">
+    <thead>
+      <tr><th>SECC.</th><th>AREA DE EVALUACION</th><th>PUNTAJE OBTENIDO</th><th>MAX.</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>A</td><td>Infraestructura</td><td>{{ai_score_infrastructure}} / 25</td><td>25</td></tr>
+      <tr><td>B</td><td>Seguridad</td><td>{{ai_score_security}} / 25</td><td>25</td></tr>
+      <tr><td>C</td><td>Puntos de Dolor</td><td>{{ai_score_pain_points}} / 25</td><td>25</td></tr>
+      <tr><td>D</td><td>Objetivos de Negocio</td><td>{{ai_score_business_objectives}} / 25</td><td>25</td></tr>
+      <tr style="font-weight:700; background:#e8e8e8;"><td colspan="2">TOTAL</td><td>{{ai_score_total}} / 100</td><td>100</td></tr>
+    </tbody>
+  </table>
+
+  <!-- MATRIZ DE SCORING -->
+  <h2>MATRIZ DE SCORING &mdash; DETERMINACION DE RUTA DE SERVICIO</h2>
+  <table class="scoring-table">
+    <thead>
+      <tr><th>PUNTAJE</th><th>CLASIFICACION</th><th>RUTA DE SERVICIO</th><th>ACCION DEL CONSULTOR</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>0 &ndash; 39</td><td>MADUREZ BAJA</td><td>DIAGNOSTICO TECNOLOGICO PROFUNDO (Paso 0)</td><td>Auditoria integral 4-6 semanas. Informe ejecutivo estilo Big Four con hoja de ruta de remediacion priorizada.</td></tr>
+      <tr><td>40 &ndash; 64</td><td>MADUREZ MEDIA</td><td>EVALUACION COMPLEMENTARIA (Paso 0 Lite)</td><td>Diagnostico focalizado en areas criticas (2-3 semanas). Define alcance y SLA del servicio mensual.</td></tr>
+      <tr><td>65 &ndash; 84</td><td>MADUREZ ALTA</td><td>SOPORTE MENSUAL DIRECTO (Capa Operativa)</td><td>Onboarding inmediato. Revision trimestral de KPIs. SLA formalizado en contrato de servicio.</td></tr>
+      <tr><td>85 &ndash; 100</td><td>MADUREZ OPTIMA</td><td>CO-MANAGEMENT / SERVICIO ESTRATEGICO</td><td>Propuesta de co-management o proyecto de transformacion. Entregable ejecutivo en 5 dias habiles.</td></tr>
+    </tbody>
+  </table>
+
+  <!-- OBSERVACIONES -->
+  <h2>OBSERVACIONES DEL CONSULTOR</h2>
+  <div class="observations-box">{{ai_consultant_observations}}</div>
+
+  <!-- RACI -->
+  <h2>MATRIZ RACI &mdash; PROCESO DE CALIFICACION</h2>
+  <table class="raci-table">
+    <thead>
+      <tr><th>ACTIVIDAD</th><th>CONSULTOR</th><th>DIR. COMERCIAL</th><th>CLIENTE (TI)</th><th>DIR. GRAL. CLIENTE</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Envio y aplicacion del cuestionario</td><td>R</td><td>A</td><td>C</td><td>I</td></tr>
+      <tr><td>Revision y calculo del scoring</td><td>R</td><td>A</td><td>I</td><td>I</td></tr>
+      <tr><td>Determinacion de ruta de servicio</td><td>R/A</td><td>C</td><td>I</td><td>I</td></tr>
+      <tr><td>Presentacion de resultados al cliente</td><td>R</td><td>A</td><td>I</td><td>C</td></tr>
+      <tr><td>Aprobacion de propuesta de servicio</td><td>C</td><td>A</td><td>C</td><td>R</td></tr>
+      <tr><td>Archivo en CRM / expediente de cliente</td><td>R</td><td>A</td><td>I</td><td>I</td></tr>
+    </tbody>
+  </table>
+  <p class="raci-legend">Leyenda RACI: R = Responsible (ejecuta) | A = Accountable (rinde cuentas) | C = Consulted (proporciona input) | I = Informed (recibe notificacion)</p>
+
+</body>
+</html>

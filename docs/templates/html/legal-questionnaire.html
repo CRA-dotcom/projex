@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cuestionario de Onboarding - Gobierno Corporativo</title>
+<style>
+  @page { margin: 2cm; size: letter; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: Georgia, 'Times New Roman', serif; color: #1a1a1a; line-height: 1.6; font-size: 11pt; }
+  .page-break { page-break-before: always; }
+
+  /* Header bar */
+  .header-bar { background: #1a1a1a; color: #fff; padding: 8px 20px; font-size: 8pt; display: flex; justify-content: space-between; }
+  .header-bar .left { font-weight: bold; color: #b8860b; }
+
+  /* Cover */
+  .cover { text-align: center; padding: 80px 40px 40px; }
+  .cover .subtitle { font-size: 12pt; letter-spacing: 3px; color: #b8860b; text-transform: uppercase; }
+  .cover h1 { font-size: 24pt; font-weight: bold; margin: 20px 0 8px; }
+  .cover h2 { font-size: 13pt; font-weight: normal; font-style: italic; color: #b8860b; margin-bottom: 20px; }
+  .cover .divider { width: 80px; height: 3px; background: #b8860b; margin: 20px auto; }
+  .cover .intro { text-align: justify; max-width: 600px; margin: 20px auto; font-size: 10pt; color: #333; }
+
+  /* Client info table */
+  .client-info { max-width: 550px; margin: 30px auto; }
+  .client-info table { width: 100%; border-collapse: collapse; }
+  .client-info td { padding: 8px 12px; border-bottom: 1px solid #ddd; font-size: 10pt; }
+  .client-info td:first-child { font-weight: bold; width: 45%; }
+  .client-info .field-value { color: #333; border-bottom: 1px solid #999; min-width: 200px; display: inline-block; }
+
+  /* Content */
+  .content { max-width: 700px; margin: 0 auto; padding: 20px 40px; }
+  p { margin-bottom: 12px; text-align: justify; }
+
+  /* Section headers */
+  h1.section { font-size: 16pt; color: #1a1a1a; border-bottom: 3px solid #b8860b; padding-bottom: 8px; margin: 40px 0 8px; }
+  .section-desc { font-size: 10pt; color: #666; font-style: italic; margin-bottom: 20px; }
+  h2.question-label { font-size: 11pt; color: #b8860b; margin: 28px 0 4px; text-transform: uppercase; }
+  .question-text { font-weight: bold; margin-bottom: 4px; }
+  .question-hint { font-size: 9pt; color: #666; font-style: italic; margin-bottom: 8px; }
+
+  /* Answer area */
+  .answer-area { border: 1px solid #ddd; background: #fafafa; min-height: 60px; padding: 12px; margin: 8px 0 16px; font-size: 10pt; }
+  .answer-area.large { min-height: 100px; }
+
+  /* Checkbox options */
+  .options { display: flex; flex-wrap: wrap; gap: 16px; margin: 8px 0 16px; font-size: 10pt; }
+  .options label { display: flex; align-items: center; gap: 6px; }
+  .options .checkbox { width: 14px; height: 14px; border: 2px solid #333; display: inline-block; }
+
+  /* Tables */
+  table.data { width: 100%; border-collapse: collapse; margin: 12px 0 20px; font-size: 9.5pt; }
+  table.data th { background: #1a1a1a; color: #fff; text-align: left; padding: 8px 10px; font-weight: bold; }
+  table.data td { padding: 8px 10px; border-bottom: 1px solid #ddd; }
+  table.data tr:nth-child(even) td { background: #f9f7f2; }
+
+  /* Data Room items */
+  .dr-item { border: 1px solid #ddd; padding: 12px 16px; margin: 12px 0; }
+  .dr-item .dr-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
+  .dr-item .dr-title { font-weight: bold; font-size: 10pt; }
+  .dr-item .dr-priority { font-size: 8pt; font-weight: bold; text-transform: uppercase; }
+  .dr-item .dr-priority.obligatorio { color: #c0392b; }
+  .dr-item .dr-priority.recomendado { color: #b8860b; }
+  .dr-item .dr-desc { font-size: 9pt; color: #555; margin-bottom: 8px; }
+  .dr-item .dr-status { font-size: 9pt; }
+
+  /* Signature block */
+  .sig-table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+  .sig-table td { padding: 8px 12px; border: 1px solid #ddd; }
+  .sig-table td:first-child { font-weight: bold; width: 35%; }
+
+  /* Footer */
+  .footer { text-align: center; font-size: 7.5pt; color: #999; margin-top: 40px; border-top: 1px solid #ddd; padding-top: 10px; }
+  .page-num { text-align: right; font-size: 8pt; color: #b8860b; margin-top: 20px; }
+
+  /* Instructions box */
+  .instructions { background: #f9f7f2; border-left: 3px solid #b8860b; padding: 12px 16px; margin: 16px 0; font-size: 10pt; }
+
+  /* Data Room box */
+  .dr-location { border: 2px solid #1a1a1a; padding: 16px; margin: 20px 0; }
+  .dr-location h3 { font-size: 10pt; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px; background: #1a1a1a; color: #fff; padding: 6px 12px; margin: -16px -16px 12px; }
+</style>
+</head>
+<body>
+
+<!-- COVER PAGE -->
+<div class="cover">
+  <div class="subtitle">Consultoria de Alta Direccion</div>
+  <h1>CUESTIONARIO DE ONBOARDING</h1>
+  <h2>Diagnostico Estrategico de Gobierno Corporativo</h2>
+  <div class="divider"></div>
+
+  <p class="intro">Este cuestionario es el primer paso en el proceso de institucionalizacion de su empresa. Las respuestas son estrictamente confidenciales y seran utilizadas exclusivamente para disenar el sistema de gobierno corporativo mas adecuado para su organizacion.</p>
+
+  <div class="client-info">
+    <table>
+      <tr><td>Nombre del Cliente / Empresa:</td><td><span class="field-value">{{client_name}}</span></td></tr>
+      <tr><td>RFC / Identificacion Fiscal:</td><td><span class="field-value">{{client_rfc}}</span></td></tr>
+      <tr><td>Nombre del Interlocutor Principal:</td><td><span class="field-value">{{client_contact_name}}</span></td></tr>
+      <tr><td>Cargo:</td><td><span class="field-value">{{client_contact_role}}</span></td></tr>
+      <tr><td>Telefono / Email:</td><td><span class="field-value">{{client_contact_email}}</span></td></tr>
+      <tr><td>Fecha de Completado:</td><td><span class="field-value">{{current_date}}</span></td></tr>
+    </table>
+  </div>
+
+  <div class="instructions">
+    <strong>INSTRUCCIONES:</strong> Complete cada pregunta con la mayor honestidad y detalle posible. No existen respuestas correctas o incorrectas. Esta informacion es la base sobre la que {{branding_company_name}} construira un sistema de gobierno a la medida de sus necesidades. Si alguna pregunta no aplica a su caso, indiquelo con "N/A" y una breve explicacion.
+  </div>
+</div>
+
+<!-- I. ESTRUCTURA SOCIETARIA Y ACCIONISTAS -->
+<div class="content page-break">
+  <h1 class="section">I. ESTRUCTURA SOCIETARIA Y ACCIONISTAS</h1>
+  <p class="section-desc">Comprension de la arquitectura de propiedad y poder en la organizacion.</p>
+
+  <h2 class="question-label">Pregunta 1</h2>
+  <p class="question-text">Cual es la estructura juridica de la empresa? (S.A. de C.V., S.A.P.I., S. de R.L., otra)</p>
+  <p class="question-hint">Incluya si existe un holding, subsidiarias o vehiculos de inversion relacionados.</p>
+  <div class="answer-area large">{{answer_q1_legal_structure}}</div>
+
+  <h2 class="question-label">Pregunta 2</h2>
+  <p class="question-text">Cuantos accionistas o socios conforman actualmente la empresa? Detalle nombre, porcentaje de participacion y rol operativo de cada uno.</p>
+  <p class="question-hint">Complete la tabla a continuacion:</p>
+  <table class="data">
+    <thead>
+      <tr><th>Nombre / Razon Social</th><th>% Participacion</th><th>Cargo / Rol</th><th>Relacion</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>{{shareholder_1_name}}</td><td>{{shareholder_1_pct}}%</td><td>{{shareholder_1_role}}</td><td>{{shareholder_1_relation}}</td></tr>
+      <tr><td>{{shareholder_2_name}}</td><td>{{shareholder_2_pct}}%</td><td>{{shareholder_2_role}}</td><td>{{shareholder_2_relation}}</td></tr>
+      <tr><td>{{shareholder_3_name}}</td><td>{{shareholder_3_pct}}%</td><td>{{shareholder_3_role}}</td><td>{{shareholder_3_relation}}</td></tr>
+      <tr><td>{{shareholder_4_name}}</td><td>{{shareholder_4_pct}}%</td><td>{{shareholder_4_role}}</td><td>{{shareholder_4_relation}}</td></tr>
+      <tr><td>{{shareholder_5_name}}</td><td>{{shareholder_5_pct}}%</td><td>{{shareholder_5_role}}</td><td>{{shareholder_5_relation}}</td></tr>
+    </tbody>
+  </table>
+
+  <h2 class="question-label">Pregunta 3</h2>
+  <p class="question-text">Existen documentos formales que regulen la relacion entre los socios? Indique cuales.</p>
+  <p class="question-hint">Ejemplos: Acuerdo de Accionistas (Shareholders' Agreement), Pacto de Socios, Estatutos Sociales actualizados.</p>
+  <div class="options">
+    <label><span class="checkbox"></span> Acuerdo de Accionistas</label>
+    <label><span class="checkbox"></span> Pacto Social vigente</label>
+    <label><span class="checkbox"></span> Estatutos actualizados</label>
+    <label><span class="checkbox"></span> Ninguno</label>
+  </div>
+  <p><strong>Detalle adicional:</strong></p>
+  <div class="answer-area">{{answer_q3_shareholder_agreements}}</div>
+</div>
+
+<!-- II. CONSEJO DE ADMINISTRACION Y TOMA DE DECISIONES -->
+<div class="content page-break">
+  <h1 class="section">II. CONSEJO DE ADMINISTRACION Y TOMA DE DECISIONES</h1>
+  <p class="section-desc">Evaluacion de los mecanismos formales de gobierno y deliberacion.</p>
+
+  <h2 class="question-label">Pregunta 4</h2>
+  <p class="question-text">Cuenta la empresa con un Consejo de Administracion formal o algun organo colegiado equivalente?</p>
+  <p class="question-hint">Indique frecuencia de reuniones, numero de consejeros, y si hay consejeros independientes.</p>
+  <div class="options">
+    <label><span class="checkbox"></span> Si, operativo</label>
+    <label><span class="checkbox"></span> Si, pero inactivo</label>
+    <label><span class="checkbox"></span> No existe</label>
+  </div>
+  <p><strong>Si existe, describa su composicion y funcionamiento:</strong></p>
+  <div class="answer-area large">{{answer_q4_board_description}}</div>
+
+  <h2 class="question-label">Pregunta 5</h2>
+  <p class="question-text">Como se toman actualmente las decisiones estrategicas de alto impacto en la empresa?</p>
+  <p class="question-hint">Ej.: por unanimidad de socios, por mayoria, por decision del CEO, de manera informal, etc.</p>
+  <div class="options">
+    <label><span class="checkbox"></span> Unanimidad</label>
+    <label><span class="checkbox"></span> Mayoria simple</label>
+    <label><span class="checkbox"></span> Decision unilateral CEO</label>
+    <label><span class="checkbox"></span> Sin proceso formal</label>
+  </div>
+  <p><strong>Describa el proceso actual:</strong></p>
+  <div class="answer-area large">{{answer_q5_decision_process}}</div>
+
+  <h2 class="question-label">Pregunta 6</h2>
+  <p class="question-text">Existen umbrales de autorizacion definidos para gastos o inversiones (CAPEX)?</p>
+  <p class="question-hint">Por ejemplo: compras menores a $50K aprueba el Gerente; mayores requieren aprobacion del Consejo.</p>
+  <div class="options">
+    <label><span class="checkbox"></span> Si, documentados</label>
+    <label><span class="checkbox"></span> Si, pero informales</label>
+    <label><span class="checkbox"></span> No existen</label>
+  </div>
+  <div class="answer-area">{{answer_q6_capex_thresholds}}</div>
+</div>
+
+<!-- III. CONFLICTOS, RIESGOS Y PROTECCIONES SOCIETARIAS -->
+<div class="content page-break">
+  <h1 class="section">III. CONFLICTOS, RIESGOS Y PROTECCIONES SOCIETARIAS</h1>
+  <p class="section-desc">Identificacion de fricciones existentes y mecanismos de resolucion.</p>
+
+  <h2 class="question-label">Pregunta 7</h2>
+  <p class="question-text">Ha experimentado la empresa situaciones de Deadlock (bloqueo en la toma de decisiones) o conflictos significativos entre socios en los ultimos 3 anos?</p>
+  <p class="question-hint">Sea especifico en la naturaleza del conflicto (sucesoral, operativo, financiero, familiar).</p>
+  <div class="options">
+    <label><span class="checkbox"></span> Nunca</label>
+    <label><span class="checkbox"></span> Ocasionalmente</label>
+    <label><span class="checkbox"></span> Frecuentemente</label>
+    <label><span class="checkbox"></span> Hay uno activo</label>
+  </div>
+  <p><strong>Describa brevemente (puede omitir nombres):</strong></p>
+  <div class="answer-area large">{{answer_q7_conflicts}}</div>
+
+  <h2 class="question-label">Pregunta 8</h2>
+  <p class="question-text">Existen mecanismos formales para la salida de un socio? (Clausulas Drag-along, Tag-along, Right of First Refusal, opciones Put/Call)</p>
+  <p class="question-hint">Estos mecanismos son esenciales para evitar el ingreso involuntario de terceros a la sociedad.</p>
+  <div class="options">
+    <label><span class="checkbox"></span> Drag-along</label>
+    <label><span class="checkbox"></span> Tag-along</label>
+    <label><span class="checkbox"></span> ROFR</label>
+    <label><span class="checkbox"></span> Ninguno</label>
+  </div>
+  <div class="answer-area">{{answer_q8_exit_mechanisms}}</div>
+</div>
+
+<!-- IV. GESTION FINANCIERA Y POLITICAS ECONOMICAS -->
+<div class="content page-break">
+  <h1 class="section">IV. GESTION FINANCIERA Y POLITICAS ECONOMICAS</h1>
+  <p class="section-desc">Diagnostico de la solidez y transparencia de la informacion financiera.</p>
+
+  <h2 class="question-label">Pregunta 9</h2>
+  <p class="question-text">La empresa cuenta con estados financieros auditados o dictaminados de forma regular?</p>
+  <p class="question-hint">Indique si los auditores son externos e independientes de los accionistas principales.</p>
+  <div class="options">
+    <label><span class="checkbox"></span> Auditados anualmente</label>
+    <label><span class="checkbox"></span> Solo internos</label>
+    <label><span class="checkbox"></span> Sin auditoria formal</label>
+  </div>
+  <p><strong>Nombre de la firma auditora (si aplica):</strong></p>
+  <div class="answer-area">{{answer_q9_audit_firm}}</div>
+
+  <h2 class="question-label">Pregunta 10</h2>
+  <p class="question-text">Existe una politica formal de distribucion de dividendos documentada y aprobada por la Asamblea?</p>
+  <p class="question-hint">Incluya si hay politica de retencion de utilidades para CAPEX o reservas de contingencia.</p>
+  <div class="options">
+    <label><span class="checkbox"></span> Si, documentada</label>
+    <label><span class="checkbox"></span> Se decide ano a ano</label>
+    <label><span class="checkbox"></span> No hay politica formal</label>
+  </div>
+  <div class="answer-area">{{answer_q10_dividend_policy}}</div>
+</div>
+
+<!-- V. EMPRESA FAMILIAR, SUCESION Y VISION ESTRATEGICA -->
+<div class="content page-break">
+  <h1 class="section">V. EMPRESA FAMILIAR, SUCESION Y VISION ESTRATEGICA</h1>
+  <p class="section-desc">Esta seccion aplica principalmente para empresas familiares. Si no aplica, indique N/A.</p>
+
+  <h2 class="question-label">Pregunta 11</h2>
+  <p class="question-text">Existe un Protocolo Familiar o Plan de Sucesion documentado que rija el ingreso de familiares a la empresa y la transferencia del liderazgo?</p>
+  <p class="question-hint">Evalue tambien si los roles operativos de familiares estan basados en meritos y competencias.</p>
+  <div class="options">
+    <label><span class="checkbox"></span> Si, formalizado</label>
+    <label><span class="checkbox"></span> Existe informalmente</label>
+    <label><span class="checkbox"></span> No existe</label>
+    <label><span class="checkbox"></span> N/A</label>
+  </div>
+  <p><strong>Describa el estado actual del plan de sucesion:</strong></p>
+  <div class="answer-area large">{{answer_q11_succession_plan}}</div>
+
+  <h2 class="question-label">Pregunta 12</h2>
+  <p class="question-text">Cual es la vision estrategica de los accionistas principales para la empresa en los proximos 5 a 10 anos?</p>
+  <p class="question-hint">Ejemplos: crecimiento organico, atraccion de inversion privada (PE), fusion/adquisicion (M&amp;A), sucesion familiar, venta total, IPO.</p>
+  <div class="options">
+    <label><span class="checkbox"></span> Crecimiento organico</label>
+    <label><span class="checkbox"></span> Atraccion PE/VC</label>
+    <label><span class="checkbox"></span> M&amp;A</label>
+    <label><span class="checkbox"></span> Exit / Venta</label>
+  </div>
+  <div class="answer-area large">{{answer_q12_strategic_vision}}</div>
+</div>
+
+<!-- VI. DATA ROOM -->
+<div class="content page-break">
+  <h1 class="section">VI. DATA ROOM -- DOCUMENTACION SOCIETARIA REQUERIDA</h1>
+  <p class="section-desc">El Data Room es el repositorio documental que {{branding_company_name}} requiere para realizar el analisis profundo de gobierno corporativo. Organice los documentos en las categorias indicadas.</p>
+
+  <div class="instructions">
+    <strong>INSTRUCCIONES DEL DATA ROOM:</strong> Por cada categoria, indique el estado de disponibilidad del documento. Para documentos digitales, utilice una carpeta compartida segura (Google Drive, SharePoint, Dropbox) con acceso restringido al equipo {{branding_company_name}}. Para documentos fisicos, indique su ubicacion.
+  </div>
+
+  <div class="dr-item">
+    <div class="dr-header">
+      <span class="dr-title">DR-01 | Documentos Constitutivos</span>
+      <span class="dr-priority obligatorio">OBLIGATORIO</span>
+    </div>
+    <p class="dr-desc">Escritura constitutiva, estatutos sociales vigentes, poderes notariales activos, acta de asamblea de constitucion.</p>
+    <p class="dr-status"><strong>Estado:</strong> {{dr01_status}}</p>
+  </div>
+
+  <div class="dr-item">
+    <div class="dr-header">
+      <span class="dr-title">DR-02 | Registro Mercantil</span>
+      <span class="dr-priority obligatorio">OBLIGATORIO</span>
+    </div>
+    <p class="dr-desc">Constancias de inscripcion en el Registro Publico de Comercio (RPC), folios mercantiles, apostillas (si aplica).</p>
+    <p class="dr-status"><strong>Estado:</strong> {{dr02_status}}</p>
+  </div>
+
+  <div class="dr-item">
+    <div class="dr-header">
+      <span class="dr-title">DR-03 | Actas de Asamblea</span>
+      <span class="dr-priority obligatorio">OBLIGATORIO</span>
+    </div>
+    <p class="dr-desc">Actas de las ultimas 3 Asambleas de Accionistas (Ordinarias y Extraordinarias), con firma de los asistentes.</p>
+    <p class="dr-status"><strong>Estado:</strong> {{dr03_status}}</p>
+  </div>
+
+  <div class="dr-item">
+    <div class="dr-header">
+      <span class="dr-title">DR-04 | Estados Financieros</span>
+      <span class="dr-priority obligatorio">OBLIGATORIO</span>
+    </div>
+    <p class="dr-desc">Estados Financieros de los ultimos 3 ejercicios fiscales (auditados o internos): Estado de Resultados, Balance General, Flujo de Efectivo.</p>
+    <p class="dr-status"><strong>Estado:</strong> {{dr04_status}}</p>
+  </div>
+
+  <div class="dr-item">
+    <div class="dr-header">
+      <span class="dr-title">DR-05 | Contratos Societarios</span>
+      <span class="dr-priority obligatorio">OBLIGATORIO</span>
+    </div>
+    <p class="dr-desc">Acuerdos de accionistas, pactos de socios, cartas laterales, promesas de venta de acciones, opciones de compra.</p>
+    <p class="dr-status"><strong>Estado:</strong> {{dr05_status}}</p>
+  </div>
+
+  <div class="dr-item">
+    <div class="dr-header">
+      <span class="dr-title">DR-06 | Estructura Corporativa</span>
+      <span class="dr-priority obligatorio">OBLIGATORIO</span>
+    </div>
+    <p class="dr-desc">Organigrama actual (legal y operativo), descripcion de filiales, subsidiarias o vehiculos relacionados.</p>
+    <p class="dr-status"><strong>Estado:</strong> {{dr06_status}}</p>
+  </div>
+
+  <div class="dr-item">
+    <div class="dr-header">
+      <span class="dr-title">DR-07 | Contratos de Personal Clave</span>
+      <span class="dr-priority recomendado">RECOMENDADO</span>
+    </div>
+    <p class="dr-desc">Contratos de directivos (CEO, CFO, COO), acuerdos de no competencia, planes de compensacion variable.</p>
+    <p class="dr-status"><strong>Estado:</strong> {{dr07_status}}</p>
+  </div>
+
+  <div class="dr-item">
+    <div class="dr-header">
+      <span class="dr-title">DR-08 | Bienes e Inmuebles</span>
+      <span class="dr-priority recomendado">RECOMENDADO</span>
+    </div>
+    <p class="dr-desc">Escrituras de bienes inmuebles, titulos de vehiculos o maquinaria relevante en nombre de la sociedad.</p>
+    <p class="dr-status"><strong>Estado:</strong> {{dr08_status}}</p>
+  </div>
+
+  <div class="dr-item">
+    <div class="dr-header">
+      <span class="dr-title">DR-09 | Pasivos y Creditos</span>
+      <span class="dr-priority recomendado">RECOMENDADO</span>
+    </div>
+    <p class="dr-desc">Contratos de credito bancario vigentes, pagares, fideicomisos de garantia, deudas con socios.</p>
+    <p class="dr-status"><strong>Estado:</strong> {{dr09_status}}</p>
+  </div>
+
+  <div class="dr-item">
+    <div class="dr-header">
+      <span class="dr-title">DR-10 | Informacion Fiscal</span>
+      <span class="dr-priority recomendado">RECOMENDADO</span>
+    </div>
+    <p class="dr-desc">Ultimas 3 declaraciones anuales ISR, comprobante de situacion fiscal actualizado.</p>
+    <p class="dr-status"><strong>Estado:</strong> {{dr10_status}}</p>
+  </div>
+
+  <div class="dr-item">
+    <div class="dr-header">
+      <span class="dr-title">DR-11 | Litigios y Contingencias</span>
+      <span class="dr-priority obligatorio">OBLIGATORIO</span>
+    </div>
+    <p class="dr-desc">Listado de demandas activas o recientes (laborales, mercantiles, fiscales), con estado actual.</p>
+    <p class="dr-status"><strong>Estado:</strong> {{dr11_status}}</p>
+  </div>
+
+  <div class="dr-item">
+    <div class="dr-header">
+      <span class="dr-title">DR-12 | Seguros Corporativos</span>
+      <span class="dr-priority recomendado">RECOMENDADO</span>
+    </div>
+    <p class="dr-desc">Polizas de seguros empresariales vigentes: D&amp;O (Directors &amp; Officers), RC, activos.</p>
+    <p class="dr-status"><strong>Estado:</strong> {{dr12_status}}</p>
+  </div>
+
+  <div class="dr-location">
+    <h3>Ubicacion del Data Room Digital</h3>
+    <table style="width:100%; border-collapse:collapse;">
+      <tr><td style="padding:6px 0; font-weight:bold; width:40%;">Plataforma:</td><td>{{dataroom_platform}}</td></tr>
+      <tr><td style="padding:6px 0; font-weight:bold;">URL / Enlace de acceso:</td><td>{{dataroom_url}}</td></tr>
+      <tr><td style="padding:6px 0; font-weight:bold;">Correo electronico para acceso:</td><td>{{dataroom_email}}</td></tr>
+      <tr><td style="padding:6px 0; font-weight:bold;">Responsable de Data Room en empresa:</td><td>{{dataroom_responsible}}</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- VII. ACUSE DE ENTREGA Y FIRMA -->
+<div class="content page-break">
+  <h1 class="section">VII. ACUSE DE ENTREGA Y FIRMA</h1>
+  <p>La firma de este documento confirma que la informacion proporcionada es veridica y que el cliente autoriza a {{branding_company_name}} a utilizarla para fines de diagnostico de gobierno corporativo exclusivamente.</p>
+
+  <table class="sig-table" style="margin-top: 30px;">
+    <tr><td>Nombre completo del firmante:</td><td>{{signatory_name}}</td></tr>
+    <tr><td>Cargo:</td><td>{{signatory_role}}</td></tr>
+    <tr><td>Firma:</td><td style="min-height:60px;"></td></tr>
+    <tr><td>Fecha:</td><td>{{current_date}}</td></tr>
+    <tr><td>Lugar:</td><td>{{signatory_city}}</td></tr>
+  </table>
+
+  <div class="footer" style="margin-top: 60px;">
+    <p>-- {{branding_company_name}} -- Gobierno Corporativo de Clase Mundial -- La informacion contenida en este documento es estrictamente confidencial --</p>
+  </div>
+</div>
+
+</body>
+</html>

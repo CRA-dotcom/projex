@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cuestionario de Onboarding - Plan Anual de Marketing</title>
+  <style>
+    :root {
+      --bg-dark: #1a1a2e;
+      --bg-card: #16213e;
+      --accent-orange: #ff6b35;
+      --accent-purple: #7b2ff7;
+      --accent-cyan: #00d4ff;
+      --accent-magenta: #ff2d95;
+      --text-primary: #ffffff;
+      --text-secondary: #b0b0b0;
+      --input-bg: #fde8d8;
+      --border-color: #2a2a4a;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: var(--bg-dark); color: var(--text-primary); line-height: 1.6; }
+    .page { max-width: 900px; margin: 0 auto; padding: 40px 30px; }
+    .header-bar { width: 60px; height: 4px; background: var(--accent-orange); margin-bottom: 8px; }
+    .section-label { font-size: 12px; text-transform: uppercase; letter-spacing: 2px; color: var(--text-secondary); margin-bottom: 30px; }
+    h1 { font-size: 42px; font-weight: 700; margin-bottom: 10px; }
+    h1 span { color: var(--accent-orange); }
+    .subtitle { font-size: 16px; color: var(--text-secondary); margin-bottom: 40px; max-width: 700px; }
+    .instructions { margin-bottom: 40px; }
+    .instructions h3 { font-size: 16px; font-weight: 700; margin-bottom: 16px; }
+    .instruction-item { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 12px; }
+    .instruction-num { width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; color: #fff; flex-shrink: 0; }
+    .num-1 { background: var(--accent-orange); }
+    .num-2 { background: var(--accent-purple); }
+    .num-3 { background: var(--accent-cyan); }
+    .num-4 { background: var(--accent-magenta); }
+    .instruction-text { font-size: 14px; color: var(--text-secondary); }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 30px; }
+    .form-grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; margin-bottom: 30px; }
+    .form-group { display: flex; flex-direction: column; }
+    .form-group.full-width { grid-column: 1 / -1; }
+    .form-label { font-size: 12px; color: var(--text-secondary); margin-bottom: 4px; text-transform: uppercase; }
+    .form-field { background: var(--input-bg); color: #333; padding: 12px 16px; border: none; border-radius: 4px; font-size: 14px; min-height: 44px; }
+    .form-field.textarea { min-height: 100px; }
+    .confidentiality { background: rgba(255, 193, 7, 0.1); border-left: 4px solid #ffc107; padding: 16px 20px; margin-top: 40px; }
+    .confidentiality strong { color: #ffc107; }
+    .confidentiality p { font-size: 13px; color: var(--text-secondary); }
+    .part-header { font-size: 13px; text-transform: uppercase; letter-spacing: 1px; color: var(--text-secondary); margin-bottom: 6px; }
+    .part-subheader { font-size: 12px; color: var(--text-secondary); margin-bottom: 24px; }
+    .question-block { border-left: 3px solid var(--accent-purple); padding: 20px 24px; margin-bottom: 24px; background: rgba(255,255,255,0.02); border-radius: 0 8px 8px 0; }
+    .question-block.q1 { border-left-color: var(--accent-orange); }
+    .question-block.q2 { border-left-color: var(--accent-purple); }
+    .question-block.q3 { border-left-color: var(--accent-cyan); }
+    .question-block.q4 { border-left-color: var(--accent-magenta); }
+    .question-block.q5 { border-left-color: var(--accent-orange); }
+    .question-block.q6 { border-left-color: var(--accent-purple); }
+    .question-block.q7 { border-left-color: var(--accent-cyan); }
+    .question-block.q8 { border-left-color: var(--accent-magenta); }
+    .question-block.q9 { border-left-color: var(--accent-orange); }
+    .question-num { display: inline-flex; width: 28px; height: 28px; border-radius: 50%; align-items: center; justify-content: center; font-size: 14px; font-weight: 700; color: #fff; margin-right: 10px; }
+    .question-title { font-size: 16px; font-weight: 700; margin-bottom: 8px; }
+    .question-desc { font-size: 13px; color: var(--text-secondary); margin-bottom: 6px; }
+    .question-example { font-size: 12px; color: var(--accent-orange); font-style: italic; margin-bottom: 12px; }
+    .question-answer { background: var(--input-bg); color: #333; padding: 14px 16px; border: none; border-radius: 4px; font-size: 14px; min-height: 80px; width: 100%; }
+    .sub-questions { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 12px; }
+    .sub-question label { font-size: 12px; color: var(--accent-cyan); display: block; margin-bottom: 4px; }
+    .extra-block { border-left: 3px solid var(--text-secondary); padding: 20px 24px; margin-bottom: 24px; background: rgba(255,255,255,0.02); border-radius: 0 8px 8px 0; }
+    .extra-icon { display: inline-flex; width: 28px; height: 28px; border-radius: 50%; background: var(--text-secondary); align-items: center; justify-content: center; font-size: 16px; font-weight: 700; color: #fff; margin-right: 10px; }
+    .signature-section { border-top: 1px solid var(--border-color); padding-top: 24px; margin-top: 40px; }
+    .signature-section p { font-size: 13px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 20px; }
+    .signature-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+    .footer { text-align: center; font-size: 12px; color: var(--text-secondary); margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--border-color); }
+    @media print { body { background: #fff; color: #000; } .form-field, .question-answer { border: 1px solid #ccc; background: #f9f9f9; } }
+  </style>
+</head>
+<body>
+
+  <!-- PAGE 1: Cover & Contact Data -->
+  <div class="page">
+    <div class="header-bar"></div>
+    <div class="section-label">CUESTIONARIO DE ONBOARDING</div>
+
+    <h1>Cuentanos sobre<br><span>tu negocio.</span></h1>
+    <p class="subtitle">En base a tus respuestas, nuestro equipo disenara tu Plan Anual de Marketing con estrategia, tacticas y presupuesto 100% personalizados.</p>
+
+    <div class="instructions">
+      <h3>COMO LLENARLO?</h3>
+      <div class="instruction-item">
+        <div class="instruction-num num-1">1</div>
+        <div class="instruction-text">Responde con la mayor honestidad posible -- no hay respuestas incorrectas.</div>
+      </div>
+      <div class="instruction-item">
+        <div class="instruction-num num-2">2</div>
+        <div class="instruction-text">Si no sabes un numero exacto, da un rango aproximado. Es suficiente.</div>
+      </div>
+      <div class="instruction-item">
+        <div class="instruction-num num-3">3</div>
+        <div class="instruction-text">Tienes espacio para escribir libremente en cada pregunta.</div>
+      </div>
+      <div class="instruction-item">
+        <div class="instruction-num num-4">4</div>
+        <div class="instruction-text">Al terminar, entrega este documento a tu consultor o envialo por email.</div>
+      </div>
+    </div>
+
+    <h3 style="margin-bottom: 16px;">DATOS DE CONTACTO</h3>
+    <div class="form-grid">
+      <div class="form-group">
+        <span class="form-label">Nombre completo</span>
+        <div class="form-field">{{manual_contact_name}}</div>
+      </div>
+      <div class="form-group">
+        <span class="form-label">Cargo / Puesto</span>
+        <div class="form-field">{{manual_contact_role}}</div>
+      </div>
+      <div class="form-group">
+        <span class="form-label">Empresa</span>
+        <div class="form-field">{{client_name}}</div>
+      </div>
+      <div class="form-group">
+        <span class="form-label">Industria / Sector</span>
+        <div class="form-field">{{client_industry}}</div>
+      </div>
+    </div>
+    <div class="form-grid-3">
+      <div class="form-group">
+        <span class="form-label">Ciudad</span>
+        <div class="form-field">{{manual_contact_city}}</div>
+      </div>
+      <div class="form-group">
+        <span class="form-label">Telefono</span>
+        <div class="form-field">{{manual_contact_phone}}</div>
+      </div>
+      <div class="form-group">
+        <span class="form-label">Email</span>
+        <div class="form-field">{{manual_contact_email}}</div>
+      </div>
+    </div>
+    <div class="form-grid">
+      <div class="form-group">
+        <span class="form-label">Fecha</span>
+        <div class="form-field">{{current_date}}</div>
+      </div>
+    </div>
+
+    <div class="confidentiality">
+      <strong>CONFIDENCIALIDAD:</strong>
+      <p>Toda la informacion que compartas es estrictamente confidencial y se usara exclusivamente para desarrollar tu Plan Anual de Marketing.</p>
+    </div>
+  </div>
+
+  <!-- PAGE 2: Part 1 - Questions 1-5 -->
+  <div class="page">
+    <div class="part-header">PARTE 1 DE 2 -- TU NEGOCIO Y TUS METAS</div>
+    <div class="part-subheader">Preguntas 1 a 5</div>
+
+    <div class="question-block q1">
+      <div class="question-title"><span class="question-num" style="background:var(--accent-orange)">1</span>Que quieres lograr este ano con tu negocio?</div>
+      <div class="question-desc">Cuentanos cual es tu objetivo principal. Puede ser vender mas, que mas gente conozca tu marca, entrar a un nuevo mercado, lanzar un nuevo producto o servicio, o todo lo anterior.</div>
+      <div class="question-example">Ej: 'Quiero aumentar mis ventas un 40%, que mas empresas me conozcan y lanzar mi nuevo servicio de...'</div>
+      <div class="question-answer">{{manual_q1_business_goals}}</div>
+    </div>
+
+    <div class="question-block q2">
+      <div class="question-title"><span class="question-num" style="background:var(--accent-purple)">2</span>Cuanto vendiste el ano pasado y cuanto quieres vender este ano?</div>
+      <div class="question-desc">Si no tienes el numero exacto, un aproximado es suficiente. Incluye la moneda (MXN, USD, etc.).</div>
+      <div class="question-example">Ej: 'El ano pasado vendimos $3,000,000 MXN. Este ano queremos llegar a $5,000,000 MXN.'</div>
+      <div class="question-answer">{{manual_q2_revenue}}</div>
+    </div>
+
+    <div class="question-block q3">
+      <div class="question-title"><span class="question-num" style="background:var(--accent-cyan)">3</span>Cuanto cobra por su servicio o producto mas vendido?</div>
+      <div class="question-desc">Cuentanos tu precio mas comun. Si tienes varios productos o servicios, menciona el que mas vendes. Para calcular tu ticket promedio: suma tus ventas del mes y dividelas entre el numero de clientes del mes.</div>
+      <div class="question-example">Ej: 'Cobramos $15,000 MXN por mes de servicio. O por proyecto, desde $30,000 hasta $200,000 MXN.'</div>
+      <div class="question-answer">{{manual_q3_pricing}}</div>
+    </div>
+
+    <div class="question-block q4">
+      <div class="question-title"><span class="question-num" style="background:var(--accent-magenta)">4</span>Describe a tu mejor cliente -- ese que paga bien, regresa y te recomienda.</div>
+      <div class="question-desc">Piensa en los 3 clientes con los que mejor ha funcionado la relacion. Como son? A que se dedican? Cuantos empleados tiene su empresa? En que ciudad estan? Que les preocupa en su dia a dia?</div>
+      <div class="question-example">Ej: 'Son duenos de empresas de 20-100 empleados en Monterrey, sector manufactura o servicios, 40-55 anos.'</div>
+      <div class="question-answer">{{manual_q4_ideal_client}}</div>
+    </div>
+
+    <div class="question-block q5">
+      <div class="question-title"><span class="question-num" style="background:var(--accent-orange)">5</span>Por que crees que algunos prospectos deciden NO contratarte?</div>
+      <div class="question-desc">Cuando alguien te dice que no o simplemente desaparece, cual suele ser la razon? Puede ser el precio, que no entienden bien que haces, que prefieren a otro, o que no lo ven urgente.</div>
+      <div class="question-example">Ej: 'Nos dicen que somos caros, que ya tienen a alguien de confianza, o que lo dejan para despues.'</div>
+      <div class="question-answer">{{manual_q5_objections}}</div>
+    </div>
+  </div>
+
+  <!-- PAGE 3: Part 2 - Questions 6-9 + Extra + Signature -->
+  <div class="page">
+    <div class="part-header">PARTE 2 DE 2 -- TU MARCA, COMPETENCIA Y RECURSOS</div>
+    <div class="part-subheader">Preguntas 6 a 9</div>
+
+    <div class="question-block q6">
+      <div class="question-title"><span class="question-num" style="background:var(--accent-purple)">6</span>En que industria o sector opera tu empresa?</div>
+      <div class="question-desc">Solo necesitamos saber el giro de tu negocio. Con eso identificamos a tus competidores nosotros mismos -- tu no tienes que investigarlos.</div>
+      <div class="question-example">Ej: 'Despacho de abogados B2B / Consultoria de recursos humanos / Agencia de publicidad / Manufactura.'</div>
+      <div class="question-answer">{{manual_q6_industry}}</div>
+    </div>
+
+    <div class="question-block q7">
+      <div class="question-title"><span class="question-num" style="background:var(--accent-cyan)">7</span>Que haces tu que tu competencia no puede copiar facilmente?</div>
+      <div class="question-desc">Piensa en lo que te hace diferente: puede ser tu velocidad de respuesta, tu metodologia, tu equipo, tu tecnologia, tu precio, tu garantia, o simplemente la forma en que tratas a tus clientes.</div>
+      <div class="question-example">Ej: 'Respondemos en menos de 2 horas. Usamos tecnologia propia. Damos garantia de resultados en 90 dias.'</div>
+      <div class="question-answer">{{manual_q7_differentiator}}</div>
+    </div>
+
+    <div class="question-block q8">
+      <div class="question-title"><span class="question-num" style="background:var(--accent-magenta)">8</span>Si tu empresa fuera una persona, como seria?</div>
+      <div class="question-desc">Esto nos ayuda a definir como debe comunicarse tu marca en redes sociales, anuncios y correos. Piensa en la personalidad, el tono y los valores que quieres proyectar.</div>
+      <div class="question-example">Ej: 'Seria un profesional de 45 anos, serio pero cercano, que explica las cosas sin tecnicismos y usa tecnologia.'</div>
+      <div class="question-answer">{{manual_q8_brand_personality}}</div>
+    </div>
+
+    <div class="question-block q9">
+      <div class="question-title"><span class="question-num" style="background:var(--accent-orange)">9</span>Recursos disponibles para ejecutar el plan</div>
+      <div class="question-desc">Estas dos preguntas nos ayudan a disenar un plan realista y ejecutable con lo que tienes hoy.</div>
+      <div class="sub-questions">
+        <div>
+          <label>9A. Cuanto puedes invertir al mes en publicidad (anuncios)?</label>
+          <div class="question-desc" style="margin-bottom:4px">Incluye lo que pagarias en plataformas como Google, Facebook, Instagram o LinkedIn. Si no tienes certeza, da un rango.</div>
+          <div class="question-example">Ej: '$10,000 - $30,000 MXN/mes' o '$500 - $1,500 USD/mes'</div>
+          <div class="form-field">{{manual_q9a_ad_budget}}</div>
+        </div>
+        <div>
+          <label>9B. Quien ejecutara la estrategia de marketing?</label>
+          <div class="question-desc" style="margin-bottom:4px">Tienes equipo interno, trabajas con una agencia, o lo haras tu mismo? Cuentanos con que recursos humanos cuentas.</div>
+          <div class="question-example">Ej: '2 personas en ventas + agencia externa para redes sociales.'</div>
+          <div class="form-field">{{manual_q9b_team_resources}}</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="extra-block">
+      <div class="question-title"><span class="extra-icon">+</span>Hay algo mas que quieras que sepamos antes de disenar tu plan?</div>
+      <div class="question-desc">Contexto adicional, proyectos en proceso, eventos importantes del ano, socios estrategicos, o cualquier cosa que consideres relevante para tu estrategia.</div>
+      <div class="question-answer" style="margin-top:12px">{{manual_q_extra_context}}</div>
+    </div>
+
+    <div class="signature-section">
+      <p>CONFIRMO QUE LA INFORMACION ES CORRECTA Y AUTORIZO SU USO PARA EL DESARROLLO DEL PLAN.</p>
+      <div class="signature-grid">
+        <div class="form-group">
+          <span class="form-label">Nombre y firma</span>
+          <div class="form-field">{{manual_signature_name}}</div>
+        </div>
+        <div class="form-group">
+          <span class="form-label">Cargo</span>
+          <div class="form-field">{{manual_signature_role}}</div>
+        </div>
+        <div class="form-group">
+          <span class="form-label">Fecha</span>
+          <div class="form-field">{{current_date}}</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">Cuestionario de Onboarding -- Plan Anual de Marketing</div>
+  </div>
+
+</body>
+</html>

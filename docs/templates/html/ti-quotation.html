@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cotizacion - {{client_name}}</title>
+  <style>
+    :root { --primary: #1a1a2e; --accent: #e94560; --bg: #fff; --text: #1a1a2e; --border: #ddd; --header-bg: #f8f9fa; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color: var(--text); line-height: 1.6; max-width: 900px; margin: 0 auto; padding: 40px 20px; }
+    .cover { text-align: center; margin-bottom: 40px; padding: 40px 20px; border: 2px solid var(--primary); }
+    .cover .tag { font-size: 0.85rem; letter-spacing: 3px; color: var(--accent); margin-bottom: 8px; }
+    .cover h1 { font-size: 1.6rem; margin-bottom: 4px; }
+    .cover .subtitle { font-size: 1rem; color: #555; margin-bottom: 12px; }
+    .cover .validity { font-size: 0.8rem; color: #999; }
+    h1 { font-size: 1.3rem; color: var(--primary); margin: 30px 0 12px; border-bottom: 2px solid var(--accent); padding-bottom: 6px; }
+    h2 { font-size: 1.1rem; color: var(--primary); margin: 20px 0 10px; }
+    p { margin-bottom: 10px; font-size: 0.95rem; }
+    table.data-table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
+    table.data-table th { background: var(--primary); color: #fff; padding: 8px 10px; text-align: left; font-size: 0.85rem; }
+    table.data-table td { padding: 6px 10px; border: 1px solid var(--border); font-size: 0.85rem; }
+    table.data-table tr:nth-child(even) { background: var(--header-bg); }
+    .parties-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; margin-bottom: 24px; border: 1px solid var(--border); }
+    .party { padding: 12px 16px; }
+    .party:first-child { border-right: 1px solid var(--border); }
+    .party h3 { font-size: 0.85rem; color: var(--accent); margin-bottom: 8px; text-transform: uppercase; }
+    .party .field { margin-bottom: 4px; font-size: 0.85rem; }
+    .party .field-label { font-weight: 600; }
+    .ref-row { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; border: 1px solid var(--border); margin-bottom: 12px; }
+    .ref-cell { padding: 8px 12px; border-right: 1px solid var(--border); font-size: 0.85rem; }
+    .ref-cell:last-child { border-right: none; }
+    .ref-cell .label { font-size: 0.7rem; color: #777; text-transform: uppercase; }
+    .ref-cell .value { font-weight: 600; }
+    .context-row { display: grid; grid-template-columns: 1fr 1fr 1fr; border: 1px solid var(--border); margin-bottom: 24px; }
+    .context-cell { padding: 8px 12px; border-right: 1px solid var(--border); text-align: center; }
+    .context-cell:last-child { border-right: none; }
+    .context-cell .label { font-size: 0.7rem; color: #777; text-transform: uppercase; }
+    .context-cell .value { font-size: 1.1rem; font-weight: 700; color: var(--primary); }
+    .finding { margin-bottom: 6px; padding-left: 16px; position: relative; font-size: 0.95rem; }
+    .finding::before { content: "\25B8"; position: absolute; left: 0; color: var(--accent); }
+    .total-row { font-weight: 700; background: #e8e8e8 !important; }
+    .discount-box { background: var(--header-bg); border: 1px solid var(--border); padding: 10px 16px; margin-bottom: 20px; }
+    .discount-box td { padding: 6px 10px; border: 1px solid var(--border); font-size: 0.85rem; }
+    .signatures { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--border); }
+    .sig-block { text-align: center; }
+    .sig-line { border-top: 1px solid var(--text); margin-top: 60px; padding-top: 8px; font-size: 0.85rem; }
+    @media print { body { padding: 20px; } .cover { page-break-after: always; } }
+  </style>
+</head>
+<body>
+
+  <!-- COVER -->
+  <div class="cover">
+    <div class="tag">PROPUESTA COMERCIAL</div>
+    <h1>PLANTILLA DE COTIZACION</h1>
+    <div class="subtitle">Servicios de Consultoria Tecnologica</div>
+    <div class="validity">Version 1.0 | {{current_date}} | Valida por 15 dias habiles</div>
+  </div>
+
+  <!-- PARTIES -->
+  <div class="parties-grid">
+    <div class="party">
+      <h3>Datos del Consultor / Emisor</h3>
+      <div class="field"><span class="field-label">Empresa / Consultora:</span> {{branding_company_name}}</div>
+      <div class="field"><span class="field-label">Nombre del Consultor:</span> {{consultant_name}}</div>
+      <div class="field"><span class="field-label">Correo electronico:</span> {{consultant_email}}</div>
+      <div class="field"><span class="field-label">Telefono:</span> {{consultant_phone}}</div>
+      <div class="field"><span class="field-label">RFC / NIF:</span> {{consultant_tax_id}}</div>
+    </div>
+    <div class="party">
+      <h3>Datos del Cliente / Receptor</h3>
+      <div class="field"><span class="field-label">Empresa / Cliente:</span> {{client_name}}</div>
+      <div class="field"><span class="field-label">Nombre de Contacto:</span> {{client_contact_name}}</div>
+      <div class="field"><span class="field-label">Correo electronico:</span> {{client_email}}</div>
+      <div class="field"><span class="field-label">Telefono:</span> {{client_phone}}</div>
+      <div class="field"><span class="field-label">RFC / NIF:</span> {{client_tax_id}}</div>
+    </div>
+  </div>
+
+  <!-- REFERENCE -->
+  <div class="ref-row">
+    <div class="ref-cell"><div class="label">N Cotizacion</div><div class="value">{{document_folio}}</div></div>
+    <div class="ref-cell"><div class="label">Folio Diagnostico</div><div class="value">{{diagnostic_folio}}</div></div>
+    <div class="ref-cell"><div class="label">Fecha de Emision</div><div class="value">{{current_date}}</div></div>
+    <div class="ref-cell"><div class="label">Valida Hasta</div><div class="value">{{quotation_valid_until}}</div></div>
+  </div>
+
+  <!-- CONTEXT -->
+  <div class="context-row">
+    <div class="context-cell"><div class="label">Score Diagnostico</div><div class="value">{{ai_score_total}} / 100</div></div>
+    <div class="context-cell"><div class="label">Ruta Asignada</div><div class="value">{{ai_assigned_route}}</div></div>
+    <div class="context-cell"><div class="label">Modalidad de Servicio</div><div class="value">{{ai_service_modality}}</div></div>
+  </div>
+
+  <!-- 1. RESUMEN EJECUTIVO -->
+  <h1>1. RESUMEN EJECUTIVO DE LA PROPUESTA</h1>
+  <p>{{ai_quotation_summary}}</p>
+
+  <!-- 2. ALCANCE Y ENTREGABLES -->
+  <h1>2. ALCANCE Y ENTREGABLES</h1>
+
+  <h2>2.1 Descripcion del Servicio</h2>
+  <p>{{ai_service_description}}</p>
+
+  <h2>2.2 Servicios Incluidos</h2>
+  <div class="finding">{{ai_included_service_1}}</div>
+  <div class="finding">{{ai_included_service_2}}</div>
+  <div class="finding">{{ai_included_service_3}}</div>
+  <div class="finding">{{ai_included_service_4}}</div>
+  <div class="finding">{{ai_included_service_5}}</div>
+
+  <h2>2.3 Fuera del Alcance</h2>
+  <div class="finding">{{ai_exclusion_1}}</div>
+  <div class="finding">{{ai_exclusion_2}}</div>
+  <div class="finding">{{ai_exclusion_3}}</div>
+  <div class="finding">{{ai_exclusion_4}}</div>
+
+  <!-- 3. DESGLOSE DE SERVICIOS Y PRECIOS -->
+  <h1>3. DESGLOSE DE SERVICIOS Y PRECIOS</h1>
+
+  <table class="data-table">
+    <thead>
+      <tr><th>SERVICIO / ENTREGABLE</th><th>DESCRIPCION</th><th>PERIODICIDAD</th><th>PRECIO</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>{{ai_line_item_1_name}}</td><td>{{ai_line_item_1_desc}}</td><td>{{ai_line_item_1_freq}}</td><td>{{ai_line_item_1_price}}</td></tr>
+      <tr><td>{{ai_line_item_2_name}}</td><td>{{ai_line_item_2_desc}}</td><td>{{ai_line_item_2_freq}}</td><td>{{ai_line_item_2_price}}</td></tr>
+      <tr><td>{{ai_line_item_3_name}}</td><td>{{ai_line_item_3_desc}}</td><td>{{ai_line_item_3_freq}}</td><td>{{ai_line_item_3_price}}</td></tr>
+      <tr><td>{{ai_line_item_4_name}}</td><td>{{ai_line_item_4_desc}}</td><td>{{ai_line_item_4_freq}}</td><td>{{ai_line_item_4_price}}</td></tr>
+      <tr><td>{{ai_line_item_5_name}}</td><td>{{ai_line_item_5_desc}}</td><td>{{ai_line_item_5_freq}}</td><td>{{ai_line_item_5_price}}</td></tr>
+      <tr class="total-row"><td colspan="3">TOTAL MENSUAL</td><td>{{ai_total_monthly}}</td></tr>
+    </tbody>
+  </table>
+
+  <table class="data-table" style="max-width:600px;">
+    <tr><td style="font-weight:600;">DESCUENTO POR CONTRATO ANUAL</td><td>{{ai_annual_discount}}</td></tr>
+    <tr><td style="font-weight:600;">COSTO DE IMPLEMENTACION / ONBOARDING</td><td>{{ai_onboarding_cost}}</td></tr>
+  </table>
+
+  <!-- 4. SLAs -->
+  <h1>4. ACUERDOS DE NIVEL DE SERVICIO (SLAs)</h1>
+
+  <table class="data-table">
+    <thead>
+      <tr><th>METRICA</th><th>DEFINICION</th><th>NIVEL COMPROMETIDO</th><th>PENALIZACION</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Tiempo de Respuesta Inicial</td><td>Desde que se registra el ticket hasta el primer contacto del consultor</td><td>&lt; 2 horas (Critico) / &lt; 4 h (Alto)</td><td>Credito de 5% en factura mensual</td></tr>
+      <tr><td>Tiempo de Resolucion (MTTR)</td><td>Desde el primer contacto hasta la resolucion confirmada por el cliente</td><td>&lt; 4 h (Critico) / &lt; 8 h (Alto)</td><td>Credito de 10% si se supera en 2+ ocurrencias</td></tr>
+      <tr><td>Disponibilidad del Servicio</td><td>Porcentaje de tiempo en que el servicio de soporte esta disponible</td><td>99.5% mensual</td><td>Credito de 5% por cada 0.5% de caida adicional</td></tr>
+      <tr><td>Reporte Mensual</td><td>Entrega del reporte ejecutivo de disponibilidad e incidentes</td><td>Dia 5 habil de cada mes</td><td>Credito de 3% por entrega tardia</td></tr>
+    </tbody>
+  </table>
+  <p style="font-size:0.85rem; color:#666;">Los SLAs aplican durante el horario de servicio acordado. Incidentes fuera de horario (si no se contrato 24x7) se atienden al inicio del siguiente dia habil sin penalizacion.</p>
+
+  <!-- 5. CONDICIONES COMERCIALES -->
+  <h1>5. CONDICIONES COMERCIALES</h1>
+
+  <table class="data-table">
+    <thead><tr><th>CONCEPTO</th><th>CONDICION</th></tr></thead>
+    <tbody>
+      <tr><td>Vigencia de la Propuesta</td><td>15 dias habiles a partir de la fecha de emision</td></tr>
+      <tr><td>Forma de Pago</td><td>{{ai_payment_method}}</td></tr>
+      <tr><td>Terminos de Pago</td><td>Pago por adelantado: primeros 5 dias habiles del mes</td></tr>
+      <tr><td>Duracion del Contrato</td><td>{{ai_contract_duration}}</td></tr>
+      <tr><td>Penalizacion por Cancelacion Anticipada</td><td>{{ai_cancellation_penalty}}</td></tr>
+      <tr><td>Ajuste Anual de Precio</td><td>Hasta {{ai_annual_price_adjustment}}% aplicable en la renovacion anual, con 30 dias de aviso</td></tr>
+      <tr><td>Confidencialidad</td><td>Sujeto a NDA / Acuerdo de Confidencialidad mutuo</td></tr>
+      <tr><td>Facturacion</td><td>Moneda: {{ai_currency}} &mdash; Factura mensual emitida el primer dia habil</td></tr>
+      <tr><td>Impuestos</td><td>Los precios mostrados son netos. Se aplicaran los impuestos vigentes segun legislacion local.</td></tr>
+    </tbody>
+  </table>
+
+  <!-- 6. ACEPTACION Y FIRMAS -->
+  <h1>6. ACEPTACION Y FIRMAS</h1>
+  <p>Al firmar este documento, ambas partes confirman haber leido, comprendido y aceptado los terminos, condiciones, alcance y precios descritos en la presente propuesta comercial.</p>
+  <p style="font-size:0.85rem; color:#666;">Esta propuesta no constituye un contrato hasta ser firmada por ambas partes. La firma de este documento inicia el proceso de generacion del contrato formal de servicios.</p>
+
+  <div class="signatures">
+    <div class="sig-block">
+      <div class="sig-line">CONSULTOR / EMISOR</div>
+      <p style="font-size:0.85rem; margin-top:8px;">Nombre y Cargo: ___________________________</p>
+      <p style="font-size:0.85rem;">Fecha: ___________________________</p>
+    </div>
+    <div class="sig-block">
+      <div class="sig-line">CLIENTE / RECEPTOR</div>
+      <p style="font-size:0.85rem; margin-top:8px;">Nombre y Cargo: ___________________________</p>
+      <p style="font-size:0.85rem;">Fecha: ___________________________</p>
+    </div>
+  </div>
+
+</body>
+</html>

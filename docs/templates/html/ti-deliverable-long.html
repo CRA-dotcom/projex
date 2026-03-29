@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Diagnostico Tecnologico Profundo - {{client_name}}</title>
+  <style>
+    :root { --primary: #1a1a2e; --accent: #e94560; --bg: #fff; --text: #1a1a2e; --border: #ddd; --header-bg: #f8f9fa; --section-bg: #f0f2f5; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color: var(--text); line-height: 1.6; max-width: 900px; margin: 0 auto; padding: 40px 20px; }
+    .cover { text-align: center; margin-bottom: 40px; padding: 40px 20px; border: 2px solid var(--primary); }
+    .cover .tag { font-size: 0.85rem; letter-spacing: 3px; color: var(--accent); margin-bottom: 8px; }
+    .cover h1 { font-size: 1.6rem; margin-bottom: 4px; }
+    .cover .subtitle { font-size: 1rem; color: #555; margin-bottom: 12px; }
+    .cover .route { font-size: 0.85rem; color: #777; }
+    .info-table { width: 100%; border-collapse: collapse; margin-bottom: 30px; }
+    .info-table td { padding: 8px 12px; border: 1px solid var(--border); }
+    .info-table td:first-child { font-weight: 600; width: 200px; background: var(--header-bg); }
+    .confidentiality { background: #fff3cd; border: 1px solid #ffc107; padding: 12px 16px; font-size: 0.85rem; margin-bottom: 24px; }
+    h1 { font-size: 1.3rem; color: var(--primary); margin: 30px 0 12px; border-bottom: 2px solid var(--accent); padding-bottom: 6px; }
+    h2 { font-size: 1.1rem; color: var(--primary); margin: 20px 0 10px; }
+    p { margin-bottom: 10px; font-size: 0.95rem; }
+    .score-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 12px; }
+    .score-card { background: var(--header-bg); border: 1px solid var(--border); padding: 12px; text-align: center; border-radius: 4px; }
+    .score-card .label { font-size: 0.7rem; color: #777; text-transform: uppercase; }
+    .score-card .value { font-size: 1.2rem; font-weight: 700; color: var(--primary); }
+    .score-total { background: var(--primary); color: #fff; padding: 12px 20px; display: flex; justify-content: space-between; align-items: center; border-radius: 4px; margin-bottom: 24px; }
+    .score-total .val { font-size: 1.3rem; font-weight: 700; }
+    .finding { margin-bottom: 6px; padding-left: 16px; position: relative; font-size: 0.95rem; }
+    .finding::before { content: "\25B8"; position: absolute; left: 0; color: var(--accent); }
+    .observation { background: var(--section-bg); border-left: 3px solid var(--accent); padding: 10px 14px; margin: 12px 0 20px; font-size: 0.9rem; }
+    table.data-table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
+    table.data-table th { background: var(--primary); color: #fff; padding: 8px 10px; text-align: left; font-size: 0.85rem; }
+    table.data-table td { padding: 6px 10px; border: 1px solid var(--border); font-size: 0.85rem; }
+    table.data-table tr:nth-child(even) { background: var(--header-bg); }
+    .risk-critical { color: #721c24; font-weight: 700; }
+    .risk-high { color: #dc3545; font-weight: 700; }
+    .risk-medium { color: #856404; font-weight: 700; }
+    .risk-low { color: #28a745; font-weight: 700; }
+    .section-banner { background: var(--section-bg); font-weight: 700; padding: 8px 12px; font-size: 0.9rem; border-left: 4px solid var(--primary); margin-bottom: 12px; }
+    .signatures { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--border); }
+    .sig-block { text-align: center; }
+    .sig-line { border-top: 1px solid var(--text); margin-top: 60px; padding-top: 8px; font-size: 0.85rem; }
+    @media print { body { padding: 20px; } .cover { page-break-after: always; } h1 { page-break-before: auto; } }
+  </style>
+</head>
+<body>
+
+  <!-- COVER -->
+  <div class="cover">
+    <div class="tag">DIAGNOSTICO TECNOLOGICO PROFUNDO</div>
+    <h1>DIAGNOSTICO LARGO</h1>
+    <div class="subtitle">Evaluacion Integral de Madurez Tecnologica &mdash; Estilo Big Four</div>
+    <div class="route">Ruta: Madurez Baja / Media | Score 0-64 pts | Version 1.0</div>
+  </div>
+
+  <!-- CLIENT INFO -->
+  <table class="info-table">
+    <tr><td>EMPRESA</td><td>{{client_name}}</td></tr>
+    <tr><td>INDUSTRIA / SECTOR</td><td>{{client_industry}}</td></tr>
+    <tr><td>RESPONSABLE TI</td><td>{{client_it_contact}}</td></tr>
+    <tr><td>FECHA DIAGNOSTICO</td><td>{{current_date}}</td></tr>
+    <tr><td>CONSULTOR LIDER</td><td>{{branding_company_name}}</td></tr>
+    <tr><td>FOLIO</td><td>{{document_folio}}</td></tr>
+  </table>
+
+  <div class="confidentiality">AVISO DE CONFIDENCIALIDAD: Este documento contiene informacion estrategica y analisis propietario. Su distribucion esta restringida al personal autorizado de ambas organizaciones. Queda prohibida su reproduccion parcial o total sin consentimiento escrito del emisor.</div>
+
+  <!-- 1. RESUMEN EJECUTIVO -->
+  <h1>1. RESUMEN EJECUTIVO</h1>
+
+  <div class="score-grid">
+    <div class="score-card"><div class="label">Seccion A</div><div class="value">{{ai_score_infrastructure}} / 25</div><div class="label">Infraestructura</div></div>
+    <div class="score-card"><div class="label">Seccion B</div><div class="value">{{ai_score_security}} / 25</div><div class="label">Seguridad</div></div>
+    <div class="score-card"><div class="label">Seccion C</div><div class="value">{{ai_score_pain_points}} / 25</div><div class="label">Puntos de Dolor</div></div>
+    <div class="score-card"><div class="label">Seccion D</div><div class="value">{{ai_score_business_objectives}} / 25</div><div class="label">Obj. de Negocio</div></div>
+  </div>
+  <div class="score-total">
+    <span>PUNTAJE TOTAL</span>
+    <span class="val">{{ai_score_total}} / 100 &mdash; {{ai_maturity_classification}}</span>
+  </div>
+
+  <p>{{ai_executive_paragraph_1}}</p>
+  <p>{{ai_executive_paragraph_2}}</p>
+  <p>{{ai_executive_paragraph_3}}</p>
+  <p>{{ai_executive_paragraph_4}}</p>
+  <p>{{ai_executive_paragraph_5}}</p>
+
+  <!-- 2. METODOLOGIA Y ALCANCE -->
+  <h1>2. METODOLOGIA Y ALCANCE</h1>
+
+  <h2>2.1 Instrumento de Evaluacion</h2>
+  <p>Este diagnostico se fundamenta en el Cuestionario de Calificacion Tecnologica (CCT v1.0), instrumento de 20 preguntas estructuradas que evalua el nivel de madurez tecnologica de la organizacion en cuatro dimensiones: Infraestructura, Seguridad, Puntos de Dolor y Objetivos de Negocio.</p>
+  <p>El CCT esta alineado con los marcos de referencia: ITIL 4 (Gestion de Servicios de TI), COBIT 2019 (Gobernanza y Gestion de TI Empresarial) e ISO/IEC 27001 (Seguridad de la Informacion).</p>
+
+  <h2>2.2 Informacion Recopilada</h2>
+  <p>La evaluacion se realizo mediante entrevista estructurada de 60-90 minutos con el personal declarado a continuacion:</p>
+  <p>{{ai_interviewee_1}}</p>
+  <p>{{ai_interviewee_2}}</p>
+  <p>{{ai_scope_description}}</p>
+
+  <h2>2.3 Limitaciones del Diagnostico</h2>
+  <div class="finding">Los hallazgos se basan en informacion declarada por el cliente; no incluyen pruebas tecnicas intrusivas.</div>
+  <div class="finding">La vigencia de este diagnostico es de 90 dias a partir de la fecha de emision.</div>
+  <div class="finding">Un analisis mas profundo (ej.: pruebas de penetracion, auditoria de codigo) requeriria alcance adicional.</div>
+
+  <!-- 3. HALLAZGOS DETALLADOS POR AREA -->
+  <h1>3. HALLAZGOS DETALLADOS POR AREA</h1>
+
+  <!-- 3A - Infraestructura -->
+  <div class="section-banner">[A] SECCION A &mdash; INFRAESTRUCTURA &nbsp;&nbsp;|&nbsp;&nbsp; PUNTAJE: {{ai_score_infrastructure}} / 25</div>
+  <div class="finding">{{ai_finding_a1}}</div>
+  <div class="finding">{{ai_finding_a2}}</div>
+  <div class="finding">{{ai_finding_a3}}</div>
+  <div class="finding">{{ai_finding_a4}}</div>
+  <div class="finding">{{ai_finding_a5}}</div>
+  <div class="observation">OBSERVACION: {{ai_observation_infrastructure}}</div>
+
+  <!-- 3B - Seguridad -->
+  <div class="section-banner">[B] SECCION B &mdash; SEGURIDAD &nbsp;&nbsp;|&nbsp;&nbsp; PUNTAJE: {{ai_score_security}} / 25</div>
+  <div class="finding">{{ai_finding_b1}}</div>
+  <div class="finding">{{ai_finding_b2}}</div>
+  <div class="finding">{{ai_finding_b3}}</div>
+  <div class="finding">{{ai_finding_b4}}</div>
+  <div class="finding">{{ai_finding_b5}}</div>
+  <div class="observation">OBSERVACION: {{ai_observation_security}}</div>
+
+  <!-- 3C - Puntos de Dolor -->
+  <div class="section-banner">[C] SECCION C &mdash; PUNTOS DE DOLOR &nbsp;&nbsp;|&nbsp;&nbsp; PUNTAJE: {{ai_score_pain_points}} / 25</div>
+  <div class="finding">{{ai_finding_c1}}</div>
+  <div class="finding">{{ai_finding_c2}}</div>
+  <div class="finding">{{ai_finding_c3}}</div>
+  <div class="finding">{{ai_finding_c4}}</div>
+  <div class="finding">{{ai_finding_c5}}</div>
+  <div class="observation">OBSERVACION: {{ai_observation_pain_points}}</div>
+
+  <!-- 3D - Objetivos de Negocio -->
+  <div class="section-banner">[D] SECCION D &mdash; OBJETIVOS DE NEGOCIO &nbsp;&nbsp;|&nbsp;&nbsp; PUNTAJE: {{ai_score_business_objectives}} / 25</div>
+  <div class="finding">{{ai_finding_d1}}</div>
+  <div class="finding">{{ai_finding_d2}}</div>
+  <div class="finding">{{ai_finding_d3}}</div>
+  <div class="finding">{{ai_finding_d4}}</div>
+  <div class="finding">{{ai_finding_d5}}</div>
+  <div class="observation">OBSERVACION: {{ai_observation_business}}</div>
+
+  <!-- 4. ANALISIS DE RIESGOS -->
+  <h1>4. ANALISIS DE RIESGOS</h1>
+  <p>La siguiente matriz consolida los riesgos identificados, clasificados por nivel de criticidad y ordenados por prioridad de remediacion. Los riesgos CRITICO y ALTO deben ser atendidos de forma inmediata.</p>
+
+  <table class="data-table">
+    <thead>
+      <tr><th>NIVEL</th><th>AREA / DOMINIO</th><th>RIESGO IDENTIFICADO</th><th>IMPACTO</th><th>PRIORIDAD</th></tr>
+    </thead>
+    <tbody>
+      <tr><td class="risk-critical">CRITICO</td><td>{{ai_risk_1_area}}</td><td>{{ai_risk_1_description}}</td><td>Alto</td><td>1</td></tr>
+      <tr><td class="risk-critical">CRITICO</td><td>{{ai_risk_2_area}}</td><td>{{ai_risk_2_description}}</td><td>Alto</td><td>2</td></tr>
+      <tr><td class="risk-high">ALTO</td><td>{{ai_risk_3_area}}</td><td>{{ai_risk_3_description}}</td><td>Alto</td><td>3</td></tr>
+      <tr><td class="risk-high">ALTO</td><td>{{ai_risk_4_area}}</td><td>{{ai_risk_4_description}}</td><td>Medio</td><td>4</td></tr>
+      <tr><td class="risk-medium">MEDIO</td><td>{{ai_risk_5_area}}</td><td>{{ai_risk_5_description}}</td><td>Medio</td><td>5</td></tr>
+      <tr><td class="risk-medium">MEDIO</td><td>{{ai_risk_6_area}}</td><td>{{ai_risk_6_description}}</td><td>Medio</td><td>6</td></tr>
+      <tr><td class="risk-low">BAJO</td><td>{{ai_risk_7_area}}</td><td>{{ai_risk_7_description}}</td><td>Bajo</td><td>7</td></tr>
+    </tbody>
+  </table>
+
+  <!-- 5. RECOMENDACIONES ESTRATEGICAS -->
+  <h1>5. RECOMENDACIONES ESTRATEGICAS</h1>
+
+  <h2>5.1 Quick Wins (0-30 dias)</h2>
+  <p>Acciones de alto impacto y bajo costo que pueden implementarse de forma inmediata sin requerir inversion mayor ni restructuracion de procesos.</p>
+  <div class="finding">{{ai_quick_win_1}}</div>
+  <div class="finding">{{ai_quick_win_2}}</div>
+  <div class="finding">{{ai_quick_win_3}}</div>
+
+  <h2>5.2 Iniciativas de Corto Plazo (30-90 dias)</h2>
+  <div class="finding">{{ai_initiative_cp1}}</div>
+  <div class="finding">{{ai_initiative_cp2}}</div>
+  <div class="finding">{{ai_initiative_cp3}}</div>
+
+  <h2>5.3 Iniciativas de Mediano Plazo (90-180 dias)</h2>
+  <div class="finding">{{ai_initiative_mp1}}</div>
+  <div class="finding">{{ai_initiative_mp2}}</div>
+  <div class="finding">{{ai_initiative_mp3}}</div>
+
+  <h2>5.4 Iniciativas Estrategicas (6-18 meses)</h2>
+  <div class="finding">{{ai_initiative_e1}}</div>
+  <div class="finding">{{ai_initiative_e2}}</div>
+
+  <!-- 6. HOJA DE RUTA DE IMPLEMENTACION -->
+  <h1>6. HOJA DE RUTA DE IMPLEMENTACION</h1>
+
+  <table class="data-table">
+    <thead>
+      <tr><th>#</th><th>FASE / PLAZO</th><th>INICIATIVA / ACCION</th><th>RESULTADO ESPERADO</th><th>KPI DE EXITO</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>1</td><td>0-30 dias</td><td>{{ai_roadmap_phase1_action}}</td><td>{{ai_roadmap_phase1_result}}</td><td>{{ai_roadmap_phase1_kpi}}</td></tr>
+      <tr><td>2</td><td>30-60 dias</td><td>{{ai_roadmap_phase2_action}}</td><td>{{ai_roadmap_phase2_result}}</td><td>{{ai_roadmap_phase2_kpi}}</td></tr>
+      <tr><td>3</td><td>60-90 dias</td><td>{{ai_roadmap_phase3_action}}</td><td>{{ai_roadmap_phase3_result}}</td><td>{{ai_roadmap_phase3_kpi}}</td></tr>
+      <tr><td>4</td><td>3-6 meses</td><td>{{ai_roadmap_phase4_action}}</td><td>{{ai_roadmap_phase4_result}}</td><td>{{ai_roadmap_phase4_kpi}}</td></tr>
+      <tr><td>5</td><td>6-12 meses</td><td>{{ai_roadmap_phase5_action}}</td><td>{{ai_roadmap_phase5_result}}</td><td>{{ai_roadmap_phase5_kpi}}</td></tr>
+      <tr><td>6</td><td>12-18 meses</td><td>{{ai_roadmap_phase6_action}}</td><td>{{ai_roadmap_phase6_result}}</td><td>{{ai_roadmap_phase6_kpi}}</td></tr>
+    </tbody>
+  </table>
+
+  <!-- 7. ANALISIS DE ROI ESTIMADO -->
+  <h1>7. ANALISIS DE ROI ESTIMADO</h1>
+  <p>El siguiente analisis presenta una estimacion preliminar del retorno sobre la inversion de las principales iniciativas de remediacion. Los valores deben ser ajustados con informacion especifica del cliente.</p>
+
+  <table class="data-table">
+    <thead>
+      <tr><th>INICIATIVA</th><th>INVERSION EST.</th><th>AHORRO / BENEFICIO EST.</th><th>ROI ESTIMADO</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>{{ai_roi_initiative_1}}</td><td>{{ai_roi_investment_1}}</td><td>{{ai_roi_benefit_1}}</td><td>{{ai_roi_percent_1}}</td></tr>
+      <tr><td>{{ai_roi_initiative_2}}</td><td>{{ai_roi_investment_2}}</td><td>{{ai_roi_benefit_2}}</td><td>{{ai_roi_percent_2}}</td></tr>
+      <tr><td>{{ai_roi_initiative_3}}</td><td>{{ai_roi_investment_3}}</td><td>{{ai_roi_benefit_3}}</td><td>{{ai_roi_percent_3}}</td></tr>
+      <tr><td>{{ai_roi_initiative_4}}</td><td>{{ai_roi_investment_4}}</td><td>{{ai_roi_benefit_4}}</td><td>{{ai_roi_percent_4}}</td></tr>
+      <tr style="font-weight:700; background:#e8e8e8;"><td>TOTAL PROGRAMA</td><td>{{ai_roi_total_investment}}</td><td>{{ai_roi_total_benefit}}</td><td>{{ai_roi_total_percent}}</td></tr>
+    </tbody>
+  </table>
+
+  <p style="font-size:0.85rem; color:#666;">Nota: El ROI se calcula considerando el costo de los incidentes evitados, la reduccion del tiempo de inactividad y el cumplimiento regulatorio. Los valores son estimados; el analisis detallado se provee en la propuesta de servicio.</p>
+
+  <!-- 8. CONCLUSIONES Y DECLARACION FINAL -->
+  <h1>8. CONCLUSIONES Y DECLARACION FINAL</h1>
+  <p>{{ai_conclusion_1}}</p>
+  <p>{{ai_conclusion_2}}</p>
+  <p>{{ai_conclusion_3}}</p>
+
+  <!-- FIRMAS -->
+  <div class="signatures">
+    <div class="sig-block">
+      <div class="sig-line">FIRMA DEL CONSULTOR</div>
+      <p style="font-size:0.85rem; margin-top:8px;">Nombre: ___________________________</p>
+      <p style="font-size:0.85rem;">Cargo: ___________________________</p>
+      <p style="font-size:0.85rem;">Fecha: ___________________________</p>
+    </div>
+    <div class="sig-block">
+      <div class="sig-line">FIRMA DEL CLIENTE (RECEPTOR)</div>
+      <p style="font-size:0.85rem; margin-top:8px;">Nombre: ___________________________</p>
+      <p style="font-size:0.85rem;">Cargo: ___________________________</p>
+      <p style="font-size:0.85rem;">Fecha: ___________________________</p>
+    </div>
+  </div>
+
+</body>
+</html>

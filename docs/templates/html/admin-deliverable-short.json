@@ -1,0 +1,75 @@
+{
+  "template_id": "admin-deliverable-short",
+  "name": "Executive Blueprint - Diagnostico de Procesos (10 paginas)",
+  "description": "Diagnostico ejecutivo de 10 paginas (Opcion A). Incluye resumen ejecutivo con 3 hallazgos criticos, semaforo de riesgos por 5 pilares, fichas de 5 procesos criticos, cuadro de mando con KPIs, plan de accion 90 dias con Quick Wins, y proximos pasos con propuesta de continuidad.",
+  "service_type": "administracion",
+  "document_type": "deliverable_short",
+  "source_file": "Copia de GEN_Activo3_Plantillas.pdf (Option A)",
+  "pages": 10,
+  "language": "es",
+  "variables": {
+    "client_info": {
+      "client_name": { "type": "string", "source": "client_record", "description": "Nombre legal de la empresa cliente" }
+    },
+    "branding": {
+      "branding_company_name": { "type": "string", "source": "org_record", "description": "Nombre de la firma consultora" }
+    },
+    "dates": {
+      "current_date": { "type": "date", "source": "system", "description": "Fecha de emision" }
+    },
+    "ai_generated": {
+      "ai_finding_1": { "type": "text", "source": "ai", "description": "Hallazgo critico 1" },
+      "ai_finding_2": { "type": "text", "source": "ai", "description": "Hallazgo critico 2" },
+      "ai_finding_3": { "type": "text", "source": "ai", "description": "Hallazgo critico 3" },
+      "ai_inaction_cost": { "type": "text", "source": "ai", "description": "Impacto financiero de no actuar" },
+      "ai_quick_win_1_summary": { "type": "text", "source": "ai", "description": "Quick Win 1 resumen" },
+      "ai_quick_win_2_summary": { "type": "text", "source": "ai", "description": "Quick Win 2 resumen" },
+      "ai_quick_win_3_summary": { "type": "text", "source": "ai", "description": "Quick Win 3 resumen" },
+      "ai_pilar1_status": { "type": "string", "source": "ai", "description": "Estatus Pilar 1 Gobierno" },
+      "ai_pilar1_risk": { "type": "string", "source": "ai", "description": "Riesgo principal Pilar 1" },
+      "ai_pilar1_level": { "type": "string", "source": "ai", "description": "Nivel de riesgo Pilar 1" },
+      "ai_pilar2_status": { "type": "string", "source": "ai", "description": "Estatus Pilar 2 Financiero" },
+      "ai_pilar2_risk": { "type": "string", "source": "ai", "description": "Riesgo principal Pilar 2" },
+      "ai_pilar2_level": { "type": "string", "source": "ai", "description": "Nivel de riesgo Pilar 2" },
+      "ai_pilar3_status": { "type": "string", "source": "ai", "description": "Estatus Pilar 3 Operaciones" },
+      "ai_pilar3_risk": { "type": "string", "source": "ai", "description": "Riesgo principal Pilar 3" },
+      "ai_pilar3_level": { "type": "string", "source": "ai", "description": "Nivel de riesgo Pilar 3" },
+      "ai_pilar4_status": { "type": "string", "source": "ai", "description": "Estatus Pilar 4 Comercial" },
+      "ai_pilar4_risk": { "type": "string", "source": "ai", "description": "Riesgo principal Pilar 4" },
+      "ai_pilar4_level": { "type": "string", "source": "ai", "description": "Nivel de riesgo Pilar 4" },
+      "ai_pilar5_status": { "type": "string", "source": "ai", "description": "Estatus Pilar 5 Capital Humano" },
+      "ai_pilar5_risk": { "type": "string", "source": "ai", "description": "Riesgo principal Pilar 5" },
+      "ai_pilar5_level": { "type": "string", "source": "ai", "description": "Nivel de riesgo Pilar 5" },
+      "ai_process_N_name": { "type": "string", "source": "ai", "description": "Nombre proceso critico N (1-5)" },
+      "ai_process_N_area": { "type": "string", "source": "ai", "description": "Area responsable proceso N" },
+      "ai_process_N_problem": { "type": "text", "source": "ai", "description": "Problema identificado proceso N" },
+      "ai_process_N_impact": { "type": "string", "source": "ai", "description": "Impacto $ del proceso N" },
+      "ai_process_N_quickwin": { "type": "text", "source": "ai", "description": "Quick Win propuesto proceso N" },
+      "ai_process_N_owner": { "type": "string", "source": "ai", "description": "Responsable proceso N" },
+      "ai_kpi_ebitda_current": { "type": "string", "source": "ai" },
+      "ai_kpi_dso_current": { "type": "string", "source": "ai" },
+      "ai_kpi_retention_current": { "type": "string", "source": "ai" },
+      "ai_kpi_otif_current": { "type": "string", "source": "ai" },
+      "ai_kpi_docs_current": { "type": "string", "source": "ai" },
+      "ai_kpi_turnover_current": { "type": "string", "source": "ai" },
+      "ai_qw1_action": { "type": "text", "source": "ai", "description": "Quick Win 1 accion" },
+      "ai_qw1_owner": { "type": "string", "source": "ai", "description": "Quick Win 1 responsable" },
+      "ai_qw1_investment": { "type": "string", "source": "ai", "description": "Quick Win 1 inversion" },
+      "ai_qw1_kpi": { "type": "string", "source": "ai", "description": "Quick Win 1 KPI de exito" },
+      "ai_next_decision": { "type": "text", "source": "ai", "description": "Decision requerida" },
+      "ai_next_investment": { "type": "string", "source": "ai", "description": "Inversion estimada" },
+      "ai_next_roi": { "type": "string", "source": "ai", "description": "ROI proyectado 12 meses" },
+      "ai_next_review_date": { "type": "string", "source": "ai", "description": "Fecha proxima revision" },
+      "ai_next_continuity_proposal": { "type": "text", "source": "ai", "description": "Propuesta de continuidad" }
+    }
+  },
+  "sections": [
+    "Pag 1 - Portada y Ficha Tecnica",
+    "Pags 2-3 - Seccion 1: Resumen Ejecutivo (3 hallazgos + impacto + Quick Wins)",
+    "Pags 4-5 - Seccion 2: Radiografia Semaforo de Riesgos (5 pilares)",
+    "Pags 6-7 - Seccion 3: 5 Procesos Criticos a Corregir (fichas)",
+    "Pag 8 - Seccion 4: Cuadro de Mando Ejecutivo (KPIs BSC)",
+    "Pag 9 - Seccion 5: Plan de Accion 90 Dias (Quick Wins)",
+    "Pag 10 - Seccion 6: Proximos Pasos y Propuesta de Continuidad"
+  ]
+}

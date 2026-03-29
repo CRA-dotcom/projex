@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Propuesta Econ&oacute;mica &mdash; {{branding_company_name}}</title>
+  <style>
+    /* ===== RESET & BASE ===== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 11pt; color: #222; background: #fff; }
+
+    /* ===== PAGE ===== */
+    .page { width: 210mm; min-height: 297mm; margin: 0 auto; padding: 0; position: relative; page-break-after: always; }
+
+    /* ===== HEADER ===== */
+    .header { background: #2d3e50; color: #fff; padding: 24px 32px 18px; display: flex; justify-content: space-between; align-items: flex-start; }
+    .header-left h1 { font-size: 22pt; font-weight: 800; letter-spacing: 1px; }
+    .header-left .subtitle { font-size: 10pt; opacity: 0.85; margin-top: 2px; }
+    .header-left .tagline { font-size: 9pt; opacity: 0.7; margin-top: 1px; }
+    .header-right { background: #e67e22; color: #fff; padding: 12px 20px; text-align: center; border-radius: 2px; }
+    .header-right h2 { font-size: 14pt; font-weight: 700; }
+    .header-right .badge-sub { font-size: 9pt; margin-top: 4px; }
+
+    /* ===== FOOTER ===== */
+    .footer { background: #2d3e50; color: #fff; padding: 8px 32px; font-size: 8pt; display: flex; justify-content: space-between; position: absolute; bottom: 0; left: 0; right: 0; }
+
+    /* ===== CONTENT ===== */
+    .content { padding: 20px 32px 60px; }
+
+    /* ===== SECTION HEADERS ===== */
+    .section-title { background: #e67e22; color: #fff; font-size: 10pt; font-weight: 700; padding: 6px 14px; margin: 18px 0 10px; border-radius: 2px; }
+    .section-title.dark { background: #2d3e50; }
+
+    /* ===== METADATA ROW ===== */
+    .meta-row { display: flex; gap: 16px; margin-bottom: 14px; flex-wrap: wrap; }
+    .meta-field { display: flex; align-items: center; gap: 6px; font-size: 10pt; }
+    .meta-field label { font-weight: 700; white-space: nowrap; }
+    .meta-field .value { border-bottom: 1.5px solid #e67e22; min-width: 120px; padding: 2px 6px; color: #333; }
+    .meta-field .value.wide { min-width: 260px; }
+
+    /* ===== TABLE ===== */
+    table { width: 100%; border-collapse: collapse; margin: 8px 0 14px; font-size: 9.5pt; }
+    table th { background: #2d3e50; color: #fff; padding: 7px 10px; text-align: left; font-weight: 600; }
+    table td { padding: 6px 10px; border: 1px solid #ddd; }
+    table tr:nth-child(even) td { background: #f8f8f8; }
+
+    .freq-mensual { background: #e67e22; color: #fff; padding: 2px 10px; border-radius: 2px; font-size: 8.5pt; font-weight: 600; display: inline-block; }
+    .freq-trimestral { background: #e74c3c; color: #fff; padding: 2px 10px; border-radius: 2px; font-size: 8.5pt; font-weight: 600; display: inline-block; }
+    .freq-anual { background: #27ae60; color: #fff; padding: 2px 10px; border-radius: 2px; font-size: 8.5pt; font-weight: 600; display: inline-block; }
+
+    .totals-row td { font-weight: 700; background: #f0f0f0 !important; text-align: right; }
+    .grand-total td { background: #2d3e50 !important; color: #fff; font-weight: 800; font-size: 10.5pt; }
+    .iva-row td { background: #3498db !important; color: #fff; font-weight: 700; }
+    .total-iva-row td { background: #e67e22 !important; color: #fff; font-weight: 800; font-size: 11pt; }
+
+    /* ===== BULLET LIST ===== */
+    .ans-list { list-style: none; padding: 0; margin: 10px 0; }
+    .ans-list li { padding: 5px 0 5px 24px; position: relative; font-size: 9.5pt; line-height: 1.5; }
+    .ans-list li::before { content: ''; width: 10px; height: 10px; background: #e67e22; border-radius: 50%; position: absolute; left: 0; top: 9px; }
+
+    /* ===== PAYMENT ===== */
+    .checkbox-row { display: flex; gap: 20px; align-items: center; font-size: 10pt; margin: 6px 0; }
+    .checkbox-row .box { width: 14px; height: 14px; border: 1.5px solid #999; display: inline-block; margin-right: 4px; vertical-align: middle; }
+
+    /* ===== NOTES BOX ===== */
+    .notes-box { border: 1px solid #ccc; background: #faf8f4; min-height: 70px; padding: 10px; margin: 10px 0; border-radius: 2px; font-size: 9.5pt; color: #555; }
+
+    /* ===== ACCEPTANCE ===== */
+    .acceptance-note { background: #faf8f4; border: 1px solid #e0d8c8; padding: 10px 14px; font-size: 9pt; line-height: 1.5; margin: 10px 0; }
+
+    /* ===== SIGNATURE BLOCK ===== */
+    .sig-container { display: flex; gap: 24px; margin-top: 14px; }
+    .sig-block { flex: 1; border: 1px solid #ccc; padding: 14px; }
+    .sig-block .sig-header { background: #2d3e50; color: #fff; text-align: center; padding: 6px; font-size: 9.5pt; font-weight: 700; margin: -14px -14px 12px; }
+    .sig-block .sig-area { height: 70px; border-bottom: 1px solid #999; margin-bottom: 4px; }
+    .sig-block .sig-label { text-align: center; font-size: 8pt; color: #888; }
+    .sig-block .sig-field { display: flex; gap: 6px; align-items: center; font-size: 9pt; margin-top: 6px; }
+    .sig-block .sig-field label { font-weight: 700; }
+    .sig-block .sig-field .value { border-bottom: 1px solid #e67e22; flex: 1; min-height: 16px; }
+
+    @media print {
+      .page { margin: 0; width: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ==================== PAGE 1 ==================== -->
+<div class="page">
+  <div class="header">
+    <div class="header-left">
+      <h1>{{branding_company_name}}</h1>
+      <div class="subtitle">{{branding_company_legal_name}}</div>
+      <div class="tagline">Estrategia Contable Premium | Shadow CFO</div>
+    </div>
+    <div class="header-right">
+      <h2>PROPUESTA ECON&Oacute;MICA</h2>
+      <div class="badge-sub">Servicio de Gobierno Corporativo</div>
+    </div>
+  </div>
+
+  <div class="content">
+    <!-- Folio row -->
+    <div class="meta-row">
+      <div class="meta-field"><label>Folio:</label><span class="value">{{quotation_folio}}</span></div>
+      <div class="meta-field"><label>Fecha:</label><span class="value">{{quotation_date}}</span></div>
+      <div class="meta-field"><label>Vigencia:</label><span class="value">{{quotation_validity}}</span></div>
+      <div class="meta-field"><label>Versi&oacute;n:</label><span class="value">{{quotation_version}}</span></div>
+    </div>
+
+    <!-- Client Data -->
+    <div class="section-title">DATOS DEL PROSPECTO / CLIENTE</div>
+    <div class="meta-row">
+      <div class="meta-field"><label>Empresa / Raz&oacute;n Social:</label><span class="value wide">{{client_name}}</span></div>
+      <div class="meta-field"><label>RFC:</label><span class="value">{{client_rfc}}</span></div>
+    </div>
+    <div class="meta-row">
+      <div class="meta-field"><label>Nombre del Contacto:</label><span class="value wide">{{client_contact_name}}</span></div>
+      <div class="meta-field"><label>Cargo:</label><span class="value">{{client_contact_role}}</span></div>
+    </div>
+    <div class="meta-row">
+      <div class="meta-field"><label>Correo:</label><span class="value wide">{{client_email}}</span></div>
+      <div class="meta-field"><label>Tel&eacute;fono:</label><span class="value">{{client_phone}}</span></div>
+      <div class="meta-field"><label>Giro:</label><span class="value">{{client_industry}}</span></div>
+    </div>
+
+    <!-- Advisor -->
+    <div class="section-title dark">ASESOR {{branding_company_name}}</div>
+    <div class="meta-row">
+      <div class="meta-field"><label>Nombre del Asesor:</label><span class="value wide">{{advisor_name}}</span></div>
+      <div class="meta-field"><label>Email:</label><span class="value">{{advisor_email}}</span></div>
+    </div>
+
+    <!-- Services Table -->
+    <div class="section-title">SERVICIOS PROPUESTOS Y ESTRUCTURA DE HONORARIOS</div>
+    <table>
+      <thead>
+        <tr>
+          <th style="width:5%"></th>
+          <th style="width:35%">Servicio</th>
+          <th style="width:12%">Frecuencia</th>
+          <th style="width:16%">Precio Unitario (MXN s/IVA)</th>
+          <th style="width:10%">Aplica</th>
+          <th style="width:16%">Subtotal MXN</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>&#9744;</td>
+          <td>Cierre Contable Mensual</td>
+          <td><span class="freq-mensual">Mensual</span></td>
+          <td>{{svc_cierre_contable_price}}</td>
+          <td>{{svc_cierre_contable_applies}}</td>
+          <td>{{svc_cierre_contable_subtotal}}</td>
+        </tr>
+        <tr>
+          <td>&#9744;</td>
+          <td>Estados Financieros / BI Dashboard</td>
+          <td><span class="freq-mensual">Mensual</span></td>
+          <td>{{svc_estados_financieros_price}}</td>
+          <td>{{svc_estados_financieros_applies}}</td>
+          <td>{{svc_estados_financieros_subtotal}}</td>
+        </tr>
+        <tr>
+          <td>&#9744;</td>
+          <td>Conciliaci&oacute;n Bancaria</td>
+          <td><span class="freq-mensual">Mensual</span></td>
+          <td>{{svc_conciliacion_price}}</td>
+          <td>{{svc_conciliacion_applies}}</td>
+          <td>{{svc_conciliacion_subtotal}}</td>
+        </tr>
+        <tr>
+          <td>&#9744;</td>
+          <td>Declaraciones Fiscales Mensuales</td>
+          <td><span class="freq-mensual">Mensual</span></td>
+          <td>{{svc_declaraciones_price}}</td>
+          <td>{{svc_declaraciones_applies}}</td>
+          <td>{{svc_declaraciones_subtotal}}</td>
+        </tr>
+        <tr>
+          <td>&#9744;</td>
+          <td>N&oacute;mina y Seguridad Social (IMSS/INFONAVIT)</td>
+          <td><span class="freq-mensual">Mensual</span></td>
+          <td>{{svc_nomina_price}}</td>
+          <td>{{svc_nomina_applies}}</td>
+          <td>{{svc_nomina_subtotal}}</td>
+        </tr>
+        <tr>
+          <td>&#9744;</td>
+          <td>Control de Cuentas por Cobrar y por Pagar</td>
+          <td><span class="freq-mensual">Mensual</span></td>
+          <td>{{svc_cxc_cxp_price}}</td>
+          <td>{{svc_cxc_cxp_applies}}</td>
+          <td>{{svc_cxc_cxp_subtotal}}</td>
+        </tr>
+        <tr>
+          <td>&#9744;</td>
+          <td>Reporte de Costos y Proyecciones Financieras</td>
+          <td><span class="freq-mensual">Mensual</span></td>
+          <td>{{svc_costos_price}}</td>
+          <td>{{svc_costos_applies}}</td>
+          <td>{{svc_costos_subtotal}}</td>
+        </tr>
+        <tr>
+          <td>&#9744;</td>
+          <td>Reporte y Control de Inventarios</td>
+          <td><span class="freq-mensual">Mensual</span></td>
+          <td>{{svc_inventarios_price}}</td>
+          <td>{{svc_inventarios_applies}}</td>
+          <td>{{svc_inventarios_subtotal}}</td>
+        </tr>
+        <tr>
+          <td>&#9744;</td>
+          <td>Auditor&iacute;a Interna Contable</td>
+          <td><span class="freq-trimestral">Trimestral</span></td>
+          <td>{{svc_auditoria_price}}</td>
+          <td>{{svc_auditoria_applies}}</td>
+          <td>{{svc_auditoria_subtotal}}</td>
+        </tr>
+        <tr>
+          <td>&#9744;</td>
+          <td>Control y Registro de Activos Fijos</td>
+          <td><span class="freq-trimestral">Trimestral</span></td>
+          <td>{{svc_activos_fijos_price}}</td>
+          <td>{{svc_activos_fijos_applies}}</td>
+          <td>{{svc_activos_fijos_subtotal}}</td>
+        </tr>
+        <tr>
+          <td>&#9744;</td>
+          <td>DIOT e Informativas</td>
+          <td><span class="freq-trimestral">Trimestral</span></td>
+          <td>{{svc_diot_price}}</td>
+          <td>{{svc_diot_applies}}</td>
+          <td>{{svc_diot_subtotal}}</td>
+        </tr>
+        <tr>
+          <td>&#9744;</td>
+          <td>Declaraci&oacute;n Anual Personas Morales</td>
+          <td><span class="freq-anual">Anual</span></td>
+          <td>{{svc_declaracion_anual_price}}</td>
+          <td>{{svc_declaracion_anual_applies}}</td>
+          <td>{{svc_declaracion_anual_subtotal}}</td>
+        </tr>
+        <tr class="totals-row">
+          <td colspan="5">Subtotal Mensual (65%)</td>
+          <td>{{subtotal_mensual}}</td>
+        </tr>
+        <tr class="totals-row">
+          <td colspan="5">Subtotal Trimestral (15%)</td>
+          <td>{{subtotal_trimestral}}</td>
+        </tr>
+        <tr class="totals-row">
+          <td colspan="5">Subtotal Anual (20%)</td>
+          <td>{{subtotal_anual}}</td>
+        </tr>
+        <tr class="grand-total">
+          <td colspan="5">TOTAL MENSUAL EQUIVALENTE (s/IVA):</td>
+          <td>{{total_mensual_sin_iva}}</td>
+        </tr>
+        <tr class="iva-row">
+          <td colspan="5">IVA (16%):</td>
+          <td>{{total_iva}}</td>
+        </tr>
+        <tr class="total-iva-row">
+          <td colspan="5">TOTAL CON IVA (MXN):</td>
+          <td>{{total_con_iva}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="footer">
+    <span>{{branding_company_name}} | {{branding_company_legal_name}} | P&aacute;gina 1 de 2</span>
+    <span>Propuesta confidencial &mdash; No distribuir</span>
+  </div>
+</div>
+
+<!-- ==================== PAGE 2 ==================== -->
+<div class="page">
+  <div class="header">
+    <div class="header-left">
+      <h1>{{branding_company_name}}</h1>
+      <div class="subtitle">Propuesta Econ&oacute;mica &mdash; Condiciones y T&eacute;rminos</div>
+    </div>
+    <div class="header-right">
+      <h2>PROPUESTA ECON&Oacute;MICA</h2>
+      <div class="badge-sub">P&aacute;gina 2 de 2</div>
+    </div>
+  </div>
+
+  <div class="content">
+    <!-- ANS -->
+    <div class="section-title">ALCANCE, CONDICIONES Y ACUERDOS DE NIVEL DE SERVICIO (ANS)</div>
+    <ul class="ans-list">
+      <li>Los servicios se prestan en modalidad de Shadow CFO / Auditor Externo, con entregables mensuales, trimestrales y anuales.</li>
+      <li>Tiempo de respuesta garantizado: reportes mensuales en m&aacute;ximo 8 d&iacute;as h&aacute;biles posteriores al cierre del mes.</li>
+      <li>Los honorarios son fijos mensuales y no var&iacute;an por volumen de transacciones, salvo pacto expreso por escrito.</li>
+      <li>La informaci&oacute;n del cliente se maneja bajo estricta confidencialidad y firma de NDA al inicio del servicio.</li>
+      <li>Se incluye hasta 2 horas de asesor&iacute;a ejecutiva mensual por videollamada o presencial, sin costo adicional.</li>
+      <li>Cualquier servicio adicional no contemplado en esta propuesta se cotizar&aacute; por separado con previo acuerdo.</li>
+    </ul>
+
+    <!-- Payment -->
+    <div class="section-title">CONDICIONES DE PAGO</div>
+    <div class="checkbox-row">
+      <strong>Forma de pago:</strong>
+      <span><span class="box"></span> Transferencia bancaria</span>
+      <span><span class="box"></span> Cheque</span>
+      <span><span class="box"></span> Otro</span>
+    </div>
+    <div class="meta-row">
+      <div class="meta-field"><label>Facturaci&oacute;n a nombre de:</label><span class="value wide">{{payment_billing_name}}</span></div>
+      <div class="meta-field"><label>RFC:</label><span class="value">{{payment_billing_rfc}}</span></div>
+    </div>
+    <div class="meta-row">
+      <div class="meta-field"><label>Cuenta bancaria para dep&oacute;sito:</label><span class="value wide">{{payment_bank_account}}</span></div>
+      <div class="meta-field"><label>Banco:</label><span class="value">{{payment_bank_name}}</span></div>
+    </div>
+    <div class="meta-row">
+      <div class="meta-field"><label>D&iacute;a de pago acordado:</label><span class="value">{{payment_day}}</span></div>
+      <div class="meta-field"><label>Penalizaci&oacute;n por mora:</label><span class="value">{{payment_late_penalty}}</span></div>
+    </div>
+
+    <!-- Additional Notes -->
+    <div class="section-title dark">SERVICIOS ADICIONALES / NOTAS ESPECIALES</div>
+    <div class="notes-box">{{quotation_additional_notes}}</div>
+
+    <!-- Acceptance -->
+    <div class="section-title">ACEPTACI&Oacute;N DE LA PROPUESTA</div>
+    <div class="acceptance-note">
+      Al firmar este documento, el cliente confirma haber le&iacute;do, comprendido y aceptado los t&eacute;rminos, condiciones y
+      alcances descritos en esta propuesta econ&oacute;mica, incluyendo los Acuerdos de Nivel de Servicio (ANS) de {{branding_company_name}}.
+    </div>
+
+    <!-- Signatures -->
+    <div class="sig-container">
+      <div class="sig-block">
+        <div class="sig-header">POR EL CLIENTE</div>
+        <div class="sig-area"></div>
+        <div class="sig-label">Firma</div>
+        <div class="sig-field"><label>Nombre:</label><span class="value">{{sig_client_name}}</span></div>
+        <div class="sig-field"><label>Cargo:</label><span class="value">{{sig_client_role}}</span></div>
+        <div class="sig-field"><label>Fecha:</label><span class="value">{{sig_client_date}}</span></div>
+      </div>
+      <div class="sig-block">
+        <div class="sig-header">POR {{branding_company_name}}</div>
+        <div class="sig-area"></div>
+        <div class="sig-label">Firma</div>
+        <div class="sig-field"><label>Nombre:</label><span class="value">{{sig_advisor_name}}</span></div>
+        <div class="sig-field"><label>Cargo:</label><span class="value">{{sig_advisor_role}}</span></div>
+        <div class="sig-field"><label>Fecha:</label><span class="value">{{sig_advisor_date}}</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <span>{{branding_company_name}} | Gobierno Corporativo | Servicios de Alto Nivel</span>
+    <span>&copy; {{branding_year}} {{branding_company_legal_name}}</span>
+  </div>
+</div>
+
+</body>
+</html>

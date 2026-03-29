@@ -1,0 +1,47 @@
+{
+  "template_id": "marketing-questionnaire",
+  "name": "Cuestionario de Onboarding - Plan Anual de Marketing",
+  "description": "Formulario de 9 preguntas + datos de contacto para recopilar informacion del cliente antes de elaborar su Plan Anual de Marketing.",
+  "service_type": "marketing",
+  "document_type": "questionnaire",
+  "source_file": "Copia de Cuestionario_Plan_Marketing.pdf",
+  "pages": 3,
+  "language": "es",
+  "variables": {
+    "client_info": {
+      "client_name": { "type": "string", "source": "client_record", "description": "Nombre o razon social de la empresa cliente" },
+      "client_industry": { "type": "string", "source": "client_record", "description": "Industria o sector del cliente" }
+    },
+    "branding": {},
+    "dates": {
+      "current_date": { "type": "date", "source": "system", "description": "Fecha de llenado del cuestionario" }
+    },
+    "manual_fields": {
+      "manual_contact_name": { "type": "string", "source": "manual_input", "description": "Nombre completo del contacto" },
+      "manual_contact_role": { "type": "string", "source": "manual_input", "description": "Cargo o puesto del contacto" },
+      "manual_contact_city": { "type": "string", "source": "manual_input", "description": "Ciudad del contacto" },
+      "manual_contact_phone": { "type": "string", "source": "manual_input", "description": "Telefono del contacto" },
+      "manual_contact_email": { "type": "string", "source": "manual_input", "description": "Email del contacto" },
+      "manual_q1_business_goals": { "type": "text", "source": "manual_input", "description": "P1: Objetivos del negocio para el ano" },
+      "manual_q2_revenue": { "type": "text", "source": "manual_input", "description": "P2: Ventas ano anterior y meta de ventas" },
+      "manual_q3_pricing": { "type": "text", "source": "manual_input", "description": "P3: Precio del servicio o producto mas vendido" },
+      "manual_q4_ideal_client": { "type": "text", "source": "manual_input", "description": "P4: Descripcion del cliente ideal" },
+      "manual_q5_objections": { "type": "text", "source": "manual_input", "description": "P5: Razones por las que prospectos no compran" },
+      "manual_q6_industry": { "type": "text", "source": "manual_input", "description": "P6: Industria o sector de la empresa" },
+      "manual_q7_differentiator": { "type": "text", "source": "manual_input", "description": "P7: Diferenciador competitivo" },
+      "manual_q8_brand_personality": { "type": "text", "source": "manual_input", "description": "P8: Personalidad de marca" },
+      "manual_q9a_ad_budget": { "type": "text", "source": "manual_input", "description": "P9A: Presupuesto mensual de publicidad" },
+      "manual_q9b_team_resources": { "type": "text", "source": "manual_input", "description": "P9B: Equipo que ejecutara el marketing" },
+      "manual_q_extra_context": { "type": "text", "source": "manual_input", "description": "Contexto adicional relevante" },
+      "manual_signature_name": { "type": "string", "source": "manual_input", "description": "Nombre y firma de confirmacion" },
+      "manual_signature_role": { "type": "string", "source": "manual_input", "description": "Cargo del firmante" }
+    }
+  },
+  "sections": [
+    "Portada y Datos de Contacto",
+    "Parte 1: Tu Negocio y Tus Metas (P1-P5)",
+    "Parte 2: Tu Marca, Competencia y Recursos (P6-P9)",
+    "Contexto Adicional",
+    "Firma de Confirmacion"
+  ]
+}

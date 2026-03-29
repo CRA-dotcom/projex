@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Plan Anual de Marketing - Plantilla Profesional</title>
+  <style>
+    :root {
+      --bg-dark: #1a1a2e;
+      --bg-card: #16213e;
+      --accent-orange: #ff6b35;
+      --accent-blue: #3a86ff;
+      --accent-purple: #7b2ff7;
+      --accent-cyan: #00d4ff;
+      --accent-magenta: #ff2d95;
+      --accent-green: #00c897;
+      --text-primary: #ffffff;
+      --text-secondary: #b0b0b0;
+      --input-bg: #fde8d8;
+      --border-color: #2a2a4a;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: var(--bg-dark); color: var(--text-primary); line-height: 1.6; }
+    .page { max-width: 960px; margin: 0 auto; padding: 40px 30px; page-break-after: always; }
+    .page:last-child { page-break-after: avoid; }
+    .header-bar { width: 60px; height: 4px; background: var(--accent-orange); margin-bottom: 8px; }
+    .doc-label { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 4px; }
+    .doc-sublabel { font-size: 11px; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 30px; }
+    h1 { font-size: 42px; font-weight: 700; margin-bottom: 4px; }
+    h1 span { color: var(--accent-orange); }
+    .plan-subtitle { font-size: 14px; color: var(--text-secondary); margin-bottom: 30px; }
+    .section-title { font-size: 28px; font-weight: 700; margin-bottom: 4px; }
+    .section-title .num { color: var(--accent-orange); margin-right: 8px; font-size: 20px; }
+    .section-divider { height: 2px; background: linear-gradient(to right, var(--accent-orange), var(--accent-blue), var(--accent-purple), var(--accent-cyan)); margin-bottom: 30px; }
+    .field-label { font-size: 12px; text-transform: uppercase; letter-spacing: 1px; font-weight: 700; margin-bottom: 6px; }
+    .field-label.orange { color: var(--accent-orange); }
+    .field-label.blue { color: var(--accent-blue); }
+    .field-label.purple { color: var(--accent-purple); }
+    .field-label.cyan { color: var(--accent-cyan); }
+    .field-label.magenta { color: var(--accent-magenta); }
+    .field-label.green { color: var(--accent-green); }
+    .field-box { background: var(--input-bg); color: #333; padding: 14px 16px; border-radius: 4px; min-height: 50px; margin-bottom: 20px; font-size: 14px; }
+    .field-box.large { min-height: 100px; }
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 20px; }
+    .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; margin-bottom: 20px; }
+    .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 20px; }
+    .grid-6 { display: grid; grid-template-columns: repeat(6, 1fr); gap: 12px; margin-bottom: 20px; }
+    .kpi-card { border-top: 3px solid var(--accent-orange); background: rgba(255,255,255,0.03); padding: 12px; border-radius: 0 0 6px 6px; }
+    .kpi-card.blue { border-top-color: var(--accent-blue); }
+    .kpi-card.purple { border-top-color: var(--accent-purple); }
+    .kpi-card.cyan { border-top-color: var(--accent-cyan); }
+    .kpi-card.magenta { border-top-color: var(--accent-magenta); }
+    .kpi-card.green { border-top-color: var(--accent-green); }
+    .kpi-label { font-size: 11px; text-transform: uppercase; color: var(--text-secondary); margin-bottom: 4px; }
+    .kpi-value { background: var(--input-bg); color: #333; padding: 8px; border-radius: 4px; min-height: 40px; font-size: 13px; }
+    .quarter-card { border-radius: 8px; overflow: hidden; }
+    .quarter-header { padding: 16px; text-align: center; }
+    .quarter-header h3 { font-size: 32px; font-weight: 700; }
+    .quarter-header .period { font-size: 12px; text-transform: uppercase; }
+    .quarter-header .phase { font-size: 13px; font-weight: 600; margin-top: 4px; }
+    .q1h { background: var(--accent-orange); }
+    .q2h { background: var(--accent-blue); }
+    .q3h { background: var(--accent-purple); }
+    .q4h { background: var(--accent-cyan); }
+    .quarter-body { padding: 12px; }
+    .quarter-body .field-label { font-size: 10px; }
+    .quarter-body .field-box { min-height: 50px; padding: 8px; font-size: 12px; margin-bottom: 10px; }
+    .persona-card { border-top: 3px solid var(--accent-orange); background: rgba(255,255,255,0.03); padding: 16px; border-radius: 0 0 6px 6px; }
+    .persona-card.b { border-top-color: var(--accent-cyan); }
+    .consultant-badge { display: inline-block; background: rgba(255,255,255,0.1); border: 1px solid var(--border-color); padding: 4px 12px; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; border-radius: 4px; }
+    .consultant-note { background: rgba(255,255,255,0.03); border-left: 3px solid var(--text-secondary); padding: 12px 16px; margin-bottom: 20px; font-size: 13px; color: var(--text-secondary); }
+    table.comp-matrix { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
+    table.comp-matrix th { font-size: 11px; text-transform: uppercase; padding: 10px 8px; text-align: left; }
+    table.comp-matrix th.client { background: var(--accent-orange); color: #fff; }
+    table.comp-matrix th.c1 { background: var(--accent-blue); color: #fff; }
+    table.comp-matrix th.c2 { background: var(--accent-purple); color: #fff; }
+    table.comp-matrix th.c3 { background: var(--accent-magenta); color: #fff; }
+    table.comp-matrix th.criteria { background: var(--bg-card); color: var(--text-primary); }
+    table.comp-matrix td { padding: 8px; font-size: 12px; border-bottom: 1px solid var(--border-color); }
+    table.comp-matrix td .cell { background: var(--input-bg); color: #333; padding: 6px 8px; border-radius: 3px; min-height: 28px; }
+    .pillar-card { border-top: 3px solid; padding: 16px; background: rgba(255,255,255,0.03); border-radius: 0 0 6px 6px; min-height: 120px; }
+    .pillar-card.p1 { border-top-color: var(--accent-orange); }
+    .pillar-card.p2 { border-top-color: var(--accent-purple); }
+    .pillar-card.p3 { border-top-color: var(--accent-cyan); }
+    .pillar-header { font-size: 12px; text-transform: uppercase; font-weight: 700; text-align: center; padding: 6px; border-radius: 4px; margin-bottom: 8px; }
+    .budget-table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
+    .budget-table th { font-size: 11px; text-transform: uppercase; padding: 10px 8px; }
+    .budget-table th.chan { background: var(--accent-orange); color: #fff; text-align: left; }
+    .budget-table th.inv { background: var(--accent-blue); color: #fff; }
+    .budget-table th.pct { background: var(--accent-purple); color: #fff; }
+    .budget-table th.obj { background: var(--accent-cyan); color: #fff; }
+    .budget-table td { padding: 8px; font-size: 12px; border-bottom: 1px solid var(--border-color); }
+    .budget-table td .cell { background: var(--input-bg); color: #333; padding: 6px 8px; border-radius: 3px; min-height: 24px; }
+    .metric-card { text-align: center; border-top: 3px solid; padding: 12px 8px; background: rgba(255,255,255,0.03); border-radius: 0 0 6px 6px; }
+    .metric-card .metric-name { font-size: 22px; font-weight: 700; margin-bottom: 2px; }
+    .metric-card .metric-desc { font-size: 10px; color: var(--text-secondary); margin-bottom: 8px; }
+    .cadence-card { border-top: 3px solid; padding: 12px; background: rgba(255,255,255,0.03); border-radius: 0 0 6px 6px; }
+    .glossary-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .glossary-item { margin-bottom: 12px; }
+    .glossary-term { font-size: 14px; font-weight: 700; margin-bottom: 2px; }
+    .glossary-subtitle { font-size: 12px; font-weight: 600; color: var(--text-secondary); margin-bottom: 4px; }
+    .glossary-def { font-size: 12px; color: var(--text-secondary); }
+    .footer { text-align: center; font-size: 11px; color: var(--text-secondary); margin-top: 30px; padding-top: 16px; border-top: 1px solid var(--border-color); }
+    .confidential-footer { font-size: 11px; color: var(--text-secondary); margin-top: 40px; }
+    .tag { display: inline-block; padding: 4px 14px; border-radius: 20px; font-size: 11px; font-weight: 700; text-transform: uppercase; margin-right: 8px; }
+    .tag.orange { background: var(--accent-orange); color: #fff; }
+    .tag.blue { background: var(--accent-blue); color: #fff; }
+    .tag.purple { background: var(--accent-purple); color: #fff; }
+    .tag.cyan { background: var(--accent-cyan); color: #fff; }
+    @media print { body { background: #fff; color: #000; } .field-box, .kpi-value, td .cell { border: 1px solid #ccc; background: #f9f9f9; } }
+  </style>
+</head>
+<body>
+
+  <!-- PAGE 1: Cover -->
+  <div class="page">
+    <div class="header-bar"></div>
+    <div class="doc-label">PLAN ANUAL DE MARKETING</div>
+    <div class="doc-sublabel">PLANTILLA PROFESIONAL &bull; CONFIDENCIAL</div>
+
+    <h1>Plan Anual de<br><span>Marketing {{ai_plan_year}}</span></h1>
+    <p class="plan-subtitle">Estrategia integral &bull; Roadmap Q1-Q4 &bull; Presupuesto &bull; KPIs</p>
+    <div class="section-divider"></div>
+
+    <h3 style="margin-bottom:16px;">DATOS DEL CLIENTE</h3>
+    <div class="field-label orange">NOMBRE / RAZON SOCIAL</div>
+    <div class="field-box">{{client_name}}</div>
+
+    <div class="grid-3">
+      <div>
+        <div class="field-label blue">SECTOR / INDUSTRIA</div>
+        <div class="field-box">{{client_industry}}</div>
+      </div>
+      <div>
+        <div class="field-label purple">RESPONSABLE DEL PLAN</div>
+        <div class="field-box">{{manual_plan_owner}}</div>
+      </div>
+      <div>
+        <div class="field-label cyan">FECHA DE ELABORACION</div>
+        <div class="field-box">{{current_date}}</div>
+      </div>
+    </div>
+    <div class="grid-2">
+      <div>
+        <div class="field-label orange">PERIODO DE VIGENCIA</div>
+        <div class="field-box">{{ai_plan_period}}</div>
+      </div>
+      <div>
+        <div class="field-label blue">VERSION DEL DOCUMENTO</div>
+        <div class="field-box">{{ai_document_version}}</div>
+      </div>
+    </div>
+
+    <div style="margin-top:60px;">
+      <span class="tag orange">ESTRATEGIA</span>
+      <span class="tag blue">GROWTH</span>
+      <span class="tag purple">DATA-DRIVEN</span>
+      <span class="tag cyan">{{ai_plan_year}}</span>
+    </div>
+
+    <div class="confidential-footer">Este documento es confidencial y esta destinado exclusivamente al cliente indicado. Plantilla generada para uso profesional en consultoria de marketing.</div>
+  </div>
+
+  <!-- PAGE 2: Executive Summary -->
+  <div class="page">
+    <div class="section-title"><span class="num">01</span> EXECUTIVE SUMMARY &amp; BUSINESS CONTEXT</div>
+    <div class="section-divider"></div>
+
+    <div class="field-label orange">DIAGNOSTICO DE SITUACION ACTUAL</div>
+    <div class="field-box large">{{ai_diagnostic_summary}}</div>
+
+    <div class="field-label cyan">OBJETIVO DE ORO DEL ANO</div>
+    <div class="field-box">{{ai_gold_objective}}</div>
+
+    <h3 style="margin:20px 0 12px;">KPIs PRINCIPALES</h3>
+    <div class="grid-4">
+      <div class="kpi-card">
+        <div class="kpi-label">FACTURACION OBJETIVO</div>
+        <div class="kpi-value">{{ai_kpi_revenue_target}}</div>
+      </div>
+      <div class="kpi-card blue">
+        <div class="kpi-label">CRECIMIENTO vs ANO ANTERIOR</div>
+        <div class="kpi-value">{{ai_kpi_growth_pct}}</div>
+      </div>
+      <div class="kpi-card purple">
+        <div class="kpi-label">TICKET PROMEDIO</div>
+        <div class="kpi-value">{{ai_kpi_avg_ticket}}</div>
+      </div>
+      <div class="kpi-card cyan">
+        <div class="kpi-label">MARGEN DE UTILIDAD</div>
+        <div class="kpi-value">{{ai_kpi_profit_margin}}</div>
+      </div>
+    </div>
+
+    <div class="field-label magenta">PROPUESTA UNICA DE VALOR (USP)</div>
+    <div class="field-box">{{ai_usp}}</div>
+
+    <div class="field-label green">VOZ Y PERSONALIDAD DE MARCA</div>
+    <div class="field-box">{{ai_brand_voice}}</div>
+
+    <div class="field-label blue">INFRAESTRUCTURA DE EJECUCION</div>
+    <div class="field-box">{{ai_execution_infrastructure}}</div>
+
+    <div class="footer">Plan Anual de Marketing &bull; Pagina 2 &bull; Plantilla Confidencial</div>
+  </div>
+
+  <!-- PAGE 3: Market Intelligence & Audience -->
+  <div class="page">
+    <div class="section-title"><span class="num">02</span> MARKET INTELLIGENCE &amp; AUDIENCE</div>
+    <div class="section-divider"></div>
+
+    <div class="consultant-note">
+      <strong>ANALISIS DE COMPETENCIA -- INVESTIGADO POR EL CONSULTOR</strong><br>
+      Los competidores directos son identificados mediante investigacion de mercado online.<br>
+      <span style="color:var(--accent-cyan)">Ver Pagina 4 -- Benchmark Competitivo completo con comparativa de mercado.</span>
+      <span class="consultant-badge" style="float:right;">USO INTERNO -- CONSULTOR</span>
+    </div>
+
+    <div class="field-label orange">BARRERAS DE COMPRA (Por que NO te compran?) -- Dato del cliente</div>
+    <div class="field-box">{{ai_purchase_barriers}}</div>
+
+    <h3 style="margin:20px 0 12px;">BUYER PERSONAS</h3>
+    <div class="grid-2">
+      <div class="persona-card">
+        <h4 style="margin-bottom:12px;">BUYER PERSONA A</h4>
+        <div class="field-label">Nombre / Arquetipo</div>
+        <div class="field-box">{{ai_persona_a_name}}</div>
+        <div class="field-label">Edad, genero, ubicacion, NSE</div>
+        <div class="field-box">{{ai_persona_a_demographics}}</div>
+        <div class="field-label">Que le preocupa / Pain point principal?</div>
+        <div class="field-box">{{ai_persona_a_pain}}</div>
+        <div class="field-label">Que aspira / desea lograr?</div>
+        <div class="field-box">{{ai_persona_a_aspiration}}</div>
+        <div class="field-label">Por que canal llego a la marca?</div>
+        <div class="field-box">{{ai_persona_a_channel}}</div>
+      </div>
+      <div class="persona-card b">
+        <h4 style="margin-bottom:12px;">BUYER PERSONA B</h4>
+        <div class="field-label">Nombre / Arquetipo</div>
+        <div class="field-box">{{ai_persona_b_name}}</div>
+        <div class="field-label">Edad, genero, ubicacion, NSE</div>
+        <div class="field-box">{{ai_persona_b_demographics}}</div>
+        <div class="field-label">Que le preocupa / Pain point principal?</div>
+        <div class="field-box">{{ai_persona_b_pain}}</div>
+        <div class="field-label">Que aspira / desea lograr?</div>
+        <div class="field-box">{{ai_persona_b_aspiration}}</div>
+        <div class="field-label">Por que canal llego a la marca?</div>
+        <div class="field-box">{{ai_persona_b_channel}}</div>
+      </div>
+    </div>
+
+    <div class="field-label purple">FUENTES UTILIZADAS EN LA INVESTIGACION DE MERCADO (uso interno)</div>
+    <div class="field-box">{{ai_research_sources}}</div>
+    <div class="grid-2">
+      <div>
+        <div class="field-label">FECHA DE INVESTIGACION</div>
+        <div class="field-box">{{current_date}}</div>
+      </div>
+      <div>
+        <div class="field-label">ANALISTA RESPONSABLE</div>
+        <div class="field-box">{{manual_analyst_name}}</div>
+      </div>
+    </div>
+
+    <div class="footer">Plan Anual de Marketing &bull; Pagina 3 &bull; Plantilla Confidencial</div>
+  </div>
+
+  <!-- PAGE 4: Competitive Benchmark -->
+  <div class="page">
+    <div class="section-title"><span class="num">02B</span> BENCHMARK COMPETITIVO -- INVESTIGACION DE MERCADO</div>
+    <div class="section-divider"></div>
+    <div style="text-align:right;margin-bottom:12px;"><span class="consultant-badge">COMPLETADO POR EL CONSULTOR</span></div>
+    <p class="consultant-note">Esta pagina es completada por el consultor usando herramientas como SimilarWeb, SEMrush, Meta Ads Library, Google, LinkedIn e investigacion directa.</p>
+
+    <h3 style="margin-bottom:12px;">MATRIZ COMPARATIVA DE COMPETIDORES</h3>
+    <table class="comp-matrix">
+      <thead>
+        <tr>
+          <th class="criteria">CRITERIO DE EVALUACION</th>
+          <th class="client">CLIENTE<br>(Nuestra Marca)</th>
+          <th class="c1">COMPETIDOR 1</th>
+          <th class="c2">COMPETIDOR 2</th>
+          <th class="c3">COMPETIDOR 3</th>
+        </tr>
+        <tr>
+          <td></td>
+          <td><div class="cell">{{client_name}}</div></td>
+          <td><div class="cell">{{ai_competitor_1_name}}</div></td>
+          <td><div class="cell">{{ai_competitor_2_name}}</div></td>
+          <td><div class="cell">{{ai_competitor_3_name}}</div></td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Sitio web / URL</td><td><div class="cell">{{ai_comp_client_url}}</div></td><td><div class="cell">{{ai_comp_1_url}}</div></td><td><div class="cell">{{ai_comp_2_url}}</div></td><td><div class="cell">{{ai_comp_3_url}}</div></td></tr>
+        <tr><td>Rango de precios</td><td><div class="cell">{{ai_comp_client_pricing}}</div></td><td><div class="cell">{{ai_comp_1_pricing}}</div></td><td><div class="cell">{{ai_comp_2_pricing}}</div></td><td><div class="cell">{{ai_comp_3_pricing}}</div></td></tr>
+        <tr><td>Posicionamiento principal</td><td><div class="cell">{{ai_comp_client_positioning}}</div></td><td><div class="cell">{{ai_comp_1_positioning}}</div></td><td><div class="cell">{{ai_comp_2_positioning}}</div></td><td><div class="cell">{{ai_comp_3_positioning}}</div></td></tr>
+        <tr><td>Canales de adquisicion</td><td><div class="cell">{{ai_comp_client_channels}}</div></td><td><div class="cell">{{ai_comp_1_channels}}</div></td><td><div class="cell">{{ai_comp_2_channels}}</div></td><td><div class="cell">{{ai_comp_3_channels}}</div></td></tr>
+        <tr><td>Redes sociales activas</td><td><div class="cell">{{ai_comp_client_social}}</div></td><td><div class="cell">{{ai_comp_1_social}}</div></td><td><div class="cell">{{ai_comp_2_social}}</div></td><td><div class="cell">{{ai_comp_3_social}}</div></td></tr>
+        <tr><td>Segmento objetivo</td><td><div class="cell">{{ai_comp_client_segment}}</div></td><td><div class="cell">{{ai_comp_1_segment}}</div></td><td><div class="cell">{{ai_comp_2_segment}}</div></td><td><div class="cell">{{ai_comp_3_segment}}</div></td></tr>
+        <tr><td>Rating / Reputacion online</td><td><div class="cell">{{ai_comp_client_rating}}</div></td><td><div class="cell">{{ai_comp_1_rating}}</div></td><td><div class="cell">{{ai_comp_2_rating}}</div></td><td><div class="cell">{{ai_comp_3_rating}}</div></td></tr>
+        <tr><td>Trafico web estimado</td><td><div class="cell">{{ai_comp_client_traffic}}</div></td><td><div class="cell">{{ai_comp_1_traffic}}</div></td><td><div class="cell">{{ai_comp_2_traffic}}</div></td><td><div class="cell">{{ai_comp_3_traffic}}</div></td></tr>
+        <tr><td>Fortaleza principal</td><td><div class="cell">{{ai_comp_client_strength}}</div></td><td><div class="cell">{{ai_comp_1_strength}}</div></td><td><div class="cell">{{ai_comp_2_strength}}</div></td><td><div class="cell">{{ai_comp_3_strength}}</div></td></tr>
+        <tr><td>Debilidad identificada</td><td><div class="cell">{{ai_comp_client_weakness}}</div></td><td><div class="cell">{{ai_comp_1_weakness}}</div></td><td><div class="cell">{{ai_comp_2_weakness}}</div></td><td><div class="cell">{{ai_comp_3_weakness}}</div></td></tr>
+        <tr><td>Share of Voice (estimado)</td><td><div class="cell">{{ai_comp_client_sov}}</div></td><td><div class="cell">{{ai_comp_1_sov}}</div></td><td><div class="cell">{{ai_comp_2_sov}}</div></td><td><div class="cell">{{ai_comp_3_sov}}</div></td></tr>
+      </tbody>
+    </table>
+
+    <div class="field-label magenta">OPORTUNIDAD DE DIFERENCIACION IDENTIFICADA (sintesis estrategica)</div>
+    <div class="field-box large">{{ai_differentiation_opportunity}}</div>
+
+    <div class="footer">Plan Anual de Marketing &bull; Pagina 4 &bull; Plantilla Confidencial</div>
+  </div>
+
+  <!-- PAGE 5: Brand & Value Proposition -->
+  <div class="page">
+    <div class="section-title"><span class="num">03</span> BRAND &amp; VALUE PROPOSITION</div>
+    <div class="section-divider"></div>
+
+    <div class="field-label orange">TERRITORIO DE MARCA (Esencia, Mision, Vision)</div>
+    <div class="field-box large">{{ai_brand_territory}}</div>
+
+    <h3 style="margin:20px 0 12px;">PILARES DE DIFERENCIACION</h3>
+    <div class="grid-3">
+      <div class="pillar-card p1">
+        <div class="pillar-header" style="background:var(--accent-orange);color:#fff;">PILAR 1<br>Racional</div>
+        <div class="field-box">{{ai_pillar_rational}}</div>
+      </div>
+      <div class="pillar-card p2">
+        <div class="pillar-header" style="background:var(--accent-purple);color:#fff;">PILAR 2<br>Emocional</div>
+        <div class="field-box">{{ai_pillar_emotional}}</div>
+      </div>
+      <div class="pillar-card p3">
+        <div class="pillar-header" style="background:var(--accent-cyan);color:#fff;">PILAR 3<br>Experiencia</div>
+        <div class="field-box">{{ai_pillar_experience}}</div>
+      </div>
+    </div>
+
+    <div class="field-label magenta">PROPUESTA DE VALOR (Modelo Canvas)</div>
+    <div class="field-box large">{{ai_value_proposition_canvas}}</div>
+
+    <div class="field-label green">TONO DE COMUNICACION Y GUIA DE VOZ</div>
+    <div class="field-box">{{ai_communication_tone}}</div>
+
+    <div class="field-label blue">MENSAJES CLAVE POR AUDIENCIA</div>
+    <div class="field-box">{{ai_key_messages}}</div>
+
+    <div class="field-label orange">PALABRAS PROHIBIDAS / ERRORES A EVITAR</div>
+    <div class="field-box">{{ai_forbidden_words}}</div>
+
+    <div class="footer">Plan Anual de Marketing &bull; Pagina 5 &bull; Plantilla Confidencial</div>
+  </div>
+
+  <!-- PAGE 6: Strategic Roadmap Q1-Q4 -->
+  <div class="page">
+    <div class="section-title"><span class="num">04</span> STRATEGIC ROADMAP Q1-Q4</div>
+    <div class="section-divider"></div>
+
+    <div class="grid-4">
+      <div class="quarter-card">
+        <div class="quarter-header q1h"><h3>Q1</h3><div class="period">ENE - MAR</div><div class="phase">AWARENESS &amp; Lanzamiento</div></div>
+        <div class="quarter-body">
+          <div class="field-label">OBJETIVO PRINCIPAL</div><div class="field-box">{{ai_q1_objective}}</div>
+          <div class="field-label">TACTICA PRIORITARIA</div><div class="field-box">{{ai_q1_tactic}}</div>
+          <div class="field-label">CANAL PRINCIPAL</div><div class="field-box">{{ai_q1_channel}}</div>
+          <div class="field-label">CONTENIDO CLAVE</div><div class="field-box">{{ai_q1_content}}</div>
+          <div class="field-label">HITO / MILESTONE</div><div class="field-box">{{ai_q1_milestone}}</div>
+          <div class="field-label">KPI DEL TRIMESTRE</div><div class="field-box">{{ai_q1_kpi}}</div>
+        </div>
+      </div>
+      <div class="quarter-card">
+        <div class="quarter-header q2h"><h3>Q2</h3><div class="period">ABR - JUN</div><div class="phase">CONSIDERATION &amp; Engagement</div></div>
+        <div class="quarter-body">
+          <div class="field-label">OBJETIVO PRINCIPAL</div><div class="field-box">{{ai_q2_objective}}</div>
+          <div class="field-label">TACTICA PRIORITARIA</div><div class="field-box">{{ai_q2_tactic}}</div>
+          <div class="field-label">CANAL PRINCIPAL</div><div class="field-box">{{ai_q2_channel}}</div>
+          <div class="field-label">CONTENIDO CLAVE</div><div class="field-box">{{ai_q2_content}}</div>
+          <div class="field-label">HITO / MILESTONE</div><div class="field-box">{{ai_q2_milestone}}</div>
+          <div class="field-label">KPI DEL TRIMESTRE</div><div class="field-box">{{ai_q2_kpi}}</div>
+        </div>
+      </div>
+      <div class="quarter-card">
+        <div class="quarter-header q3h"><h3>Q3</h3><div class="period">JUL - SEP</div><div class="phase">CONVERSION &amp; Ventas</div></div>
+        <div class="quarter-body">
+          <div class="field-label">OBJETIVO PRINCIPAL</div><div class="field-box">{{ai_q3_objective}}</div>
+          <div class="field-label">TACTICA PRIORITARIA</div><div class="field-box">{{ai_q3_tactic}}</div>
+          <div class="field-label">CANAL PRINCIPAL</div><div class="field-box">{{ai_q3_channel}}</div>
+          <div class="field-label">CONTENIDO CLAVE</div><div class="field-box">{{ai_q3_content}}</div>
+          <div class="field-label">HITO / MILESTONE</div><div class="field-box">{{ai_q3_milestone}}</div>
+          <div class="field-label">KPI DEL TRIMESTRE</div><div class="field-box">{{ai_q3_kpi}}</div>
+        </div>
+      </div>
+      <div class="quarter-card">
+        <div class="quarter-header q4h"><h3>Q4</h3><div class="period">OCT - DIC</div><div class="phase">RETENTION &amp; Fidelizacion</div></div>
+        <div class="quarter-body">
+          <div class="field-label">OBJETIVO PRINCIPAL</div><div class="field-box">{{ai_q4_objective}}</div>
+          <div class="field-label">TACTICA PRIORITARIA</div><div class="field-box">{{ai_q4_tactic}}</div>
+          <div class="field-label">CANAL PRINCIPAL</div><div class="field-box">{{ai_q4_channel}}</div>
+          <div class="field-label">CONTENIDO CLAVE</div><div class="field-box">{{ai_q4_content}}</div>
+          <div class="field-label">HITO / MILESTONE</div><div class="field-box">{{ai_q4_milestone}}</div>
+          <div class="field-label">KPI DEL TRIMESTRE</div><div class="field-box">{{ai_q4_kpi}}</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">Plan Anual de Marketing &bull; Pagina 6 &bull; Plantilla Confidencial</div>
+  </div>
+
+  <!-- PAGE 7: Budget -->
+  <div class="page">
+    <div class="section-title"><span class="num">05</span> TACTICAL EXECUTION &amp; BUDGET</div>
+    <div class="section-divider"></div>
+
+    <div class="grid-3">
+      <div>
+        <div class="field-label orange">PRESUPUESTO MENSUAL TOTAL DE MARKETING</div>
+        <div class="field-box">{{ai_budget_monthly_total}}</div>
+      </div>
+      <div>
+        <div class="field-label blue">MONEDA</div>
+        <div class="field-box">{{ai_budget_currency}}</div>
+      </div>
+      <div>
+        <div class="field-label purple">PERIODO</div>
+        <div class="field-box">{{ai_plan_period}}</div>
+      </div>
+    </div>
+
+    <h3 style="margin-bottom:12px;">DISTRIBUCION POR CANAL</h3>
+    <table class="budget-table">
+      <thead>
+        <tr>
+          <th class="chan">CANAL</th>
+          <th class="inv">INVERSION MENSUAL</th>
+          <th class="pct">% DEL TOTAL</th>
+          <th class="obj">OBJETIVO PRIMARIO</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Meta Ads (Facebook / Instagram)</td><td><div class="cell">{{ai_budget_meta_amount}}</div></td><td><div class="cell">{{ai_budget_meta_pct}}</div></td><td><div class="cell">{{ai_budget_meta_objective}}</div></td></tr>
+        <tr><td>Google Ads (Search / Display)</td><td><div class="cell">{{ai_budget_google_amount}}</div></td><td><div class="cell">{{ai_budget_google_pct}}</div></td><td><div class="cell">{{ai_budget_google_objective}}</div></td></tr>
+        <tr><td>TikTok Ads</td><td><div class="cell">{{ai_budget_tiktok_amount}}</div></td><td><div class="cell">{{ai_budget_tiktok_pct}}</div></td><td><div class="cell">{{ai_budget_tiktok_objective}}</div></td></tr>
+        <tr><td>LinkedIn Ads</td><td><div class="cell">{{ai_budget_linkedin_amount}}</div></td><td><div class="cell">{{ai_budget_linkedin_pct}}</div></td><td><div class="cell">{{ai_budget_linkedin_objective}}</div></td></tr>
+        <tr><td>Email Marketing / CRM</td><td><div class="cell">{{ai_budget_email_amount}}</div></td><td><div class="cell">{{ai_budget_email_pct}}</div></td><td><div class="cell">{{ai_budget_email_objective}}</div></td></tr>
+        <tr><td>Influencer / Creator Marketing</td><td><div class="cell">{{ai_budget_influencer_amount}}</div></td><td><div class="cell">{{ai_budget_influencer_pct}}</div></td><td><div class="cell">{{ai_budget_influencer_objective}}</div></td></tr>
+        <tr><td>SEO / Contenidos Organicos</td><td><div class="cell">{{ai_budget_seo_amount}}</div></td><td><div class="cell">{{ai_budget_seo_pct}}</div></td><td><div class="cell">{{ai_budget_seo_objective}}</div></td></tr>
+        <tr><td>Produccion de Contenido</td><td><div class="cell">{{ai_budget_content_amount}}</div></td><td><div class="cell">{{ai_budget_content_pct}}</div></td><td><div class="cell">{{ai_budget_content_objective}}</div></td></tr>
+        <tr><td>Herramientas / Software</td><td><div class="cell">{{ai_budget_tools_amount}}</div></td><td><div class="cell">{{ai_budget_tools_pct}}</div></td><td><div class="cell">{{ai_budget_tools_objective}}</div></td></tr>
+        <tr><td>Reserva / Contingencias (10%)</td><td><div class="cell">{{ai_budget_reserve_amount}}</div></td><td><div class="cell">{{ai_budget_reserve_pct}}</div></td><td><div class="cell">{{ai_budget_reserve_objective}}</div></td></tr>
+      </tbody>
+    </table>
+
+    <div class="field-label green">ESTRATEGIA DE CONTENIDO (Owned Media)</div>
+    <div class="field-box large">{{ai_content_strategy}}</div>
+
+    <div class="footer">Plan Anual de Marketing &bull; Pagina 7 &bull; Plantilla Confidencial</div>
+  </div>
+
+  <!-- PAGE 8: Measurement Framework -->
+  <div class="page">
+    <div class="section-title"><span class="num">06</span> MEASUREMENT FRAMEWORK -- DASHBOARD DE EXITO</div>
+    <div class="section-divider"></div>
+
+    <h3 style="margin-bottom:16px;">METRICAS CLAVE (KPIs NORTE)</h3>
+    <div class="grid-6">
+      <div class="metric-card" style="border-top-color:var(--accent-orange);">
+        <div class="metric-name" style="color:var(--accent-orange);">CAC</div>
+        <div class="metric-desc">Costo de Adquisicion de Cliente</div>
+        <div class="kpi-label">META</div><div class="kpi-value">{{ai_kpi_cac_target}}</div>
+        <div class="kpi-label" style="margin-top:6px;">ACTUAL</div><div class="kpi-value">{{ai_kpi_cac_current}}</div>
+      </div>
+      <div class="metric-card" style="border-top-color:var(--accent-blue);">
+        <div class="metric-name" style="color:var(--accent-blue);">LTV</div>
+        <div class="metric-desc">Life Time Value del Cliente</div>
+        <div class="kpi-label">META</div><div class="kpi-value">{{ai_kpi_ltv_target}}</div>
+        <div class="kpi-label" style="margin-top:6px;">ACTUAL</div><div class="kpi-value">{{ai_kpi_ltv_current}}</div>
+      </div>
+      <div class="metric-card" style="border-top-color:var(--accent-purple);">
+        <div class="metric-name" style="color:var(--accent-purple);">ROAS</div>
+        <div class="metric-desc">Return on Ad Spend</div>
+        <div class="kpi-label">META</div><div class="kpi-value">{{ai_kpi_roas_target}}</div>
+        <div class="kpi-label" style="margin-top:6px;">ACTUAL</div><div class="kpi-value">{{ai_kpi_roas_current}}</div>
+      </div>
+      <div class="metric-card" style="border-top-color:var(--accent-cyan);">
+        <div class="metric-name" style="color:var(--accent-cyan);">CVR</div>
+        <div class="metric-desc">Tasa de Conversion Promedio</div>
+        <div class="kpi-label">META</div><div class="kpi-value">{{ai_kpi_cvr_target}}</div>
+        <div class="kpi-label" style="margin-top:6px;">ACTUAL</div><div class="kpi-value">{{ai_kpi_cvr_current}}</div>
+      </div>
+      <div class="metric-card" style="border-top-color:var(--accent-magenta);">
+        <div class="metric-name" style="color:var(--accent-magenta);">CPL</div>
+        <div class="metric-desc">Costo por Lead Calificado</div>
+        <div class="kpi-label">META</div><div class="kpi-value">{{ai_kpi_cpl_target}}</div>
+        <div class="kpi-label" style="margin-top:6px;">ACTUAL</div><div class="kpi-value">{{ai_kpi_cpl_current}}</div>
+      </div>
+      <div class="metric-card" style="border-top-color:var(--accent-green);">
+        <div class="metric-name" style="color:var(--accent-green);">NPS</div>
+        <div class="metric-desc">Net Promoter Score</div>
+        <div class="kpi-label">META</div><div class="kpi-value">{{ai_kpi_nps_target}}</div>
+        <div class="kpi-label" style="margin-top:6px;">ACTUAL</div><div class="kpi-value">{{ai_kpi_nps_current}}</div>
+      </div>
+    </div>
+
+    <h3 style="margin:20px 0 12px;">CADENCIA DE REPORTING Y REVISION</h3>
+    <div class="grid-4">
+      <div class="cadence-card" style="border-top-color:var(--accent-orange);">
+        <div class="field-label orange">DIARIO</div>
+        <div class="field-box">{{ai_reporting_daily}}</div>
+      </div>
+      <div class="cadence-card" style="border-top-color:var(--accent-blue);">
+        <div class="field-label blue">SEMANAL</div>
+        <div class="field-box">{{ai_reporting_weekly}}</div>
+      </div>
+      <div class="cadence-card" style="border-top-color:var(--accent-purple);">
+        <div class="field-label purple">MENSUAL</div>
+        <div class="field-box">{{ai_reporting_monthly}}</div>
+      </div>
+      <div class="cadence-card" style="border-top-color:var(--accent-cyan);">
+        <div class="field-label cyan">TRIMESTRAL</div>
+        <div class="field-box">{{ai_reporting_quarterly}}</div>
+      </div>
+    </div>
+
+    <div class="grid-3">
+      <div>
+        <div class="field-label orange">HERRAMIENTA DE REPORTING PRINCIPAL</div>
+        <div class="field-box">{{ai_reporting_tool}}</div>
+      </div>
+      <div>
+        <div class="field-label blue">RESPONSABLE DE METRICAS</div>
+        <div class="field-box">{{ai_metrics_owner}}</div>
+      </div>
+      <div>
+        <div class="field-label purple">FRECUENCIA DE ENTREGA AL CLIENTE</div>
+        <div class="field-box">{{ai_delivery_frequency}}</div>
+      </div>
+    </div>
+
+    <div class="field-label magenta">CRITERIOS DE EXITO Y SENALES DE ALERTA</div>
+    <div class="field-box large">{{ai_success_criteria}}</div>
+
+    <div class="footer">Plan Anual de Marketing &bull; Pagina 8 &bull; Plantilla Confidencial</div>
+  </div>
+
+  <!-- PAGE 9: Glossary -->
+  <div class="page">
+    <div class="section-title"><span class="num">07</span> ANEXO -- GLOSARIO TECNICO DE MARKETING</div>
+    <div class="section-divider"></div>
+
+    <div class="glossary-grid">
+      <div class="glossary-item"><div class="glossary-term" style="color:var(--accent-orange);">CAC</div><div class="glossary-subtitle">Costo de Adquisicion de Cliente</div><div class="glossary-def">Inversion total de marketing dividida entre el numero de clientes nuevos obtenidos en un periodo.</div></div>
+      <div class="glossary-item"><div class="glossary-term" style="color:var(--accent-blue);">KPI</div><div class="glossary-subtitle">Key Performance Indicator</div><div class="glossary-def">Metrica especifica y medible que indica si una estrategia esta funcionando segun los objetivos.</div></div>
+      <div class="glossary-item"><div class="glossary-term" style="color:var(--accent-purple);">LTV / CLV</div><div class="glossary-subtitle">Life Time Value</div><div class="glossary-def">Ingreso total que un cliente genera durante toda su relacion con la marca. Meta: LTV > 3x CAC.</div></div>
+      <div class="glossary-item"><div class="glossary-term" style="color:var(--accent-cyan);">OKR</div><div class="glossary-subtitle">Objectives and Key Results</div><div class="glossary-def">Marco de gestion de objetivos: define un Objetivo cualitativo y 2-4 Resultados Clave medibles.</div></div>
+      <div class="glossary-item"><div class="glossary-term" style="color:var(--accent-magenta);">ROAS</div><div class="glossary-subtitle">Return on Ad Spend</div><div class="glossary-def">Ingresos generados por cada peso invertido en publicidad. ROAS 4x = $4 de retorno por $1 invertido.</div></div>
+      <div class="glossary-item"><div class="glossary-term" style="color:var(--accent-green);">Buyer Persona</div><div class="glossary-subtitle">Perfil del Cliente Ideal</div><div class="glossary-def">Representacion semi-ficticia del cliente ideal, basada en datos reales.</div></div>
+      <div class="glossary-item"><div class="glossary-term" style="color:var(--accent-orange);">Funnel de Marketing</div><div class="glossary-subtitle">Embudo de Conversion</div><div class="glossary-def">Proceso que sigue un prospecto desde Awareness hasta Conversion y Advocacy.</div></div>
+      <div class="glossary-item"><div class="glossary-term" style="color:var(--accent-blue);">USP</div><div class="glossary-subtitle">Unique Selling Proposition</div><div class="glossary-def">El diferenciador que hace unica a la marca y que la competencia no puede copiar facilmente.</div></div>
+      <div class="glossary-item"><div class="glossary-term" style="color:var(--accent-purple);">Lead</div><div class="glossary-subtitle">Prospecto / Cliente Potencial</div><div class="glossary-def">Persona que ha mostrado interes en el producto o servicio y ha dejado sus datos de contacto.</div></div>
+      <div class="glossary-item"><div class="glossary-term" style="color:var(--accent-cyan);">NPS</div><div class="glossary-subtitle">Net Promoter Score</div><div class="glossary-def">Metrica de lealtad y satisfaccion del cliente. Escala 0-10.</div></div>
+      <div class="glossary-item"><div class="glossary-term" style="color:var(--accent-magenta);">CPL</div><div class="glossary-subtitle">Costo por Lead</div><div class="glossary-def">Inversion requerida para obtener un lead calificado. Gasto en Ads / Numero de leads.</div></div>
+      <div class="glossary-item"><div class="glossary-term" style="color:var(--accent-green);">ROI</div><div class="glossary-subtitle">Return on Investment</div><div class="glossary-def">Ganancia neta generada vs. inversion total realizada. Se expresa en porcentaje.</div></div>
+      <div class="glossary-item"><div class="glossary-term" style="color:var(--accent-orange);">CTR</div><div class="glossary-subtitle">Click-Through Rate</div><div class="glossary-def">Porcentaje de personas que hacen clic en un anuncio vs. el total que lo ve.</div></div>
+      <div class="glossary-item"><div class="glossary-term" style="color:var(--accent-blue);">CVR</div><div class="glossary-subtitle">Conversion Rate</div><div class="glossary-def">Porcentaje de leads o visitantes que completan la accion deseada.</div></div>
+      <div class="glossary-item"><div class="glossary-term" style="color:var(--accent-purple);">A/B Testing</div><div class="glossary-subtitle">Prueba A/B o Split Testing</div><div class="glossary-def">Metodo para comparar dos versiones de un anuncio, pagina o email.</div></div>
+      <div class="glossary-item"><div class="glossary-term" style="color:var(--accent-cyan);">Retargeting</div><div class="glossary-subtitle">Reimpacto o Remarketing</div><div class="glossary-def">Estrategia de publicidad que muestra anuncios a usuarios que ya interactuaron con la marca.</div></div>
+    </div>
+
+    <div class="footer">Plan Anual de Marketing &bull; Pagina 9 &bull; Plantilla Confidencial</div>
+  </div>
+
+</body>
+</html>

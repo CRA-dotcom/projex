@@ -1,0 +1,99 @@
+{
+  "template_id": "financiero-deliverable-long",
+  "name": "Diagnostico Financiero Integral - Version Tecnica Detallada",
+  "service_line": "Financiero",
+  "type": "deliverable",
+  "variant": "long",
+  "version": "1.0",
+  "source_file": "Copia de Reporte_Diagnostico_Version_Larga.docx",
+  "variables": {
+    "client_info": {
+      "client_name": { "type": "string", "source": "client_record" },
+      "client_industry": { "type": "string", "source": "client_record" },
+      "current_date": { "type": "date", "source": "system" },
+      "branding_company_name": { "type": "string", "source": "org_settings" }
+    },
+    "context": {
+      "ai_financial_period": { "type": "string", "source": "calculated" },
+      "ai_financial_currency_unit": { "type": "string", "source": "user_input" },
+      "ai_financial_reviewer": { "type": "string", "source": "org_settings" }
+    },
+    "corporate_profile": [
+      "ai_financial_business_model", "ai_financial_years_operating",
+      "ai_financial_corporate_structure", "ai_financial_geographic_coverage",
+      "ai_financial_strategic_context", "ai_financial_analyst_opinion"
+    ],
+    "kpis": {
+      "description": "Dashboard KPIs with _var suffix for variation",
+      "fields": [
+        "ai_financial_kpi_revenue", "ai_financial_kpi_ebitda",
+        "ai_financial_kpi_ebitda_margin", "ai_financial_kpi_net_income",
+        "ai_ratio_current", "ai_ratio_net_debt_ebitda", "ai_ratio_roe", "ai_ratio_cce"
+      ]
+    },
+    "financial_statements": {
+      "description": "Balance and P&L with _y2, _y1, _y0, _var, _pct suffixes"
+    },
+    "horizontal_analysis": {
+      "description": "Horizontal variations with _y2, _y1, _y0, _abs, _pct suffixes",
+      "analyst_note": "ai_financial_horizontal_analysis"
+    },
+    "vertical_analysis": {
+      "description": "Vertical % with _y2, _y1, _y0, _p2, _p1, _p0 suffixes",
+      "analyst_note": "ai_financial_vertical_analysis"
+    },
+    "ratios": {
+      "liquidity": ["current", "acid", "cash", "nwc"],
+      "solvency": ["de", "nd_ebitda", "icr", "leverage", "dscr"],
+      "efficiency": ["dso", "dio", "dpo", "cce", "at", "art"],
+      "profitability": ["gm", "em", "ebitdam", "nm", "roa", "roe", "roce"]
+    },
+    "ebitda_bridge": {
+      "fields": ["ni", "tax", "fin", "da", "total", "margin", "fcf"]
+    },
+    "cce_breakdown": {
+      "fields": ["dio", "dso", "dpo", "total", "wc"]
+    },
+    "fcf": {
+      "fields": ["ebitda", "capex", "wc", "tax", "total"]
+    },
+    "benchmarking": {
+      "metrics": ["gm", "ebitdam", "nm", "cr", "nde", "at", "roe", "dso", "dio", "dpo"],
+      "suffixes": ["_company", "_median", "_q1", "_q3", "_position"],
+      "gaps": ["ai_bench_gap_1", "ai_bench_gap_2", "ai_bench_gap_3"]
+    },
+    "sensitivity": {
+      "variables": ["rev", "gm", "opex", "rate", "fx", "capex", "dso"],
+      "scenarios": ["pessimistic", "base", "optimistic"],
+      "results": ["rev", "gp", "ebitda", "ebitdam", "ni", "nm", "fcf", "nde", "cr"],
+      "tornado": "ai_financial_tornado_analysis"
+    },
+    "findings": {
+      "strengths": ["ai_financial_strength_1", "ai_financial_strength_2", "ai_financial_strength_3", "ai_financial_strength_4"],
+      "risks": ["ai_financial_risk_1", "ai_financial_risk_2", "ai_financial_risk_3", "ai_financial_risk_4"],
+      "debt_analysis": "ai_financial_debt_analysis",
+      "debt_schedule": ["ai_debt_1_*", "ai_debt_2_*", "ai_debt_3_*"]
+    },
+    "remediation_plan": {
+      "short_term": ["ai_plan_cp_1..4 with _area, _kpi, _impact suffixes"],
+      "medium_term": ["ai_plan_mp_1..4 with _area, _kpi, _impact suffixes"],
+      "priority_matrix": [
+        "ai_matrix_quick_wins", "ai_matrix_key_projects", "ai_matrix_big_bets",
+        "ai_matrix_fill_ins", "ai_matrix_thankless", "ai_matrix_discontinue"
+      ]
+    }
+  },
+  "sections": [
+    "Seccion 1 - Resumen Ejecutivo y Perfil Corporativo",
+    "Seccion 2 - Estados Financieros Base (Balance y P&L 3 anos)",
+    "Seccion 3 - Analisis Horizontal",
+    "Seccion 4 - Analisis Vertical",
+    "Seccion 5 - Ratios Financieros Integrales (Liquidez, Solvencia, Eficiencia, Rentabilidad)",
+    "Seccion 6 - EBITDA, Flujo de Caja y Ciclo de Conversion",
+    "Seccion 7 - Benchmarking Sectorial",
+    "Seccion 8 - Analisis de Sensibilidad y Escenarios",
+    "Seccion 9 - Hallazgos Detallados y Diagnostico",
+    "Seccion 10 - Plan de Remediacion y Recomendaciones",
+    "Seccion 11 - Caveats, Limitaciones y Declaracion"
+  ]
+}

@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Master Corporate Governance Blueprint</title>
+<style>
+  @page { margin: 2cm; size: letter; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: Georgia, 'Times New Roman', serif; color: #1a1a1a; line-height: 1.65; font-size: 10.5pt; }
+  .page-break { page-break-before: always; }
+
+  /* Cover */
+  .cover { text-align: center; padding: 100px 40px 60px; min-height: 90vh; display: flex; flex-direction: column; justify-content: center; }
+  .cover-box { border: 3px solid #1a1a1a; padding: 50px 40px; max-width: 550px; margin: 0 auto; }
+  .cover .brand { font-size: 24pt; font-weight: bold; letter-spacing: 4px; }
+  .cover h1 { font-size: 15pt; margin: 12px 0 4px; text-transform: uppercase; letter-spacing: 1px; }
+  .cover h2 { font-size: 10pt; font-weight: normal; color: #666; font-style: italic; }
+  .cover .confidential { font-size: 7.5pt; text-transform: uppercase; letter-spacing: 2px; color: #999; margin-top: 40px; }
+
+  /* Content */
+  .content { max-width: 700px; margin: 0 auto; padding: 20px 40px; }
+  p { margin-bottom: 10px; text-align: justify; }
+  ul, ol { margin: 8px 0 14px 24px; }
+  li { margin-bottom: 5px; }
+
+  /* Headers */
+  h1 { font-size: 16pt; color: #1a1a1a; border-bottom: 3px solid #b8860b; padding-bottom: 6px; margin: 36px 0 14px; }
+  h2 { font-size: 13pt; color: #b8860b; margin: 26px 0 10px; border-bottom: 1px solid #e0d5b8; padding-bottom: 4px; }
+  h3 { font-size: 11pt; color: #333; margin: 18px 0 8px; }
+  h4 { font-size: 10pt; color: #b8860b; margin: 14px 0 6px; }
+
+  /* Tables */
+  table { width: 100%; border-collapse: collapse; margin: 12px 0 20px; font-size: 9.5pt; }
+  th { background: #1a1a1a; color: #fff; text-align: left; padding: 8px 10px; font-weight: bold; }
+  td { padding: 7px 10px; border-bottom: 1px solid #ddd; vertical-align: top; }
+  tr:nth-child(even) td { background: #f9f7f2; }
+  .table-total td { font-weight: bold; background: #f0ead6 !important; border-top: 2px solid #b8860b; }
+
+  /* Risk badges */
+  .risk-critico { background: #c0392b; color: #fff; padding: 2px 8px; font-size: 8pt; font-weight: bold; display: inline-block; }
+  .risk-alto { background: #e67e22; color: #fff; padding: 2px 8px; font-size: 8pt; font-weight: bold; display: inline-block; }
+  .risk-medio { background: #f1c40f; color: #1a1a1a; padding: 2px 8px; font-size: 8pt; font-weight: bold; display: inline-block; }
+  .risk-bajo { background: #27ae60; color: #fff; padding: 2px 8px; font-size: 8pt; font-weight: bold; display: inline-block; }
+
+  /* Principle boxes */
+  .principle-table td:first-child { font-weight: bold; width: 25%; color: #b8860b; }
+
+  /* Alert */
+  .alert { border-left: 4px solid #c0392b; background: #fdf2f2; padding: 10px 14px; margin: 14px 0; font-size: 10pt; }
+  .alert strong { color: #c0392b; }
+  .note { border-left: 4px solid #b8860b; background: #fdf8ed; padding: 10px 14px; margin: 14px 0; font-size: 10pt; }
+
+  /* Checklist */
+  .checklist td:nth-child(3) { text-align: center; font-size: 14pt; }
+
+  /* Signature block */
+  .sig-block { margin-top: 40px; }
+  .sig-block table { border: none; }
+  .sig-block td { border: none; text-align: center; padding: 12px 20px; }
+  .sig-line { border-top: 1px solid #333; margin-top: 40px; display: inline-block; width: 180px; }
+
+  /* Footer */
+  .footer { text-align: center; font-size: 7.5pt; color: #999; margin-top: 50px; border-top: 1px solid #ddd; padding-top: 10px; }
+
+  /* TOC */
+  .toc { list-style: none; margin: 0; padding: 0; }
+  .toc li { padding: 4px 0; border-bottom: 1px dotted #ccc; font-size: 10pt; }
+  .toc li strong { color: #1a1a1a; }
+  .toc li span { color: #666; float: right; }
+</style>
+</head>
+<body>
+
+<!-- COVER PAGE -->
+<div class="cover">
+  <div class="cover-box">
+    <div class="brand">{{branding_company_name}}</div>
+    <h1>MASTER CORPORATE GOVERNANCE BLUEPRINT</h1>
+    <h2>El Sistema Completo de Gobierno Corporativo de Alta Direccion</h2>
+  </div>
+  <p class="confidential">Documento Maestro de Gobierno Corporativo -- Confidencial y Exclusivo para el Cliente</p>
+</div>
+
+<!-- TABLE OF CONTENTS -->
+<div class="content page-break">
+  <h1>INDICE GENERAL DE CONTENIDOS</h1>
+  <table>
+    <thead>
+      <tr><th>Seccion</th><th>Contenido</th><th>Pags. Aprox.</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Parte I</td><td>Diagnostico Profundo: Legal y Operativo</td><td>4-6</td></tr>
+      <tr><td>Parte II</td><td>Manual del Consejo de Administracion</td><td>3-5</td></tr>
+      <tr><td>Parte III</td><td>Manual de Comites (Auditoria, Practicas, Finanzas)</td><td>6-8</td></tr>
+      <tr><td>Parte IV</td><td>Politicas Financieras Corporativas</td><td>4-6</td></tr>
+      <tr><td>Parte V</td><td>Protocolo de Resolucion de Conflictos</td><td>3-4</td></tr>
+      <tr><td>Parte VI</td><td>Protocolo de Familia y Sucesion (si aplica)</td><td>3-4</td></tr>
+      <tr><td>Apendices</td><td>Formatos de Actas, Reglamentos y Checklist de Gobierno</td><td>4-6</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- RESUMEN EJECUTIVO -->
+<div class="content page-break">
+  <h1>RESUMEN EJECUTIVO</h1>
+  <p>El presente Master Corporate Governance Blueprint es el instrumento central del sistema de gobierno corporativo disenado por {{branding_company_name}} para {{client_name}}. Este documento establece, de manera exhaustiva y operativa, las reglas, estructuras, politicas y protocolos que transforman la empresa en una institucion solida, transparente y preparada para el crecimiento, la inversion y la sucesion generacional.</p>
+  <p>Su contenido ha sido desarrollado con base en los estandares del Codigo de Mejores Practicas Corporativas del Consejo Coordinador Empresarial de Mexico, los Principios de Gobierno Corporativo de la OCDE, la Ley General de Sociedades Mercantiles y las mejores practicas internacionales de gobierno de empresas familiares y corporativas privadas.</p>
+</div>
+
+<!-- PARTE I -->
+<div class="content page-break">
+  <h1>PARTE I -- DIAGNOSTICO PROFUNDO: LEGAL Y OPERATIVO</h1>
+  <p>Esta seccion documenta el diagnostico integral realizado por {{branding_company_name}} sobre la empresa cliente, identificando las brechas de gobierno, los riesgos societarios y las oportunidades de valor. El diagnostico sirve como linea base sobre la cual se construye el sistema de gobierno descrito en las partes siguientes.</p>
+
+  <h2>1.1 Diagnostico Juridico-Societario</h2>
+  <p>El analisis juridico-societario abarca la revision de todos los documentos constitutivos y normativos de la empresa: escritura constitutiva, estatutos sociales, actas de asamblea, poderes notariales, contratos entre socios y cualquier acuerdo que regule las relaciones entre los propietarios de la empresa.</p>
+
+  <h3>1.1.1 Estado de la Escritura Constitutiva y Estatutos</h3>
+  <p>Los estatutos sociales son el documento fundacional de la sociedad. Determinan la estructura de capital, los derechos y obligaciones de los socios, los organos de gobierno y los mecanismos de toma de decisiones. Un estatuto desactualizado es una fuente potencial de conflicto y vulnerabilidad legal.</p>
+
+  <table>
+    <thead>
+      <tr><th>Elemento Juridico</th><th>Estado Actual</th><th>Riesgo</th><th>Accion {{branding_company_name}}</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Escritura Constitutiva</td><td>{{ai_legal_incorporation_date}}</td><td>{{ai_legal_incorporation_risk}}</td><td>{{ai_legal_incorporation_action}}</td></tr>
+      <tr><td>Estatutos Sociales</td><td>{{ai_legal_bylaws_date}}</td><td>{{ai_legal_bylaws_risk}}</td><td>{{ai_legal_bylaws_action}}</td></tr>
+      <tr><td>Clausulas de Salida</td><td>{{ai_legal_exit_status}}</td><td>{{ai_legal_exit_risk}}</td><td>{{ai_legal_exit_action}}</td></tr>
+      <tr><td>Derechos de Informacion</td><td>{{ai_legal_info_rights_status}}</td><td>{{ai_legal_info_rights_risk}}</td><td>{{ai_legal_info_rights_action}}</td></tr>
+      <tr><td>Organos de Gobierno</td><td>{{ai_legal_governance_status}}</td><td>{{ai_legal_governance_risk}}</td><td>{{ai_legal_governance_action}}</td></tr>
+      <tr><td>Capital Social</td><td>{{ai_legal_capital_status}}</td><td>{{ai_legal_capital_risk}}</td><td>{{ai_legal_capital_action}}</td></tr>
+    </tbody>
+  </table>
+
+  <h3>1.1.2 Analisis de Poderes Notariales Vigentes</h3>
+  <p>Los poderes notariales representan uno de los riesgos mas subestimados en la gobernanza corporativa mexicana. Es comun encontrar poderes amplisimos en manos de personas que ya no laboran en la empresa, o poderes cruzados que generan conflictos de interes estructurales.</p>
+
+  <table>
+    <thead>
+      <tr><th>Apoderado</th><th>Tipo de Poder</th><th>Alcance</th><th>Estado</th><th>Riesgo</th><th>Accion</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>{{ai_power_1_name}}</td><td>{{ai_power_1_type}}</td><td>{{ai_power_1_scope}}</td>
+        <td>{{ai_power_1_status}}</td><td>{{ai_power_1_risk}}</td><td>{{ai_power_1_action}}</td>
+      </tr>
+      <tr>
+        <td>{{ai_power_2_name}}</td><td>{{ai_power_2_type}}</td><td>{{ai_power_2_scope}}</td>
+        <td>{{ai_power_2_status}}</td><td>{{ai_power_2_risk}}</td><td>{{ai_power_2_action}}</td>
+      </tr>
+      <tr>
+        <td>{{ai_power_3_name}}</td><td>{{ai_power_3_type}}</td><td>{{ai_power_3_scope}}</td>
+        <td>{{ai_power_3_status}}</td><td>{{ai_power_3_risk}}</td><td>{{ai_power_3_action}}</td>
+      </tr>
+      <tr>
+        <td>{{ai_power_4_name}}</td><td>{{ai_power_4_type}}</td><td>{{ai_power_4_scope}}</td>
+        <td>{{ai_power_4_status}}</td><td>{{ai_power_4_risk}}</td><td>{{ai_power_4_action}}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>1.2 Diagnostico Operativo y Financiero</h2>
+  <p>El diagnostico operativo analiza la coherencia entre la estructura formal de la empresa y su funcionamiento real. En muchas empresas, especialmente las familiares, existe una brecha significativa entre lo que los documentos dicen y lo que ocurre en la practica cotidiana.</p>
+
+  <h3>1.2.1 Analisis de la Estructura Organizacional</h3>
+  <p>El organigrama formal debe reflejar con precision los roles, responsabilidades y lineas de reporte de la empresa. La ausencia de un organigrama actualizado, o la discrepancia entre el organigrama formal y la estructura real de poder, es un indicador de riesgo de gobierno.</p>
+  <p>Durante el diagnostico se identificaron los siguientes patrones de concentracion de poder que requieren atencion prioritaria:</p>
+  <ul>
+    <li>{{ai_org_finding_1}}</li>
+    <li>{{ai_org_finding_2}}</li>
+    <li>{{ai_org_finding_3}}</li>
+    <li>{{ai_org_finding_4}}</li>
+  </ul>
+
+  <h3>1.2.2 Diagnostico Financiero y de Control Interno</h3>
+  <p>El control interno financiero es el conjunto de procesos, politicas y sistemas que garantizan la integridad y confiabilidad de la informacion financiera de la empresa. Su ausencia o debilidad aumenta significativamente el riesgo de errores, fraudes y conflictos entre socios.</p>
+
+  <table>
+    <thead>
+      <tr><th>Area de Control</th><th>Estado</th><th>Hallazgo Principal</th><th>Nivel de Riesgo</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Estados Financieros</td><td>{{ai_fin_fs_status}}</td><td>{{ai_fin_fs_finding}}</td><td>{{ai_fin_fs_risk}}</td></tr>
+      <tr><td>Politicas Contables</td><td>{{ai_fin_accounting_status}}</td><td>{{ai_fin_accounting_finding}}</td><td>{{ai_fin_accounting_risk}}</td></tr>
+      <tr><td>Control de Gastos</td><td>{{ai_fin_expenses_status}}</td><td>{{ai_fin_expenses_finding}}</td><td>{{ai_fin_expenses_risk}}</td></tr>
+      <tr><td>Presupuesto Anual</td><td>{{ai_fin_budget_status}}</td><td>{{ai_fin_budget_finding}}</td><td>{{ai_fin_budget_risk}}</td></tr>
+      <tr><td>Informacion a Socios</td><td>{{ai_fin_info_status}}</td><td>{{ai_fin_info_finding}}</td><td>{{ai_fin_info_risk}}</td></tr>
+      <tr><td>Auditoria Interna</td><td>{{ai_fin_audit_status}}</td><td>{{ai_fin_audit_finding}}</td><td>{{ai_fin_audit_risk}}</td></tr>
+      <tr><td>Partes Relacionadas</td><td>{{ai_fin_rp_status}}</td><td>{{ai_fin_rp_finding}}</td><td>{{ai_fin_rp_risk}}</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- PARTE II -->
+<div class="content page-break">
+  <h1>PARTE II -- MANUAL DEL CONSEJO DE ADMINISTRACION</h1>
+  <p>El Consejo de Administracion es el organo colegiado supremo de gobierno corporativo de la empresa. Es el puente entre los accionistas y la administracion ejecutiva. Su funcion principal no es administrar la empresa, sino supervisar que la administracion lo haga conforme a los objetivos y valores definidos por los accionistas.</p>
+
+  <table class="principle-table">
+    <thead><tr><th>Principio Rector</th><th>Descripcion</th></tr></thead>
+    <tbody>
+      <tr><td>INDEPENDENCIA</td><td>El Consejo actua en interes de la empresa, no de los socios individualmente.</td></tr>
+      <tr><td>COLEGIALIDAD</td><td>Las decisiones se toman de manera colegiada; ningun consejero actua unilateralmente.</td></tr>
+      <tr><td>TRANSPARENCIA</td><td>El Consejo documenta sus sesiones y comunica sus resoluciones a los accionistas.</td></tr>
+      <tr><td>RESPONSABILIDAD</td><td>Los consejeros responden por sus omisiones y por las resoluciones que aprueban.</td></tr>
+      <tr><td>COMPETENCIA</td><td>La membresia en el Consejo se basa en el valor que el consejero aporta, no en la participacion accionarial.</td></tr>
+    </tbody>
+  </table>
+
+  <h2>2.1 Composicion del Consejo de Administracion</h2>
+  <p>La composicion optima del Consejo de {{client_name}} considera el tamano de la empresa, el numero de accionistas, la complejidad operativa y el estadio de madurez del negocio. {{branding_company_name}} recomienda la siguiente estructura:</p>
+
+  <table>
+    <thead>
+      <tr><th>Posicion</th><th>Perfil Requerido</th><th>Tipo</th><th>Mandato</th><th>Derecho a Voto</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Presidente del Consejo</td><td>Accionista mayoritario o perfil independiente de alto nivel</td><td>Patrimonial o Independiente</td><td>3 anos renovable</td><td>Voto de calidad en caso de empate</td></tr>
+      <tr><td>Consejero Patrimonial A</td><td>Accionista con 15% o mas de participacion</td><td>Patrimonial</td><td>2 anos renovable</td><td>Si</td></tr>
+      <tr><td>Consejero Patrimonial B</td><td>Accionista con 15% o mas de participacion</td><td>Patrimonial</td><td>2 anos renovable</td><td>Si</td></tr>
+      <tr><td>Consejero Independiente A</td><td>Experto en finanzas, contabilidad o auditoria</td><td>Independiente</td><td>3 anos renovable</td><td>Si</td></tr>
+      <tr><td>Consejero Independiente B</td><td>Experto en el sector de la empresa o legal corporativo</td><td>Independiente</td><td>3 anos renovable</td><td>Si</td></tr>
+      <tr><td>Secretario del Consejo</td><td>Abogado corporativo (no asesor externo de la empresa)</td><td>Secretario</td><td>Indefinido</td><td>No vota</td></tr>
+    </tbody>
+  </table>
+
+  <h2>2.2 Atribuciones del Consejo de Administracion</h2>
+  <p>Las siguientes materias son de resolucion exclusiva del Consejo de Administracion y no pueden ser delegadas a la administracion ejecutiva. Toda resolucion sobre estas materias debe constar en Acta formal de sesion de Consejo:</p>
+  <ol>
+    <li>Aprobacion del Plan Estrategico Anual y el Presupuesto Maestro.</li>
+    <li>Aprobacion de inversiones de capital (CAPEX) que excedan el umbral establecido en la Politica de CAPEX.</li>
+    <li>Aprobacion de operaciones con Partes Relacionadas, conforme a la Politica de Partes Relacionadas.</li>
+    <li>Nombramiento, evaluacion, compensacion y remocion del Director General / CEO.</li>
+    <li>Politica de distribucion de utilidades y dividendos; modificacion de la Politica de Dividendos.</li>
+    <li>Contratacion de nuevos creditos bancarios o emision de deuda que superen el umbral de endeudamiento.</li>
+    <li>Resolucion de conflictos entre accionistas que no se resuelvan en la Asamblea.</li>
+    <li>Aprobacion de fusiones, escisiones, adquisiciones o enajenaciones de activos relevantes.</li>
+    <li>Seleccion y evaluacion de los auditores externos independientes.</li>
+    <li>Cualquier modificacion a los estatutos sociales o al pacto de accionistas.</li>
+  </ol>
+
+  <h2>2.3 Calendario de Sesiones del Consejo</h2>
+  <p>El Consejo se reunira con la siguiente periodicidad minima. Las sesiones extraordinarias podran convocarse en cualquier momento ante situaciones que lo requieran.</p>
+
+  <table>
+    <thead>
+      <tr><th>Tipo de Sesion</th><th>Frecuencia</th><th>Convocante</th><th>Quorum</th><th>Temas Recurrentes</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Ordinaria Trimestral</td><td>4 veces/ano</td><td>Presidente del Consejo</td><td>Mayoria de consejeros</td><td>EF trimestrales, avance del plan estrategico, reporte de riesgos</td></tr>
+      <tr><td>Extraordinaria</td><td>Cuando se requiera</td><td>Presidente o 2 Consejeros</td><td>Mayoria calificada (2/3)</td><td>Temas urgentes: M&amp;A, crisis operativa, conflicto societario</td></tr>
+      <tr><td>Planeacion Estrategica</td><td>1 vez/ano (enero)</td><td>Presidente del Consejo</td><td>Todos los consejeros</td><td>Presupuesto, Plan Estrategico, metas anuales para CEO</td></tr>
+      <tr><td>Evaluacion CEO</td><td>1 vez/ano (diciembre)</td><td>Consejeros Independientes</td><td>Consejeros Independientes</td><td>Evaluacion del desempeno del Director General</td></tr>
+    </tbody>
+  </table>
+
+  <h2>2.4 Proceso de Toma de Decisiones en el Consejo</h2>
+  <p>La toma de decisiones en el Consejo sigue un proceso estructurado que garantiza la calidad de las deliberaciones y la validez legal de las resoluciones:</p>
+  <ol>
+    <li><strong>CONVOCATORIA:</strong> El Secretario emite la convocatoria con minimo 5 dias habiles de anticipacion, incluyendo el Orden del Dia y los documentos de soporte.</li>
+    <li><strong>QUORUM:</strong> Se verifica el quorum de instalacion (mayoria de consejeros) antes de iniciar la sesion.</li>
+    <li><strong>DELIBERACION:</strong> Cada tema se presenta, delibera y vota. El Presidente modera el proceso.</li>
+    <li><strong>RESOLUCION:</strong> Las resoluciones se aprueban por mayoria simple, salvo las materias reservadas que requieren mayoria calificada (2/3).</li>
+    <li><strong>ACTA:</strong> El Secretario elabora el Acta de la sesion en un plazo maximo de 5 dias habiles. El Acta debe ser firmada por el Presidente y el Secretario.</li>
+    <li><strong>SEGUIMIENTO:</strong> El Director General reporta el cumplimiento de las resoluciones del Consejo en la siguiente sesion ordinaria.</li>
+  </ol>
+</div>
+
+<!-- PARTE III -->
+<div class="content page-break">
+  <h1>PARTE III -- MANUALES DE COMITES DE GOBIERNO</h1>
+  <p>Los Comites del Consejo son organos colegiados especializados que apoyan al Consejo de Administracion en materias especificas que requieren mayor profundidad de analisis. Los Comites NO tienen facultades ejecutivas; su funcion es analizar, deliberar y formular recomendaciones al pleno del Consejo para su aprobacion.</p>
+
+  <h2>CAPITULO A -- COMITE DE AUDITORIA</h2>
+  <p>El Comite de Auditoria es el guardian de la integridad financiera de la empresa. Supervisa el proceso de auditoria externa, el control interno financiero y la gestion de riesgos. Su existencia es obligatoria para empresas que cotizan en bolsa y altamente recomendable para empresas privadas de mediana y gran escala.</p>
+
+  <h3>A.1 Composicion y Requisitos</h3>
+  <table>
+    <thead>
+      <tr><th>Miembro</th><th>Tipo</th><th>Requisito Minimo</th><th>Prohibiciones</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Presidente</td><td>Consejero Independiente</td><td>CPA, experiencia en auditoria o finanzas corporativas</td><td>No puede ser empleado de la empresa ni del auditor externo</td></tr>
+      <tr><td>Vocal A</td><td>Consejero Independiente</td><td>Experiencia en finanzas o control interno</td><td>No puede tener relacion comercial significativa con la empresa</td></tr>
+      <tr><td>Vocal B</td><td>Consejero Patrimonial (optativo)</td><td>Conocimiento financiero basico</td><td>Sin conflicto de interes en materias auditadas</td></tr>
+      <tr><td>Secretario</td><td>Director de Finanzas / CFO</td><td>No es miembro votante</td><td>N/A -- solo asiste con voz, sin voto</td></tr>
+    </tbody>
+  </table>
+
+  <h3>A.2 Atribuciones del Comite de Auditoria</h3>
+  <ul>
+    <li>Proponer al Consejo la seleccion, contratacion, evaluacion y, en su caso, sustitucion de los auditores externos independientes.</li>
+    <li>Revisar el plan de auditoria, el informe de auditoria y los estados financieros auditados antes de su presentacion al Consejo y a la Asamblea.</li>
+    <li>Supervisar la implementacion de las recomendaciones de los auditores externos en materia de control interno.</li>
+    <li>Supervisar el cumplimiento de las politicas contables y financieras de la empresa, incluyendo la Politica de Partes Relacionadas.</li>
+    <li>Establecer mecanismos de denuncia anonima para empleados que detecten irregularidades financieras o contables (buzon de etica).</li>
+    <li>Evaluar la efectividad del sistema de control interno y emitir un informe anual al Consejo de Administracion.</li>
+    <li>Monitorear los indicadores clave de riesgo financiero y reportarlos al Consejo trimestralmente.</li>
+  </ul>
+
+  <h3>A.3 Calendario de Actividades del Comite de Auditoria</h3>
+  <table>
+    <thead>
+      <tr><th>Trimestre</th><th>Actividad Principal</th><th>Entregable al Consejo</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Q1 (Enero-Marzo)</td><td>Revision del Informe de Auditoria del ejercicio anterior. Analisis de ajustes de auditoria.</td><td>Informe de Auditoria + Recomendaciones de CI</td></tr>
+      <tr><td>Q2 (Abril-Junio)</td><td>Revision de EF al 31 de marzo. Seleccion / evaluacion de auditor externo para el ejercicio.</td><td>Propuesta de Auditor + Informe Q1</td></tr>
+      <tr><td>Q3 (Julio-Septiembre)</td><td>Revision de EF al 30 de junio. Avance de implementacion de recomendaciones de auditoria.</td><td>Informe Q2 + Estado de recomendaciones</td></tr>
+      <tr><td>Q4 (Octubre-Diciembre)</td><td>Revision de EF al 30 de septiembre. Revision del plan de auditoria para siguiente ejercicio.</td><td>Informe Q3 + Plan de Auditoria siguiente ano</td></tr>
+    </tbody>
+  </table>
+
+  <h2>CAPITULO B -- COMITE DE PRACTICAS SOCIETARIAS</h2>
+  <p>El Comite de Practicas Societarias actua como el arbitro interno de la equidad en la empresa. Supervisa que las transacciones con partes relacionadas se realicen en condiciones de mercado, que la compensacion de los directivos sea justa y que los conflictos de interes se gestionen adecuadamente.</p>
+
+  <h3>B.1 Composicion y Requisitos</h3>
+  <table>
+    <thead>
+      <tr><th>Miembro</th><th>Tipo</th><th>Funcion Principal</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Presidente</td><td>Consejero Independiente con perfil legal o financiero</td><td>Preside las sesiones y es el vocero del Comite ante el Consejo</td></tr>
+      <tr><td>Vocal A</td><td>Consejero Independiente</td><td>Analisis de operaciones con Partes Relacionadas</td></tr>
+      <tr><td>Vocal B</td><td>Consejero Independiente (si hay 3 independientes)</td><td>Apoyo en temas de compensacion y evaluacion</td></tr>
+    </tbody>
+  </table>
+
+  <h3>B.2 Atribuciones del Comite de Practicas Societarias</h3>
+  <ul>
+    <li>Revisar y dictaminar, de manera previa, todas las operaciones con Partes Relacionadas que superen el umbral definido en la Politica de Partes Relacionadas.</li>
+    <li>Proponer al Consejo la politica de compensacion para los directivos de primer nivel (CEO, CFO, COO), incluyendo la parte fija, variable y los planes de participacion en utilidades.</li>
+    <li>Evaluar anualmente el desempeno del CEO / Director General y emitir una recomendacion al Consejo sobre la renovacion de su contrato y la modificacion de su compensacion.</li>
+    <li>Gestionar los conflictos de interes que surjan entre los consejeros, directivos y la empresa, definiendo los protocolos de abstencion y recusacion.</li>
+    <li>Supervisar el cumplimiento del Codigo de Etica y Conducta de la empresa.</li>
+    <li>Emitir opinion sobre operaciones que puedan afectar los derechos de accionistas minoritarios.</li>
+  </ul>
+
+  <h2>CAPITULO C -- COMITE DE FINANZAS</h2>
+  <p>El Comite de Finanzas es el organo especializado que apoya al Consejo en la supervision de la estrategia financiera, la estructura de capital y la gestion de riesgos financieros de la empresa. Su funcion es complementaria a la del Comite de Auditoria: mientras este ultimo mira hacia atras (verificando la integridad de los EF historicos), el Comite de Finanzas mira hacia adelante (guiando la estrategia financiera futura).</p>
+
+  <h3>C.1 Composicion y Requisitos</h3>
+  <table>
+    <thead>
+      <tr><th>Miembro</th><th>Tipo</th><th>Perfil Requerido</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Presidente</td><td>Consejero Independiente o Patrimonial</td><td>Experiencia comprobable en finanzas corporativas, banca de inversion o tesoreria corporativa</td></tr>
+      <tr><td>Vocal A</td><td>Consejero Independiente</td><td>Conocimiento en mercados de capital, credito o estructuracion financiera</td></tr>
+      <tr><td>Vocal B</td><td>Director de Finanzas / CFO</td><td>No es miembro votante; presenta informacion y ejecuta resoluciones del Comite</td></tr>
+    </tbody>
+  </table>
+
+  <h3>C.2 Atribuciones del Comite de Finanzas</h3>
+  <ul>
+    <li>Revisar y aprobar (sujeto a ratificacion del Consejo) el presupuesto maestro anual (Budget) y sus modificaciones significativas durante el ejercicio.</li>
+    <li>Supervisar la ejecucion del presupuesto y analizar las variaciones materiales entre lo presupuestado y lo realizado.</li>
+    <li>Evaluar las necesidades de financiamiento de la empresa y recomendar al Consejo la estructura optima de capital.</li>
+    <li>Supervisar la Politica de Dividendos y proponer al Consejo los parametros de distribucion de utilidades para cada ejercicio.</li>
+    <li>Revisar y autorizar (dentro de los limites delegados por el Consejo) las solicitudes de CAPEX que superen el umbral gerencial.</li>
+    <li>Monitorear los indicadores clave de desempeno financiero (KPIs financieros): EBITDA, flujo de efectivo libre, razon de endeudamiento, ROE, ROA.</li>
+    <li>Evaluar oportunidades de M&amp;A, alianzas estrategicas o nuevas inversiones y emitir recomendacion al Consejo.</li>
+  </ul>
+</div>
+
+<!-- PARTE IV -->
+<div class="content page-break">
+  <h1>PARTE IV -- POLITICAS FINANCIERAS CORPORATIVAS</h1>
+  <p>Las Politicas Financieras Corporativas son el conjunto de reglas formales que regulan el manejo de los recursos economicos de la empresa. Su existencia y aplicacion consistente es un pilar fundamental del gobierno corporativo y un requisito de cualquier inversion institucional o financiamiento bancario de primer nivel.</p>
+
+  <h2>POLITICA 1 -- POLITICA DE CAPITAL EXPENDITURE (CAPEX)</h2>
+  <p>Esta politica establece los criterios y limites de autorizacion para la adquisicion de activos fijos, mejoras de capital y proyectos de inversion que impliquen una salida de efectivo significativa o la contratacion de obligaciones financieras de largo plazo.</p>
+
+  <h3>4.1.1 Clasificacion de Inversiones</h3>
+  <table>
+    <thead>
+      <tr><th>Categoria</th><th>Monto (MXN)</th><th>Autoriza</th><th>Plazo de Resolucion</th><th>Documentacion Requerida</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Nivel 1 -- Operativo</td><td>&lt; $250,000</td><td>Gerente de Area</td><td>Inmediato</td><td>Cotizacion + justificacion operativa</td></tr>
+      <tr><td>Nivel 2 -- Gerencial</td><td>$250,001 -- $1,000,000</td><td>Director de Area + CFO</td><td>5 dias habiles</td><td>Analisis costo-beneficio + cotizaciones (3 min.)</td></tr>
+      <tr><td>Nivel 3 -- Directivo</td><td>$1,000,001 -- $5,000,000</td><td>CEO + Comite de Finanzas</td><td>15 dias habiles</td><td>Business case completo + analisis de TIR y VPN</td></tr>
+      <tr><td>Nivel 4 -- Consejo</td><td>$5,000,001 -- $25,000,000</td><td>Consejo de Administracion</td><td>30 dias habiles</td><td>Business case auditado + evaluacion de riesgo</td></tr>
+      <tr><td>Nivel 5 -- Asamblea</td><td>$25,000,001 en adelante</td><td>Asamblea de Accionistas</td><td>60 dias habiles</td><td>Dictamen externo + evaluacion de impacto financiero</td></tr>
+    </tbody>
+  </table>
+
+  <h3>4.1.2 Criterios de Evaluacion de Inversiones</h3>
+  <ul>
+    <li>Toda inversion Nivel 3 en adelante debe incluir un analisis formal de Tasa Interna de Retorno (TIR) y Valor Presente Neto (VPN).</li>
+    <li>La TIR minima aceptable para proyectos de expansion es del {{ai_capex_min_tir}}% (a definir por el Comite de Finanzas, usualmente el WACC + prima de riesgo del proyecto).</li>
+    <li>Las inversiones en activos no productivos (inmuebles para uso propio, vehiculos ejecutivos, etc.) se sujetan a criterios separados y requieren aprobacion del Comite de Practicas Societarias.</li>
+    <li>El presupuesto de CAPEX anual se aprueba en bloque por el Consejo en la sesion de planeacion estrategica de enero. Las inversiones no presupuestadas de Nivel 3 en adelante requieren aprobacion extraordinaria del Consejo.</li>
+  </ul>
+
+  <h2>POLITICA 2 -- POLITICA DE DIVIDENDOS Y DISTRIBUCION DE UTILIDADES</h2>
+  <p>Esta politica establece los criterios, frecuencia y condiciones para la distribucion de utilidades entre los accionistas. Una politica de dividendos clara y predecible reduce la incertidumbre entre los socios, minimiza los conflictos por expectativas diferentes y facilita la planeacion financiera personal de los accionistas.</p>
+
+  <h3>4.2.1 Parametros de la Politica de Dividendos</h3>
+  <table>
+    <thead>
+      <tr><th>Parametro</th><th>Criterio Establecido</th><th>Fundamento</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Frecuencia de distribucion</td><td>Anual (posterior al dictamen de auditoria) + 1 anticipo semestral opcional</td><td>Garantiza que la distribucion se base en resultados verificados</td></tr>
+      <tr><td>Porcentaje minimo de distribucion</td><td>{{ai_dividend_min_pct}}% de la Utilidad Neta del ejercicio (a definir por el Consejo)</td><td>Establece expectativa base para los accionistas</td></tr>
+      <tr><td>Reserva de Contingencia</td><td>Minimo {{ai_contingency_reserve_pct}}% de las utilidades, hasta alcanzar un fondo de {{ai_contingency_months}} meses de gastos operativos</td><td>Protege la liquidez operativa de la empresa</td></tr>
+      <tr><td>Reserva Legal</td><td>20% de la Utilidad Neta hasta alcanzar el 100% del Capital Social</td><td>Obligatorio por la LGSM para S.A. de C.V.</td></tr>
+      <tr><td>CAPEX con cargo a utilidades</td><td>El Comite de Finanzas puede proponer retencion adicional de utilidades para financiar CAPEX aprobado</td><td>Evita endeudamiento innecesario para proyectos estrategicos</td></tr>
+      <tr><td>Condicion suspensiva</td><td>La distribucion se suspende si la razon Deuda/EBITDA supera {{ai_debt_ebitda_limit}}x o el flujo libre es negativo</td><td>Protege la solvencia financiera de la empresa</td></tr>
+    </tbody>
+  </table>
+
+  <h2>POLITICA 3 -- POLITICA DE GASTOS DE REPRESENTACION</h2>
+  <p>Esta politica regula el uso de recursos de la empresa para gastos de representacion, hospitalidad, viajes y entretenimiento relacionados con la actividad del negocio. El abuso de gastos de representacion es una de las principales fuentes de conflicto entre socios y una senal de alarma para inversionistas y auditores.</p>
+
+  <h3>4.3.1 Limites de Gastos por Nivel Jerarquico</h3>
+  <table>
+    <thead>
+      <tr><th>Nivel</th><th>Limite Mensual</th><th>Tipo de Gasto Permitido</th><th>Documentacion</th><th>Autoriza</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Director General / CEO</td><td>{{ai_expense_ceo_limit}}</td><td>Comidas de negocios, viajes internacionales, eventos representativos</td><td>Factura + reporte de gasto con justificacion</td><td>Comite de Practicas Societarias (retroactivo trimestral)</td></tr>
+      <tr><td>Directores de Area</td><td>{{ai_expense_director_limit}}</td><td>Comidas de negocios, viajes nacionales, eventos sectoriales</td><td>Factura + formato de gasto aprobado</td><td>CFO</td></tr>
+      <tr><td>Gerentes</td><td>{{ai_expense_manager_limit}}</td><td>Comidas de trabajo, transporte de negocios</td><td>Factura + ticket con justificacion</td><td>Director de Area</td></tr>
+      <tr><td>Otros empleados</td><td>{{ai_expense_employee_limit}}</td><td>Solo gastos operativos directos con cliente</td><td>Factura + evidencia</td><td>Gerente directo</td></tr>
+    </tbody>
+  </table>
+
+  <h2>POLITICA 4 -- POLITICA DE OPERACIONES CON PARTES RELACIONADAS</h2>
+  <p>Esta politica es critica en empresas familiares donde es comun que los accionistas, sus familias o sus empresas tengan relaciones comerciales con la propia empresa. Sin una politica formal, estas transacciones pueden generar conflictos de interes, transferencia de valor entre accionistas y cuestionamientos legales y fiscales.</p>
+
+  <h3>4.4.1 Definicion de Parte Relacionada</h3>
+  <p>Se considera Parte Relacionada de la empresa a cualquier persona fisica o moral que tenga con la empresa una relacion de las siguientes:</p>
+  <ul>
+    <li>Accionistas con participacion directa o indirecta igual o superior al 10% del capital social.</li>
+    <li>Directivos, consejeros o empleados clave de la empresa.</li>
+    <li>Familiares de primer grado de los accionistas o directivos (conyuge, hijos, padres, hermanos).</li>
+    <li>Empresas en las que alguno de los sujetos anteriores sea accionista, socio, directivo o tenga influencia significativa.</li>
+  </ul>
+
+  <h3>4.4.2 Proceso de Aprobacion de Operaciones con Partes Relacionadas</h3>
+  <ol>
+    <li><strong>IDENTIFICACION:</strong> El CFO o cualquier directivo identifica la naturaleza de Parte Relacionada antes de negociar cualquier contrato u operacion.</li>
+    <li><strong>ANALISIS DE PRECIO DE MERCADO:</strong> El CFO documenta que las condiciones de la operacion son equivalentes a las que se obtendrian con un tercero independiente (arm's length).</li>
+    <li><strong>DICTAMEN DEL COMITE DE PRACTICAS SOCIETARIAS:</strong> Para operaciones que superen ${{ai_rp_threshold}} MXN, el Comite emite dictamen de aprobacion previa.</li>
+    <li><strong>APROBACION DEL CONSEJO:</strong> El Consejo ratifica las operaciones con Partes Relacionadas en su sesion trimestral, con base en el reporte del Comite de Practicas Societarias.</li>
+    <li><strong>DIVULGACION:</strong> Todas las operaciones con Partes Relacionadas se revelan en notas a los estados financieros auditados y en el Informe Anual del Consejo a los accionistas.</li>
+    <li><strong>ABSTENCION:</strong> El consejero o directivo que sea la Parte Relacionada de la operacion se abstiene de participar en el proceso de aprobacion.</li>
+  </ol>
+</div>
+
+<!-- PARTE V -->
+<div class="content page-break">
+  <h1>PARTE V -- PROTOCOLO DE RESOLUCION DE CONFLICTOS Y MECANISMOS DE SALIDA</h1>
+  <p>Los conflictos entre accionistas son inevitables en cualquier empresa con multiples propietarios. La diferencia entre una empresa que los supera y una que los destruye radica en los mecanismos preventivos y resolutivos que tiene en su arquitectura de gobierno. Esta seccion establece el protocolo formal de {{branding_company_name}} para gestionar controversias societarias.</p>
+
+  <h2>5.1 Clasificacion de Conflictos Societarios</h2>
+  <table>
+    <thead>
+      <tr><th>Nivel</th><th>Tipo de Conflicto</th><th>Ejemplo</th><th>Mecanismo de Resolucion</th><th>Tiempo Est.</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Nivel 1 -- Operativo</td><td>Desacuerdos sobre decisiones del dia a dia</td><td>Estrategia de marketing, contratacion de personal, proveedores</td><td>CEO o Director General; escalable al Consejo</td><td>Inmediato -- 5 dias</td></tr>
+      <tr><td>Nivel 2 -- Estrategico</td><td>Desacuerdos sobre la direccion estrategica</td><td>Plan de expansion, politica de inversion, diversificacion</td><td>Consejo de Administracion; mediacion interna si hay empate</td><td>15-30 dias</td></tr>
+      <tr><td>Nivel 3 -- Societario</td><td>Conflictos entre accionistas sobre derechos o distribucion</td><td>Dividendos, valoracion de acciones, incorporacion de nuevos socios</td><td>Comite de Practicas Societarias + mediacion externa</td><td>30-60 dias</td></tr>
+      <tr><td>Nivel 4 -- Deadlock</td><td>Bloqueo total en la toma de decisiones criticas</td><td>Socios 50/50 sin acuerdo; oposicion a venta estrategica</td><td>Protocolo de Deadlock (ver 5.3)</td><td>60-120 dias</td></tr>
+      <tr><td>Nivel 5 -- Litigioso</td><td>Conflicto no resuelto que requiere instancia legal</td><td>Demanda societaria, impugnacion de Asamblea, fraude</td><td>Arbitraje institucional (CAMCA, ICC)</td><td>6-18 meses</td></tr>
+    </tbody>
+  </table>
+
+  <h2>5.2 Protocolo de Mediacion Interna</h2>
+  <h3>5.2.1 Proceso de Mediacion ante el Consejo de Administracion</h3>
+  <ol>
+    <li><strong>NOTIFICACION:</strong> Cualquier accionista puede notificar al Secretario del Consejo un conflicto que afecte sus derechos o los intereses de la empresa.</li>
+    <li><strong>ADMISION:</strong> El Presidente del Consejo verifica que el conflicto es de naturaleza societaria y confirma su admision dentro de los 5 dias habiles siguientes.</li>
+    <li><strong>DESIGNACION DEL MEDIADOR:</strong> El Consejo designa a uno de los Consejeros Independientes como Mediador Interno, o acuerda la designacion de un mediador externo si ningun consejero puede actuar con imparcialidad.</li>
+    <li><strong>PROCESO DE MEDIACION:</strong> El Mediador reune a las partes por separado (caucus) y conjuntamente para comprender las posiciones e intereses de cada parte.</li>
+    <li><strong>PROPUESTA DE SOLUCION:</strong> El Mediador elabora una propuesta de resolucion y la somete a consideracion de las partes. Si ambas partes aceptan, la resolucion se formaliza en Acta de Consejo.</li>
+    <li><strong>ESCALAMIENTO:</strong> Si la mediacion interna no prospera en 30 dias, el conflicto se escala al Protocolo de Mediacion Externa.</li>
+  </ol>
+
+  <h2>5.3 Protocolo de Deadlock -- Mecanismos de Desbloqueo</h2>
+  <p>El Deadlock (bloqueo societario) ocurre cuando dos o mas accionistas o grupos de accionistas tienen el poder suficiente para bloquearse mutuamente, impidiendo la toma de decisiones criticas para la empresa. El presente protocolo establece la secuencia de mecanismos para resolver un Deadlock.</p>
+
+  <table>
+    <thead>
+      <tr><th>Etapa</th><th>Mecanismo</th><th>Descripcion</th><th>Plazo de Activacion</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>1. Negociacion Directa</td><td>Periodo de reflexion</td><td>Acuerdo entre las partes para no tomar acciones unilaterales durante 30 dias</td><td>Desde la declaracion formal del Deadlock</td></tr>
+      <tr><td>2. Mediacion</td><td>Mediador profesional</td><td>Mediador certificado externo (CAMCA u otra institucion)</td><td>Dia 31 si no hay acuerdo en Etapa 1</td></tr>
+      <tr><td>3. Voto de Calidad</td><td>Presidente con voto dirimente</td><td>El Presidente del Consejo tiene voto de calidad en caso de empate (si se pacta en estatutos)</td><td>Simultaneo a Etapa 2</td></tr>
+      <tr><td>4. Arbitro Tecnico</td><td>Arbitro de decision</td><td>Para temas tecnicos: valoracion, estrategia; un experto independiente emite decision vinculante</td><td>Dia 61 si no hay acuerdo</td></tr>
+      <tr><td>5. Arbitraje</td><td>Arbitraje institucional</td><td>CAMCA o ICC; laudo arbitral vinculante</td><td>Dia 91 si no hay acuerdo</td></tr>
+      <tr><td>6. Exit Mechanisms</td><td>Separacion societaria</td><td>Activacion de clausulas Put/Call, Russian Roulette o Drag-along</td><td>Segun lo pactado en el Shareholders' Agreement</td></tr>
+    </tbody>
+  </table>
+
+  <h2>5.4 Clausulas de Salida -- Mecanismos de Proteccion Societaria</h2>
+
+  <h3>5.4.1 Derecho de Preferencia (Right of First Refusal -- ROFR)</h3>
+  <p>Si un accionista desea transmitir sus acciones a un tercero, los demas accionistas tendran un derecho preferente de adquisicion de las mismas en igualdad de condiciones y precio con el tercero interesado. El accionista vendedor debera notificar al Secretario del Consejo la oferta recibida. Los demas accionistas tendran {{ai_rofr_days}} dias naturales para ejercer su derecho de preferencia. Si ningun accionista ejerce el ROFR, el vendedor podra transmitir las acciones al tercero original en los mismos terminos notificados.</p>
+
+  <h3>5.4.2 Arrastre (Drag-along)</h3>
+  <p>Si los accionistas que representen el {{ai_drag_along_pct}}% o mas del capital social acordaren transmitir sus acciones a un tercero adquirente, tendran el derecho de obligar a los accionistas minoritarios a vender sus acciones al mismo tercero, en las mismas condiciones de precio y terminos. Esta clausula facilita la venta total de la empresa cuando la mayoria lo considera conveniente, evitando que un minoritario bloquee una transaccion que genera valor para todos.</p>
+
+  <h3>5.4.3 Adhesion (Tag-along)</h3>
+  <p>Si el accionista mayoritario, o cualquier accionista que por si solo o en conjunto represente mas del {{ai_tag_along_pct}}% del capital social, acordare transmitir sus acciones a un tercero, los accionistas minoritarios tendran el derecho de sumarse a dicha transmision en las mismas condiciones de precio y terminos. Esta clausula protege al minoritario de quedar atrapado en una empresa con nuevos socios que no eligio.</p>
+
+  <h3>5.4.4 Opciones Put y Call</h3>
+  <p>Los accionistas podran pactar opciones de compra (Call Options) y opciones de venta (Put Options) sobre paquetes accionariales especificos. El precio de ejercicio de dichas opciones se determinara conforme a la formula de valuacion acordada en el Shareholders' Agreement: {{ai_valuation_method}}.</p>
+</div>
+
+<!-- PARTE VI -->
+<div class="content page-break">
+  <h1>PARTE VI -- PROTOCOLO DE EMPRESA FAMILIAR Y PLAN DE SUCESION</h1>
+  <p>Esta seccion aplica exclusivamente a empresas de naturaleza familiar. Si la empresa no es de naturaleza familiar, esta seccion puede ser omitida o reemplazada por un Protocolo de Governance para Inversores Institucionales.</p>
+
+  <h2>6.1 Consejo de Familia</h2>
+  <p>El Consejo de Familia es un organo de gobierno que separa los temas familiares de los temas empresariales, creando un espacio seguro para tratar los asuntos de la familia en relacion con la empresa. No es un organo ejecutivo; sus resoluciones son de naturaleza consultiva y normativa para los miembros de la familia.</p>
+  <ul>
+    <li><strong>Composicion:</strong> Todos los miembros de la familia que sean accionistas o que tengan expectativa de incorporarse a la empresa.</li>
+    <li><strong>Frecuencia:</strong> Reunion semestral ordinaria y extraordinaria cuando se requiera.</li>
+    <li><strong>Agenda tipo:</strong> Actualizaciones de desempeno de la empresa, resolucion de conflictos familiares, revision del Protocolo, planificacion de incorporacion de la siguiente generacion.</li>
+    <li><strong>Presidencia:</strong> Rotativa entre los miembros de la familia, o por consenso se designa al Patriarca / Matriarca.</li>
+  </ul>
+
+  <table class="principle-table">
+    <thead><tr><th>Principio</th><th>Descripcion</th></tr></thead>
+    <tbody>
+      <tr><td>MERITOCRACIA</td><td>El ingreso de familiares a la empresa se basa exclusivamente en competencias y resultados, no en el parentesco.</td></tr>
+      <tr><td>SEPARACION</td><td>El patrimonio familiar es distinto al patrimonio empresarial. La empresa no es una extension del gasto familiar.</td></tr>
+      <tr><td>EQUIDAD</td><td>Las oportunidades dentro de la empresa son equitativas para familiares y no familiares con igual calificacion.</td></tr>
+      <tr><td>TRANSPARENCIA</td><td>Las reglas del protocolo son conocidas por todos los miembros de la familia, incluyendo los que no participan en el negocio.</td></tr>
+      <tr><td>CONTINUIDAD</td><td>El objetivo primario del protocolo es la continuidad de la empresa como institucion, por encima del interes individual.</td></tr>
+    </tbody>
+  </table>
+
+  <h2>6.2 Criterios de Ingreso de Familiares a la Empresa</h2>
+  <table>
+    <thead>
+      <tr><th>Criterio</th><th>Requisito Minimo</th><th>Proceso de Evaluacion</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Escolaridad</td><td>Licenciatura concluida en area relevante al puesto solicitado</td><td>Presentacion de titulo y documentacion academica</td></tr>
+      <tr><td>Experiencia Externa</td><td>Minimo {{ai_family_ext_experience_years}} anos de experiencia en empresa no relacionada con la familia</td><td>Validacion de referencias y carta de recomendacion</td></tr>
+      <tr><td>Proceso de Seleccion</td><td>El familiar candidato pasa exactamente el mismo proceso de seleccion que cualquier externo</td><td>HR + Comite de Practicas Societarias supervisan el proceso</td></tr>
+      <tr><td>Periodo de Prueba</td><td>12 meses con evaluacion de desempeno semestral</td><td>El familiar es evaluado por su director directo, no por un familiar</td></tr>
+      <tr><td>Compensacion</td><td>Basada en el mercado para el puesto, no en la condicion familiar</td><td>Benchmark de compensacion anual revisado por el Comite de Practicas</td></tr>
+      <tr><td>Progresion</td><td>El familiar solo puede ascender con base en resultados medibles</td><td>Evaluacion 360 grados anual con participacion de pares y subordinados</td></tr>
+    </tbody>
+  </table>
+
+  <h2>6.3 Plan de Sucesion en el Liderazgo</h2>
+  <p>El Plan de Sucesion es uno de los activos mas valiosos de una empresa familiar. Establece con claridad quien y bajo que condiciones asumira el liderazgo de la empresa cuando el fundador o el CEO actual ya no este disponible para ejercerlo, ya sea por jubilacion, incapacidad o fallecimiento.</p>
+
+  <table>
+    <thead>
+      <tr><th>Etapa del Plan</th><th>Actividad</th><th>Responsable</th><th>Horizonte</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>1. Identificacion</td><td>Identificar a los candidatos de la familia y/o externos con potencial de liderazgo</td><td>Consejo + Comite de Practicas</td><td>Ano 1</td></tr>
+      <tr><td>2. Desarrollo</td><td>Disenar un plan de desarrollo de competencias a medida para cada candidato</td><td>Director General + RRHH</td><td>Anos 1-3</td></tr>
+      <tr><td>3. Exposicion</td><td>Rotar al candidato por las areas estrategicas de la empresa para adquirir vision integral</td><td>CEO + Consejo</td><td>Anos 2-4</td></tr>
+      <tr><td>4. Mentoria</td><td>El CEO actual actua como mentor del candidato sucesor; sesiones formales mensuales</td><td>CEO saliente</td><td>Anos 3-5</td></tr>
+      <tr><td>5. Transicion</td><td>Periodo de transicion formal: el sucesor asume el cargo con apoyo del CEO saliente</td><td>Consejo</td><td>Ano 5</td></tr>
+      <tr><td>6. Consolidacion</td><td>El ex-CEO asume rol de Consejero; el sucesor opera con plena autonomia</td><td>Consejo</td><td>Post ano 5</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- APENDICES -->
+<div class="content page-break">
+  <h1>APENDICES -- FORMATOS, REGLAMENTOS Y CHECKLIST</h1>
+
+  <h2>APENDICE A -- FORMATO DE ACTA DE SESION DEL CONSEJO DE ADMINISTRACION</h2>
+
+  <table>
+    <tr><th colspan="4" style="text-align:center; font-size: 11pt;">ACTA DE SESION [ORDINARIA / EXTRAORDINARIA]<br>CONSEJO DE ADMINISTRACION DE {{client_name}}</th></tr>
+  </table>
+
+  <p>En {{ai_acta_city}}, siendo las [HH:MM] horas del dia [DD] de [MES] de [ANO], se reunieron en [Lugar de la Reunion] los senores que a continuacion se relacionan, en su caracter de Consejeros de {{client_name}} (la "Sociedad"), con el objeto de celebrar sesion [ordinaria / extraordinaria] del Consejo de Administracion.</p>
+
+  <p><strong>ASISTENTES:</strong></p>
+  <table>
+    <thead>
+      <tr><th>Nombre</th><th>Cargo en el Consejo</th><th>Tipo</th><th>Firma de Asistencia</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>[Nombre 1]</td><td>Presidente del Consejo</td><td>Patrimonial</td><td>_________________</td></tr>
+      <tr><td>[Nombre 2]</td><td>Vocal</td><td>Patrimonial</td><td>_________________</td></tr>
+      <tr><td>[Nombre 3]</td><td>Consejero Independiente</td><td>Independiente</td><td>_________________</td></tr>
+      <tr><td>[Nombre 4]</td><td>Consejero Independiente</td><td>Independiente</td><td>_________________</td></tr>
+      <tr><td>[Secretario]</td><td>Secretario (sin voto)</td><td>Secretario</td><td>_________________</td></tr>
+    </tbody>
+  </table>
+
+  <p><strong>QUORUM:</strong> El Secretario informo que con la asistencia de [N] consejeros de los [N] que integran el Consejo, existe quorum de [tipo: simple / calificado] para celebrar la presente sesion y adoptar resoluciones validas.</p>
+
+  <p><strong>ORDEN DEL DIA:</strong> Se procedio a desahogar el siguiente Orden del Dia aprobado para la presente sesion:</p>
+  <ol>
+    <li>[Punto 1 del Orden del Dia]</li>
+    <li>[Punto 2 del Orden del Dia]</li>
+    <li>[Punto 3 del Orden del Dia]</li>
+    <li>Asuntos Generales.</li>
+  </ol>
+
+  <p><strong>RESOLUCIONES ADOPTADAS:</strong></p>
+  <p>[Descripcion de la resolucion adoptada en el Punto 1, incluyendo el sentido del voto de cada consejero y el resultado de la votacion: X votos a favor, X en contra, X abstenciones.]</p>
+
+  <p>NO HABIENDO MAS ASUNTOS QUE TRATAR, se declaro concluida la sesion, siendo las [HH:MM] horas del dia antes citado, levantandose la presente Acta que firman los senores que en ella intervinieron.</p>
+
+  <div class="sig-block">
+    <table>
+      <tr>
+        <td><div class="sig-line"></div><br>[Nombre del Presidente]<br>Presidente del Consejo</td>
+        <td><div class="sig-line"></div><br>[Nombre Consejero]<br>Consejero</td>
+        <td><div class="sig-line"></div><br>[Nombre Consejero]<br>Consejero</td>
+      </tr>
+      <tr>
+        <td><div class="sig-line"></div><br>[Nombre Consejero Ind.]<br>Consejero Independiente</td>
+        <td><div class="sig-line"></div><br>[Nombre del Secretario]<br>Secretario del Consejo</td>
+        <td></td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+<!-- APENDICE B -->
+<div class="content page-break">
+  <h2>APENDICE B -- CHECKLIST DE GOBIERNO CORPORATIVO ANUAL (GOVERNANCE AUDIT)</h2>
+  <p>Este checklist debe ser completado anualmente por el Secretario del Consejo y revisado por el Comite de Auditoria. El objetivo es verificar que el sistema de gobierno funciona conforme a lo establecido en el presente Blueprint.</p>
+
+  <table class="checklist">
+    <thead>
+      <tr><th>#</th><th>Elemento de Gobierno</th><th>Verificado</th><th>Fecha</th><th>Evidencia</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>1</td><td>Estatutos actualizados y vigentes</td><td>&#9744;</td><td>________</td><td>Escritura notarial vigente</td></tr>
+      <tr><td>2</td><td>Shareholders' Agreement firmado y vigente</td><td>&#9744;</td><td>________</td><td>Pacto de socios en Data Room</td></tr>
+      <tr><td>3</td><td>Consejo constituido con el numero correcto de consejeros</td><td>&#9744;</td><td>________</td><td>Acta de nombramiento</td></tr>
+      <tr><td>4</td><td>Al menos 2 Consejeros Independientes activos</td><td>&#9744;</td><td>________</td><td>Cartas de aceptacion</td></tr>
+      <tr><td>5</td><td>4 sesiones ordinarias de Consejo celebradas</td><td>&#9744;</td><td>________</td><td>Actas de sesion firmadas</td></tr>
+      <tr><td>6</td><td>Comite de Auditoria sesiono al menos 4 veces</td><td>&#9744;</td><td>________</td><td>Minutas del Comite</td></tr>
+      <tr><td>7</td><td>Comite de Practicas sesiono al menos 2 veces</td><td>&#9744;</td><td>________</td><td>Minutas del Comite</td></tr>
+      <tr><td>8</td><td>Comite de Finanzas sesiono al menos 4 veces</td><td>&#9744;</td><td>________</td><td>Minutas del Comite</td></tr>
+      <tr><td>9</td><td>Auditoria externa independiente completada</td><td>&#9744;</td><td>________</td><td>Informe de auditor externo</td></tr>
+      <tr><td>10</td><td>Politica de CAPEX vigente y aplicada</td><td>&#9744;</td><td>________</td><td>Politica aprobada + evidencia de aplicacion</td></tr>
+      <tr><td>11</td><td>Politica de Dividendos vigente y aplicada</td><td>&#9744;</td><td>________</td><td>Politica + Acta de distribucion</td></tr>
+      <tr><td>12</td><td>Politica de Partes Relacionadas vigente</td><td>&#9744;</td><td>________</td><td>Politica + registro de operaciones PR</td></tr>
+      <tr><td>13</td><td>Evaluacion anual del CEO completada</td><td>&#9744;</td><td>________</td><td>Informe del Comite de Practicas</td></tr>
+      <tr><td>14</td><td>Plan de Sucesion revisado y actualizado</td><td>&#9744;</td><td>________</td><td>Documento de Sucesion actualizado</td></tr>
+      <tr><td>15</td><td>Asamblea Ordinaria de Accionistas celebrada</td><td>&#9744;</td><td>________</td><td>Acta de Asamblea firmada</td></tr>
+      <tr><td>16</td><td>Poderes notariales vigentes revisados</td><td>&#9744;</td><td>________</td><td>Listado de poderes actualizado</td></tr>
+      <tr><td>17</td><td>Data Room corporativo actualizado</td><td>&#9744;</td><td>________</td><td>Carpeta con documentos actualizados</td></tr>
+      <tr><td>18</td><td>Codigo de Etica comunicado y firmado por empleados clave</td><td>&#9744;</td><td>________</td><td>Acuses de recibo firmados</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- APENDICE C -->
+<div class="content page-break">
+  <h2>APENDICE C -- GLOSARIO DE TERMINOS TECNICOS</h2>
+  <table>
+    <thead>
+      <tr><th>Termino</th><th>Definicion</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Deadlock</td><td>Situacion de bloqueo en la toma de decisiones societarias por falta de acuerdo entre accionistas con poder de veto.</td></tr>
+      <tr><td>Drag-along</td><td>Derecho del accionista mayoritario de obligar a los minoritarios a vender sus acciones en las mismas condiciones de una venta de control.</td></tr>
+      <tr><td>Tag-along</td><td>Derecho del accionista minoritario de unirse a la venta de acciones del mayoritario en las mismas condiciones.</td></tr>
+      <tr><td>Right of First Refusal (ROFR)</td><td>Derecho preferente de los socios actuales para adquirir acciones antes de que se transmitan a terceros.</td></tr>
+      <tr><td>Shareholders' Agreement</td><td>Acuerdo contractual privado entre accionistas que complementa los estatutos sociales regulando sus relaciones.</td></tr>
+      <tr><td>CAPEX</td><td>Capital Expenditure: inversion en activos fijos o mejoras de capital que generan valor a largo plazo.</td></tr>
+      <tr><td>EBITDA</td><td>Earnings Before Interest, Taxes, Depreciation and Amortization: utilidad de operacion antes de gastos financieros.</td></tr>
+      <tr><td>Partes Relacionadas</td><td>Personas fisicas o morales con vinculacion economica, familiar o de control respecto a la empresa.</td></tr>
+      <tr><td>ROG</td><td>Retorno sobre la Gobernanza: metrica propietaria de {{branding_company_name}} que cuantifica el impacto economico del gobierno corporativo.</td></tr>
+      <tr><td>IMG</td><td>Indice de Madurez Gubernamental: puntuacion compuesta (1-5) que refleja el nivel de madurez del gobierno de la empresa.</td></tr>
+      <tr><td>Consejero Independiente</td><td>Consejero sin vinculos patrimoniales, laborales o familiares con la empresa o sus accionistas mayoritarios.</td></tr>
+      <tr><td>TIR</td><td>Tasa Interna de Retorno: tasa de descuento que iguala el VPN de los flujos de un proyecto a cero.</td></tr>
+      <tr><td>VPN</td><td>Valor Presente Neto: suma de los flujos futuros de un proyecto descontados a la tasa de costo de capital.</td></tr>
+      <tr><td>Arm's length</td><td>Principio que exige que las transacciones entre partes relacionadas se realicen en condiciones de mercado.</td></tr>
+      <tr><td>M&amp;A</td><td>Mergers &amp; Acquisitions: fusiones y adquisiciones corporativas.</td></tr>
+    </tbody>
+  </table>
+
+  <div class="footer">
+    <p>-- {{branding_company_name}} -- Gobierno Corporativo de Clase Mundial -- Master Corporate Governance Blueprint -- Version {{current_date}} -- Documento Maestro y Confidencial --</p>
+  </div>
+</div>
+
+</body>
+</html>

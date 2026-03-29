@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Executive Governance Brief</title>
+<style>
+  @page { margin: 2cm; size: letter; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: Georgia, 'Times New Roman', serif; color: #1a1a1a; line-height: 1.6; font-size: 10.5pt; }
+  .page-break { page-break-before: always; }
+
+  /* Cover */
+  .cover { text-align: center; padding: 60px 40px; min-height: 40vh; }
+  .cover-box { border: 2px solid #1a1a1a; padding: 40px; max-width: 600px; margin: 0 auto; }
+  .cover .brand { font-size: 20pt; font-weight: bold; letter-spacing: 3px; }
+  .cover h1 { font-size: 16pt; margin: 8px 0; }
+  .cover h2 { font-size: 11pt; font-weight: normal; color: #666; }
+  .cover .version { font-size: 8pt; color: #999; margin-top: 20px; }
+
+  /* Summary banner */
+  .summary-banner { display: flex; gap: 0; margin: 20px 0 30px; border: 2px solid #1a1a1a; }
+  .summary-left { flex: 1; background: #1a1a1a; color: #fff; padding: 20px; text-align: center; }
+  .summary-left .score { font-size: 28pt; font-weight: bold; color: #b8860b; }
+  .summary-left .score-label { font-size: 9pt; text-transform: uppercase; letter-spacing: 1px; margin-top: 4px; }
+  .summary-left .level { font-size: 10pt; color: #b8860b; margin-top: 4px; }
+  .summary-right { flex: 1.5; padding: 16px 20px; }
+  .summary-right h3 { font-size: 9pt; text-transform: uppercase; letter-spacing: 1px; color: #b8860b; margin-bottom: 8px; }
+  .summary-right .stat { font-size: 10pt; margin-bottom: 4px; }
+  .summary-right .stat strong { color: #c0392b; }
+
+  /* Content */
+  .content { max-width: 700px; margin: 0 auto; padding: 20px 40px; }
+  p { margin-bottom: 10px; text-align: justify; }
+
+  /* Headers */
+  h1 { font-size: 15pt; color: #1a1a1a; border-bottom: 2px solid #b8860b; padding-bottom: 6px; margin: 30px 0 14px; }
+  h2 { font-size: 12pt; color: #b8860b; margin: 20px 0 10px; }
+
+  /* Meta line */
+  .meta-line { font-size: 9pt; color: #666; text-align: center; margin: 10px 0 30px; }
+
+  /* Tables */
+  table { width: 100%; border-collapse: collapse; margin: 14px 0 20px; font-size: 9.5pt; }
+  th { background: #1a1a1a; color: #fff; text-align: left; padding: 8px 10px; font-weight: bold; }
+  td { padding: 7px 10px; border-bottom: 1px solid #ddd; vertical-align: top; }
+  tr:nth-child(even) td { background: #f9f7f2; }
+
+  /* Risk badges */
+  .risk-critico { background: #c0392b; color: #fff; padding: 2px 8px; font-size: 8pt; font-weight: bold; display: inline-block; }
+  .risk-alto { background: #e67e22; color: #fff; padding: 2px 8px; font-size: 8pt; font-weight: bold; display: inline-block; }
+  .risk-medio { background: #f1c40f; color: #1a1a1a; padding: 2px 8px; font-size: 8pt; font-weight: bold; display: inline-block; }
+  .risk-bajo { background: #27ae60; color: #fff; padding: 2px 8px; font-size: 8pt; font-weight: bold; display: inline-block; }
+
+  /* Scorecard */
+  .scorecard td:nth-child(2) { text-align: center; font-weight: bold; }
+  .scorecard tr:last-child td { background: #f0ead6; font-weight: bold; border-top: 2px solid #b8860b; }
+
+  /* Alert box */
+  .alert { border-left: 4px solid #c0392b; background: #fdf2f2; padding: 12px 16px; margin: 16px 0; font-size: 10pt; }
+  .alert strong { color: #c0392b; }
+
+  /* Footer */
+  .footer { text-align: center; font-size: 7.5pt; color: #999; margin-top: 40px; border-top: 1px solid #ddd; padding-top: 10px; }
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="cover">
+  <div class="cover-box">
+    <div class="brand">{{branding_company_name}}</div>
+    <h1>EXECUTIVE GOVERNANCE BRIEF</h1>
+    <h2>Diagnostico Ejecutivo de Gobierno Corporativo</h2>
+  </div>
+  <div class="version">Version Ejecutiva -- Maximo 10 paginas -- Para uso del Consejo de Administracion y Accionistas</div>
+  <p class="meta-line">Empresa: <strong>{{client_name}}</strong> &middot; Fecha: <strong>{{current_date}}</strong> &middot; Clasificacion: <strong>Confidencial</strong></p>
+</div>
+
+<!-- SUMMARY BANNER -->
+<div class="content">
+  <div class="summary-banner">
+    <div class="summary-left">
+      <div class="score-label">Indice de Madurez Gubernamental</div>
+      <div class="score">{{ai_score_overall}} / 5.0</div>
+      <div class="level">Nivel: {{ai_maturity_level}}</div>
+    </div>
+    <div class="summary-right">
+      <h3>Sintesis del Diagnostico</h3>
+      <p class="stat">Red Flags Criticos: <strong>{{ai_red_flags_critical}}</strong></p>
+      <p class="stat">Red Flags Altos: <strong>{{ai_red_flags_high}}</strong></p>
+      <p class="stat">Dimensiones por Fortalecer: <strong>{{ai_dimensions_weak}}/6</strong></p>
+      <p class="stat">Politicas Financieras Faltantes: <strong>{{ai_policies_missing}}/7</strong></p>
+    </div>
+  </div>
+</div>
+
+<!-- I. RESUMEN EJECUTIVO -->
+<div class="content">
+  <h1>I. RESUMEN EJECUTIVO</h1>
+  <p>El presente Executive Governance Brief sintetiza los hallazgos del Diagnostico de Gobierno Corporativo realizado por {{branding_company_name}} sobre {{client_name}}. Este documento esta disenado para facilitar la toma de decisiones inmediata por parte del Consejo de Administracion y los accionistas, sin requerir conocimiento tecnico previo en materia de gobierno corporativo.</p>
+  <p>El diagnostico identifica las brechas mas significativas entre el estado actual de gobierno y los estandares internacionales de institucionalizacion corporativa, priorizando las acciones de mayor impacto y menor friccion de implementacion.</p>
+
+  <h2>1.1 Perfilamiento de la Empresa</h2>
+  <table>
+    <thead>
+      <tr><th>Caracteristica</th><th>Detalle</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Tipo de Empresa</td><td>{{ai_company_type}}</td></tr>
+      <tr><td>Sector / Industria</td><td>{{ai_company_sector}}</td></tr>
+      <tr><td>Antiguedad</td><td>{{ai_company_age}} anos de operacion</td></tr>
+      <tr><td>No. de Accionistas</td><td>{{ai_shareholder_count}} socios activos</td></tr>
+      <tr><td>Ingresos Anuales (aprox.)</td><td>{{ai_annual_revenue}}</td></tr>
+      <tr><td>Consejo de Administracion</td><td>{{ai_board_status}}</td></tr>
+      <tr><td>Auditoria Externa</td><td>{{ai_audit_status}}</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- II. HALLAZGOS CLAVE DEL DIAGNOSTICO -->
+<div class="content page-break">
+  <h1>II. HALLAZGOS CLAVE DEL DIAGNOSTICO</h1>
+  <p>A continuacion se presentan los hallazgos mas relevantes del diagnostico, clasificados por dimension y nivel de riesgo. Los hallazgos en nivel CRITICO o ALTO requieren atencion prioritaria dentro de los primeros 90 dias de implementacion.</p>
+
+  <table>
+    <thead>
+      <tr><th>Dimension</th><th>Hallazgo Principal</th><th>Riesgo</th><th>Accion Recomendada</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>D1 -- Estructura Societaria</td>
+        <td>{{ai_finding_d1}}</td>
+        <td><span class="risk-critico">{{ai_risk_d1}}</span></td>
+        <td>{{ai_recommendation_d1}}</td>
+      </tr>
+      <tr>
+        <td>D2 -- Organos de Gobierno</td>
+        <td>{{ai_finding_d2}}</td>
+        <td><span class="risk-critico">{{ai_risk_d2}}</span></td>
+        <td>{{ai_recommendation_d2}}</td>
+      </tr>
+      <tr>
+        <td>D3 -- Politicas y Controles</td>
+        <td>{{ai_finding_d3}}</td>
+        <td><span class="risk-alto">{{ai_risk_d3}}</span></td>
+        <td>{{ai_recommendation_d3}}</td>
+      </tr>
+      <tr>
+        <td>D4 -- Transparencia</td>
+        <td>{{ai_finding_d4}}</td>
+        <td><span class="risk-alto">{{ai_risk_d4}}</span></td>
+        <td>{{ai_recommendation_d4}}</td>
+      </tr>
+      <tr>
+        <td>D5 -- Resolucion Conflictos</td>
+        <td>{{ai_finding_d5}}</td>
+        <td><span class="risk-alto">{{ai_risk_d5}}</span></td>
+        <td>{{ai_recommendation_d5}}</td>
+      </tr>
+      <tr>
+        <td>D6 -- Sucesion y Continuidad</td>
+        <td>{{ai_finding_d6}}</td>
+        <td><span class="risk-medio">{{ai_risk_d6}}</span></td>
+        <td>{{ai_recommendation_d6}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- III. MATRIZ SOCIETARIA -->
+<div class="content page-break">
+  <h1>III. MATRIZ SOCIETARIA -- ESTRUCTURA DE ROLES</h1>
+  <p>La Matriz Societaria es el instrumento visual que permite identificar la concentracion de poder, los conflictos de interes y las brechas de representacion en la estructura de gobierno. Esta matriz debe actualizarse cada vez que haya cambios en la composicion accionarial o en los cargos directivos.</p>
+
+  <div class="alert">
+    <strong>NOTA CRITICA:</strong> {{ai_critical_note_concentration}}
+  </div>
+
+  <table>
+    <thead>
+      <tr><th>Accionista</th><th>% Part.</th><th>Rol en Asamblea</th><th>Cargo en Consejo</th><th>Poderes Legales</th><th>Rol Operativo</th><th>Conflicto Interes</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>{{ai_matrix_1_name}}</td>
+        <td>{{ai_matrix_1_pct}}</td>
+        <td>{{ai_matrix_1_assembly_role}}</td>
+        <td>{{ai_matrix_1_board_role}}</td>
+        <td>{{ai_matrix_1_powers}}</td>
+        <td>{{ai_matrix_1_operational_role}}</td>
+        <td>{{ai_matrix_1_conflict}}</td>
+      </tr>
+      <tr>
+        <td>{{ai_matrix_2_name}}</td>
+        <td>{{ai_matrix_2_pct}}</td>
+        <td>{{ai_matrix_2_assembly_role}}</td>
+        <td>{{ai_matrix_2_board_role}}</td>
+        <td>{{ai_matrix_2_powers}}</td>
+        <td>{{ai_matrix_2_operational_role}}</td>
+        <td>{{ai_matrix_2_conflict}}</td>
+      </tr>
+      <tr>
+        <td>{{ai_matrix_3_name}}</td>
+        <td>{{ai_matrix_3_pct}}</td>
+        <td>{{ai_matrix_3_assembly_role}}</td>
+        <td>{{ai_matrix_3_board_role}}</td>
+        <td>{{ai_matrix_3_powers}}</td>
+        <td>{{ai_matrix_3_operational_role}}</td>
+        <td>{{ai_matrix_3_conflict}}</td>
+      </tr>
+      <tr>
+        <td>{{ai_matrix_4_name}}</td>
+        <td>{{ai_matrix_4_pct}}</td>
+        <td>{{ai_matrix_4_assembly_role}}</td>
+        <td>{{ai_matrix_4_board_role}}</td>
+        <td>{{ai_matrix_4_powers}}</td>
+        <td>{{ai_matrix_4_operational_role}}</td>
+        <td>{{ai_matrix_4_conflict}}</td>
+      </tr>
+      <tr>
+        <td>{{ai_matrix_5_name}}</td>
+        <td>{{ai_matrix_5_pct}}</td>
+        <td>{{ai_matrix_5_assembly_role}}</td>
+        <td>{{ai_matrix_5_board_role}}</td>
+        <td>{{ai_matrix_5_powers}}</td>
+        <td>{{ai_matrix_5_operational_role}}</td>
+        <td>{{ai_matrix_5_conflict}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- IV. SCORECARD DE MADUREZ -->
+<div class="content page-break">
+  <h1>IV. SCORECARD DE MADUREZ GUBERNAMENTAL</h1>
+  <table class="scorecard">
+    <thead>
+      <tr><th>Dimension</th><th>Puntaje</th><th>Diagnostico</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>D1 -- Estructura Societaria</td><td>{{ai_score_d1}}/5</td><td>{{ai_diagnosis_d1}}</td></tr>
+      <tr><td>D2 -- Organos de Gobierno</td><td>{{ai_score_d2}}/5</td><td>{{ai_diagnosis_d2}}</td></tr>
+      <tr><td>D3 -- Politicas y Controles</td><td>{{ai_score_d3}}/5</td><td>{{ai_diagnosis_d3}}</td></tr>
+      <tr><td>D4 -- Transparencia e Informacion</td><td>{{ai_score_d4}}/5</td><td>{{ai_diagnosis_d4}}</td></tr>
+      <tr><td>D5 -- Resolucion de Conflictos</td><td>{{ai_score_d5}}/5</td><td>{{ai_diagnosis_d5}}</td></tr>
+      <tr><td>D6 -- Sucesion y Continuidad</td><td>{{ai_score_d6}}/5</td><td>{{ai_diagnosis_d6}}</td></tr>
+      <tr><td>INDICE EMG-DESC TOTAL</td><td>{{ai_score_overall}}/5</td><td>{{ai_overall_diagnosis}}</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- V. HOJA DE RUTA -->
+<div class="content page-break">
+  <h1>V. HOJA DE RUTA -- PLAN DE IMPLEMENTACION ACELERADA</h1>
+  <p>La siguiente hoja de ruta traduce los hallazgos del diagnostico en acciones concretas, ordenadas por prioridad e impacto. Las acciones de la Ventana 1 son de caracter urgente y deben ser aprobadas en la primera Asamblea formal bajo el nuevo sistema de gobierno.</p>
+
+  <h2>VENTANA 1 -- ACCIONES URGENTES (0-30 dias)</h2>
+  <table>
+    <thead>
+      <tr><th>Accion</th><th>Responsable</th><th>Plazo</th><th>Impacto</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>{{ai_action_w1_1}}</td><td>{{ai_action_w1_1_responsible}}</td><td>{{ai_action_w1_1_deadline}}</td><td><span class="risk-critico">CRITICO</span></td></tr>
+      <tr><td>{{ai_action_w1_2}}</td><td>{{ai_action_w1_2_responsible}}</td><td>{{ai_action_w1_2_deadline}}</td><td><span class="risk-critico">CRITICO</span></td></tr>
+      <tr><td>{{ai_action_w1_3}}</td><td>{{ai_action_w1_3_responsible}}</td><td>{{ai_action_w1_3_deadline}}</td><td><span class="risk-alto">ALTO</span></td></tr>
+      <tr><td>{{ai_action_w1_4}}</td><td>{{ai_action_w1_4_responsible}}</td><td>{{ai_action_w1_4_deadline}}</td><td><span class="risk-alto">ALTO</span></td></tr>
+    </tbody>
+  </table>
+
+  <h2>VENTANA 2 -- IMPLEMENTACION CORE (30-90 dias)</h2>
+  <table>
+    <thead>
+      <tr><th>Accion</th><th>Responsable</th><th>Plazo</th><th>Impacto</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>{{ai_action_w2_1}}</td><td>{{ai_action_w2_1_responsible}}</td><td>{{ai_action_w2_1_deadline}}</td><td><span class="risk-critico">CRITICO</span></td></tr>
+      <tr><td>{{ai_action_w2_2}}</td><td>{{ai_action_w2_2_responsible}}</td><td>{{ai_action_w2_2_deadline}}</td><td><span class="risk-alto">ALTO</span></td></tr>
+      <tr><td>{{ai_action_w2_3}}</td><td>{{ai_action_w2_3_responsible}}</td><td>{{ai_action_w2_3_deadline}}</td><td><span class="risk-alto">ALTO</span></td></tr>
+      <tr><td>{{ai_action_w2_4}}</td><td>{{ai_action_w2_4_responsible}}</td><td>{{ai_action_w2_4_deadline}}</td><td><span class="risk-alto">ALTO</span></td></tr>
+      <tr><td>{{ai_action_w2_5}}</td><td>{{ai_action_w2_5_responsible}}</td><td>{{ai_action_w2_5_deadline}}</td><td><span class="risk-alto">ALTO</span></td></tr>
+    </tbody>
+  </table>
+
+  <h2>VENTANA 3 -- CONSOLIDACION (90-180 dias)</h2>
+  <table>
+    <thead>
+      <tr><th>Accion</th><th>Responsable</th><th>Plazo</th><th>Impacto</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>{{ai_action_w3_1}}</td><td>{{ai_action_w3_1_responsible}}</td><td>{{ai_action_w3_1_deadline}}</td><td><span class="risk-alto">ALTO</span></td></tr>
+      <tr><td>{{ai_action_w3_2}}</td><td>{{ai_action_w3_2_responsible}}</td><td>{{ai_action_w3_2_deadline}}</td><td><span class="risk-medio">MEDIO</span></td></tr>
+      <tr><td>{{ai_action_w3_3}}</td><td>{{ai_action_w3_3_responsible}}</td><td>{{ai_action_w3_3_deadline}}</td><td><span class="risk-medio">MEDIO</span></td></tr>
+      <tr><td>{{ai_action_w3_4}}</td><td>{{ai_action_w3_4_responsible}}</td><td>{{ai_action_w3_4_deadline}}</td><td><span class="risk-medio">MEDIO</span></td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- VI. GENERACION DE VALOR -->
+<div class="content page-break">
+  <h1>VI. GENERACION DE VALOR -- RETORNO SOBRE LA GOBERNANZA (ROG)</h1>
+  <p>La implementacion del sistema de gobierno {{branding_company_name}} genera valor economico tangible y medible. A continuacion, el resumen ejecutivo del ROG estimado para esta empresa:</p>
+
+  <table>
+    <thead>
+      <tr><th>Fuente de Valor</th><th>Impacto Estimado</th><th>Horizonte</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Premium de Valoracion</td><td>{{ai_rog_valuation}}</td><td>Corto-Mediano Plazo</td></tr>
+      <tr><td>Costo de Capital</td><td>{{ai_rog_capital_cost}}</td><td>Mediano Plazo</td></tr>
+      <tr><td>Prevencion de Litigios</td><td>{{ai_rog_litigation}}</td><td>Inmediato</td></tr>
+      <tr><td>Acceso a Capital Institucional</td><td>{{ai_rog_capital_access}}</td><td>Mediano Plazo</td></tr>
+      <tr><td>Atraccion de Talento Directivo</td><td>{{ai_rog_talent}}</td><td>Corto Plazo</td></tr>
+      <tr><td>Continuidad Generacional</td><td>{{ai_rog_continuity}}</td><td>Largo Plazo</td></tr>
+    </tbody>
+  </table>
+
+  <div class="footer">
+    <p>-- {{branding_company_name}} -- Gobierno Corporativo de Clase Mundial -- Este documento es confidencial y de uso exclusivo del cliente --</p>
+  </div>
+</div>
+
+</body>
+</html>

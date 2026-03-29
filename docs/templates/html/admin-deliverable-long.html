@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Manual de Procedimientos y Politicas Administrativas</title>
+  <style>
+    :root{--bg:#f8f9fa;--green:#2d6a4f;--green-l:#40916c;--green-bg:rgba(45,106,79,.05);--red:#c62828;--red-bg:rgba(198,40,40,.08);--text:#1a1a1a;--text2:#666;--border:#e0e0e0;--inp:#f0f4f0}
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+    .page{max-width:900px;margin:0 auto;padding:40px 30px;page-break-after:always}.page:last-child{page-break-after:avoid}
+    .hdr{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--border);padding-bottom:12px;margin-bottom:30px;font-size:12px}
+    .hdr .brand{font-weight:700;color:var(--green)}.hdr .conf{color:var(--red);font-weight:700;text-transform:uppercase;letter-spacing:1px}
+    .cover{background:var(--green);color:#fff;padding:40px;text-align:center;margin-bottom:30px;border-radius:8px}
+    .cover h1{font-size:34px;font-weight:700;margin-bottom:8px}
+    .cover .sub{font-size:15px;font-style:italic;color:rgba(255,255,255,.8);margin-bottom:16px}
+    .cover .dots{letter-spacing:4px;color:var(--green-l);margin-bottom:16px}
+    .cover .note{font-size:12px;color:rgba(255,255,255,.6)}
+    .info-table{width:100%;border-collapse:collapse;margin-bottom:24px}
+    .info-table th{background:var(--green);color:#fff;padding:10px 14px;font-size:12px;text-transform:uppercase;text-align:left;width:25%}
+    .info-table td{padding:10px 14px;border-bottom:1px solid var(--border);font-size:13px}
+    .toc-table{width:100%;border-collapse:collapse;margin-bottom:24px}
+    .toc-table th{background:var(--green);color:#fff;padding:10px 14px;font-size:11px;text-transform:uppercase;text-align:left}
+    .toc-table td{padding:10px 14px;font-size:13px;border-bottom:1px solid var(--border)}
+    .toc-table td:last-child{text-align:right;color:var(--text2)}
+    .ch-badge{display:inline-block;background:var(--green);color:#fff;padding:8px 20px;border-radius:4px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:4px}
+    .ch-title{font-size:26px;font-weight:700;margin-bottom:20px}
+    .fb{background:var(--inp);border:1px solid var(--border);padding:12px;min-height:44px;border-radius:4px;color:#333;font-size:13px;margin-bottom:16px}.fb.lg{min-height:80px}
+    .fl{font-size:12px;text-transform:uppercase;font-weight:700;margin-bottom:4px;letter-spacing:1px}.fl.green{color:var(--green)}.fl.red{color:var(--red)}
+    .g2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
+    .g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:16px}
+    .g5{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-bottom:16px}
+    .policy-box{border:1px solid var(--border);margin-bottom:24px;border-radius:4px;overflow:hidden}
+    .policy-box .pol-header{background:var(--green);color:#fff;padding:10px 16px;font-size:13px;font-weight:700;text-align:center}
+    .policy-box .pol-body{padding:16px}
+    .policy-box .pol-row{display:grid;grid-template-columns:120px 1fr;gap:0;border-bottom:1px solid var(--border)}
+    .policy-box .pol-label{background:var(--green-bg);padding:10px 12px;font-size:11px;font-weight:700;text-transform:uppercase;color:var(--green)}
+    .policy-box .pol-value{padding:10px 12px;font-size:13px}
+    .sod-table{width:100%;border-collapse:collapse;margin-bottom:20px}
+    .sod-table th{background:var(--green);color:#fff;padding:8px 10px;font-size:10px;text-transform:uppercase;text-align:center}
+    .sod-table td{padding:8px 10px;font-size:12px;border-bottom:1px solid var(--border);text-align:center}
+    .sod-table td:first-child{text-align:left;font-weight:600}
+    .kpi-table{width:100%;border-collapse:collapse;margin-bottom:20px}
+    .kpi-table th{background:var(--green);color:#fff;padding:8px 10px;font-size:10px;text-transform:uppercase;text-align:left}
+    .kpi-table td{padding:8px 10px;font-size:12px;border-bottom:1px solid var(--border)}
+    .annex-table{width:100%;border-collapse:collapse;margin-bottom:20px}
+    .annex-table th{background:var(--green);color:#fff;padding:8px 10px;font-size:10px;text-transform:uppercase;text-align:left}
+    .annex-table td{padding:8px 10px;font-size:12px;border-bottom:1px solid var(--border)}
+    .critical-alert{background:var(--red-bg);border-left:4px solid var(--red);padding:12px 16px;margin-bottom:20px;font-size:13px;color:var(--red);font-weight:700}
+    .strategy-note{background:var(--green-bg);border-left:4px solid var(--green);padding:12px 16px;margin-bottom:20px;font-size:13px;font-style:italic;color:var(--text2)}
+    .impact-box{background:var(--green-bg);border-left:4px solid var(--green);padding:16px 20px;margin-top:20px}.impact-box h4{color:var(--green);margin-bottom:6px}.impact-box p{font-size:13px;color:var(--text2)}
+    .flow-table{width:100%;border-collapse:collapse;margin-bottom:20px}
+    .flow-table th{background:var(--green);color:#fff;padding:8px 10px;font-size:10px;text-transform:uppercase;text-align:left}
+    .flow-table td{padding:8px 10px;font-size:12px;border-bottom:1px solid var(--border);vertical-align:top}
+    .sign-table{width:100%;border-collapse:collapse;margin-bottom:20px}
+    .sign-table th{background:var(--green);color:#fff;padding:10px 14px;font-size:11px;text-transform:uppercase;text-align:left}
+    .sign-table td{padding:10px 14px;font-size:13px;border-bottom:1px solid var(--border)}
+    .ft{display:flex;justify-content:space-between;font-size:11px;color:var(--text2);margin-top:30px;padding-top:12px;border-top:1px solid var(--border)}
+    @media print{body{background:#fff}}
+  </style>
+</head>
+<body>
+
+<!-- P1: COVER -->
+<div class="page">
+  <div class="hdr"><span class="brand">{{branding_company_name}} | Manual de Procedimientos y Politicas Administrativas</span><span class="conf">CONFIDENCIAL</span></div>
+  <div class="cover">
+    <p style="font-size:14px;margin-bottom:8px">{{branding_company_name}}</p>
+    <p style="font-size:12px;font-style:italic;color:rgba(255,255,255,.7);margin-bottom:20px">Optimizacion de Procesos y Manuales Administrativos</p>
+    <h1>MANUAL DE<br>PROCEDIMIENTOS<br>Y POLITICAS<br>ADMINISTRATIVAS</h1>
+    <p class="sub">Operational Master Manual -- Version 1.0</p>
+    <p class="dots">&#9632;&#9632;&#9632;&#9632;&#9632;&#9632;&#9632;&#9632;&#9632;&#9632;&#9632;&#9632;&#9632;&#9632;&#9632;&#9632;&#9632;&#9632;&#9632;&#9632;</p>
+    <p style="font-size:13px;color:rgba(255,255,255,.8)">Gobierno Corporativo &middot; Control Interno &middot; Eficiencia Operativa &middot; Compliance</p>
+    <p class="note">Version 1.0 &middot; CONFIDENCIAL -- Uso Exclusivo del Consultor Senior</p>
+  </div>
+  <table class="info-table">
+    <tr><th>Empresa</th><td>{{client_name}} | RFC: {{manual_client_rfc}} | Giro: {{client_industry}}</td></tr>
+    <tr><th>Elaborado por</th><td>{{branding_company_name}}</td></tr>
+    <tr><th>Aprobado por</th><td>{{manual_approver_name}} | {{manual_approver_role}} | Firma: ________________ | Fecha: {{current_date}}</td></tr>
+    <tr><th>Version / Clasificacion</th><td>1.0 Edicion Inicial | USO INTERNO -- Confidencial</td></tr>
+    <tr><th>Vigencia</th><td>12 meses minimo desde fecha de emision. Revision ante cambio organizacional o regulatorio.</td></tr>
+    <tr><th>Proxima Revision</th><td>{{ai_next_review_date}}</td></tr>
+  </table>
+  <div class="ft"><span>Optimizacion de Procesos y Manuales Administrativos</span><span>Pagina 1</span></div>
+</div>
+
+<!-- P2: TOC -->
+<div class="page">
+  <div class="hdr"><span class="brand">{{branding_company_name}} | Manual de Procedimientos</span><span class="conf">CONFIDENCIAL</span></div>
+  <div class="ch-badge">TABLA DE CONTENIDO</div>
+  <table class="toc-table">
+    <thead><tr><th>SECCION</th><th>TITULO</th><th>PAGINAS</th></tr></thead>
+    <tbody>
+      <tr><td><strong>CAPITULO 1</strong></td><td>Marco Institucional</td><td>3-7</td></tr>
+      <tr><td>Cap. 2.1</td><td>Politicas -- Finanzas y Tesoreria</td><td>8-12</td></tr>
+      <tr><td>Cap. 2.2</td><td>Politicas -- Compras y Proveedores</td><td>13-16</td></tr>
+      <tr><td>Cap. 2.3</td><td>Politicas -- Ventas y Comercial</td><td>17-20</td></tr>
+      <tr><td>Cap. 2.4</td><td>Politicas -- Capital Humano y Nomina</td><td>21-25</td></tr>
+      <tr><td>Cap. 2.5</td><td>Politicas -- Operaciones y Logistica</td><td>26-29</td></tr>
+      <tr><td>Cap. 2.6</td><td>Politicas -- Tecnologia y Sistemas</td><td>30-32</td></tr>
+      <tr><td>Cap. 2.7</td><td>Politicas -- Direccion General</td><td>33-35</td></tr>
+      <tr><td><strong>CAPITULO 3</strong></td><td>Diagramas de Flujo Sugeridos</td><td>36-39</td></tr>
+      <tr><td><strong>CAPITULO 4</strong></td><td>Matriz de Segregacion de Funciones (SoD)</td><td>40-42</td></tr>
+      <tr><td><strong>CAPITULO 5</strong></td><td>Catalogo Completo de KPIs por Area</td><td>43-46</td></tr>
+      <tr><td><strong>CAPITULO 6</strong></td><td>Anexos Operativos -- Formatos y Registros de Control</td><td>47-50</td></tr>
+    </tbody>
+  </table>
+  <div class="ft"><span>Optimizacion de Procesos y Manuales Administrativos</span><span>Pagina 2</span></div>
+</div>
+
+<!-- P3-4: CHAPTER 1 - MARCO INSTITUCIONAL -->
+<div class="page">
+  <div class="hdr"><span class="brand">{{branding_company_name}} | Manual de Procedimientos</span><span class="conf">CONFIDENCIAL</span></div>
+  <div class="ch-badge">CAPITULO 1</div>
+  <div class="ch-title">MARCO INSTITUCIONAL</div>
+
+  <h3 style="margin-bottom:12px">1.1 MISION, VISION Y VALORES</h3>
+  <table class="info-table">
+    <tr><th>MISION</th><td>{{ai_policy_mission}}</td></tr>
+    <tr><th>VISION</th><td>{{ai_policy_vision}}</td></tr>
+    <tr><th>VALORES</th><td>{{ai_policy_values}}</td></tr>
+  </table>
+
+  <h3 style="margin-bottom:12px">1.2 ESTRUCTURA ORGANIZACIONAL</h3>
+  <div class="fb lg">{{ai_policy_org_structure}}</div>
+
+  <h3 style="margin-bottom:12px">1.3 MAPA DE PROCESOS DE ALTO NIVEL</h3>
+  <table class="flow-table">
+    <thead><tr><th>MACROPROCESO</th><th>PROCESOS INCLUIDOS</th><th>AREA RESPONSABLE</th></tr></thead>
+    <tbody>
+      <tr><td>Gestion Comercial</td><td>{{ai_policy_macro_commercial}}</td><td>Ventas</td></tr>
+      <tr><td>Gestion Operativa</td><td>{{ai_policy_macro_operations}}</td><td>Operaciones</td></tr>
+      <tr><td>Gestion Financiera</td><td>{{ai_policy_macro_finance}}</td><td>Finanzas</td></tr>
+      <tr><td>Gestion de Personas</td><td>{{ai_policy_macro_hr}}</td><td>RRHH</td></tr>
+      <tr><td>Gestion Institucional</td><td>{{ai_policy_macro_institutional}}</td><td>DG / Sistemas</td></tr>
+    </tbody>
+  </table>
+
+  <h3 style="margin-bottom:12px">1.4 TABLA DE AUTORIZACION DE FIRMA</h3>
+  <table class="flow-table">
+    <thead><tr><th>NIVEL</th><th>PUESTO</th><th>MONTO MAXIMO</th><th>TIPO DE OPERACION</th><th>REQUIERE COFIRMA DE</th></tr></thead>
+    <tbody>
+      <tr><td>N1</td><td>Director General</td><td>{{ai_policy_auth_n1_amount}}</td><td>Contratos, compromisos estrategicos</td><td>{{ai_policy_auth_n1_cosign}}</td></tr>
+      <tr><td>N2</td><td>CFO / Director Financiero</td><td>{{ai_policy_auth_n2_amount}}</td><td>Pagos, cobranza, nomina</td><td>{{ai_policy_auth_n2_cosign}}</td></tr>
+      <tr><td>N2</td><td>Gerente de Area</td><td>{{ai_policy_auth_n2b_amount}}</td><td>Compras departamentales</td><td>{{ai_policy_auth_n2b_cosign}}</td></tr>
+      <tr><td>N3</td><td>Coordinador / Supervisor</td><td>{{ai_policy_auth_n3_amount}}</td><td>Gastos operativos menores</td><td>Gerente de Area</td></tr>
+      <tr><td>N4</td><td>Operativo / Analista</td><td>Ninguno</td><td>Solicitud de compra (sin ejecucion)</td><td>N/A</td></tr>
+    </tbody>
+  </table>
+
+  <h3 style="margin-bottom:12px">1.5 GLOSARIO DE TERMINOS CORPORATIVOS</h3>
+  <table class="flow-table">
+    <thead><tr><th>TERMINO</th><th>DEFINICION OPERACIONAL</th></tr></thead>
+    <tbody>
+      <tr><td>SoD</td><td>Principio de control interno donde autorizacion, ejecucion y registro se asignan a personas distintas.</td></tr>
+      <tr><td>COSO 2013</td><td>Marco internacional para diseno, implementacion y evaluacion del control interno corporativo.</td></tr>
+      <tr><td>POE</td><td>Procedimiento Operativo Estandar -- documento paso a paso.</td></tr>
+      <tr><td>KPI</td><td>Key Performance Indicator -- indicador clave con formula, meta y responsable.</td></tr>
+      <tr><td>DSO</td><td>Days Sales Outstanding -- dias promedio de cobro de cuentas por cobrar.</td></tr>
+      <tr><td>CFDI</td><td>Comprobante Fiscal Digital por Internet -- formato oficial de factura electronica en Mexico.</td></tr>
+    </tbody>
+  </table>
+  <div class="ft"><span>Optimizacion de Procesos y Manuales Administrativos</span><span>Paginas 3-7</span></div>
+</div>
+
+<!-- P5-13: CHAPTER 2 - POLICIES (Consolidated key policies) -->
+<div class="page">
+  <div class="hdr"><span class="brand">{{branding_company_name}} | Manual de Procedimientos</span><span class="conf">CONFIDENCIAL</span></div>
+  <div class="ch-badge">CAPITULO 2</div>
+  <div class="ch-title">POLITICAS Y PROCEDIMIENTOS POR DEPARTAMENTO</div>
+  <p style="font-size:12px;color:var(--text2);font-style:italic;margin-bottom:20px">Estandar de Redaccion: Voz en tercera persona &middot; Tiempo presente &middot; Verbos de accion: Debe &middot; Asegurara &middot; Validara &middot; Resguardara &middot; Verificara</p>
+
+  <!-- 2.1 FINANZAS -->
+  <h3 style="color:var(--green);margin-bottom:12px">2.1 FINANZAS Y TESORERIA</h3>
+  <div class="policy-box">
+    <div class="pol-header">POL-FIN-001 | POLITICA DE AUTORIZACION DE PAGOS</div>
+    <div class="pol-body">
+      <div class="pol-row"><div class="pol-label">OBJETIVO</div><div class="pol-value">{{ai_policy_fin001_objective}}</div></div>
+      <div class="pol-row"><div class="pol-label">ALCANCE</div><div class="pol-value">{{ai_policy_fin001_scope}}</div></div>
+      <div class="pol-row"><div class="pol-label">RESPONSABLE</div><div class="pol-value">{{ai_policy_fin001_owner}}</div></div>
+      <div class="pol-row"><div class="pol-label">LINEAMIENTOS</div><div class="pol-value">{{ai_policy_fin001_guidelines}}</div></div>
+      <div class="pol-row"><div class="pol-label">EXCEPCIONES</div><div class="pol-value">{{ai_policy_fin001_exceptions}}</div></div>
+      <div class="pol-row"><div class="pol-label">REGISTROS</div><div class="pol-value">{{ai_policy_fin001_records}}</div></div>
+    </div>
+  </div>
+  <div class="policy-box">
+    <div class="pol-header">POL-FIN-002 | POLITICA DE COBRANZA Y GESTION DE CARTERA</div>
+    <div class="pol-body">
+      <div class="pol-row"><div class="pol-label">OBJETIVO</div><div class="pol-value">{{ai_policy_fin002_objective}}</div></div>
+      <div class="pol-row"><div class="pol-label">LINEAMIENTOS</div><div class="pol-value">{{ai_policy_fin002_guidelines}}</div></div>
+      <div class="pol-row"><div class="pol-label">REGISTROS</div><div class="pol-value">{{ai_policy_fin002_records}}</div></div>
+    </div>
+  </div>
+  <div class="policy-box">
+    <div class="pol-header">POL-FIN-003 | POLITICA DE CAJA CHICA</div>
+    <div class="pol-body">
+      <div class="pol-row"><div class="pol-label">OBJETIVO</div><div class="pol-value">{{ai_policy_fin003_objective}}</div></div>
+      <div class="pol-row"><div class="pol-label">LINEAMIENTOS</div><div class="pol-value">{{ai_policy_fin003_guidelines}}</div></div>
+    </div>
+  </div>
+
+  <!-- 2.2 COMPRAS -->
+  <h3 style="color:var(--green);margin:20px 0 12px">2.2 COMPRAS Y GESTION DE PROVEEDORES</h3>
+  <div class="policy-box">
+    <div class="pol-header">POL-COM-001 | POLITICA DE PROCESO DE COMPRAS (P2P)</div>
+    <div class="pol-body">
+      <div class="pol-row"><div class="pol-label">OBJETIVO</div><div class="pol-value">{{ai_policy_com001_objective}}</div></div>
+      <div class="pol-row"><div class="pol-label">LINEAMIENTOS</div><div class="pol-value">{{ai_policy_com001_guidelines}}</div></div>
+    </div>
+  </div>
+  <div class="policy-box">
+    <div class="pol-header">POL-COM-002 | POLITICA DE GESTION DE PROVEEDORES</div>
+    <div class="pol-body">
+      <div class="pol-row"><div class="pol-label">OBJETIVO</div><div class="pol-value">{{ai_policy_com002_objective}}</div></div>
+      <div class="pol-row"><div class="pol-label">LINEAMIENTOS</div><div class="pol-value">{{ai_policy_com002_guidelines}}</div></div>
+    </div>
+  </div>
+
+  <!-- 2.3 VENTAS -->
+  <h3 style="color:var(--green);margin:20px 0 12px">2.3 VENTAS Y COMERCIAL</h3>
+  <div class="policy-box">
+    <div class="pol-header">POL-VEN-001 | POLITICA DE CICLO DE VENTAS</div>
+    <div class="pol-body">
+      <div class="pol-row"><div class="pol-label">OBJETIVO</div><div class="pol-value">{{ai_policy_ven001_objective}}</div></div>
+      <div class="pol-row"><div class="pol-label">LINEAMIENTOS</div><div class="pol-value">{{ai_policy_ven001_guidelines}}</div></div>
+    </div>
+  </div>
+  <div class="policy-box">
+    <div class="pol-header">POL-VEN-002 | POLITICA DE DESCUENTOS Y AUTORIZACIONES COMERCIALES</div>
+    <div class="pol-body">
+      <div class="pol-row"><div class="pol-label">OBJETIVO</div><div class="pol-value">{{ai_policy_ven002_objective}}</div></div>
+      <div class="pol-row"><div class="pol-label">LINEAMIENTOS</div><div class="pol-value">{{ai_policy_ven002_guidelines}}</div></div>
+    </div>
+  </div>
+
+  <!-- 2.4 RRHH -->
+  <h3 style="color:var(--green);margin:20px 0 12px">2.4 CAPITAL HUMANO Y NOMINA</h3>
+  <div class="policy-box">
+    <div class="pol-header">POL-RH-001 | POLITICA DE RECLUTAMIENTO Y CONTRATACION</div>
+    <div class="pol-body">
+      <div class="pol-row"><div class="pol-label">LINEAMIENTOS</div><div class="pol-value">{{ai_policy_rh001_guidelines}}</div></div>
+    </div>
+  </div>
+  <div class="policy-box">
+    <div class="pol-header">POL-RH-002 | POLITICA DE PROCESAMIENTO DE NOMINA</div>
+    <div class="pol-body">
+      <div class="pol-row"><div class="pol-label">LINEAMIENTOS</div><div class="pol-value">{{ai_policy_rh002_guidelines}}</div></div>
+    </div>
+  </div>
+  <div class="policy-box">
+    <div class="pol-header">POL-RH-003 | POLITICA DE DESVINCULACION</div>
+    <div class="pol-body">
+      <div class="pol-row"><div class="pol-label">LINEAMIENTOS</div><div class="pol-value">{{ai_policy_rh003_guidelines}}</div></div>
+    </div>
+  </div>
+
+  <!-- 2.5 OPS -->
+  <h3 style="color:var(--green);margin:20px 0 12px">2.5 OPERACIONES Y LOGISTICA</h3>
+  <div class="policy-box">
+    <div class="pol-header">POL-OPS-001 | POLITICA DE GESTION DE INVENTARIOS</div>
+    <div class="pol-body"><div class="pol-row"><div class="pol-label">LINEAMIENTOS</div><div class="pol-value">{{ai_policy_ops001_guidelines}}</div></div></div>
+  </div>
+  <div class="policy-box">
+    <div class="pol-header">POL-OPS-002 | POLITICA DE CONTROL DE CALIDAD Y ENTREGAS (OTIF)</div>
+    <div class="pol-body"><div class="pol-row"><div class="pol-label">LINEAMIENTOS</div><div class="pol-value">{{ai_policy_ops002_guidelines}}</div></div></div>
+  </div>
+
+  <!-- 2.6 TEC -->
+  <h3 style="color:var(--green);margin:20px 0 12px">2.6 TECNOLOGIA Y SISTEMAS</h3>
+  <div class="policy-box">
+    <div class="pol-header">POL-TEC-001 | POLITICA DE SEGURIDAD DE LA INFORMACION Y ACCESOS</div>
+    <div class="pol-body"><div class="pol-row"><div class="pol-label">LINEAMIENTOS</div><div class="pol-value">{{ai_policy_tec001_guidelines}}</div></div></div>
+  </div>
+
+  <!-- 2.7 DG -->
+  <h3 style="color:var(--green);margin:20px 0 12px">2.7 DIRECCION GENERAL</h3>
+  <div class="policy-box">
+    <div class="pol-header">POL-DG-001 | POLITICA DE GOBIERNO CORPORATIVO Y GESTION DE RIESGOS</div>
+    <div class="pol-body"><div class="pol-row"><div class="pol-label">LINEAMIENTOS</div><div class="pol-value">{{ai_policy_dg001_guidelines}}</div></div></div>
+  </div>
+
+  <div class="ft"><span>Optimizacion de Procesos y Manuales Administrativos</span><span>Paginas 8-35</span></div>
+</div>
+
+<!-- P14: CHAPTER 3 - FLOW DIAGRAMS -->
+<div class="page">
+  <div class="hdr"><span class="brand">{{branding_company_name}} | Manual de Procedimientos</span><span class="conf">CONFIDENCIAL</span></div>
+  <div class="ch-badge">CAPITULO 3</div>
+  <div class="ch-title">DIAGRAMAS DE FLUJO SUGERIDOS</div>
+  <p style="font-size:13px;color:var(--text2);margin-bottom:20px">Los diagramas se entregan en formato digital editable (Visio / Lucidchart / draw.io) como anexo complementario.</p>
+  <table class="flow-table">
+    <thead><tr><th>PROCESO</th><th>ACTORES</th><th>PASOS CLAVE</th><th>PUNTOS DE CONTROL</th></tr></thead>
+    <tbody>
+      <tr><td>Proceso P2P<br>(Compras a Pago)</td><td>{{ai_flow_p2p_actors}}</td><td>{{ai_flow_p2p_steps}}</td><td>{{ai_flow_p2p_controls}}</td></tr>
+      <tr><td>Ciclo de Cobranza</td><td>{{ai_flow_collections_actors}}</td><td>{{ai_flow_collections_steps}}</td><td>{{ai_flow_collections_controls}}</td></tr>
+      <tr><td>Proceso de Nomina</td><td>{{ai_flow_payroll_actors}}</td><td>{{ai_flow_payroll_steps}}</td><td>{{ai_flow_payroll_controls}}</td></tr>
+      <tr><td>Ciclo de Ventas</td><td>{{ai_flow_sales_actors}}</td><td>{{ai_flow_sales_steps}}</td><td>{{ai_flow_sales_controls}}</td></tr>
+    </tbody>
+  </table>
+  <div class="strategy-note">[ESTRATEGIA] Los diagramas de flujo son la herramienta mas efectiva para capacitar al personal nuevo y auditar el cumplimiento.</div>
+  <div class="ft"><span>Optimizacion de Procesos y Manuales Administrativos</span><span>Paginas 36-39</span></div>
+</div>
+
+<!-- P15: CHAPTER 4 - SoD MATRIX -->
+<div class="page">
+  <div class="hdr"><span class="brand">{{branding_company_name}} | Manual de Procedimientos</span><span class="conf">CONFIDENCIAL</span></div>
+  <div class="ch-badge">CAPITULO 4</div>
+  <div class="ch-title">MATRIZ DE SEGREGACION DE FUNCIONES (SoD)</div>
+  <div class="critical-alert">PRINCIPIO RECTOR: Una misma persona NO puede tener las funciones de AUTORIZAR + EJECUTAR + REGISTRAR + CUSTODIAR. Cualquier violacion = Riesgo Critico.</div>
+  <table class="sod-table">
+    <thead><tr><th>PROCESO</th><th>SOLICITA</th><th>AUTORIZA</th><th>EJECUTA</th><th>REGISTRA</th><th>CUSTODIA</th><th>REVISA</th></tr></thead>
+    <tbody>
+      <tr><td>Pagos a Proveedores</td><td>Compras</td><td>CFO / DG</td><td>Tesoreria</td><td>Contabilidad</td><td>Tesoreria</td><td>Auditoria / DG</td></tr>
+      <tr><td>Cobranza</td><td>Ventas</td><td>Finanzas</td><td>Tesoreria</td><td>Contabilidad</td><td>Tesoreria</td><td>CFO</td></tr>
+      <tr><td>Nomina</td><td>RRHH</td><td>CFO / DG</td><td>Tesoreria</td><td>Contabilidad</td><td>RRHH</td><td>DG</td></tr>
+      <tr><td>Compras</td><td>Usuario Final</td><td>Gerente Area</td><td>Compras</td><td>Contabilidad</td><td>Almacen</td><td>CFO</td></tr>
+      <tr><td>Caja Chica</td><td>Solicitante</td><td>Jefe Inmediato</td><td>Custodio</td><td>Contabilidad</td><td>Custodio</td><td>Administracion</td></tr>
+      <tr><td>Contratacion</td><td>Gerente Area</td><td>DG / RRHH</td><td>RRHH</td><td>RRHH / Contab.</td><td>RRHH</td><td>DG</td></tr>
+      <tr><td>Descuentos Comerciales</td><td>Ejecutivo</td><td>Gte. Comercial</td><td>Ejecutivo</td><td>CRM / Facturacion</td><td>Ventas</td><td>CFO</td></tr>
+      <tr><td>Alta de Proveedores</td><td>Compras</td><td>CFO / Compras</td><td>Compras</td><td>Contabilidad</td><td>Compras</td><td>Auditoria</td></tr>
+    </tbody>
+  </table>
+  <div class="ft"><span>Optimizacion de Procesos y Manuales Administrativos</span><span>Paginas 40-42</span></div>
+</div>
+
+<!-- P16-17: CHAPTER 5 - KPIs -->
+<div class="page">
+  <div class="hdr"><span class="brand">{{branding_company_name}} | Manual de Procedimientos</span><span class="conf">CONFIDENCIAL</span></div>
+  <div class="ch-badge">CAPITULO 5</div>
+  <div class="ch-title">CATALOGO COMPLETO DE KPIs POR AREA</div>
+  <p style="font-size:12px;color:var(--text2);margin-bottom:16px">Cada KPI incluye: Formula &middot; Frecuencia &middot; Responsable &middot; Meta &middot; Umbral de alerta.</p>
+
+  <h4 style="color:var(--green);margin-bottom:8px">5.1 KPIs COMERCIALES</h4>
+  <table class="kpi-table">
+    <thead><tr><th>KPI</th><th>FORMULA</th><th>FREC.</th><th>RESPONSABLE</th><th>META</th><th>ALERTA</th></tr></thead>
+    <tbody>
+      <tr><td>CAC</td><td>Gasto Mktg+Ventas / Clientes nuevos</td><td>Mensual</td><td>Gte. Comercial</td><td>{{ai_kpi_cac_target}}</td><td>{{ai_kpi_cac_alert}}</td></tr>
+      <tr><td>LTV</td><td>Ticket prom. x Compras/ano x Anos</td><td>Trimestral</td><td>Gte. Comercial</td><td>{{ai_kpi_ltv_target}}</td><td>{{ai_kpi_ltv_alert}}</td></tr>
+      <tr><td>Tasa de Conversion</td><td>Cerrados / Total leads x 100</td><td>Semanal</td><td>Gte. Comercial</td><td>> 20%</td><td>< 10%</td></tr>
+      <tr><td>Churn Rate</td><td>Clientes perdidos / Iniciales x 100</td><td>Mensual</td><td>Gte. Comercial</td><td>< 5%</td><td>> 10%</td></tr>
+      <tr><td>NPS</td><td>% Promotores - % Detractores</td><td>Trimestral</td><td>Gte. Comercial</td><td>> 40</td><td>< 0</td></tr>
+    </tbody>
+  </table>
+
+  <h4 style="color:var(--green);margin:16px 0 8px">5.2 KPIs OPERATIVOS</h4>
+  <table class="kpi-table">
+    <thead><tr><th>KPI</th><th>FORMULA</th><th>FREC.</th><th>RESPONSABLE</th><th>META</th><th>ALERTA</th></tr></thead>
+    <tbody>
+      <tr><td>OTIF</td><td>Pedidos a tiempo y completos / Total x 100</td><td>Semanal</td><td>Gte. Ops</td><td>> 95%</td><td>< 90%</td></tr>
+      <tr><td>Rotacion Inventarios</td><td>Costo ventas / Inventario promedio</td><td>Mensual</td><td>Jefe Almacen</td><td>> 6x</td><td>< 3x</td></tr>
+      <tr><td>Tasa de Merma</td><td>Merma $ / Inventario inicial x 100</td><td>Mensual</td><td>Jefe Almacen</td><td>< 1%</td><td>> 3%</td></tr>
+    </tbody>
+  </table>
+
+  <h4 style="color:var(--green);margin:16px 0 8px">5.3 KPIs FINANCIEROS</h4>
+  <table class="kpi-table">
+    <thead><tr><th>KPI</th><th>FORMULA</th><th>FREC.</th><th>RESPONSABLE</th><th>META</th><th>ALERTA</th></tr></thead>
+    <tbody>
+      <tr><td>DSO</td><td>(CxC / Ventas) x Dias del periodo</td><td>Mensual</td><td>CFO</td><td>< 35 dias</td><td>> 60 dias</td></tr>
+      <tr><td>Margen EBITDA</td><td>EBITDA / Ingresos x 100</td><td>Mensual</td><td>CFO</td><td>Benchmark sector</td><td>Caida > 2pp</td></tr>
+      <tr><td>Burn Rate</td><td>Salida caja operativa mensual</td><td>Mensual</td><td>CFO</td><td>Runway >= 6 meses</td><td>< 3 meses</td></tr>
+    </tbody>
+  </table>
+
+  <h4 style="color:var(--green);margin:16px 0 8px">5.4 KPIs DE CAPITAL HUMANO</h4>
+  <table class="kpi-table">
+    <thead><tr><th>KPI</th><th>FORMULA</th><th>FREC.</th><th>RESPONSABLE</th><th>META</th><th>ALERTA</th></tr></thead>
+    <tbody>
+      <tr><td>Tasa de Rotacion</td><td>Bajas / Plantilla promedio x 100</td><td>Mensual</td><td>Gte. RRHH</td><td>< 10% anual</td><td>> 20%</td></tr>
+      <tr><td>% con Contrato</td><td>Colaboradores con contrato / Total x 100</td><td>Mensual</td><td>Gte. RRHH</td><td>100%</td><td>< 100%</td></tr>
+      <tr><td>Tiempo de Vacante</td><td>Dias desde solicitud a incorporacion</td><td>Por evento</td><td>Gte. RRHH</td><td>< 30 dias</td><td>> 60 dias</td></tr>
+    </tbody>
+  </table>
+  <div class="ft"><span>Optimizacion de Procesos y Manuales Administrativos</span><span>Paginas 43-46</span></div>
+</div>
+
+<!-- P18: CHAPTER 6 - ANNEXES -->
+<div class="page">
+  <div class="hdr"><span class="brand">{{branding_company_name}} | Manual de Procedimientos</span><span class="conf">CONFIDENCIAL</span></div>
+  <div class="ch-badge">CAPITULO 6</div>
+  <div class="ch-title">ANEXOS OPERATIVOS -- FORMATOS Y REGISTROS DE CONTROL</div>
+  <p style="font-size:13px;color:var(--text2);margin-bottom:16px">Los siguientes formatos se entregan como archivos editables (Excel / Word) en el paquete digital del manual.</p>
+  <table class="annex-table">
+    <thead><tr><th>CODIGO</th><th>NOMBRE DEL FORMATO</th><th>PROPOSITO</th><th>RESPONSABLE</th><th>FRECUENCIA</th></tr></thead>
+    <tbody>
+      <tr><td>A-01</td><td>Solicitud de Compra Interna</td><td>Formalizar requerimiento de compra</td><td>Area solicitante</td><td>Por evento</td></tr>
+      <tr><td>A-02</td><td>Orden de Compra Oficial</td><td>Compromiso formal con proveedor</td><td>Compras</td><td>Por evento</td></tr>
+      <tr><td>A-03</td><td>Conciliacion Bancaria Mensual</td><td>Validar movimientos bancarios vs. contables</td><td>Contabilidad</td><td>Mensual</td></tr>
+      <tr><td>A-04</td><td>Reporte de Cartera Vencida</td><td>Control semanal de cuentas por cobrar</td><td>Finanzas / Ventas</td><td>Semanal</td></tr>
+      <tr><td>A-05</td><td>Solicitud y Comprobacion de Caja Chica</td><td>Control de gastos menores</td><td>Custodio de Caja</td><td>Por evento</td></tr>
+      <tr><td>A-06</td><td>Evaluacion de Desempeno Semestral</td><td>Seguimiento de objetivos y competencias</td><td>RRHH + Jefe</td><td>Semestral</td></tr>
+      <tr><td>A-07</td><td>Contrato de Confidencialidad (NDA)</td><td>Proteccion de informacion sensible</td><td>Legal / RRHH</td><td>Al ingreso</td></tr>
+      <tr><td>A-08</td><td>Acta de Entrega-Recepcion de Activos</td><td>Trazabilidad de equipos y accesos</td><td>RRHH / Admin.</td><td>Ingreso y baja</td></tr>
+      <tr><td>A-09</td><td>Minuta de Reunion Ejecutiva</td><td>Registro de acuerdos y compromisos</td><td>Quien convoca</td><td>Por reunion</td></tr>
+      <tr><td>A-10</td><td>Checklist de Cierre Mensual Contable</td><td>Asegurar completitud del cierre</td><td>Contabilidad / CFO</td><td>Mensual</td></tr>
+    </tbody>
+  </table>
+
+  <h3 style="margin:20px 0 12px">APROBACION Y VIGENCIA DEL MANUAL</h3>
+  <table class="sign-table">
+    <thead><tr><th>ROL</th><th>NOMBRE Y CARGO</th><th>FIRMA</th><th>FECHA</th></tr></thead>
+    <tbody>
+      <tr><td>Elaborado por</td><td>{{branding_company_name}} -- Consultor Senior</td><td>________________________</td><td>{{current_date}}</td></tr>
+      <tr><td>Revisado por</td><td>{{manual_reviewer_name}} | {{manual_reviewer_role}}</td><td>________________________</td><td>{{current_date}}</td></tr>
+      <tr><td>Aprobado por</td><td>{{manual_approver_name}} | Director General</td><td>________________________</td><td>{{current_date}}</td></tr>
+      <tr><td>Proxima Revision</td><td>12 meses desde la fecha de aprobacion o ante cambio relevante</td><td>N/A</td><td>{{ai_next_review_date}}</td></tr>
+    </tbody>
+  </table>
+
+  <div class="impact-box">
+    <h4>IMPACTO EN EL NEGOCIO</h4>
+    <p>Este Manual de Procedimientos y Politicas Administrativas transforma la operacion informal en una organizacion gobernada por reglas claras, verificables y transmisibles. Su implementacion efectiva es el punto de partida de cualquier proceso de crecimiento, inversion o certificacion futura.</p>
+  </div>
+  <div class="ft"><span>Optimizacion de Procesos y Manuales Administrativos</span><span>Paginas 47-50</span></div>
+</div>
+
+</body>
+</html>

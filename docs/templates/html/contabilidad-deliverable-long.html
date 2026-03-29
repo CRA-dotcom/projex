@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Informe de Auditor&iacute;a Interna y Cumplimiento Fiscal &mdash; {{branding_company_name}}</title>
+  <style>
+    /* ===== RESET & BASE ===== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 11pt; color: #222; background: #fff; }
+
+    /* ===== PAGE ===== */
+    .page { width: 210mm; min-height: 297mm; margin: 0 auto; padding: 0; position: relative; page-break-after: always; }
+
+    /* ===== HEADERS ===== */
+    .header { background: #2d3e50; color: #fff; padding: 24px 32px 18px; }
+    .header h1 { font-size: 22pt; font-weight: 800; }
+    .header .subtitle { font-size: 10pt; opacity: 0.85; margin-top: 2px; }
+    .header h2 { font-size: 14pt; color: #5dade2; margin-top: 10px; font-weight: 700; }
+    .header .confidential { font-size: 9pt; opacity: 0.7; margin-top: 4px; }
+    .header-compact { background: #2d3e50; color: #fff; padding: 12px 32px; display: flex; justify-content: space-between; align-items: center; }
+    .header-compact h1 { font-size: 14pt; font-weight: 700; }
+    .header-compact .subtitle { font-size: 9pt; opacity: 0.7; }
+    .header-compact .page-info { text-align: right; font-size: 10pt; font-weight: 700; }
+    .header-compact .page-info .sub { font-size: 8pt; opacity: 0.7; }
+
+    /* ===== FOOTER ===== */
+    .footer { background: #2d3e50; color: #fff; padding: 8px 32px; font-size: 8pt; display: flex; justify-content: space-between; position: absolute; bottom: 0; left: 0; right: 0; }
+
+    /* ===== CONTENT ===== */
+    .content { padding: 20px 32px 60px; }
+
+    /* ===== SECTION HEADERS ===== */
+    .section-title { background: #e67e22; color: #fff; font-size: 10pt; font-weight: 700; padding: 6px 14px; margin: 18px 0 10px; border-radius: 2px; }
+    .section-title.blue { background: #5dade2; }
+    .section-title.dark { background: #2d3e50; }
+
+    /* ===== META ROW ===== */
+    .meta-row { display: flex; gap: 16px; margin-bottom: 10px; flex-wrap: wrap; border: 1px solid #ccc; padding: 8px 12px; background: #fafafa; }
+    .meta-field { display: flex; align-items: center; gap: 6px; font-size: 10pt; flex: 1; }
+    .meta-field label { font-weight: 700; white-space: nowrap; }
+    .meta-field .value { border-bottom: 1.5px solid #e67e22; min-width: 80px; padding: 2px 6px; flex: 1; }
+
+    /* ===== CHECKBOX ===== */
+    .checkbox-row { display: flex; gap: 20px; align-items: center; font-size: 10pt; margin: 6px 0; }
+    .box { width: 14px; height: 14px; border: 1.5px solid #999; display: inline-block; margin-right: 4px; vertical-align: middle; }
+
+    /* ===== INDEX BOX ===== */
+    .index-box { border: 1.5px solid #e67e22; padding: 14px 18px; margin: 14px 0; }
+    .index-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4px 30px; font-size: 9.5pt; }
+    .index-grid .idx-item { display: flex; justify-content: space-between; }
+    .index-grid .idx-item .dots { flex: 1; border-bottom: 1px dotted #ccc; margin: 0 6px; }
+
+    /* ===== SCOPE BOX ===== */
+    .scope-box { background: #faf8f4; border: 1px solid #e0d8c8; padding: 12px 16px; font-size: 9.5pt; line-height: 1.6; margin: 10px 0; }
+
+    /* ===== KPI CARDS ===== */
+    .kpi-container { display: flex; gap: 10px; margin: 10px 0; flex-wrap: wrap; }
+    .kpi-card { flex: 1; min-width: 130px; border: 1.5px solid #5dade2; padding: 10px; background: #fff; }
+    .kpi-card.gold { border-color: #e67e22; }
+    .kpi-card .kpi-label { font-size: 8.5pt; font-weight: 700; color: #555; text-align: center; margin-bottom: 6px; }
+    .kpi-card .kpi-value { font-size: 12pt; font-weight: 800; text-align: center; border: 1.5px solid #e67e22; padding: 4px; }
+    .kpi-card .kpi-var { font-size: 8pt; color: #888; margin-top: 4px; display: flex; align-items: center; gap: 4px; }
+    .kpi-card .kpi-var .var-value { border-bottom: 1px solid #ccc; min-width: 50px; padding: 1px 4px; }
+
+    /* ===== NARRATIVE BOX ===== */
+    .narrative-box { border: 1px solid #ccc; background: #faf8f4; min-height: 70px; padding: 12px; margin: 8px 0 14px; font-size: 9.5pt; color: #333; line-height: 1.6; }
+
+    /* ===== SEMAPHORES ===== */
+    .semaphore-list { margin: 10px 0; }
+    .semaphore-row { display: flex; align-items: center; gap: 10px; font-size: 9.5pt; padding: 4px 0; }
+    .semaphore-row .sem-label { min-width: 280px; }
+    .sem-badge { padding: 3px 12px; font-size: 8pt; font-weight: 700; border-radius: 2px; color: #fff; }
+    .sem-bajo { background: #27ae60; }
+    .sem-medio { background: #e67e22; }
+    .sem-alto { background: #e74c3c; }
+    .sem-box { width: 14px; height: 14px; border: 1.5px solid #999; display: inline-block; vertical-align: middle; }
+    .global-risk { display: flex; align-items: center; gap: 16px; background: #eee; padding: 8px 14px; margin: 10px 0; font-weight: 700; font-size: 10pt; }
+
+    /* ===== TABLE ===== */
+    table { width: 100%; border-collapse: collapse; margin: 8px 0 14px; font-size: 9.5pt; }
+    table th { background: #2d3e50; color: #fff; padding: 7px 10px; text-align: left; font-weight: 600; }
+    table td { padding: 6px 10px; border: 1px solid #ddd; }
+    table tr:nth-child(even) td { background: #f8f8f8; }
+    .row-bold td { font-weight: 700; background: #eee !important; }
+    .row-total td { font-weight: 800; background: #2d3e50 !important; color: #fff; }
+    .row-subtotal td { font-weight: 700; background: #5dade2 !important; color: #fff; }
+
+    /* ===== SUMMARY GRID ===== */
+    .summary-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin: 10px 0; }
+    .summary-cell { border: 1px solid #ccc; padding: 8px; }
+    .summary-cell .sc-label { font-size: 8.5pt; color: #666; margin-bottom: 4px; }
+    .summary-cell .sc-value { font-size: 12pt; font-weight: 700; border-bottom: 1.5px solid #e67e22; padding: 2px 4px; }
+
+    /* ===== SIGNATURE BLOCK ===== */
+    .sig-container { display: flex; gap: 24px; margin-top: 14px; }
+    .sig-block { flex: 1; border: 1px solid #ccc; padding: 14px; }
+    .sig-block .sig-header { background: #2d3e50; color: #fff; text-align: center; padding: 6px; font-size: 9.5pt; font-weight: 700; margin: -14px -14px 12px; }
+    .sig-block .sig-area { height: 60px; border-bottom: 1px solid #999; margin-bottom: 4px; }
+    .sig-block .sig-label { text-align: center; font-size: 8pt; color: #888; }
+    .sig-block .sig-field { display: flex; gap: 6px; align-items: center; font-size: 9pt; margin-top: 6px; }
+    .sig-block .sig-field label { font-weight: 700; }
+    .sig-block .sig-field .value { border-bottom: 1px solid #e67e22; flex: 1; min-height: 16px; }
+
+    /* ===== ACUSE ===== */
+    .acuse-box { border: 1.5px solid #e67e22; padding: 10px 14px; margin-top: 14px; display: flex; gap: 12px; align-items: center; font-size: 9pt; flex-wrap: wrap; }
+    .acuse-box label { font-weight: 700; }
+    .acuse-box .value { border-bottom: 1px solid #e67e22; min-width: 80px; padding: 2px 6px; }
+
+    /* ===== BANNER ===== */
+    .banner { background: #e67e22; color: #fff; text-align: center; padding: 10px; font-weight: 700; font-size: 10pt; margin-top: 16px; }
+
+    @media print { .page { margin: 0; width: 100%; } }
+  </style>
+</head>
+<body>
+
+<!-- ==================== PAGE 1 / 10 — COVER ==================== -->
+<div class="page">
+  <div class="header">
+    <h1>{{branding_company_name}}</h1>
+    <div class="subtitle">{{branding_company_legal_name}} | Estrategia Contable Premium</div>
+    <h2>INFORME DE AUDITOR&Iacute;A INTERNA Y CUMPLIMIENTO FISCAL</h2>
+    <div class="confidential">Reporte Trimestral / Anual &mdash; Confidencial para Direcci&oacute;n General</div>
+  </div>
+
+  <div class="content">
+    <div class="meta-row">
+      <div class="meta-field"><label>Empresa:</label><span class="value">{{client_name}}</span></div>
+      <div class="meta-field"><label>RFC:</label><span class="value">{{client_rfc}}</span></div>
+      <div class="meta-field"><label>Asesor:</label><span class="value">{{advisor_name}}</span></div>
+    </div>
+    <div class="meta-row" style="border:none; background:none; padding:4px 0;">
+      <div class="meta-field">
+        <label>Tipo de Informe:</label>
+        <span class="box"></span> Trimestral
+        <span class="box" style="margin-left:12px;"></span> Anual
+        <!-- AI value: {{report_type}} -->
+      </div>
+      <div class="meta-field"><label>Per&iacute;odo:</label><span class="value">{{report_period}}</span></div>
+      <div class="meta-field"><label>Fecha:</label><span class="value">{{report_date}}</span></div>
+    </div>
+
+    <!-- Index -->
+    <div class="section-title">INDICE DEL INFORME</div>
+    <div class="index-box">
+      <div class="index-grid">
+        <div class="idx-item"><span>1. Resumen Ejecutivo y Dashboard de Riesgo</span><span class="dots"></span><span>2</span></div>
+        <div class="idx-item"><span>2. Auditor&iacute;a de Estados Financieros</span><span class="dots"></span><span>3</span></div>
+        <div class="idx-item"><span>3. An&aacute;lisis Fiscal y Simetr&iacute;a Tributaria</span><span class="dots"></span><span>4</span></div>
+        <div class="idx-item"><span>4. Auditor&iacute;a de N&oacute;mina y Seguridad Social</span><span class="dots"></span><span>5</span></div>
+        <div class="idx-item"><span>5. Control de Activos Fijos</span><span class="dots"></span><span>6</span></div>
+        <div class="idx-item"><span>6. An&aacute;lisis de CxC / CxP</span><span class="dots"></span><span>6</span></div>
+        <div class="idx-item"><span>7. DIOT e Informativas</span><span class="dots"></span><span>7</span></div>
+        <div class="idx-item"><span>8. Declaraci&oacute;n Anual (ejercicio fiscal)</span><span class="dots"></span><span>7-8</span></div>
+        <div class="idx-item"><span>9. Hallazgos y Plan de Acci&oacute;n</span><span class="dots"></span><span>9</span></div>
+        <div class="idx-item"><span>10. Conclusiones, Firmas y Acuse</span><span class="dots"></span><span>10</span></div>
+      </div>
+    </div>
+
+    <!-- Scope -->
+    <div class="section-title">ALCANCE DEL INFORME</div>
+    <div class="scope-box">
+      Este informe comprende la revisi&oacute;n de la integridad contable, fiscal y laboral del per&iacute;odo indicado.
+      Los hallazgos se clasifican por nivel de riesgo (ALTO/MEDIO/BAJO) y se acompa&ntilde;an de acciones correctivas.
+      No constituye una auditor&iacute;a externa conforme a NIA. Es un servicio de supervisi&oacute;n y gobierno corporativo de {{branding_company_name}}.
+    </div>
+  </div>
+
+  <div class="footer">
+    <span>{{branding_company_name}} &mdash; Informe Confidencial para Direcci&oacute;n General</span>
+    <span>&copy; {{branding_year}} {{branding_company_legal_name}}</span>
+  </div>
+</div>
+
+<!-- ==================== PAGE 2 / 10 — RISK DASHBOARD ==================== -->
+<div class="page">
+  <div class="header-compact">
+    <div><h1>{{branding_company_name}}</h1><div class="subtitle">Informe de Auditor&iacute;a Interna y Cumplimiento Fiscal</div></div>
+    <div class="page-info">INFORME TRIMESTRAL / ANUAL<br><span class="sub">P&aacute;g. 2/10</span></div>
+  </div>
+  <div class="content">
+    <div class="section-title">1. DASHBOARD DE RIESGO Y RESUMEN EJECUTIVO</div>
+    <p style="font-size:9pt; color:#666; margin-bottom:6px;">Eval&uacute;e el nivel de riesgo en cada dimensi&oacute;n del per&iacute;odo auditado:</p>
+    <div class="semaphore-list">
+      <div class="semaphore-row">
+        <span class="sem-label">Riesgo Fiscal (ISR/IVA/SAT)</span>
+        <span class="sem-badge sem-bajo">BAJO</span><span class="sem-box"></span>
+        <span class="sem-badge sem-medio">MEDIO</span><span class="sem-box"></span>
+        <span class="sem-badge sem-alto">ALTO</span><span class="sem-box"></span>
+        <!-- {{ai_risk_fiscal}} -->
+      </div>
+      <div class="semaphore-row">
+        <span class="sem-label">Riesgo Contable (Integridad de libros)</span>
+        <span class="sem-badge sem-bajo">BAJO</span><span class="sem-box"></span>
+        <span class="sem-badge sem-medio">MEDIO</span><span class="sem-box"></span>
+        <span class="sem-badge sem-alto">ALTO</span><span class="sem-box"></span>
+        <!-- {{ai_risk_contable}} -->
+      </div>
+      <div class="semaphore-row">
+        <span class="sem-label">Riesgo Laboral (IMSS/N&oacute;mina)</span>
+        <span class="sem-badge sem-bajo">BAJO</span><span class="sem-box"></span>
+        <span class="sem-badge sem-medio">MEDIO</span><span class="sem-box"></span>
+        <span class="sem-badge sem-alto">ALTO</span><span class="sem-box"></span>
+        <!-- {{ai_risk_laboral}} -->
+      </div>
+      <div class="semaphore-row">
+        <span class="sem-label">Riesgo de Cumplimiento (Informativas)</span>
+        <span class="sem-badge sem-bajo">BAJO</span><span class="sem-box"></span>
+        <span class="sem-badge sem-medio">MEDIO</span><span class="sem-box"></span>
+        <span class="sem-badge sem-alto">ALTO</span><span class="sem-box"></span>
+        <!-- {{ai_risk_cumplimiento}} -->
+      </div>
+      <div class="semaphore-row">
+        <span class="sem-label">Riesgo Operativo (Activos/Inventarios)</span>
+        <span class="sem-badge sem-bajo">BAJO</span><span class="sem-box"></span>
+        <span class="sem-badge sem-medio">MEDIO</span><span class="sem-box"></span>
+        <span class="sem-badge sem-alto">ALTO</span><span class="sem-box"></span>
+        <!-- {{ai_risk_operativo}} -->
+      </div>
+      <div class="semaphore-row">
+        <span class="sem-label">Riesgo Estrat&eacute;gico (Solvencia/Liquidez)</span>
+        <span class="sem-badge sem-bajo">BAJO</span><span class="sem-box"></span>
+        <span class="sem-badge sem-medio">MEDIO</span><span class="sem-box"></span>
+        <span class="sem-badge sem-alto">ALTO</span><span class="sem-box"></span>
+        <!-- {{ai_risk_estrategico}} -->
+      </div>
+    </div>
+    <div class="global-risk">
+      NIVEL DE RIESGO GLOBAL DEL PER&Iacute;ODO:
+      <span class="sem-badge sem-bajo">BAJO</span><span class="sem-box"></span>
+      <span class="sem-badge sem-medio">MEDIO</span><span class="sem-box"></span>
+      <span class="sem-badge sem-alto">ALTO</span><span class="sem-box"></span>
+      <!-- {{ai_risk_global}} -->
+    </div>
+
+    <p style="font-size:9pt; color:#666; margin-bottom:4px;">Resumen Ejecutivo del Per&iacute;odo (narrativa para Direcci&oacute;n General):</p>
+    <div class="narrative-box">{{ai_executive_summary}}</div>
+
+    <p style="font-size:9pt; color:#666; margin-bottom:6px;">Principales indicadores financieros del per&iacute;odo:</p>
+    <div class="kpi-container">
+      <div class="kpi-card"><div class="kpi-label">Ingresos Acumulados</div><div class="kpi-value">{{ai_kpi_ingresos_acum}}</div><div class="kpi-var">vs per. ant.: <span class="var-value">{{ai_kpi_ingresos_acum_var}}</span></div></div>
+      <div class="kpi-card"><div class="kpi-label">Egresos Acumulados</div><div class="kpi-value">{{ai_kpi_egresos_acum}}</div><div class="kpi-var">vs per. ant.: <span class="var-value">{{ai_kpi_egresos_acum_var}}</span></div></div>
+      <div class="kpi-card"><div class="kpi-label">Utilidad Acumulada</div><div class="kpi-value">{{ai_kpi_utilidad_acum}}</div><div class="kpi-var">vs per. ant.: <span class="var-value">{{ai_kpi_utilidad_acum_var}}</span></div></div>
+    </div>
+    <div class="kpi-container">
+      <div class="kpi-card gold"><div class="kpi-label">ISR Pagado Acum.</div><div class="kpi-value">{{ai_kpi_isr_acum}}</div><div class="kpi-var">vs per. ant.: <span class="var-value">{{ai_kpi_isr_acum_var}}</span></div></div>
+      <div class="kpi-card gold"><div class="kpi-label">Saldo Bancario Final</div><div class="kpi-value">{{ai_kpi_saldo_bancario}}</div><div class="kpi-var">vs per. ant.: <span class="var-value">{{ai_kpi_saldo_bancario_var}}</span></div></div>
+      <div class="kpi-card gold"><div class="kpi-label">CxC Total Trimestre</div><div class="kpi-value">{{ai_kpi_cxc_trimestre}}</div><div class="kpi-var">vs per. ant.: <span class="var-value">{{ai_kpi_cxc_trimestre_var}}</span></div></div>
+    </div>
+  </div>
+  <div class="footer">
+    <span>{{branding_company_name}} &mdash; Informe Confidencial para Direcci&oacute;n General</span>
+    <span>&copy; {{branding_year}} {{branding_company_legal_name}}</span>
+  </div>
+</div>
+
+<!-- ==================== PAGE 3 / 10 — FINANCIAL STATEMENTS ==================== -->
+<div class="page">
+  <div class="header-compact">
+    <div><h1>{{branding_company_name}}</h1><div class="subtitle">Informe de Auditor&iacute;a Interna y Cumplimiento Fiscal</div></div>
+    <div class="page-info">INFORME TRIMESTRAL / ANUAL<br><span class="sub">P&aacute;g. 3/10</span></div>
+  </div>
+  <div class="content">
+    <div class="section-title">2. AUDITOR&Iacute;A DE ESTADOS FINANCIEROS</div>
+    <p style="font-size:9pt; color:#666; margin-bottom:4px;">Estado de Resultados Comparativo del Per&iacute;odo</p>
+    <table>
+      <thead><tr><th style="width:30%">CONCEPTO</th><th>Per&iacute;odo 1</th><th>Per&iacute;odo 2</th><th>Per&iacute;odo 3</th><th>TOTAL / Anual</th></tr></thead>
+      <tbody>
+        <tr><td>Ingresos Netos</td><td>{{ai_pl_ingresos_p1}}</td><td>{{ai_pl_ingresos_p2}}</td><td>{{ai_pl_ingresos_p3}}</td><td>{{ai_pl_ingresos_total}}</td></tr>
+        <tr><td>Costo de Ventas / Servicios</td><td>{{ai_pl_costos_p1}}</td><td>{{ai_pl_costos_p2}}</td><td>{{ai_pl_costos_p3}}</td><td>{{ai_pl_costos_total}}</td></tr>
+        <tr class="row-bold"><td>UTILIDAD BRUTA</td><td>{{ai_pl_utilidad_bruta_p1}}</td><td>{{ai_pl_utilidad_bruta_p2}}</td><td>{{ai_pl_utilidad_bruta_p3}}</td><td>{{ai_pl_utilidad_bruta_total}}</td></tr>
+        <tr><td>Gastos de Operaci&oacute;n</td><td>{{ai_pl_gastos_op_p1}}</td><td>{{ai_pl_gastos_op_p2}}</td><td>{{ai_pl_gastos_op_p3}}</td><td>{{ai_pl_gastos_op_total}}</td></tr>
+        <tr><td>Gastos de Administraci&oacute;n</td><td>{{ai_pl_gastos_admin_p1}}</td><td>{{ai_pl_gastos_admin_p2}}</td><td>{{ai_pl_gastos_admin_p3}}</td><td>{{ai_pl_gastos_admin_total}}</td></tr>
+        <tr><td>Depreciaciones y Amortizaciones</td><td>{{ai_pl_depreciaciones_p1}}</td><td>{{ai_pl_depreciaciones_p2}}</td><td>{{ai_pl_depreciaciones_p3}}</td><td>{{ai_pl_depreciaciones_total}}</td></tr>
+        <tr class="row-bold"><td>EBITDA / UTILIDAD OPERATIVA</td><td>{{ai_pl_ebitda_p1}}</td><td>{{ai_pl_ebitda_p2}}</td><td>{{ai_pl_ebitda_p3}}</td><td>{{ai_pl_ebitda_total}}</td></tr>
+        <tr><td>Gastos Financieros</td><td>{{ai_pl_gastos_fin_p1}}</td><td>{{ai_pl_gastos_fin_p2}}</td><td>{{ai_pl_gastos_fin_p3}}</td><td>{{ai_pl_gastos_fin_total}}</td></tr>
+        <tr><td>Otros Ingresos / Egresos</td><td>{{ai_pl_otros_p1}}</td><td>{{ai_pl_otros_p2}}</td><td>{{ai_pl_otros_p3}}</td><td>{{ai_pl_otros_total}}</td></tr>
+        <tr class="row-bold"><td>UTILIDAD ANTES DE IMPUESTOS</td><td>{{ai_pl_uai_p1}}</td><td>{{ai_pl_uai_p2}}</td><td>{{ai_pl_uai_p3}}</td><td>{{ai_pl_uai_total}}</td></tr>
+        <tr><td>ISR del Per&iacute;odo</td><td>{{ai_pl_isr_p1}}</td><td>{{ai_pl_isr_p2}}</td><td>{{ai_pl_isr_p3}}</td><td>{{ai_pl_isr_total}}</td></tr>
+        <tr><td>PTU del Per&iacute;odo</td><td>{{ai_pl_ptu_p1}}</td><td>{{ai_pl_ptu_p2}}</td><td>{{ai_pl_ptu_p3}}</td><td>{{ai_pl_ptu_total}}</td></tr>
+        <tr class="row-total"><td>UTILIDAD NETA</td><td>{{ai_pl_utilidad_neta_p1}}</td><td>{{ai_pl_utilidad_neta_p2}}</td><td>{{ai_pl_utilidad_neta_p3}}</td><td>{{ai_pl_utilidad_neta_total}}</td></tr>
+      </tbody>
+    </table>
+    <p style="font-size:9pt; color:#666; margin-bottom:4px;">Observaciones de los Estados Financieros del Per&iacute;odo:</p>
+    <div class="narrative-box">{{ai_financial_statements_obs}}</div>
+
+    <!-- Balance General -->
+    <div class="section-title dark">BALANCE GENERAL &mdash; POSICI&Oacute;N AL CIERRE DEL PER&Iacute;ODO</div>
+    <table>
+      <thead><tr><th style="width:35%">RUBRO</th><th>Inicio del Per&iacute;odo</th><th>Cierre del Per&iacute;odo</th><th>Variaci&oacute;n</th></tr></thead>
+      <tbody>
+        <tr><td>Activo Circulante</td><td>{{ai_bs_activo_circ_inicio}}</td><td>{{ai_bs_activo_circ_cierre}}</td><td>{{ai_bs_activo_circ_var}}</td></tr>
+        <tr><td>Activo Fijo Neto</td><td>{{ai_bs_activo_fijo_inicio}}</td><td>{{ai_bs_activo_fijo_cierre}}</td><td>{{ai_bs_activo_fijo_var}}</td></tr>
+        <tr class="row-bold"><td>Activo Total</td><td>{{ai_bs_activo_total_inicio}}</td><td>{{ai_bs_activo_total_cierre}}</td><td>{{ai_bs_activo_total_var}}</td></tr>
+        <tr><td>Pasivo Corto Plazo</td><td>{{ai_bs_pasivo_cp_inicio}}</td><td>{{ai_bs_pasivo_cp_cierre}}</td><td>{{ai_bs_pasivo_cp_var}}</td></tr>
+        <tr><td>Pasivo Largo Plazo</td><td>{{ai_bs_pasivo_lp_inicio}}</td><td>{{ai_bs_pasivo_lp_cierre}}</td><td>{{ai_bs_pasivo_lp_var}}</td></tr>
+        <tr class="row-subtotal"><td>Pasivo Total</td><td>{{ai_bs_pasivo_total_inicio}}</td><td>{{ai_bs_pasivo_total_cierre}}</td><td>{{ai_bs_pasivo_total_var}}</td></tr>
+        <tr class="row-total"><td>Capital Contable</td><td>{{ai_bs_capital_inicio}}</td><td>{{ai_bs_capital_cierre}}</td><td>{{ai_bs_capital_var}}</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="footer">
+    <span>{{branding_company_name}} &mdash; Informe Confidencial para Direcci&oacute;n General</span>
+    <span>&copy; {{branding_year}} {{branding_company_legal_name}}</span>
+  </div>
+</div>
+
+<!-- ==================== PAGE 4 / 10 — FISCAL ANALYSIS ==================== -->
+<div class="page">
+  <div class="header-compact">
+    <div><h1>{{branding_company_name}}</h1><div class="subtitle">Informe de Auditor&iacute;a Interna y Cumplimiento Fiscal</div></div>
+    <div class="page-info">INFORME TRIMESTRAL / ANUAL<br><span class="sub">P&aacute;g. 4/10</span></div>
+  </div>
+  <div class="content">
+    <div class="section-title">3. AN&Aacute;LISIS FISCAL Y SIMETR&Iacute;A TRIBUTARIA</div>
+    <p style="font-size:9pt; color:#666; margin-bottom:4px;">Resumen de Declaraciones Fiscales del Per&iacute;odo</p>
+    <table>
+      <thead><tr><th>Per&iacute;odo</th><th>Ingresos Declarados</th><th>IVA Declarado</th><th>ISR Provisional</th><th>Diferencia vs Libros</th><th>Status SAT</th></tr></thead>
+      <tbody>
+        <tr><td>{{ai_fiscal_p1_periodo}}</td><td>{{ai_fiscal_p1_ingresos}}</td><td>{{ai_fiscal_p1_iva}}</td><td>{{ai_fiscal_p1_isr}}</td><td>{{ai_fiscal_p1_diferencia}}</td><td>{{ai_fiscal_p1_status}}</td></tr>
+        <tr><td>{{ai_fiscal_p2_periodo}}</td><td>{{ai_fiscal_p2_ingresos}}</td><td>{{ai_fiscal_p2_iva}}</td><td>{{ai_fiscal_p2_isr}}</td><td>{{ai_fiscal_p2_diferencia}}</td><td>{{ai_fiscal_p2_status}}</td></tr>
+        <tr><td>{{ai_fiscal_p3_periodo}}</td><td>{{ai_fiscal_p3_ingresos}}</td><td>{{ai_fiscal_p3_iva}}</td><td>{{ai_fiscal_p3_isr}}</td><td>{{ai_fiscal_p3_diferencia}}</td><td>{{ai_fiscal_p3_status}}</td></tr>
+      </tbody>
+    </table>
+
+    <div class="section-title blue">AN&Aacute;LISIS DE SIMETR&Iacute;A FISCAL (CFDI VS DECLARACIONES)</div>
+    <table>
+      <thead><tr><th style="width:55%">Concepto</th><th>Monto</th><th>Variaci&oacute;n</th></tr></thead>
+      <tbody>
+        <tr><td>Ingresos seg&uacute;n CFDI emitidos (acumulado)</td><td>{{ai_simetria_ingresos_cfdi}}</td><td></td></tr>
+        <tr><td>Ingresos declarados ante el SAT (acumulado)</td><td>{{ai_simetria_ingresos_sat}}</td><td></td></tr>
+        <tr class="row-bold"><td>Diferencia (Riesgo de discrepancia)</td><td>{{ai_simetria_ingresos_diff}}</td><td>{{ai_simetria_ingresos_diff_pct}}</td></tr>
+        <tr><td>Gastos seg&uacute;n CFDI recibidos (acumulado)</td><td>{{ai_simetria_gastos_cfdi}}</td><td></td></tr>
+        <tr><td>Deducciones declaradas (acumulado)</td><td>{{ai_simetria_gastos_sat}}</td><td></td></tr>
+        <tr class="row-bold"><td>Diferencia gastos (riesgo)</td><td>{{ai_simetria_gastos_diff}}</td><td>{{ai_simetria_gastos_diff_pct}}</td></tr>
+        <tr><td>IVA trasladado seg&uacute;n CFDI</td><td>{{ai_simetria_iva_cfdi}}</td><td></td></tr>
+        <tr><td>IVA declarado</td><td>{{ai_simetria_iva_sat}}</td><td></td></tr>
+        <tr class="row-bold"><td>Diferencia IVA</td><td>{{ai_simetria_iva_diff}}</td><td>{{ai_simetria_iva_diff_pct}}</td></tr>
+      </tbody>
+    </table>
+    <div class="semaphore-row" style="margin:8px 0;">
+      <span class="sem-label"><strong>Nivel de Riesgo de Simetr&iacute;a Fiscal:</strong></span>
+      <span class="sem-badge sem-bajo">BAJO</span><span class="sem-box"></span>
+      <span class="sem-badge sem-medio">MEDIO</span><span class="sem-box"></span>
+      <span class="sem-badge sem-alto">ALTO</span><span class="sem-box"></span>
+      <!-- {{ai_risk_simetria_fiscal}} -->
+    </div>
+    <p style="font-size:9pt; color:#666; margin-bottom:4px;">Acciones correctivas recomendadas (fiscal):</p>
+    <div class="narrative-box">{{ai_fiscal_acciones_correctivas}}</div>
+  </div>
+  <div class="footer">
+    <span>{{branding_company_name}} &mdash; Informe Confidencial para Direcci&oacute;n General</span>
+    <span>&copy; {{branding_year}} {{branding_company_legal_name}}</span>
+  </div>
+</div>
+
+<!-- ==================== PAGE 5 / 10 — PAYROLL + FIXED ASSETS ==================== -->
+<div class="page">
+  <div class="header-compact">
+    <div><h1>{{branding_company_name}}</h1><div class="subtitle">Informe de Auditor&iacute;a Interna y Cumplimiento Fiscal</div></div>
+    <div class="page-info">INFORME TRIMESTRAL / ANUAL<br><span class="sub">P&aacute;g. 5/10</span></div>
+  </div>
+  <div class="content">
+    <div class="section-title">4. AUDITOR&Iacute;A DE N&Oacute;MINA Y SEGURIDAD SOCIAL</div>
+    <table>
+      <thead><tr><th>Mes</th><th>Trabajadores</th><th>Percepciones Brutas</th><th>Deducciones</th><th>Neto Pagado</th><th>Cuotas IMSS</th><th>INFONAVIT</th></tr></thead>
+      <tbody>
+        <tr><td>{{ai_payroll_m1_label}}</td><td>{{ai_payroll_m1_workers}}</td><td>{{ai_payroll_m1_gross}}</td><td>{{ai_payroll_m1_ded}}</td><td>{{ai_payroll_m1_net}}</td><td>{{ai_payroll_m1_imss}}</td><td>{{ai_payroll_m1_infonavit}}</td></tr>
+        <tr><td>{{ai_payroll_m2_label}}</td><td>{{ai_payroll_m2_workers}}</td><td>{{ai_payroll_m2_gross}}</td><td>{{ai_payroll_m2_ded}}</td><td>{{ai_payroll_m2_net}}</td><td>{{ai_payroll_m2_imss}}</td><td>{{ai_payroll_m2_infonavit}}</td></tr>
+        <tr><td>{{ai_payroll_m3_label}}</td><td>{{ai_payroll_m3_workers}}</td><td>{{ai_payroll_m3_gross}}</td><td>{{ai_payroll_m3_ded}}</td><td>{{ai_payroll_m3_net}}</td><td>{{ai_payroll_m3_imss}}</td><td>{{ai_payroll_m3_infonavit}}</td></tr>
+        <tr class="row-total"><td>TOTAL</td><td>{{ai_payroll_total_workers}}</td><td>{{ai_payroll_total_gross}}</td><td>{{ai_payroll_total_ded}}</td><td>{{ai_payroll_total_net}}</td><td>{{ai_payroll_total_imss}}</td><td>{{ai_payroll_total_infonavit}}</td></tr>
+      </tbody>
+    </table>
+    <div class="semaphore-row" style="margin:6px 0;">
+      <span class="sem-label"><strong>Riesgo Laboral / IMSS del Per&iacute;odo:</strong></span>
+      <span class="sem-badge sem-bajo">BAJO</span><span class="sem-box"></span>
+      <span class="sem-badge sem-medio">MEDIO</span><span class="sem-box"></span>
+      <span class="sem-badge sem-alto">ALTO</span><span class="sem-box"></span>
+      <!-- {{ai_risk_laboral}} -->
+    </div>
+    <p style="font-size:9pt; color:#666; margin-bottom:4px;">Hallazgos y observaciones de n&oacute;mina del per&iacute;odo:</p>
+    <div class="narrative-box">{{ai_payroll_observaciones}}</div>
+
+    <div class="section-title blue">5. CONTROL Y REGISTRO DE ACTIVOS FIJOS</div>
+    <table>
+      <thead><tr><th>Categor&iacute;a</th><th>No. Activos</th><th>Valor Orig.</th><th>Dep. Acum.</th><th>Valor Neto</th><th>Observaci&oacute;n</th></tr></thead>
+      <tbody>
+        <tr><td>Maquinaria y Equipo</td><td>{{ai_assets_maquinaria_qty}}</td><td>{{ai_assets_maquinaria_orig}}</td><td>{{ai_assets_maquinaria_dep}}</td><td>{{ai_assets_maquinaria_net}}</td><td>{{ai_assets_maquinaria_obs}}</td></tr>
+        <tr><td>Equipo de C&oacute;mputo</td><td>{{ai_assets_computo_qty}}</td><td>{{ai_assets_computo_orig}}</td><td>{{ai_assets_computo_dep}}</td><td>{{ai_assets_computo_net}}</td><td>{{ai_assets_computo_obs}}</td></tr>
+        <tr><td>Mobiliario y Enseres</td><td>{{ai_assets_mobiliario_qty}}</td><td>{{ai_assets_mobiliario_orig}}</td><td>{{ai_assets_mobiliario_dep}}</td><td>{{ai_assets_mobiliario_net}}</td><td>{{ai_assets_mobiliario_obs}}</td></tr>
+        <tr><td>Veh&iacute;culos</td><td>{{ai_assets_vehiculos_qty}}</td><td>{{ai_assets_vehiculos_orig}}</td><td>{{ai_assets_vehiculos_dep}}</td><td>{{ai_assets_vehiculos_net}}</td><td>{{ai_assets_vehiculos_obs}}</td></tr>
+        <tr><td>Mejoras a Local</td><td>{{ai_assets_mejoras_qty}}</td><td>{{ai_assets_mejoras_orig}}</td><td>{{ai_assets_mejoras_dep}}</td><td>{{ai_assets_mejoras_net}}</td><td>{{ai_assets_mejoras_obs}}</td></tr>
+        <tr><td>Otro</td><td>{{ai_assets_otro_qty}}</td><td>{{ai_assets_otro_orig}}</td><td>{{ai_assets_otro_dep}}</td><td>{{ai_assets_otro_net}}</td><td>{{ai_assets_otro_obs}}</td></tr>
+      </tbody>
+    </table>
+    <p style="font-size:9pt; color:#666; margin-bottom:4px;">Observaciones de activos fijos:</p>
+    <div class="narrative-box">{{ai_assets_observaciones}}</div>
+  </div>
+  <div class="footer">
+    <span>{{branding_company_name}} &mdash; Informe Confidencial para Direcci&oacute;n General</span>
+    <span>&copy; {{branding_year}} {{branding_company_legal_name}}</span>
+  </div>
+</div>
+
+<!-- ==================== PAGE 6 / 10 — CxC/CxP + DIOT ==================== -->
+<div class="page">
+  <div class="header-compact">
+    <div><h1>{{branding_company_name}}</h1><div class="subtitle">Informe de Auditor&iacute;a Interna y Cumplimiento Fiscal</div></div>
+    <div class="page-info">INFORME TRIMESTRAL / ANUAL<br><span class="sub">P&aacute;g. 6/10</span></div>
+  </div>
+  <div class="content">
+    <div class="section-title">6. AN&Aacute;LISIS DE CUENTAS POR COBRAR Y POR PAGAR</div>
+    <table>
+      <thead><tr><th>Antig&uuml;edad</th><th>Saldo CxC</th><th>% del Total</th><th>Saldo CxP</th><th>% del Total</th><th>Observaci&oacute;n</th></tr></thead>
+      <tbody>
+        <tr><td>Corriente (0-30 d&iacute;as)</td><td>{{ai_aging_cxc_030}}</td><td>{{ai_aging_cxc_030_pct}}</td><td>{{ai_aging_cxp_030}}</td><td>{{ai_aging_cxp_030_pct}}</td><td>{{ai_aging_030_obs}}</td></tr>
+        <tr><td>31-60 d&iacute;as</td><td>{{ai_aging_cxc_3160}}</td><td>{{ai_aging_cxc_3160_pct}}</td><td>{{ai_aging_cxp_3160}}</td><td>{{ai_aging_cxp_3160_pct}}</td><td>{{ai_aging_3160_obs}}</td></tr>
+        <tr><td>61-90 d&iacute;as</td><td>{{ai_aging_cxc_6190}}</td><td>{{ai_aging_cxc_6190_pct}}</td><td>{{ai_aging_cxp_6190}}</td><td>{{ai_aging_cxp_6190_pct}}</td><td>{{ai_aging_6190_obs}}</td></tr>
+        <tr><td>91-120 d&iacute;as</td><td>{{ai_aging_cxc_91120}}</td><td>{{ai_aging_cxc_91120_pct}}</td><td>{{ai_aging_cxp_91120}}</td><td>{{ai_aging_cxp_91120_pct}}</td><td>{{ai_aging_91120_obs}}</td></tr>
+        <tr><td>+120 d&iacute;as (Muy vencido)</td><td>{{ai_aging_cxc_120plus}}</td><td>{{ai_aging_cxc_120plus_pct}}</td><td>{{ai_aging_cxp_120plus}}</td><td>{{ai_aging_cxp_120plus_pct}}</td><td>{{ai_aging_120plus_obs}}</td></tr>
+        <tr class="row-total"><td>TOTAL</td><td>{{ai_aging_cxc_total}}</td><td>100%</td><td>{{ai_aging_cxp_total}}</td><td>100%</td><td></td></tr>
+      </tbody>
+    </table>
+    <p style="font-size:9pt; color:#666; margin-bottom:4px;">Recomendaciones para gesti&oacute;n de cartera:</p>
+    <div class="narrative-box">{{ai_aging_recomendaciones}}</div>
+
+    <div class="section-title">7. DIOT E INFORMATIVAS DEL PER&Iacute;ODO</div>
+    <table>
+      <thead><tr><th>Per&iacute;odo (Mes)</th><th>Total Proveedores</th><th>IVA Acreditable</th><th>Fecha Presentaci&oacute;n</th><th>Acuse</th><th>Discrepancias</th></tr></thead>
+      <tbody>
+        <tr><td>{{ai_diot_m1_periodo}}</td><td>{{ai_diot_m1_proveedores}}</td><td>{{ai_diot_m1_iva}}</td><td>{{ai_diot_m1_fecha}}</td><td>{{ai_diot_m1_acuse}}</td><td>{{ai_diot_m1_discrepancias}}</td></tr>
+        <tr><td>{{ai_diot_m2_periodo}}</td><td>{{ai_diot_m2_proveedores}}</td><td>{{ai_diot_m2_iva}}</td><td>{{ai_diot_m2_fecha}}</td><td>{{ai_diot_m2_acuse}}</td><td>{{ai_diot_m2_discrepancias}}</td></tr>
+        <tr><td>{{ai_diot_m3_periodo}}</td><td>{{ai_diot_m3_proveedores}}</td><td>{{ai_diot_m3_iva}}</td><td>{{ai_diot_m3_fecha}}</td><td>{{ai_diot_m3_acuse}}</td><td>{{ai_diot_m3_discrepancias}}</td></tr>
+      </tbody>
+    </table>
+    <p style="font-size:9pt; color:#666; margin-bottom:4px;">Observaciones DIOT / Informativas:</p>
+    <div class="narrative-box">{{ai_diot_observaciones}}</div>
+  </div>
+  <div class="footer">
+    <span>{{branding_company_name}} &mdash; Informe Confidencial para Direcci&oacute;n General</span>
+    <span>&copy; {{branding_year}} {{branding_company_legal_name}}</span>
+  </div>
+</div>
+
+<!-- ==================== PAGE 7 / 10 — ANNUAL TAX RETURN ==================== -->
+<div class="page">
+  <div class="header-compact">
+    <div><h1>{{branding_company_name}}</h1><div class="subtitle">Informe de Auditor&iacute;a Interna y Cumplimiento Fiscal</div></div>
+    <div class="page-info">INFORME TRIMESTRAL / ANUAL<br><span class="sub">P&aacute;g. 7/10</span></div>
+  </div>
+  <div class="content">
+    <div class="section-title">8. DECLARACI&Oacute;N ANUAL &mdash; PERSONAS MORALES (R&Eacute;GIMEN GENERAL)</div>
+    <p style="font-size:9pt; color:#666; margin-bottom:6px; font-style:italic;">Esta secci&oacute;n aplica &uacute;nicamente para el informe anual. Completar al cierre del ejercicio fiscal.</p>
+    <table>
+      <thead><tr><th style="width:55%">Concepto</th><th>Ejercicio Actual</th><th>Ejercicio Anterior</th></tr></thead>
+      <tbody>
+        <tr><td>Ingresos Acumulables del Ejercicio</td><td>{{ai_annual_ingresos}}</td><td>{{ai_annual_ingresos_prev}}</td></tr>
+        <tr><td>Deducciones Autorizadas del Ejercicio</td><td>{{ai_annual_deducciones}}</td><td>{{ai_annual_deducciones_prev}}</td></tr>
+        <tr class="row-bold"><td>Resultado Fiscal (Base ISR)</td><td>{{ai_annual_resultado_fiscal}}</td><td>{{ai_annual_resultado_fiscal_prev}}</td></tr>
+        <tr><td>PTU Pagada del Ejercicio</td><td>{{ai_annual_ptu}}</td><td>{{ai_annual_ptu_prev}}</td></tr>
+        <tr><td>P&eacute;rdidas Fiscales Amortizadas</td><td>{{ai_annual_perdidas}}</td><td>{{ai_annual_perdidas_prev}}</td></tr>
+        <tr><td>ISR Determinado (30%)</td><td>{{ai_annual_isr_determinado}}</td><td>{{ai_annual_isr_determinado_prev}}</td></tr>
+        <tr><td>Pagos Provisionales Acreditados</td><td>{{ai_annual_pagos_prov}}</td><td>{{ai_annual_pagos_prov_prev}}</td></tr>
+        <tr class="row-bold"><td>ISR a Cargo / (Saldo a Favor)</td><td>{{ai_annual_isr_cargo}}</td><td>{{ai_annual_isr_cargo_prev}}</td></tr>
+        <tr><td>ISR Pagado (fecha y acuse)</td><td>{{ai_annual_isr_pagado}}</td><td>{{ai_annual_isr_pagado_prev}}</td></tr>
+      </tbody>
+    </table>
+
+    <div class="section-title dark">CUFIN Y CUCA ACTUALIZADOS</div>
+    <table>
+      <tbody>
+        <tr><td style="width:55%"><strong>CUFIN (Cuenta de Utilidad Fiscal Neta):</strong></td><td>{{ai_annual_cufin}}</td></tr>
+        <tr><td><strong>CUCA (Cuenta de Capital de Aportaci&oacute;n):</strong></td><td>{{ai_annual_cuca}}</td></tr>
+      </tbody>
+    </table>
+
+    <div class="section-title">C&Aacute;LCULO Y PAGO DE PTU</div>
+    <table>
+      <tbody>
+        <tr><td style="width:55%">Base de PTU (Utilidad Gravable)</td><td>{{ai_annual_ptu_base}}</td></tr>
+        <tr><td>PTU Total Determinada (10%)</td><td>{{ai_annual_ptu_total}}</td></tr>
+        <tr><td>PTU a Pagar a Trabajadores</td><td>{{ai_annual_ptu_pagar}}</td></tr>
+        <tr><td>Fecha de Pago de PTU</td><td>{{ai_annual_ptu_fecha}}</td></tr>
+      </tbody>
+    </table>
+    <p style="font-size:9pt; color:#666; margin-bottom:4px;">Observaciones generales de la Declaraci&oacute;n Anual:</p>
+    <div class="narrative-box">{{ai_annual_observaciones}}</div>
+  </div>
+  <div class="footer">
+    <span>{{branding_company_name}} &mdash; Informe Confidencial para Direcci&oacute;n General</span>
+    <span>&copy; {{branding_year}} {{branding_company_legal_name}}</span>
+  </div>
+</div>
+
+<!-- ==================== PAGE 8 / 10 — FINANCIAL RATIOS ==================== -->
+<div class="page">
+  <div class="header-compact">
+    <div><h1>{{branding_company_name}}</h1><div class="subtitle">Informe de Auditor&iacute;a Interna y Cumplimiento Fiscal</div></div>
+    <div class="page-info">INFORME TRIMESTRAL / ANUAL<br><span class="sub">P&aacute;g. 8/10</span></div>
+  </div>
+  <div class="content">
+    <div class="section-title">8B. AN&Aacute;LISIS DE RAZONES FINANCIERAS ANUALES</div>
+    <table>
+      <thead><tr><th style="width:50%">Raz&oacute;n Financiera</th><th>Per&iacute;odo Actual</th><th>Per&iacute;odo Anterior</th><th>Variaci&oacute;n</th></tr></thead>
+      <tbody>
+        <tr class="row-subtotal"><td colspan="4">LIQUIDEZ</td></tr>
+        <tr><td>Raz&oacute;n Corriente (Activo Circ / Pasivo CP)</td><td>{{ai_ratio_corriente}}</td><td>{{ai_ratio_corriente_prev}}</td><td>{{ai_ratio_corriente_var}}</td></tr>
+        <tr><td>Prueba &Aacute;cida ((Act Circ - Inventarios) / Pasivo CP)</td><td>{{ai_ratio_acida}}</td><td>{{ai_ratio_acida_prev}}</td><td>{{ai_ratio_acida_var}}</td></tr>
+        <tr><td>Capital de Trabajo Neto (MXN)</td><td>{{ai_ratio_capital_trabajo}}</td><td>{{ai_ratio_capital_trabajo_prev}}</td><td>{{ai_ratio_capital_trabajo_var}}</td></tr>
+        <tr class="row-subtotal"><td colspan="4">RENTABILIDAD</td></tr>
+        <tr><td>Margen Bruto (%)</td><td>{{ai_ratio_margen_bruto}}</td><td>{{ai_ratio_margen_bruto_prev}}</td><td>{{ai_ratio_margen_bruto_var}}</td></tr>
+        <tr><td>Margen Operativo (EBITDA %)</td><td>{{ai_ratio_margen_ebitda}}</td><td>{{ai_ratio_margen_ebitda_prev}}</td><td>{{ai_ratio_margen_ebitda_var}}</td></tr>
+        <tr><td>Margen Neto (%)</td><td>{{ai_ratio_margen_neto}}</td><td>{{ai_ratio_margen_neto_prev}}</td><td>{{ai_ratio_margen_neto_var}}</td></tr>
+        <tr><td>ROE &mdash; Retorno sobre Capital (%)</td><td>{{ai_ratio_roe}}</td><td>{{ai_ratio_roe_prev}}</td><td>{{ai_ratio_roe_var}}</td></tr>
+        <tr class="row-subtotal"><td colspan="4">EFICIENCIA</td></tr>
+        <tr><td>D&iacute;as de Cobro Promedio (CxC)</td><td>{{ai_ratio_dias_cobro}}</td><td>{{ai_ratio_dias_cobro_prev}}</td><td>{{ai_ratio_dias_cobro_var}}</td></tr>
+        <tr><td>D&iacute;as de Pago Promedio (CxP)</td><td>{{ai_ratio_dias_pago}}</td><td>{{ai_ratio_dias_pago_prev}}</td><td>{{ai_ratio_dias_pago_var}}</td></tr>
+        <tr><td>Rotaci&oacute;n de Inventarios (veces)</td><td>{{ai_ratio_rotacion_inv}}</td><td>{{ai_ratio_rotacion_inv_prev}}</td><td>{{ai_ratio_rotacion_inv_var}}</td></tr>
+        <tr class="row-subtotal"><td colspan="4">ENDEUDAMIENTO</td></tr>
+        <tr><td>Raz&oacute;n Deuda / Capital</td><td>{{ai_ratio_deuda_capital}}</td><td>{{ai_ratio_deuda_capital_prev}}</td><td>{{ai_ratio_deuda_capital_var}}</td></tr>
+        <tr><td>Deuda Total / Activo Total</td><td>{{ai_ratio_deuda_activo}}</td><td>{{ai_ratio_deuda_activo_prev}}</td><td>{{ai_ratio_deuda_activo_var}}</td></tr>
+      </tbody>
+    </table>
+    <p style="font-size:9pt; color:#666; margin-bottom:4px;">An&aacute;lisis e interpretaci&oacute;n de las razones financieras:</p>
+    <div class="narrative-box" style="min-height:100px;">{{ai_ratios_interpretacion}}</div>
+  </div>
+  <div class="footer">
+    <span>{{branding_company_name}} &mdash; Informe Confidencial para Direcci&oacute;n General</span>
+    <span>&copy; {{branding_year}} {{branding_company_legal_name}}</span>
+  </div>
+</div>
+
+<!-- ==================== PAGE 9 / 10 — FINDINGS ==================== -->
+<div class="page">
+  <div class="header-compact">
+    <div><h1>{{branding_company_name}}</h1><div class="subtitle">Informe de Auditor&iacute;a Interna y Cumplimiento Fiscal</div></div>
+    <div class="page-info">INFORME TRIMESTRAL / ANUAL<br><span class="sub">P&aacute;g. 9/10</span></div>
+  </div>
+  <div class="content">
+    <div class="section-title">9. TABLERO DE HALLAZGOS Y PLAN DE ACCI&Oacute;N CORRECTIVA</div>
+    <table>
+      <thead><tr><th style="width:3%">#</th><th style="width:10%">&Aacute;rea</th><th style="width:20%">Descripci&oacute;n</th><th style="width:7%">Riesgo</th><th style="width:12%">Impacto Estimado (MXN)</th><th style="width:20%">Acci&oacute;n Correctiva</th><th style="width:10%">Resp.</th><th style="width:10%">Plazo</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td>{{ai_finding_1_area}}</td><td>{{ai_finding_1}}</td><td>{{ai_finding_1_risk}}</td><td>{{ai_finding_1_impact}}</td><td>{{ai_recommendation_1}}</td><td>{{ai_finding_1_responsible}}</td><td>{{ai_finding_1_deadline}}</td></tr>
+        <tr><td>2</td><td>{{ai_finding_2_area}}</td><td>{{ai_finding_2}}</td><td>{{ai_finding_2_risk}}</td><td>{{ai_finding_2_impact}}</td><td>{{ai_recommendation_2}}</td><td>{{ai_finding_2_responsible}}</td><td>{{ai_finding_2_deadline}}</td></tr>
+        <tr><td>3</td><td>{{ai_finding_3_area}}</td><td>{{ai_finding_3}}</td><td>{{ai_finding_3_risk}}</td><td>{{ai_finding_3_impact}}</td><td>{{ai_recommendation_3}}</td><td>{{ai_finding_3_responsible}}</td><td>{{ai_finding_3_deadline}}</td></tr>
+        <tr><td>4</td><td>{{ai_finding_4_area}}</td><td>{{ai_finding_4}}</td><td>{{ai_finding_4_risk}}</td><td>{{ai_finding_4_impact}}</td><td>{{ai_recommendation_4}}</td><td>{{ai_finding_4_responsible}}</td><td>{{ai_finding_4_deadline}}</td></tr>
+        <tr><td>5</td><td>{{ai_finding_5_area}}</td><td>{{ai_finding_5}}</td><td>{{ai_finding_5_risk}}</td><td>{{ai_finding_5_impact}}</td><td>{{ai_recommendation_5}}</td><td>{{ai_finding_5_responsible}}</td><td>{{ai_finding_5_deadline}}</td></tr>
+        <tr><td>6</td><td>{{ai_finding_6_area}}</td><td>{{ai_finding_6}}</td><td>{{ai_finding_6_risk}}</td><td>{{ai_finding_6_impact}}</td><td>{{ai_recommendation_6}}</td><td>{{ai_finding_6_responsible}}</td><td>{{ai_finding_6_deadline}}</td></tr>
+        <tr><td>7</td><td>{{ai_finding_7_area}}</td><td>{{ai_finding_7}}</td><td>{{ai_finding_7_risk}}</td><td>{{ai_finding_7_impact}}</td><td>{{ai_recommendation_7}}</td><td>{{ai_finding_7_responsible}}</td><td>{{ai_finding_7_deadline}}</td></tr>
+        <tr><td>8</td><td>{{ai_finding_8_area}}</td><td>{{ai_finding_8}}</td><td>{{ai_finding_8_risk}}</td><td>{{ai_finding_8_impact}}</td><td>{{ai_recommendation_8}}</td><td>{{ai_finding_8_responsible}}</td><td>{{ai_finding_8_deadline}}</td></tr>
+        <tr><td>9</td><td>{{ai_finding_9_area}}</td><td>{{ai_finding_9}}</td><td>{{ai_finding_9_risk}}</td><td>{{ai_finding_9_impact}}</td><td>{{ai_recommendation_9}}</td><td>{{ai_finding_9_responsible}}</td><td>{{ai_finding_9_deadline}}</td></tr>
+        <tr><td>10</td><td>{{ai_finding_10_area}}</td><td>{{ai_finding_10}}</td><td>{{ai_finding_10_risk}}</td><td>{{ai_finding_10_impact}}</td><td>{{ai_recommendation_10}}</td><td>{{ai_finding_10_responsible}}</td><td>{{ai_finding_10_deadline}}</td></tr>
+      </tbody>
+    </table>
+
+    <div class="section-title dark">COMPROMISOS ADQUIRIDOS POR LA DIRECCI&Oacute;N DEL CLIENTE</div>
+    <table>
+      <thead><tr><th>Compromiso</th><th>Responsable del Cliente</th><th>Fecha Comprometida</th><th>Status</th></tr></thead>
+      <tbody>
+        <tr><td>{{ai_commitment_1}}</td><td>{{ai_commitment_1_responsible}}</td><td>{{ai_commitment_1_date}}</td><td>{{ai_commitment_1_status}}</td></tr>
+        <tr><td>{{ai_commitment_2}}</td><td>{{ai_commitment_2_responsible}}</td><td>{{ai_commitment_2_date}}</td><td>{{ai_commitment_2_status}}</td></tr>
+        <tr><td>{{ai_commitment_3}}</td><td>{{ai_commitment_3_responsible}}</td><td>{{ai_commitment_3_date}}</td><td>{{ai_commitment_3_status}}</td></tr>
+        <tr><td>{{ai_commitment_4}}</td><td>{{ai_commitment_4_responsible}}</td><td>{{ai_commitment_4_date}}</td><td>{{ai_commitment_4_status}}</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="footer">
+    <span>{{branding_company_name}} &mdash; Informe Confidencial para Direcci&oacute;n General</span>
+    <span>&copy; {{branding_year}} {{branding_company_legal_name}}</span>
+  </div>
+</div>
+
+<!-- ==================== PAGE 10 / 10 — CONCLUSIONS + SIGNATURES ==================== -->
+<div class="page">
+  <div class="header-compact">
+    <div><h1>{{branding_company_name}}</h1><div class="subtitle">Informe de Auditor&iacute;a Interna y Cumplimiento Fiscal</div></div>
+    <div class="page-info">INFORME TRIMESTRAL / ANUAL<br><span class="sub">P&aacute;g. 10/10</span></div>
+  </div>
+  <div class="content">
+    <div class="section-title">10. CONCLUSIONES GENERALES DEL PER&Iacute;ODO</div>
+    <p style="font-size:9pt; color:#666; margin-bottom:4px;">Opini&oacute;n profesional del asesor (dictamen de situaci&oacute;n contable-fiscal):</p>
+    <div class="narrative-box" style="min-height:100px;">{{ai_conclusion}}</div>
+
+    <div class="section-title">PR&Oacute;XIMOS PASOS Y AGENDA ESTRAT&Eacute;GICA</div>
+    <table>
+      <thead><tr><th>Acci&oacute;n Estrat&eacute;gica</th><th>&Aacute;rea</th><th>Responsable</th><th>Fecha L&iacute;mite</th><th>Prioridad</th></tr></thead>
+      <tbody>
+        <tr><td>{{ai_next_step_1}}</td><td>{{ai_next_step_1_area}}</td><td>{{ai_next_step_1_responsible}}</td><td>{{ai_next_step_1_date}}</td><td>{{ai_next_step_1_priority}}</td></tr>
+        <tr><td>{{ai_next_step_2}}</td><td>{{ai_next_step_2_area}}</td><td>{{ai_next_step_2_responsible}}</td><td>{{ai_next_step_2_date}}</td><td>{{ai_next_step_2_priority}}</td></tr>
+        <tr><td>{{ai_next_step_3}}</td><td>{{ai_next_step_3_area}}</td><td>{{ai_next_step_3_responsible}}</td><td>{{ai_next_step_3_date}}</td><td>{{ai_next_step_3_priority}}</td></tr>
+        <tr><td>{{ai_next_step_4}}</td><td>{{ai_next_step_4_area}}</td><td>{{ai_next_step_4_responsible}}</td><td>{{ai_next_step_4_date}}</td><td>{{ai_next_step_4_priority}}</td></tr>
+        <tr><td>{{ai_next_step_5}}</td><td>{{ai_next_step_5_area}}</td><td>{{ai_next_step_5_responsible}}</td><td>{{ai_next_step_5_date}}</td><td>{{ai_next_step_5_priority}}</td></tr>
+      </tbody>
+    </table>
+
+    <!-- Signatures -->
+    <div class="section-title dark">FIRMAS Y ACUSE DE CONFORMIDAD</div>
+    <div class="sig-container">
+      <div class="sig-block">
+        <div class="sig-header">ASESOR {{branding_company_name}}</div>
+        <div class="sig-area"></div>
+        <div class="sig-label">Firma y Sello</div>
+        <div class="sig-field"><label>Nombre:</label><span class="value">{{sig_advisor_name}}</span></div>
+        <div class="sig-field"><label>Cargo:</label><span class="value">{{sig_advisor_role}}</span></div>
+        <div class="sig-field"><label>Fecha:</label><span class="value">{{sig_advisor_date}}</span></div>
+      </div>
+      <div class="sig-block">
+        <div class="sig-header">DIRECTOR GENERAL / REP. LEGAL</div>
+        <div class="sig-area"></div>
+        <div class="sig-label">Firma y Sello</div>
+        <div class="sig-field"><label>Nombre:</label><span class="value">{{sig_client_name}}</span></div>
+        <div class="sig-field"><label>Cargo:</label><span class="value">{{sig_client_role}}</span></div>
+        <div class="sig-field"><label>Fecha:</label><span class="value">{{sig_client_date}}</span></div>
+      </div>
+    </div>
+
+    <!-- Acuse -->
+    <div class="acuse-box">
+      <label>ACUSE DE ENTREGA DEL INFORME:</label>
+      <label>Folio:</label><span class="value">{{delivery_folio}}</span>
+      <label>Fecha:</label><span class="value">{{delivery_date}}</span>
+      <label>Entregado por:</label><span class="value">{{delivery_by}}</span>
+      <label>Recibido:</label><span class="value">{{delivery_received_by}}</span>
+    </div>
+
+    <div class="banner">{{branding_company_name}} &mdash; Su Socio Estrat&eacute;gico de Gobierno Corporativo y Fiscal</div>
+  </div>
+  <div class="footer">
+    <span>{{branding_company_name}} &mdash; Informe Confidencial para Direcci&oacute;n General</span>
+    <span>&copy; {{branding_year}} {{branding_company_legal_name}}</span>
+  </div>
+</div>
+
+</body>
+</html>

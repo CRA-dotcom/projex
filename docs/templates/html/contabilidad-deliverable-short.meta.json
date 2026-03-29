@@ -1,0 +1,145 @@
+{
+  "template_id": "contabilidad-deliverable-short",
+  "name": "Informe Mensual de Gobierno Contable y Fiscal",
+  "service_line": "contabilidad",
+  "service_tier": "premium",
+  "document_type": "deliverable",
+  "frequency": "monthly",
+  "pages": 5,
+  "source_pdf": "Copia de 04_Entregable_Mensual.pdf",
+  "version": "1.0.0",
+  "created_at": "2026-03-27",
+  "sections": [
+    "kpi_dashboard",
+    "executive_summary",
+    "risk_semaphores",
+    "income_statement",
+    "balanza_observations",
+    "bank_reconciliation",
+    "tax_declarations",
+    "payroll_summary",
+    "cxc_cxp_summary",
+    "findings_table",
+    "previous_followup",
+    "next_month_projections",
+    "summary_grid",
+    "conclusion",
+    "signatures",
+    "delivery_receipt"
+  ],
+  "variables": {
+    "branding": [
+      "branding_company_name",
+      "branding_company_legal_name",
+      "branding_year"
+    ],
+    "client": [
+      "client_name"
+    ],
+    "report_meta": [
+      "report_period",
+      "advisor_name"
+    ],
+    "ai_kpis": [
+      "ai_kpi_ingresos",
+      "ai_kpi_ingresos_var",
+      "ai_kpi_egresos",
+      "ai_kpi_egresos_var",
+      "ai_kpi_utilidad_bruta",
+      "ai_kpi_utilidad_bruta_var",
+      "ai_kpi_saldo_bancario",
+      "ai_kpi_saldo_bancario_var",
+      "ai_kpi_cxc_vigente",
+      "ai_kpi_cxc_vigente_var"
+    ],
+    "ai_narrative": [
+      "ai_executive_summary",
+      "ai_balanza_observaciones",
+      "ai_tax_observaciones",
+      "ai_payroll_incidencias",
+      "ai_followup_previous",
+      "ai_projections_next_month",
+      "ai_conclusion"
+    ],
+    "ai_risk_semaphores": [
+      "ai_risk_fiscal",
+      "ai_risk_contable",
+      "ai_risk_nomina",
+      "ai_risk_flujo_efectivo"
+    ],
+    "ai_income_statement": [
+      "ai_pl_ingresos", "ai_pl_ingresos_prev", "ai_pl_ingresos_var",
+      "ai_pl_costos", "ai_pl_costos_prev", "ai_pl_costos_var",
+      "ai_pl_utilidad_bruta", "ai_pl_utilidad_bruta_prev", "ai_pl_utilidad_bruta_var",
+      "ai_pl_gastos_operacion", "ai_pl_gastos_operacion_prev", "ai_pl_gastos_operacion_var",
+      "ai_pl_gastos_admin", "ai_pl_gastos_admin_prev", "ai_pl_gastos_admin_var",
+      "ai_pl_depreciaciones", "ai_pl_depreciaciones_prev", "ai_pl_depreciaciones_var",
+      "ai_pl_ebitda", "ai_pl_ebitda_prev", "ai_pl_ebitda_var",
+      "ai_pl_gastos_financieros", "ai_pl_gastos_financieros_prev", "ai_pl_gastos_financieros_var",
+      "ai_pl_otros", "ai_pl_otros_prev", "ai_pl_otros_var",
+      "ai_pl_utilidad_antes_isr", "ai_pl_utilidad_antes_isr_prev", "ai_pl_utilidad_antes_isr_var",
+      "ai_pl_isr", "ai_pl_isr_prev", "ai_pl_isr_var",
+      "ai_pl_utilidad_neta", "ai_pl_utilidad_neta_prev", "ai_pl_utilidad_neta_var"
+    ],
+    "ai_bank_reconciliation": [
+      "ai_bank_1_name", "ai_bank_1_saldo_banco", "ai_bank_1_saldo_libros", "ai_bank_1_diferencia", "ai_bank_1_status",
+      "ai_bank_2_name", "ai_bank_2_saldo_banco", "ai_bank_2_saldo_libros", "ai_bank_2_diferencia", "ai_bank_2_status",
+      "ai_bank_3_name", "ai_bank_3_saldo_banco", "ai_bank_3_saldo_libros", "ai_bank_3_diferencia", "ai_bank_3_status"
+    ],
+    "ai_tax_declarations": [
+      "ai_tax_iva_base", "ai_tax_iva_tasa", "ai_tax_iva_cargo", "ai_tax_iva_favor", "ai_tax_iva_fecha", "ai_tax_iva_acuse",
+      "ai_tax_isr_base", "ai_tax_isr_tasa", "ai_tax_isr_cargo", "ai_tax_isr_favor", "ai_tax_isr_fecha", "ai_tax_isr_acuse",
+      "ai_tax_ieps_base", "ai_tax_ieps_tasa", "ai_tax_ieps_cargo", "ai_tax_ieps_favor", "ai_tax_ieps_fecha", "ai_tax_ieps_acuse"
+    ],
+    "ai_payroll": [
+      "ai_payroll_trabajadores", "ai_payroll_trabajadores_prev",
+      "ai_payroll_percepciones", "ai_payroll_percepciones_prev",
+      "ai_payroll_deducciones", "ai_payroll_deducciones_prev",
+      "ai_payroll_neto", "ai_payroll_neto_prev",
+      "ai_payroll_imss", "ai_payroll_imss_prev",
+      "ai_payroll_infonavit", "ai_payroll_infonavit_prev",
+      "ai_payroll_total", "ai_payroll_total_prev"
+    ],
+    "ai_cxc_cxp": [
+      "ai_cxc_total", "ai_cxc_total_prev",
+      "ai_cxc_corriente", "ai_cxc_corriente_prev",
+      "ai_cxc_vencida", "ai_cxc_vencida_prev",
+      "ai_cxc_muy_vencida", "ai_cxc_muy_vencida_prev",
+      "ai_cxp_total", "ai_cxp_total_prev",
+      "ai_cxp_corriente", "ai_cxp_corriente_prev",
+      "ai_cxp_vencida", "ai_cxp_vencida_prev"
+    ],
+    "ai_findings": [
+      "ai_finding_1_area", "ai_finding_1", "ai_finding_1_impact", "ai_recommendation_1", "ai_finding_1_responsible", "ai_finding_1_deadline",
+      "ai_finding_2_area", "ai_finding_2", "ai_finding_2_impact", "ai_recommendation_2", "ai_finding_2_responsible", "ai_finding_2_deadline",
+      "ai_finding_3_area", "ai_finding_3", "ai_finding_3_impact", "ai_recommendation_3", "ai_finding_3_responsible", "ai_finding_3_deadline",
+      "ai_finding_4_area", "ai_finding_4", "ai_finding_4_impact", "ai_recommendation_4", "ai_finding_4_responsible", "ai_finding_4_deadline",
+      "ai_finding_5_area", "ai_finding_5", "ai_finding_5_impact", "ai_recommendation_5", "ai_finding_5_responsible", "ai_finding_5_deadline",
+      "ai_finding_6_area", "ai_finding_6", "ai_finding_6_impact", "ai_recommendation_6", "ai_finding_6_responsible", "ai_finding_6_deadline",
+      "ai_finding_7_area", "ai_finding_7", "ai_finding_7_impact", "ai_recommendation_7", "ai_finding_7_responsible", "ai_finding_7_deadline",
+      "ai_finding_8_area", "ai_finding_8", "ai_finding_8_impact", "ai_recommendation_8", "ai_finding_8_responsible", "ai_finding_8_deadline"
+    ],
+    "ai_summary": [
+      "ai_summary_ingresos",
+      "ai_summary_egresos",
+      "ai_summary_utilidad_neta",
+      "ai_summary_isr",
+      "ai_summary_iva",
+      "ai_summary_nomina",
+      "ai_summary_saldo_bancario",
+      "ai_summary_cxc",
+      "ai_summary_cxp"
+    ],
+    "signatures": [
+      "sig_advisor_name",
+      "sig_advisor_date",
+      "sig_client_name",
+      "sig_client_date"
+    ],
+    "delivery": [
+      "delivery_folio",
+      "delivery_date",
+      "delivery_method"
+    ]
+  }
+}

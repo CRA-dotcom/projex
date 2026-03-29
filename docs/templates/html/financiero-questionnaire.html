@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cuestionario Diagnostico Financiero - {{client_name}}</title>
+  <style>
+    :root { --primary: #0d3b66; --accent: #f4a261; --bg: #fff; --text: #1a1a2e; --border: #ddd; --header-bg: #f8f9fa; --section-bg: #eef2f7; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color: var(--text); line-height: 1.6; max-width: 900px; margin: 0 auto; padding: 40px 20px; }
+    .cover { text-align: center; margin-bottom: 40px; padding: 40px 20px; border: 2px solid var(--primary); }
+    .cover h1 { font-size: 1.6rem; color: var(--primary); margin-bottom: 4px; }
+    .cover .subtitle { font-size: 1rem; color: #555; margin-bottom: 12px; }
+    .cover .methodology { font-size: 0.85rem; color: #777; }
+    .instructions { background: #fff3cd; border: 1px solid #ffc107; padding: 14px 18px; font-size: 0.85rem; margin-bottom: 24px; line-height: 1.5; }
+    h1 { font-size: 1.3rem; color: var(--primary); margin: 30px 0 12px; border-bottom: 2px solid var(--accent); padding-bottom: 6px; }
+    h2 { font-size: 1rem; color: var(--primary); margin: 16px 0 8px; }
+    p { margin-bottom: 10px; font-size: 0.95rem; }
+    .question { margin-bottom: 16px; }
+    .question .q-label { font-weight: 600; font-size: 0.95rem; margin-bottom: 4px; }
+    .question .q-hint { font-size: 0.8rem; color: #777; font-style: italic; }
+    .answer-box { border: 1px solid var(--border); padding: 10px 14px; min-height: 50px; background: var(--header-bg); margin-top: 4px; font-size: 0.9rem; }
+    .checkbox-row { display: flex; gap: 16px; flex-wrap: wrap; margin-top: 6px; }
+    .checkbox-item { font-size: 0.85rem; padding: 4px 10px; border: 1px solid var(--border); background: var(--header-bg); }
+    table.financial-table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
+    table.financial-table th { background: var(--primary); color: #fff; padding: 8px 10px; text-align: left; font-size: 0.8rem; }
+    table.financial-table td { padding: 5px 10px; border: 1px solid var(--border); font-size: 0.8rem; }
+    table.financial-table tr:nth-child(even) { background: var(--header-bg); }
+    table.financial-table .section-row { background: var(--section-bg); font-weight: 700; }
+    table.financial-table .sub-row td:first-child { padding-left: 24px; }
+    .note { font-size: 0.8rem; color: #666; font-style: italic; margin-bottom: 16px; }
+    .declaration { background: var(--header-bg); border: 1px solid var(--border); padding: 14px 18px; font-size: 0.85rem; margin-bottom: 24px; line-height: 1.5; }
+    .caveats { background: #f8d7da; border: 1px solid #f5c6cb; padding: 14px 18px; font-size: 0.8rem; line-height: 1.5; margin-top: 30px; }
+    .signatures { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; margin-top: 24px; }
+    .sig-field { font-size: 0.85rem; border-bottom: 1px solid var(--text); padding-bottom: 4px; margin-bottom: 8px; }
+    @media print { body { padding: 20px; } .cover { page-break-after: always; } }
+  </style>
+</head>
+<body>
+
+  <!-- COVER -->
+  <div class="cover">
+    <h1>DIAGNOSTICO FINANCIERO INTEGRAL</h1>
+    <div class="subtitle">Cuestionario de Recaudacion de Informacion &mdash; Fase I</div>
+    <div class="methodology">Senior Financial Advisory | Big Four Methodology</div>
+  </div>
+
+  <!-- INSTRUCTIONS -->
+  <div class="instructions">
+    <strong>INSTRUCCIONES DE USO</strong><br>
+    Este cuestionario ha sido disenado para recabar la informacion necesaria para ejecutar un Diagnostico Financiero Integral de su empresa. La informacion proporcionada es estrictamente confidencial y se utilizara exclusivamente para los fines del analisis.<br><br>
+    Por favor complete todos los campos con la mayor precision posible. En caso de no contar con informacion especifica, indiquelo en la columna de Notas. El tiempo estimado de llenado es de 45-90 minutos.<br><br>
+    <strong>Moneda de referencia:</strong> Todos los datos financieros deben expresarse en la misma moneda local. Indicar la moneda y unidad (ej: MXN miles, USD millones).
+  </div>
+
+  <!-- SECCION 1 -->
+  <h1>SECCION 1 &mdash; PERFIL CORPORATIVO Y MODELO DE NEGOCIO</h1>
+
+  <div class="question">
+    <div class="q-label">1.1 Razon Social / Nombre Comercial de la Empresa:</div>
+    <div class="answer-box">{{client_name}}</div>
+  </div>
+
+  <div class="question">
+    <div class="q-label">1.2 Giro de Negocio / Industria Principal:</div>
+    <div class="q-hint">(ej: manufactura, retail, servicios, tecnologia, salud)</div>
+    <div class="answer-box">{{client_industry}}</div>
+  </div>
+
+  <div class="question">
+    <div class="q-label">1.3 Descripcion del Modelo de Negocio:</div>
+    <div class="q-hint">(Como genera ingresos la empresa? Productos, servicios, canales de venta)</div>
+    <div class="answer-box">{{ai_financial_business_model}}</div>
+  </div>
+
+  <div class="question">
+    <div class="q-label">1.4 Anos en Operacion:</div>
+    <div class="q-hint">(fecha de constitucion formal)</div>
+    <div class="answer-box">{{ai_financial_years_operating}}</div>
+  </div>
+
+  <div class="question">
+    <div class="q-label">1.5 Numero de Empleados:</div>
+    <div class="checkbox-row">
+      <div class="checkbox-item">{{ai_financial_employees_micro}} &lt; 10 (Micro)</div>
+      <div class="checkbox-item">{{ai_financial_employees_small}} 11-50 (Pequena)</div>
+      <div class="checkbox-item">{{ai_financial_employees_medium}} 51-250 (Mediana)</div>
+      <div class="checkbox-item">{{ai_financial_employees_large}} 251-1,000 (Grande)</div>
+      <div class="checkbox-item">{{ai_financial_employees_corp}} &gt; 1,000 (Corporativo)</div>
+    </div>
+  </div>
+
+  <div class="question">
+    <div class="q-label">1.6 Cobertura Geografica:</div>
+    <div class="checkbox-row">
+      <div class="checkbox-item">{{ai_financial_geo_local}} Local</div>
+      <div class="checkbox-item">{{ai_financial_geo_regional}} Regional</div>
+      <div class="checkbox-item">{{ai_financial_geo_national}} Nacional</div>
+      <div class="checkbox-item">{{ai_financial_geo_international}} Internacional</div>
+    </div>
+  </div>
+
+  <div class="question">
+    <div class="q-label">1.7 Estructura Societaria:</div>
+    <div class="q-hint">(Es empresa familiar, corporativo, subsidiaria, startup, etc.?)</div>
+    <div class="answer-box">{{ai_financial_corporate_structure}}</div>
+  </div>
+
+  <div class="question">
+    <div class="q-label">1.8 La empresa pertenece a un grupo corporativo?</div>
+    <div class="checkbox-row">
+      <div class="checkbox-item">{{ai_financial_group_yes}} Si &mdash; Grupo: {{ai_financial_group_name}}</div>
+      <div class="checkbox-item">{{ai_financial_group_no}} No</div>
+      <div class="checkbox-item">{{ai_financial_group_holding}} Holding / Controladora</div>
+    </div>
+  </div>
+
+  <div class="question">
+    <div class="q-label">1.9 Principales productos / servicios (top 3-5 por volumen de ventas):</div>
+    <div class="answer-box">{{ai_financial_top_products}}</div>
+  </div>
+
+  <div class="question">
+    <div class="q-label">1.10 Principales clientes (concentracion de ingresos):</div>
+    <div class="q-hint">(indicar si el top 3 clientes representa &gt; 30% de ventas)</div>
+    <div class="answer-box">{{ai_financial_client_concentration}}</div>
+  </div>
+
+  <div class="question">
+    <div class="q-label">1.11 Principales competidores y posicion de mercado:</div>
+    <div class="answer-box">{{ai_financial_competitors}}</div>
+  </div>
+
+  <div class="question">
+    <div class="q-label">1.12 La empresa cuenta con estados financieros dictaminados / auditados?</div>
+    <div class="checkbox-row">
+      <div class="checkbox-item">{{ai_financial_audited_yes}} Si &mdash; Auditor: {{ai_financial_auditor_name}}</div>
+      <div class="checkbox-item">{{ai_financial_limited_review}} Si &mdash; Revision Limitada</div>
+      <div class="checkbox-item">{{ai_financial_audited_no}} No / Internos</div>
+      <div class="checkbox-item">{{ai_financial_audit_in_progress}} En proceso</div>
+    </div>
+  </div>
+
+  <!-- SECCION 2 -->
+  <h1>SECCION 2 &mdash; CONTEXTO ESTRATEGICO Y FINANCIERO</h1>
+
+  <div class="question">
+    <div class="q-label">2.1 Cuales son los principales objetivos estrategicos para los proximos 12-24 meses?</div>
+    <div class="answer-box">{{ai_financial_strategic_objectives}}</div>
+  </div>
+
+  <div class="question">
+    <div class="q-label">2.2 Existe alguna situacion o evento relevante que haya impactado los resultados recientes?</div>
+    <div class="q-hint">(ej: pandemia, litigios, reestructuras, fusiones, perdida de clientes clave)</div>
+    <div class="answer-box">{{ai_financial_relevant_events}}</div>
+  </div>
+
+  <div class="question">
+    <div class="q-label">2.3 La empresa tiene deuda financiera formal (creditos bancarios, emisiones de deuda)?</div>
+    <div class="checkbox-row">
+      <div class="checkbox-item">{{ai_financial_debt_none}} No</div>
+      <div class="checkbox-item">{{ai_financial_debt_simple}} Si &mdash; Credito Simple</div>
+      <div class="checkbox-item">{{ai_financial_debt_revolving}} Si &mdash; Revolvente / Linea</div>
+      <div class="checkbox-item">{{ai_financial_debt_bond}} Si &mdash; Bono / Emision</div>
+      <div class="checkbox-item">{{ai_financial_debt_factoring}} Si &mdash; Factoraje</div>
+    </div>
+  </div>
+
+  <div class="question">
+    <div class="q-label">2.4 Cuales son las principales fuentes de financiamiento actuales?</div>
+    <div class="answer-box">{{ai_financial_funding_sources}}</div>
+  </div>
+
+  <div class="question">
+    <div class="q-label">2.5 Se han realizado distribuciones de dividendos en los ultimos 3 anos? Monto aproximado?</div>
+    <div class="answer-box">{{ai_financial_dividends}}</div>
+  </div>
+
+  <div class="question">
+    <div class="q-label">2.6 Existe algun plan de inversion de capital (CAPEX) en proceso o proyectado?</div>
+    <div class="answer-box">{{ai_financial_capex_plans}}</div>
+  </div>
+
+  <div class="question">
+    <div class="q-label">2.7 Cual es la politica de credito a clientes (dias de credito estandar)?</div>
+    <div class="q-hint">(ej: 30, 45, 60 dias)</div>
+    <div class="answer-box">{{ai_financial_credit_policy}}</div>
+  </div>
+
+  <div class="question">
+    <div class="q-label">2.8 Cual es la politica de pago a proveedores (dias de credito recibido)?</div>
+    <div class="answer-box">{{ai_financial_payment_policy}}</div>
+  </div>
+
+  <div class="question">
+    <div class="q-label">2.9 La empresa tiene contingencias fiscales, laborales o legales relevantes?</div>
+    <div class="answer-box">{{ai_financial_contingencies}}</div>
+  </div>
+
+  <div class="question">
+    <div class="q-label">2.10 Existe un presupuesto o forecast financiero para el ano en curso?</div>
+    <div class="checkbox-row">
+      <div class="checkbox-item">{{ai_financial_budget_available}} Si &mdash; disponible para analisis</div>
+      <div class="checkbox-item">{{ai_financial_budget_confidential}} Si &mdash; confidencial</div>
+      <div class="checkbox-item">{{ai_financial_budget_wip}} En elaboracion</div>
+      <div class="checkbox-item">{{ai_financial_budget_none}} No existe</div>
+    </div>
+  </div>
+
+  <!-- SECCION 3 -->
+  <h1>SECCION 3 &mdash; BALANCE GENERAL (Estado de Situacion Financiera)</h1>
+  <p class="note">Instruccion: Completar los montos en la misma moneda y unidad para los tres ejercicios. Cifras en miles de moneda local salvo indicacion contraria.</p>
+
+  <table class="financial-table">
+    <thead>
+      <tr><th>CONCEPTO</th><th>ANO -2</th><th>ANO -1</th><th>ANO ACTUAL</th><th>NOTAS</th></tr>
+    </thead>
+    <tbody>
+      <tr class="section-row"><td>ACTIVO TOTAL</td><td>{{ai_financial_bs_total_assets_y2}}</td><td>{{ai_financial_bs_total_assets_y1}}</td><td>{{ai_financial_bs_total_assets_y0}}</td><td></td></tr>
+      <tr class="section-row"><td>ACTIVO CIRCULANTE</td><td>{{ai_financial_bs_current_assets_y2}}</td><td>{{ai_financial_bs_current_assets_y1}}</td><td>{{ai_financial_bs_current_assets_y0}}</td><td></td></tr>
+      <tr class="sub-row"><td>Efectivo y equivalentes</td><td>{{ai_financial_bs_cash_y2}}</td><td>{{ai_financial_bs_cash_y1}}</td><td>{{ai_financial_bs_cash_y0}}</td><td></td></tr>
+      <tr class="sub-row"><td>Cuentas por cobrar clientes</td><td>{{ai_financial_bs_receivables_y2}}</td><td>{{ai_financial_bs_receivables_y1}}</td><td>{{ai_financial_bs_receivables_y0}}</td><td></td></tr>
+      <tr class="sub-row"><td>Otras cuentas por cobrar</td><td>{{ai_financial_bs_other_receivables_y2}}</td><td>{{ai_financial_bs_other_receivables_y1}}</td><td>{{ai_financial_bs_other_receivables_y0}}</td><td></td></tr>
+      <tr class="sub-row"><td>Inventarios</td><td>{{ai_financial_bs_inventory_y2}}</td><td>{{ai_financial_bs_inventory_y1}}</td><td>{{ai_financial_bs_inventory_y0}}</td><td></td></tr>
+      <tr class="sub-row"><td>Pagos anticipados</td><td>{{ai_financial_bs_prepaid_y2}}</td><td>{{ai_financial_bs_prepaid_y1}}</td><td>{{ai_financial_bs_prepaid_y0}}</td><td></td></tr>
+      <tr class="sub-row"><td>Otros activos circulantes</td><td>{{ai_financial_bs_other_current_y2}}</td><td>{{ai_financial_bs_other_current_y1}}</td><td>{{ai_financial_bs_other_current_y0}}</td><td></td></tr>
+      <tr class="section-row"><td>ACTIVO NO CIRCULANTE</td><td>{{ai_financial_bs_noncurrent_assets_y2}}</td><td>{{ai_financial_bs_noncurrent_assets_y1}}</td><td>{{ai_financial_bs_noncurrent_assets_y0}}</td><td></td></tr>
+      <tr class="sub-row"><td>Inmuebles, planta y equipo (neto)</td><td>{{ai_financial_bs_ppe_y2}}</td><td>{{ai_financial_bs_ppe_y1}}</td><td>{{ai_financial_bs_ppe_y0}}</td><td></td></tr>
+      <tr class="sub-row"><td>Activos intangibles (neto)</td><td>{{ai_financial_bs_intangibles_y2}}</td><td>{{ai_financial_bs_intangibles_y1}}</td><td>{{ai_financial_bs_intangibles_y0}}</td><td></td></tr>
+      <tr class="sub-row"><td>Inversiones en subsidiarias</td><td>{{ai_financial_bs_investments_y2}}</td><td>{{ai_financial_bs_investments_y1}}</td><td>{{ai_financial_bs_investments_y0}}</td><td></td></tr>
+      <tr class="sub-row"><td>Otros activos no circulantes</td><td>{{ai_financial_bs_other_noncurrent_y2}}</td><td>{{ai_financial_bs_other_noncurrent_y1}}</td><td>{{ai_financial_bs_other_noncurrent_y0}}</td><td></td></tr>
+      <tr class="section-row"><td>PASIVO TOTAL</td><td>{{ai_financial_bs_total_liabilities_y2}}</td><td>{{ai_financial_bs_total_liabilities_y1}}</td><td>{{ai_financial_bs_total_liabilities_y0}}</td><td></td></tr>
+      <tr class="section-row"><td>PASIVO CIRCULANTE</td><td>{{ai_financial_bs_current_liabilities_y2}}</td><td>{{ai_financial_bs_current_liabilities_y1}}</td><td>{{ai_financial_bs_current_liabilities_y0}}</td><td></td></tr>
+      <tr class="sub-row"><td>Proveedores</td><td>{{ai_financial_bs_payables_y2}}</td><td>{{ai_financial_bs_payables_y1}}</td><td>{{ai_financial_bs_payables_y0}}</td><td></td></tr>
+      <tr class="sub-row"><td>Creditos bancarios CP</td><td>{{ai_financial_bs_st_debt_y2}}</td><td>{{ai_financial_bs_st_debt_y1}}</td><td>{{ai_financial_bs_st_debt_y0}}</td><td></td></tr>
+      <tr class="sub-row"><td>Porcion CP de deuda LP</td><td>{{ai_financial_bs_cpltd_y2}}</td><td>{{ai_financial_bs_cpltd_y1}}</td><td>{{ai_financial_bs_cpltd_y0}}</td><td></td></tr>
+      <tr class="sub-row"><td>Impuestos y contribuciones por pagar</td><td>{{ai_financial_bs_taxes_payable_y2}}</td><td>{{ai_financial_bs_taxes_payable_y1}}</td><td>{{ai_financial_bs_taxes_payable_y0}}</td><td></td></tr>
+      <tr class="sub-row"><td>Otros pasivos circulantes</td><td>{{ai_financial_bs_other_cl_y2}}</td><td>{{ai_financial_bs_other_cl_y1}}</td><td>{{ai_financial_bs_other_cl_y0}}</td><td></td></tr>
+      <tr class="section-row"><td>PASIVO NO CIRCULANTE</td><td>{{ai_financial_bs_noncurrent_liab_y2}}</td><td>{{ai_financial_bs_noncurrent_liab_y1}}</td><td>{{ai_financial_bs_noncurrent_liab_y0}}</td><td></td></tr>
+      <tr class="sub-row"><td>Deuda bancaria largo plazo</td><td>{{ai_financial_bs_lt_debt_y2}}</td><td>{{ai_financial_bs_lt_debt_y1}}</td><td>{{ai_financial_bs_lt_debt_y0}}</td><td></td></tr>
+      <tr class="sub-row"><td>Arrendamientos financieros LP</td><td>{{ai_financial_bs_leases_y2}}</td><td>{{ai_financial_bs_leases_y1}}</td><td>{{ai_financial_bs_leases_y0}}</td><td></td></tr>
+      <tr class="sub-row"><td>Otros pasivos no circulantes</td><td>{{ai_financial_bs_other_ncl_y2}}</td><td>{{ai_financial_bs_other_ncl_y1}}</td><td>{{ai_financial_bs_other_ncl_y0}}</td><td></td></tr>
+      <tr class="section-row"><td>CAPITAL CONTABLE TOTAL</td><td>{{ai_financial_bs_equity_y2}}</td><td>{{ai_financial_bs_equity_y1}}</td><td>{{ai_financial_bs_equity_y0}}</td><td></td></tr>
+      <tr class="sub-row"><td>Capital social</td><td>{{ai_financial_bs_share_capital_y2}}</td><td>{{ai_financial_bs_share_capital_y1}}</td><td>{{ai_financial_bs_share_capital_y0}}</td><td></td></tr>
+      <tr class="sub-row"><td>Utilidades retenidas</td><td>{{ai_financial_bs_retained_y2}}</td><td>{{ai_financial_bs_retained_y1}}</td><td>{{ai_financial_bs_retained_y0}}</td><td></td></tr>
+      <tr class="sub-row"><td>Resultado del ejercicio</td><td>{{ai_financial_bs_net_income_y2}}</td><td>{{ai_financial_bs_net_income_y1}}</td><td>{{ai_financial_bs_net_income_y0}}</td><td></td></tr>
+      <tr class="sub-row"><td>Otros componentes de capital</td><td>{{ai_financial_bs_other_equity_y2}}</td><td>{{ai_financial_bs_other_equity_y1}}</td><td>{{ai_financial_bs_other_equity_y0}}</td><td></td></tr>
+    </tbody>
+  </table>
+  <p class="note">Verificacion de cuadre: Activo Total debe ser igual a Pasivo Total + Capital Contable.</p>
+
+  <!-- SECCION 4 -->
+  <h1>SECCION 4 &mdash; ESTADO DE RESULTADOS (P&amp;L)</h1>
+  <p class="note">Instruccion: Completar en la misma moneda/unidad que el Balance. Incluir todos los conceptos aplicables.</p>
+
+  <table class="financial-table">
+    <thead>
+      <tr><th>CONCEPTO</th><th>ANO -2</th><th>ANO -1</th><th>ANO ACTUAL</th><th>NOTAS</th></tr>
+    </thead>
+    <tbody>
+      <tr class="section-row"><td>INGRESOS NETOS (Ventas Netas)</td><td>{{ai_financial_pl_revenue_y2}}</td><td>{{ai_financial_pl_revenue_y1}}</td><td>{{ai_financial_pl_revenue_y0}}</td><td></td></tr>
+      <tr class="sub-row"><td>Ventas de productos</td><td>{{ai_financial_pl_product_sales_y2}}</td><td>{{ai_financial_pl_product_sales_y1}}</td><td>{{ai_financial_pl_product_sales_y0}}</td><td></td></tr>
+      <tr class="sub-row"><td>Ventas de servicios</td><td>{{ai_financial_pl_service_sales_y2}}</td><td>{{ai_financial_pl_service_sales_y1}}</td><td>{{ai_financial_pl_service_sales_y0}}</td><td></td></tr>
+      <tr class="sub-row"><td>Otros ingresos operativos</td><td>{{ai_financial_pl_other_income_y2}}</td><td>{{ai_financial_pl_other_income_y1}}</td><td>{{ai_financial_pl_other_income_y0}}</td><td></td></tr>
+      <tr class="section-row"><td>(-) COSTO DE VENTAS / SERVICIOS</td><td>{{ai_financial_pl_cogs_y2}}</td><td>{{ai_financial_pl_cogs_y1}}</td><td>{{ai_financial_pl_cogs_y0}}</td><td></td></tr>
+      <tr class="section-row"><td>UTILIDAD BRUTA</td><td>{{ai_financial_pl_gross_profit_y2}}</td><td>{{ai_financial_pl_gross_profit_y1}}</td><td>{{ai_financial_pl_gross_profit_y0}}</td><td></td></tr>
+      <tr><td>% Margen Bruto (calculado)</td><td>{{ai_financial_pl_gross_margin_y2}}</td><td>{{ai_financial_pl_gross_margin_y1}}</td><td>{{ai_financial_pl_gross_margin_y0}}</td><td></td></tr>
+      <tr class="section-row"><td>(-) GASTOS DE OPERACION</td><td>{{ai_financial_pl_opex_y2}}</td><td>{{ai_financial_pl_opex_y1}}</td><td>{{ai_financial_pl_opex_y0}}</td><td></td></tr>
+      <tr class="sub-row"><td>Gastos de venta</td><td>{{ai_financial_pl_selling_y2}}</td><td>{{ai_financial_pl_selling_y1}}</td><td>{{ai_financial_pl_selling_y0}}</td><td></td></tr>
+      <tr class="sub-row"><td>Gastos de administracion</td><td>{{ai_financial_pl_admin_y2}}</td><td>{{ai_financial_pl_admin_y1}}</td><td>{{ai_financial_pl_admin_y0}}</td><td></td></tr>
+      <tr class="sub-row"><td>Depreciacion y amortizacion</td><td>{{ai_financial_pl_da_y2}}</td><td>{{ai_financial_pl_da_y1}}</td><td>{{ai_financial_pl_da_y0}}</td><td></td></tr>
+      <tr class="section-row"><td>UTILIDAD DE OPERACION (EBIT)</td><td>{{ai_financial_pl_ebit_y2}}</td><td>{{ai_financial_pl_ebit_y1}}</td><td>{{ai_financial_pl_ebit_y0}}</td><td></td></tr>
+      <tr><td>% Margen Operativo (calculado)</td><td>{{ai_financial_pl_ebit_margin_y2}}</td><td>{{ai_financial_pl_ebit_margin_y1}}</td><td>{{ai_financial_pl_ebit_margin_y0}}</td><td></td></tr>
+      <tr><td>(+/-) RESULTADO INTEGRAL DE FINANCIAMIENTO</td><td>{{ai_financial_pl_rif_y2}}</td><td>{{ai_financial_pl_rif_y1}}</td><td>{{ai_financial_pl_rif_y0}}</td><td></td></tr>
+      <tr class="sub-row"><td>Intereses devengados a cargo</td><td>{{ai_financial_pl_interest_exp_y2}}</td><td>{{ai_financial_pl_interest_exp_y1}}</td><td>{{ai_financial_pl_interest_exp_y0}}</td><td></td></tr>
+      <tr class="sub-row"><td>Intereses ganados</td><td>{{ai_financial_pl_interest_inc_y2}}</td><td>{{ai_financial_pl_interest_inc_y1}}</td><td>{{ai_financial_pl_interest_inc_y0}}</td><td></td></tr>
+      <tr class="sub-row"><td>Fluctuacion cambiaria neta</td><td>{{ai_financial_pl_fx_y2}}</td><td>{{ai_financial_pl_fx_y1}}</td><td>{{ai_financial_pl_fx_y0}}</td><td></td></tr>
+      <tr class="sub-row"><td>Otras partidas financieras</td><td>{{ai_financial_pl_other_fin_y2}}</td><td>{{ai_financial_pl_other_fin_y1}}</td><td>{{ai_financial_pl_other_fin_y0}}</td><td></td></tr>
+      <tr class="section-row"><td>UTILIDAD ANTES DE IMPUESTOS</td><td>{{ai_financial_pl_ebt_y2}}</td><td>{{ai_financial_pl_ebt_y1}}</td><td>{{ai_financial_pl_ebt_y0}}</td><td></td></tr>
+      <tr class="sub-row"><td>(-) Impuesto sobre la renta (ISR / IT)</td><td>{{ai_financial_pl_isr_y2}}</td><td>{{ai_financial_pl_isr_y1}}</td><td>{{ai_financial_pl_isr_y0}}</td><td></td></tr>
+      <tr class="sub-row"><td>(-) Participacion de los trabajadores (PTU)</td><td>{{ai_financial_pl_ptu_y2}}</td><td>{{ai_financial_pl_ptu_y1}}</td><td>{{ai_financial_pl_ptu_y0}}</td><td></td></tr>
+      <tr class="section-row"><td>UTILIDAD NETA</td><td>{{ai_financial_pl_net_income_y2}}</td><td>{{ai_financial_pl_net_income_y1}}</td><td>{{ai_financial_pl_net_income_y0}}</td><td></td></tr>
+      <tr><td>% Margen Neto (calculado)</td><td>{{ai_financial_pl_net_margin_y2}}</td><td>{{ai_financial_pl_net_margin_y1}}</td><td>{{ai_financial_pl_net_margin_y0}}</td><td></td></tr>
+      <tr class="section-row"><td>DATOS ADICIONALES PARA EBITDA</td><td></td><td></td><td></td><td></td></tr>
+      <tr><td>EBITDA (calculado)</td><td>{{ai_financial_pl_ebitda_y2}}</td><td>{{ai_financial_pl_ebitda_y1}}</td><td>{{ai_financial_pl_ebitda_y0}}</td><td></td></tr>
+      <tr class="sub-row"><td>Depreciacion del periodo</td><td>{{ai_financial_pl_depreciation_y2}}</td><td>{{ai_financial_pl_depreciation_y1}}</td><td>{{ai_financial_pl_depreciation_y0}}</td><td></td></tr>
+      <tr class="sub-row"><td>Amortizacion del periodo</td><td>{{ai_financial_pl_amortization_y2}}</td><td>{{ai_financial_pl_amortization_y1}}</td><td>{{ai_financial_pl_amortization_y0}}</td><td></td></tr>
+      <tr class="sub-row"><td>Capex del periodo</td><td>{{ai_financial_pl_capex_y2}}</td><td>{{ai_financial_pl_capex_y1}}</td><td>{{ai_financial_pl_capex_y0}}</td><td></td></tr>
+      <tr class="sub-row"><td>Flujo de efectivo de operaciones</td><td>{{ai_financial_pl_cfo_y2}}</td><td>{{ai_financial_pl_cfo_y1}}</td><td>{{ai_financial_pl_cfo_y0}}</td><td></td></tr>
+    </tbody>
+  </table>
+
+  <!-- SECCION 5 -->
+  <h1>SECCION 5 &mdash; DATOS OPERATIVOS Y ADICIONALES</h1>
+
+  <h2>5.1 Ciclo Operativo</h2>
+  <table class="financial-table">
+    <thead>
+      <tr><th>METRICA</th><th>ANO -2</th><th>ANO -1</th><th>ANO ACTUAL</th><th></th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Dias de Cuentas por Cobrar (DSO)</td><td>{{ai_financial_op_dso_y2}}</td><td>{{ai_financial_op_dso_y1}}</td><td>{{ai_financial_op_dso_y0}}</td><td></td></tr>
+      <tr><td>Dias de Inventario (DIO)</td><td>{{ai_financial_op_dio_y2}}</td><td>{{ai_financial_op_dio_y1}}</td><td>{{ai_financial_op_dio_y0}}</td><td></td></tr>
+      <tr><td>Dias de Cuentas por Pagar (DPO)</td><td>{{ai_financial_op_dpo_y2}}</td><td>{{ai_financial_op_dpo_y1}}</td><td>{{ai_financial_op_dpo_y0}}</td><td></td></tr>
+      <tr><td>Numero de empleados al cierre del periodo</td><td>{{ai_financial_op_headcount_y2}}</td><td>{{ai_financial_op_headcount_y1}}</td><td>{{ai_financial_op_headcount_y0}}</td><td></td></tr>
+      <tr><td>Ventas por empleado</td><td>{{ai_financial_op_rev_per_emp_y2}}</td><td>{{ai_financial_op_rev_per_emp_y1}}</td><td>{{ai_financial_op_rev_per_emp_y0}}</td><td></td></tr>
+      <tr><td>Capacidad instalada utilizada (%)</td><td>{{ai_financial_op_capacity_y2}}</td><td>{{ai_financial_op_capacity_y1}}</td><td>{{ai_financial_op_capacity_y0}}</td><td></td></tr>
+    </tbody>
+  </table>
+
+  <h2>5.2 Informacion de Deuda Detallada</h2>
+  <p>Por favor describa los creditos vigentes mas relevantes: (institucion, monto original, saldo actual, tasa, vencimiento)</p>
+  <div class="answer-box">{{ai_financial_debt_detail}}</div>
+
+  <h2>5.3 Estructura de Costos</h2>
+  <p>Cual es la proporcion aproximada de costos fijos vs. variables?</p>
+  <div class="checkbox-row">
+    <div class="checkbox-item">{{ai_financial_cost_low_fixed}} &lt;30% Fijos / &gt;70% Variables</div>
+    <div class="checkbox-item">{{ai_financial_cost_balanced}} ~50% / ~50%</div>
+    <div class="checkbox-item">{{ai_financial_cost_high_fixed}} &gt;70% Fijos / &lt;30% Variables</div>
+    <div class="checkbox-item">{{ai_financial_cost_na}} No disponible</div>
+  </div>
+
+  <h2>5.4 Sector / Benchmarking</h2>
+  <p>Tiene acceso a informacion de la industria para benchmarking? Cuales son sus KPIs sectoriales de referencia?</p>
+  <div class="answer-box">{{ai_financial_benchmarking}}</div>
+
+  <h2>5.5 Observaciones Adicionales del Cliente</h2>
+  <p>Existe alguna informacion adicional que considere relevante para el diagnostico?</p>
+  <div class="answer-box">{{ai_financial_additional_notes}}</div>
+
+  <!-- SECCION 6 -->
+  <h1>SECCION 6 &mdash; DECLARACION DE RESPONSABILIDAD Y FIRMA</h1>
+
+  <div class="declaration">
+    <strong>DECLARACION DEL REPRESENTANTE LEGAL / FUNCIONARIO RESPONSABLE</strong><br><br>
+    El suscrito declara que la informacion proporcionada en el presente cuestionario es veridica, completa y fue preparada de buena fe. Reconozco que el Diagnostico Financiero que se emita se basara en esta informacion y no constituye una auditoria de estados financieros conforme a ninguna norma de auditoria generalmente aceptada.<br><br>
+    El cliente exime al consultor de cualquier responsabilidad derivada de inexactitudes u omisiones en la informacion suministrada.
+  </div>
+
+  <div class="signatures">
+    <div><div class="sig-field">Nombre y Cargo:</div></div>
+    <div></div>
+    <div><div class="sig-field">Fecha: {{current_date}}</div></div>
+  </div>
+  <div class="signatures">
+    <div><div class="sig-field">Firma:</div></div>
+    <div></div>
+    <div><div class="sig-field">Sello de la empresa:</div></div>
+  </div>
+
+  <!-- CAVEATS -->
+  <div class="caveats">
+    <strong>CAVEATS / LIMITACIONES DEL DIAGNOSTICO</strong><br><br>
+    El presente Diagnostico Financiero se basa exclusivamente en la informacion provista por el cliente. No constituye una auditoria de estados financieros ni una revision limitada conforme a normas de aseguramiento.<br><br>
+    Los hallazgos, conclusiones y recomendaciones son de caracter indicativo y no deben interpretarse como asesoria legal, fiscal o de inversion.<br><br>
+    {{branding_company_name}} no asume responsabilidad por decisiones tomadas con base en este diagnostico si la informacion provista resulta inexacta o incompleta.<br><br>
+    El benchmarking sectorial se basa en fuentes publicas disponibles a la fecha del analisis; puede diferir del posicionamiento real de la empresa.
+  </div>
+
+</body>
+</html>

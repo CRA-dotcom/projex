@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Executive Blueprint - Diagnostico de Procesos y Gobierno Corporativo</title>
+  <style>
+    :root{--bg:#f8f9fa;--green:#2d6a4f;--green-l:#40916c;--green-bg:rgba(45,106,79,.05);--red:#c62828;--red-bg:rgba(198,40,40,.08);--yellow:#f9a825;--yellow-bg:rgba(249,168,37,.08);--blue:#1565c0;--text:#1a1a1a;--text2:#666;--border:#e0e0e0;--inp:#f0f4f0}
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+    .page{max-width:900px;margin:0 auto;padding:40px 30px;page-break-after:always}.page:last-child{page-break-after:avoid}
+    .hdr{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--border);padding-bottom:12px;margin-bottom:30px;font-size:12px}
+    .hdr .brand{font-weight:700;color:var(--green)}.hdr .conf{color:var(--red);font-weight:700;text-transform:uppercase;letter-spacing:1px}
+    .cover{background:var(--green);color:#fff;padding:40px;text-align:center;margin-bottom:30px;border-radius:8px}
+    .cover h1{font-size:36px;font-weight:700;margin-bottom:8px}
+    .cover .sub{font-size:16px;font-style:italic;color:rgba(255,255,255,.8);margin-bottom:20px}
+    .page-badge{display:inline-block;background:var(--green-l);color:#fff;padding:8px 20px;border-radius:4px;font-size:13px;font-weight:700;margin-bottom:8px}
+    .section-title{font-size:22px;font-weight:700;margin-bottom:4px}
+    .section-sub{font-size:13px;font-style:italic;color:var(--green);margin-bottom:16px}
+    .info-table{width:100%;border-collapse:collapse;margin-bottom:24px}
+    .info-table th{background:var(--green);color:#fff;padding:10px 14px;font-size:12px;text-transform:uppercase;text-align:left;width:30%}
+    .info-table td{padding:10px 14px;border-bottom:1px solid var(--border);font-size:14px}
+    .fb{background:var(--inp);border:1px solid var(--border);padding:12px;min-height:44px;border-radius:4px;color:#333;font-size:14px;margin-bottom:16px}.fb.lg{min-height:80px}
+    .fl{font-size:12px;text-transform:uppercase;font-weight:700;margin-bottom:4px;letter-spacing:1px}
+    .fl.green{color:var(--green)}.fl.red{color:var(--red)}.fl.blue{color:var(--blue)}.fl.yellow{color:var(--yellow)}
+    .g2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
+    .g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:16px}
+    .semaphore-table{width:100%;border-collapse:collapse;margin-bottom:24px}
+    .semaphore-table th{background:var(--green);color:#fff;padding:10px 12px;font-size:11px;text-transform:uppercase;text-align:left}
+    .semaphore-table td{padding:10px 12px;font-size:13px;border-bottom:1px solid var(--border)}
+    .status-crit{background:var(--red);color:#fff;padding:4px 10px;border-radius:4px;font-size:11px;font-weight:700;display:inline-block}
+    .status-warn{background:var(--yellow);color:#000;padding:4px 10px;border-radius:4px;font-size:11px;font-weight:700;display:inline-block}
+    .status-ok{background:#43a047;color:#fff;padding:4px 10px;border-radius:4px;font-size:11px;font-weight:700;display:inline-block}
+    .process-card{border:1px solid var(--border);border-left:4px solid var(--green);padding:16px;margin-bottom:16px;border-radius:0 4px 4px 0}
+    .process-card .label{font-size:11px;text-transform:uppercase;color:var(--text2);margin-bottom:2px}
+    .kpi-row{display:grid;grid-template-columns:2fr 1fr 1fr 1fr 1fr;gap:8px;margin-bottom:8px;align-items:center}
+    .kpi-row.header{font-size:11px;text-transform:uppercase;font-weight:700;color:var(--green)}
+    .qw-table{width:100%;border-collapse:collapse;margin-bottom:24px}
+    .qw-table th{background:var(--green);color:#fff;padding:10px 12px;font-size:11px;text-transform:uppercase;text-align:left}
+    .qw-table td{padding:10px 12px;font-size:13px;border-bottom:1px solid var(--border)}
+    .impact-box{background:var(--green-bg);border-left:4px solid var(--green);padding:16px 20px;margin-top:20px}
+    .impact-box h4{color:var(--green);margin-bottom:6px}.impact-box p{font-size:13px;color:var(--text2)}
+    .ft{display:flex;justify-content:space-between;font-size:11px;color:var(--text2);margin-top:30px;padding-top:12px;border-top:1px solid var(--border)}
+    @media print{body{background:#fff}}
+  </style>
+</head>
+<body>
+
+<!-- PAGE 1: COVER -->
+<div class="page">
+  <div class="hdr"><span class="brand">{{branding_company_name}} | Plantillas de Entregable Final</span><span class="conf">CONFIDENCIAL</span></div>
+  <div class="cover">
+    <p style="font-size:14px;margin-bottom:8px">{{branding_company_name}}</p>
+    <p style="font-size:13px;font-style:italic;color:rgba(255,255,255,.7);margin-bottom:20px">Optimizacion de Procesos y Manuales Administrativos</p>
+    <h1>DIAGNOSTICO EJECUTIVO<br>DE PROCESOS Y<br>GOBIERNO CORPORATIVO</h1>
+    <p class="sub">Executive Blueprint -- 10 Paginas</p>
+  </div>
+
+  <table class="info-table">
+    <tr><th>Titulo del Documento</th><td>Diagnostico Ejecutivo de Procesos y Gobierno Corporativo</td></tr>
+    <tr><th>Empresa Cliente</th><td>{{client_name}}</td></tr>
+    <tr><th>Fecha de Emision</th><td>{{current_date}}</td></tr>
+    <tr><th>Preparado por</th><td>{{branding_company_name}}</td></tr>
+    <tr><th>Clasificacion</th><td>CONFIDENCIAL -- Uso exclusivo de la Alta Direccion</td></tr>
+    <tr><th>Version</th><td>1.0 -- Diagnostico Inicial</td></tr>
+  </table>
+  <div class="ft"><span>Optimizacion de Procesos y Manuales Administrativos</span><span>Pagina 1</span></div>
+</div>
+
+<!-- PAGES 2-3: SECTION 1 - EXECUTIVE SUMMARY -->
+<div class="page">
+  <div class="hdr"><span class="brand">{{branding_company_name}} | Executive Blueprint</span><span class="conf">CONFIDENCIAL</span></div>
+  <div class="page-badge">PAGS. 2-3</div>
+  <div class="section-title">SECCION 1 -- RESUMEN EJECUTIVO</div>
+  <div class="section-sub">3 hallazgos criticos &middot; Impacto financiero cuantificado &middot; 3 Quick Wins priorizados</div>
+
+  <div class="fl green">QUE ENCONTRAMOS?</div>
+  <p style="font-size:12px;color:var(--text2);margin-bottom:8px">Los 3 hallazgos criticos, una oracion ejecutiva por hallazgo, sin jerga tecnica.</p>
+  <div class="fb lg">{{ai_finding_1}}</div>
+  <div class="fb lg">{{ai_finding_2}}</div>
+  <div class="fb lg">{{ai_finding_3}}</div>
+
+  <div class="fl red">CUANTO CUESTA NO ACTUAR?</div>
+  <p style="font-size:12px;color:var(--text2);margin-bottom:8px">Impacto financiero en $ MXN o % EBITDA anual.</p>
+  <div class="fb lg">{{ai_inaction_cost}}</div>
+
+  <div class="fl blue">QUE HACER PRIMERO?</div>
+  <p style="font-size:12px;color:var(--text2);margin-bottom:8px">Los 3 Quick Wins con nombre, responsable (puesto) y plazo en dias calendario.</p>
+  <div class="fb">{{ai_quick_win_1_summary}}</div>
+  <div class="fb">{{ai_quick_win_2_summary}}</div>
+  <div class="fb">{{ai_quick_win_3_summary}}</div>
+
+  <div class="ft"><span>Optimizacion de Procesos y Manuales Administrativos</span><span>Paginas 2-3</span></div>
+</div>
+
+<!-- PAGES 4-5: SECTION 2 - RISK SEMAPHORE -->
+<div class="page">
+  <div class="hdr"><span class="brand">{{branding_company_name}} | Executive Blueprint</span><span class="conf">CONFIDENCIAL</span></div>
+  <div class="page-badge">PAGS. 4-5</div>
+  <div class="section-title">SECCION 2 -- RADIOGRAFIA: SEMAFORO DE RIESGOS</div>
+  <div class="section-sub">5 pilares evaluados &middot; Escala 1-5 &middot; Estatus visual por area</div>
+
+  <table class="semaphore-table">
+    <thead><tr><th>PILAR EVALUADO</th><th>ESTATUS</th><th>RIESGO PRINCIPAL</th><th>NIVEL</th></tr></thead>
+    <tbody>
+      <tr><td>Gobierno y Estructura</td><td><span class="{{ai_pilar1_status_class}}">{{ai_pilar1_status}}</span></td><td>{{ai_pilar1_risk}}</td><td>{{ai_pilar1_level}}</td></tr>
+      <tr><td>Ciclo Financiero</td><td><span class="{{ai_pilar2_status_class}}">{{ai_pilar2_status}}</span></td><td>{{ai_pilar2_risk}}</td><td>{{ai_pilar2_level}}</td></tr>
+      <tr><td>Operaciones</td><td><span class="{{ai_pilar3_status_class}}">{{ai_pilar3_status}}</span></td><td>{{ai_pilar3_risk}}</td><td>{{ai_pilar3_level}}</td></tr>
+      <tr><td>Comercial / Growth</td><td><span class="{{ai_pilar4_status_class}}">{{ai_pilar4_status}}</span></td><td>{{ai_pilar4_risk}}</td><td>{{ai_pilar4_level}}</td></tr>
+      <tr><td>Capital Humano</td><td><span class="{{ai_pilar5_status_class}}">{{ai_pilar5_status}}</span></td><td>{{ai_pilar5_risk}}</td><td>{{ai_pilar5_level}}</td></tr>
+    </tbody>
+  </table>
+  <p style="font-size:12px;color:var(--text2);margin-bottom:16px">
+    <span class="status-crit">Critico (Score 4-5)</span> &nbsp;
+    <span class="status-warn">Atencion (Score 3)</span> &nbsp;
+    <span class="status-ok">Optimizado (Score 1-2)</span>
+  </p>
+  <div class="ft"><span>Optimizacion de Procesos y Manuales Administrativos</span><span>Paginas 4-5</span></div>
+</div>
+
+<!-- PAGES 6-7: SECTION 3 - 5 CRITICAL PROCESSES -->
+<div class="page">
+  <div class="hdr"><span class="brand">{{branding_company_name}} | Executive Blueprint</span><span class="conf">CONFIDENCIAL</span></div>
+  <div class="page-badge">PAGS. 6-7</div>
+  <div class="section-title">SECCION 3 -- LOS 5 PROCESOS CRITICOS A CORREGIR</div>
+  <div class="section-sub">Una ficha por proceso &middot; Risk Score &middot; Quick Win especifico &middot; Responsable</div>
+
+  <div class="process-card">
+    <table class="info-table" style="margin-bottom:0">
+      <tr><th>Proceso</th><td>{{ai_process_1_name}}</td></tr>
+      <tr><th>Area Responsable</th><td>{{ai_process_1_area}}</td></tr>
+      <tr><th>Problema Identificado</th><td>{{ai_process_1_problem}}</td></tr>
+      <tr><th>Impacto Actual</th><td>{{ai_process_1_impact}}</td></tr>
+      <tr><th>Quick Win Propuesto</th><td>{{ai_process_1_quickwin}}</td></tr>
+      <tr><th>Responsable</th><td>{{ai_process_1_owner}}</td></tr>
+    </table>
+  </div>
+  <div class="process-card">
+    <table class="info-table" style="margin-bottom:0">
+      <tr><th>Proceso</th><td>{{ai_process_2_name}}</td></tr>
+      <tr><th>Area Responsable</th><td>{{ai_process_2_area}}</td></tr>
+      <tr><th>Problema Identificado</th><td>{{ai_process_2_problem}}</td></tr>
+      <tr><th>Impacto Actual</th><td>{{ai_process_2_impact}}</td></tr>
+      <tr><th>Quick Win Propuesto</th><td>{{ai_process_2_quickwin}}</td></tr>
+      <tr><th>Responsable</th><td>{{ai_process_2_owner}}</td></tr>
+    </table>
+  </div>
+  <div class="process-card">
+    <table class="info-table" style="margin-bottom:0">
+      <tr><th>Proceso</th><td>{{ai_process_3_name}}</td></tr>
+      <tr><th>Area Responsable</th><td>{{ai_process_3_area}}</td></tr>
+      <tr><th>Problema Identificado</th><td>{{ai_process_3_problem}}</td></tr>
+      <tr><th>Impacto Actual</th><td>{{ai_process_3_impact}}</td></tr>
+      <tr><th>Quick Win Propuesto</th><td>{{ai_process_3_quickwin}}</td></tr>
+      <tr><th>Responsable</th><td>{{ai_process_3_owner}}</td></tr>
+    </table>
+  </div>
+  <div class="process-card">
+    <table class="info-table" style="margin-bottom:0">
+      <tr><th>Proceso</th><td>{{ai_process_4_name}}</td></tr>
+      <tr><th>Area Responsable</th><td>{{ai_process_4_area}}</td></tr>
+      <tr><th>Problema Identificado</th><td>{{ai_process_4_problem}}</td></tr>
+      <tr><th>Impacto Actual</th><td>{{ai_process_4_impact}}</td></tr>
+      <tr><th>Quick Win Propuesto</th><td>{{ai_process_4_quickwin}}</td></tr>
+      <tr><th>Responsable</th><td>{{ai_process_4_owner}}</td></tr>
+    </table>
+  </div>
+  <div class="process-card">
+    <table class="info-table" style="margin-bottom:0">
+      <tr><th>Proceso</th><td>{{ai_process_5_name}}</td></tr>
+      <tr><th>Area Responsable</th><td>{{ai_process_5_area}}</td></tr>
+      <tr><th>Problema Identificado</th><td>{{ai_process_5_problem}}</td></tr>
+      <tr><th>Impacto Actual</th><td>{{ai_process_5_impact}}</td></tr>
+      <tr><th>Quick Win Propuesto</th><td>{{ai_process_5_quickwin}}</td></tr>
+      <tr><th>Responsable</th><td>{{ai_process_5_owner}}</td></tr>
+    </table>
+  </div>
+  <div class="ft"><span>Optimizacion de Procesos y Manuales Administrativos</span><span>Paginas 6-7</span></div>
+</div>
+
+<!-- PAGE 8: SECTION 4 - EXECUTIVE SCORECARD -->
+<div class="page">
+  <div class="hdr"><span class="brand">{{branding_company_name}} | Executive Blueprint</span><span class="conf">CONFIDENCIAL</span></div>
+  <div class="page-badge">PAG. 8</div>
+  <div class="section-title">SECCION 4 -- CUADRO DE MANDO EJECUTIVO</div>
+  <div class="section-sub">KPIs con semaforo &middot; Valor actual vs. meta a 90 dias y 12 meses</div>
+
+  <table class="semaphore-table">
+    <thead><tr><th>PERSPECTIVA</th><th>KPI</th><th>ACTUAL</th><th>META 90 DIAS</th><th>META 12 MESES</th><th>STATUS</th></tr></thead>
+    <tbody>
+      <tr><td>Financiera</td><td>Margen EBITDA</td><td>{{ai_kpi_ebitda_current}}</td><td>{{ai_kpi_ebitda_90d}}</td><td>{{ai_kpi_ebitda_12m}}</td><td><span class="{{ai_kpi_ebitda_status_class}}">{{ai_kpi_ebitda_status}}</span></td></tr>
+      <tr><td>Financiera</td><td>DSO (dias cobro)</td><td>{{ai_kpi_dso_current}}</td><td>{{ai_kpi_dso_90d}}</td><td>{{ai_kpi_dso_12m}}</td><td><span class="{{ai_kpi_dso_status_class}}">{{ai_kpi_dso_status}}</span></td></tr>
+      <tr><td>Clientes</td><td>Tasa de Retencion</td><td>{{ai_kpi_retention_current}}</td><td>{{ai_kpi_retention_90d}}</td><td>{{ai_kpi_retention_12m}}</td><td><span class="{{ai_kpi_retention_status_class}}">{{ai_kpi_retention_status}}</span></td></tr>
+      <tr><td>Procesos</td><td>OTIF</td><td>{{ai_kpi_otif_current}}</td><td>{{ai_kpi_otif_90d}}</td><td>{{ai_kpi_otif_12m}}</td><td><span class="{{ai_kpi_otif_status_class}}">{{ai_kpi_otif_status}}</span></td></tr>
+      <tr><td>Procesos</td><td>% Procesos Documentados</td><td>{{ai_kpi_docs_current}}</td><td>{{ai_kpi_docs_90d}}</td><td>{{ai_kpi_docs_12m}}</td><td><span class="{{ai_kpi_docs_status_class}}">{{ai_kpi_docs_status}}</span></td></tr>
+      <tr><td>Aprendizaje</td><td>Rotacion de Personal</td><td>{{ai_kpi_turnover_current}}</td><td>{{ai_kpi_turnover_90d}}</td><td>{{ai_kpi_turnover_12m}}</td><td><span class="{{ai_kpi_turnover_status_class}}">{{ai_kpi_turnover_status}}</span></td></tr>
+    </tbody>
+  </table>
+  <div class="ft"><span>Optimizacion de Procesos y Manuales Administrativos</span><span>Pagina 8</span></div>
+</div>
+
+<!-- PAGE 9: SECTION 5 - 90-DAY ACTION PLAN -->
+<div class="page">
+  <div class="hdr"><span class="brand">{{branding_company_name}} | Executive Blueprint</span><span class="conf">CONFIDENCIAL</span></div>
+  <div class="page-badge">PAG. 9</div>
+  <div class="section-title">SECCION 5 -- PLAN DE ACCION 90 DIAS (QUICK WINS)</div>
+  <div class="section-sub">3 Quick Wins de impacto inmediato &middot; Responsable &middot; KPI de exito &middot; Inversion</div>
+
+  <table class="qw-table">
+    <thead><tr><th>SEMANA</th><th>QUICK WIN</th><th>RESPONSABLE</th><th>INVERSION</th><th>KPI DE EXITO</th></tr></thead>
+    <tbody>
+      <tr><td>Sem 1-2</td><td>{{ai_qw1_action}}</td><td>{{ai_qw1_owner}}</td><td>{{ai_qw1_investment}}</td><td>{{ai_qw1_kpi}}</td></tr>
+      <tr><td>Sem 1-2</td><td>{{ai_qw2_action}}</td><td>{{ai_qw2_owner}}</td><td>{{ai_qw2_investment}}</td><td>{{ai_qw2_kpi}}</td></tr>
+      <tr><td>Sem 3-4</td><td>{{ai_qw3_action}}</td><td>{{ai_qw3_owner}}</td><td>{{ai_qw3_investment}}</td><td>{{ai_qw3_kpi}}</td></tr>
+      <tr><td>Sem 5-8</td><td>{{ai_initiative_1_action}}</td><td>{{ai_initiative_1_owner}}</td><td>{{ai_initiative_1_investment}}</td><td>{{ai_initiative_1_kpi}}</td></tr>
+      <tr><td>Sem 5-12</td><td>{{ai_initiative_2_action}}</td><td>{{ai_initiative_2_owner}}</td><td>{{ai_initiative_2_investment}}</td><td>{{ai_initiative_2_kpi}}</td></tr>
+    </tbody>
+  </table>
+  <div class="ft"><span>Optimizacion de Procesos y Manuales Administrativos</span><span>Pagina 9</span></div>
+</div>
+
+<!-- PAGE 10: SECTION 6 - NEXT STEPS -->
+<div class="page">
+  <div class="hdr"><span class="brand">{{branding_company_name}} | Executive Blueprint</span><span class="conf">CONFIDENCIAL</span></div>
+  <div class="page-badge">PAG. 10</div>
+  <div class="section-title">SECCION 6 -- PROXIMOS PASOS Y PROPUESTA DE CONTINUIDAD</div>
+  <div class="section-sub">Decision ejecutiva requerida &middot; ROI proyectado &middot; Propuesta de seguimiento</div>
+
+  <table class="info-table">
+    <tr><th>Decision Requerida</th><td>{{ai_next_decision}}</td></tr>
+    <tr><th>Inversion Estimada QWs</th><td>{{ai_next_investment}}</td></tr>
+    <tr><th>ROI Proyectado 12 meses</th><td>{{ai_next_roi}}</td></tr>
+    <tr><th>Proxima Revision de Seguimiento</th><td>{{ai_next_review_date}}</td></tr>
+    <tr><th>Propuesta de Continuidad</th><td>{{ai_next_continuity_proposal}}</td></tr>
+  </table>
+
+  <div class="impact-box">
+    <h4>IMPACTO EN EL NEGOCIO</h4>
+    <p>El Executive Blueprint entrega al CEO claridad decisional en menos de 20 minutos de lectura. Es el formato que genera aprobacion de presupuesto en la primera presentacion.</p>
+  </div>
+  <div class="ft"><span>Optimizacion de Procesos y Manuales Administrativos</span><span>Pagina 10</span></div>
+</div>
+
+</body>
+</html>

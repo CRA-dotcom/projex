@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Plan Anual de Marketing - Plantilla Profesional (50 pags)</title>
+  <style>
+    :root{--bg:#1a1a2e;--bg2:#16213e;--or:#ff6b35;--bl:#3a86ff;--pu:#7b2ff7;--cy:#00d4ff;--mg:#ff2d95;--gn:#00c897;--yl:#ffc107;--tx:#fff;--tx2:#b0b0b0;--inp:#fde8d8;--brd:#2a2a4a}
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;background:var(--bg);color:var(--tx);line-height:1.6}
+    .p{max-width:960px;margin:0 auto;padding:40px 30px;page-break-after:always}.p:last-child{page-break-after:avoid}
+    .hb{width:60px;height:4px;background:var(--or);margin-bottom:8px}
+    .dl{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:2px;margin-bottom:4px}
+    .ds{font-size:11px;color:var(--tx2);text-transform:uppercase;letter-spacing:1px;margin-bottom:30px}
+    h1{font-size:42px;font-weight:700;margin-bottom:4px}h1 span{color:var(--or)}
+    .st{font-size:28px;font-weight:700;margin-bottom:4px}.st .n{color:var(--or);margin-right:8px;font-size:20px}
+    .sd{height:2px;background:linear-gradient(to right,var(--or),var(--bl),var(--pu),var(--cy));margin-bottom:30px}
+    .fl{font-size:12px;text-transform:uppercase;letter-spacing:1px;font-weight:700;margin-bottom:6px}
+    .fl.or{color:var(--or)}.fl.bl{color:var(--bl)}.fl.pu{color:var(--pu)}.fl.cy{color:var(--cy)}.fl.mg{color:var(--mg)}.fl.gn{color:var(--gn)}.fl.yl{color:var(--yl)}
+    .fb{background:var(--inp);color:#333;padding:14px 16px;border-radius:4px;min-height:50px;margin-bottom:20px;font-size:14px}.fb.lg{min-height:100px}
+    .g2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px}
+    .g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:20px}
+    .g4{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:20px}
+    .g5{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-bottom:20px}
+    .g6{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin-bottom:20px}
+    .kc{border-top:3px solid var(--or);background:rgba(255,255,255,.03);padding:12px;border-radius:0 0 6px 6px}
+    .kl{font-size:11px;text-transform:uppercase;color:var(--tx2);margin-bottom:4px}
+    .kv{background:var(--inp);color:#333;padding:8px;border-radius:4px;min-height:40px;font-size:13px}
+    .cn{background:rgba(255,255,255,.03);border-left:3px solid var(--tx2);padding:12px 16px;margin-bottom:20px;font-size:13px;color:var(--tx2)}
+    .cb{display:inline-block;background:rgba(255,255,255,.1);border:1px solid var(--brd);padding:4px 12px;font-size:11px;text-transform:uppercase;letter-spacing:1px;border-radius:4px}
+    table.ct{width:100%;border-collapse:collapse;margin-bottom:20px}
+    table.ct th{font-size:11px;text-transform:uppercase;padding:10px 8px;text-align:left}
+    table.ct td{padding:8px;font-size:12px;border-bottom:1px solid var(--brd)}
+    table.ct td .c{background:var(--inp);color:#333;padding:6px 8px;border-radius:3px;min-height:24px}
+    .pc{border-top:3px solid;padding:16px;background:rgba(255,255,255,.03);border-radius:0 0 6px 6px;min-height:100px}
+    .qh{padding:16px;text-align:center;border-radius:8px 8px 0 0}
+    .qh h3{font-size:32px;font-weight:700}.qh .pd{font-size:12px;text-transform:uppercase}.qh .ph{font-size:13px;font-weight:600;margin-top:4px}
+    .qb{padding:12px}.qb .fl{font-size:10px}.qb .fb{min-height:50px;padding:8px;font-size:12px;margin-bottom:10px}
+    .mc{text-align:center;border-top:3px solid;padding:12px 8px;background:rgba(255,255,255,.03);border-radius:0 0 6px 6px}
+    .mc .mn{font-size:22px;font-weight:700;margin-bottom:2px}.mc .md{font-size:10px;color:var(--tx2);margin-bottom:8px}
+    .ft{text-align:center;font-size:11px;color:var(--tx2);margin-top:30px;padding-top:16px;border-top:1px solid var(--brd)}
+    .tag{display:inline-block;padding:4px 14px;border-radius:20px;font-size:11px;font-weight:700;text-transform:uppercase;margin-right:8px}
+    .swot{min-height:200px}
+    .ck{display:flex;align-items:flex-start;gap:8px;margin-bottom:8px;font-size:13px}.ck .box{width:18px;height:18px;border:2px solid var(--brd);border-radius:3px;flex-shrink:0;margin-top:2px}
+    .risk-row{display:grid;grid-template-columns:2fr 1fr 1fr 1fr 3fr;gap:8px;margin-bottom:8px;align-items:center}
+    .risk-badge{padding:4px 10px;border-radius:4px;font-size:11px;font-weight:700;text-align:center;color:#fff}
+    .risk-alto{background:#e74c3c}.risk-medio{background:#f39c12}.risk-bajo{background:#27ae60}
+    @media print{body{background:#fff;color:#000}.fb,.kv,td .c{border:1px solid #ccc;background:#f9f9f9}}
+  </style>
+</head>
+<body>
+
+<!-- P1: COVER -->
+<div class="p">
+  <div class="hb"></div>
+  <div class="dl">PLAN ANUAL DE MARKETING -- PLANTILLA PROFESIONAL</div>
+  <h1>Plan Anual de<br><span>Marketing</span> <span style="color:var(--pu)">{{ai_plan_year}}</span></h1>
+  <p style="font-size:14px;color:var(--tx2);margin-bottom:30px;">Plantilla profesional de 50 paginas para el desarrollo de un plan estrategico de marketing completo. Disenada para consultores, agencias y equipos de marketing.</p>
+  <div class="sd"></div>
+  <h3 style="margin-bottom:16px;">DATOS DEL CLIENTE</h3>
+  <div class="g2">
+    <div><div class="fl or">Empresa / Marca</div><div class="fb">{{client_name}}</div></div>
+    <div><div class="fl bl">Sector / Industria</div><div class="fb">{{client_industry}}</div></div>
+    <div><div class="fl pu">Responsable del Plan</div><div class="fb">{{manual_plan_owner}}</div></div>
+    <div><div class="fl cy">Cargo</div><div class="fb">{{manual_plan_owner_role}}</div></div>
+  </div>
+  <div class="g3">
+    <div><div class="fl or">Periodo de vigencia</div><div class="fb">{{ai_plan_period}}</div></div>
+    <div><div class="fl bl">Version</div><div class="fb">{{ai_document_version}}</div></div>
+    <div><div class="fl pu">Fecha de elaboracion</div><div class="fb">{{current_date}}</div></div>
+  </div>
+  <div style="margin-top:40px"><span class="tag" style="background:var(--or);color:#fff">B2B/B2C</span><span class="tag" style="background:var(--bl);color:#fff">MARKETING ESTRATEGICO</span><span class="tag" style="background:var(--pu);color:#fff">ROADMAP Q1-Q4</span><span class="tag" style="background:var(--gn);color:#fff">DATA DRIVEN</span></div>
+  <p style="font-size:11px;color:var(--tx2);margin-top:40px;">Documento confidencial. Uso exclusivo del equipo consultor y el cliente.</p>
+  <div class="ft">Plan Anual de Marketing -- Plantilla Profesional &bull; Pagina 1 de 50 &bull; CONFIDENCIAL</div>
+</div>
+
+<!-- P2: TOC -->
+<div class="p">
+  <div class="st">TABLA DE CONTENIDOS</div><div class="sd"></div>
+  <div class="g2">
+    <div><div class="fl or">01 EXECUTIVE SUMMARY</div><p style="font-size:12px;color:var(--tx2)">Diagnostico, KPIs norte, objetivos y contexto. pag. 3-4</p></div>
+    <div><div class="fl bl">02 ANALISIS DE SITUACION -- FODA</div><p style="font-size:12px;color:var(--tx2)">Fortalezas, Oportunidades, Debilidades y Amenazas. pag. 5</p></div>
+    <div><div class="fl pu">03 ANALISIS DE MERCADO</div><p style="font-size:12px;color:var(--tx2)">Tamano, tendencias, segmentos y oportunidades. pag. 6-7</p></div>
+    <div><div class="fl cy">04 MARKET INTELLIGENCE</div><p style="font-size:12px;color:var(--tx2)">Panorama competitivo e identificacion de actores. pag. 8</p></div>
+    <div><div class="fl mg">05 BENCHMARK COMPETITIVO</div><p style="font-size:12px;color:var(--tx2)">Comparativa detallada: digital, posicionamiento y gaps. pag. 9-11</p></div>
+    <div><div class="fl gn">06 BUYER PERSONAS</div><p style="font-size:12px;color:var(--tx2)">3 perfiles detallados del cliente ideal. pag. 12-14</p></div>
+    <div><div class="fl or">07 CUSTOMER JOURNEY MAP</div><p style="font-size:12px;color:var(--tx2)">Mapa del recorrido del cliente. pag. 15</p></div>
+    <div><div class="fl bl">08 BRAND & VALUE PROPOSITION</div><p style="font-size:12px;color:var(--tx2)">Territorio, pilares y mensajes clave. pag. 16-17</p></div>
+    <div><div class="fl pu">09 ESTRATEGIA DE CONTENIDOS</div><p style="font-size:12px;color:var(--tx2)">Framework, calendario, formatos. pag. 18-19</p></div>
+    <div><div class="fl cy">10 STRATEGIC ROADMAP Q1-Q4</div><p style="font-size:12px;color:var(--tx2)">Plan trimestral con tacticas y milestones. pag. 20-24</p></div>
+    <div><div class="fl mg">11 PLAN DE MEDIOS PAGADOS</div><p style="font-size:12px;color:var(--tx2)">LinkedIn, Meta, Google, TikTok. pag. 25-27</p></div>
+    <div><div class="fl gn">12 PLAN OWNED & EARNED MEDIA</div><p style="font-size:12px;color:var(--tx2)">SEO, blog, email, PR. pag. 28-31</p></div>
+    <div><div class="fl or">13 HABILITACION COMERCIAL</div><p style="font-size:12px;color:var(--tx2)">Scripts, objeciones, CRM. pag. 32</p></div>
+    <div><div class="fl bl">14 LANZAMIENTO DE PRODUCTO</div><p style="font-size:12px;color:var(--tx2)">Go-to-market. pag. 33</p></div>
+    <div><div class="fl pu">15 PRESUPUESTO ANUAL</div><p style="font-size:12px;color:var(--tx2)">Tabla mensual y ROI. pag. 34-36</p></div>
+    <div><div class="fl cy">16 MEASUREMENT FRAMEWORK</div><p style="font-size:12px;color:var(--tx2)">KPIs y dashboard. pag. 37-39</p></div>
+    <div><div class="fl mg">17 OKRs Y PROYECCION</div><p style="font-size:12px;color:var(--tx2)">Objetivos trimestrales. pag. 40-41</p></div>
+    <div><div class="fl gn">18 RETENCION Y REFERIDOS</div><p style="font-size:12px;color:var(--tx2)">Fidelizacion, NPS, referidos. pag. 42-43</p></div>
+    <div><div class="fl or">19 CRISIS Y REPUTACION</div><p style="font-size:12px;color:var(--tx2)">Protocolo de gestion de crisis. pag. 44</p></div>
+    <div><div class="fl bl">20 EXPANSION Y NUEVOS MERCADOS</div><p style="font-size:12px;color:var(--tx2)">Escalar a nuevas geografias. pag. 45</p></div>
+    <div><div class="fl pu">21 CONCLUSIONES Y NEXT STEPS</div><p style="font-size:12px;color:var(--tx2)">Resumen final y checklist. pag. 46-47</p></div>
+    <div><div class="fl cy">22 REGISTRO DE RIESGOS</div><p style="font-size:12px;color:var(--tx2)">Mapa de riesgos. pag. 48</p></div>
+    <div><div class="fl mg">23 GLOSARIO TECNICO</div><p style="font-size:12px;color:var(--tx2)">Definiciones. pag. 49-50</p></div>
+  </div>
+  <div class="ft">Plan Anual de Marketing -- Plantilla Profesional &bull; Pagina 2 de 50 &bull; CONFIDENCIAL</div>
+</div>
+
+<!-- P3: 01 EXECUTIVE SUMMARY - KPIs -->
+<div class="p">
+  <div class="st"><span class="n">01</span> EXECUTIVE SUMMARY -- OBJETIVOS &amp; KPIs NORTE</div><div class="sd"></div>
+  <div style="background:rgba(255,107,53,.1);border-top:3px solid var(--or);padding:16px;margin-bottom:20px;border-radius:0 0 6px 6px">
+    <div class="fl or">OBJETIVO DE ORO DEL ANO</div>
+    <p style="font-size:12px;color:var(--tx2);margin-bottom:8px">Cual es la meta mas importante de este ano?</p>
+    <div class="fb">{{ai_gold_objective}}</div>
+  </div>
+  <h3 style="margin-bottom:12px">KPIs ESTRATEGICOS NORTE</h3>
+  <div class="g6">
+    <div class="kc" style="border-top-color:var(--or)"><div class="kl">FACTURACION</div><div class="kv">{{ai_kpi_revenue_target}}</div></div>
+    <div class="kc" style="border-top-color:var(--bl)"><div class="kl">CRECIMIENTO</div><div class="kv">{{ai_kpi_growth_pct}}</div></div>
+    <div class="kc" style="border-top-color:var(--pu)"><div class="kl">TICKET</div><div class="kv">{{ai_kpi_avg_ticket}}</div></div>
+    <div class="kc" style="border-top-color:var(--cy)"><div class="kl">MARGEN</div><div class="kv">{{ai_kpi_profit_margin}}</div></div>
+    <div class="kc" style="border-top-color:var(--mg)"><div class="kl">CLIENTES</div><div class="kv">{{ai_kpi_clients_target}}</div></div>
+    <div class="kc" style="border-top-color:var(--gn)"><div class="kl">PRESUPUESTO</div><div class="kv">{{ai_kpi_mkt_budget_total}}</div></div>
+  </div>
+  <h3 style="margin-bottom:12px">META NUMERICA DETALLADA</h3>
+  <div class="g2">
+    <div><div class="fl">Facturacion ano anterior (real)</div><div class="fb">{{ai_revenue_last_year}}</div></div>
+    <div><div class="fl">Facturacion objetivo ano actual</div><div class="fb">{{ai_revenue_target_year}}</div></div>
+    <div><div class="fl">Numero de clientes actuales</div><div class="fb">{{ai_clients_current}}</div></div>
+    <div><div class="fl">Numero de clientes objetivo</div><div class="fb">{{ai_clients_target}}</div></div>
+    <div><div class="fl">Inversion mensual en Ads</div><div class="fb">{{ai_monthly_ads_investment}}</div></div>
+    <div><div class="fl">Inversion total anual en Marketing</div><div class="fb">{{ai_annual_mkt_investment}}</div></div>
+  </div>
+  <div style="border-left:3px solid var(--yl);padding:12px 16px;background:rgba(255,193,7,.05)"><div class="fl yl">NOTA ESTRATEGICA DEL CONSULTOR</div><div class="fb">{{ai_consultant_note}}</div></div>
+  <div class="ft">Plan Anual de Marketing -- Plantilla Profesional &bull; Pagina 3 de 50 &bull; CONFIDENCIAL</div>
+</div>
+
+<!-- P4: 01B EXECUTIVE SUMMARY - CONTEXTO -->
+<div class="p">
+  <div class="st"><span class="n">01</span> EXECUTIVE SUMMARY -- CONTEXTO &amp; DIAGNOSTICO</div><div class="sd"></div>
+  <div class="fl or">DIAGNOSTICO DE SITUACION ACTUAL</div><div class="fb lg">{{ai_diagnostic_summary}}</div>
+  <div class="fl mg">PROPUESTA UNICA DE VALOR (USP)</div><div class="fb lg">{{ai_usp}}</div>
+  <div class="g2">
+    <div><div class="fl cy">VOZ Y PERSONALIDAD DE MARCA</div><div class="fb">{{ai_brand_voice}}</div></div>
+    <div><div class="fl gn">PALABRAS CLAVE DE MARCA</div><div class="fb">{{ai_brand_keywords}}</div></div>
+  </div>
+  <div class="fl pu">SERVICIOS / PRODUCTOS PRINCIPALES</div>
+  <div class="g3">
+    <div class="kc" style="border-top-color:var(--or)"><div class="kl">SERVICIO / PRODUCTO 1</div><div class="fl">Nombre:</div><div class="kv">{{ai_service_1_name}}</div><div class="fl" style="margin-top:6px">Precio / ticket:</div><div class="kv">{{ai_service_1_price}}</div></div>
+    <div class="kc" style="border-top-color:var(--bl)"><div class="kl">SERVICIO / PRODUCTO 2</div><div class="fl">Nombre:</div><div class="kv">{{ai_service_2_name}}</div><div class="fl" style="margin-top:6px">Precio / ticket:</div><div class="kv">{{ai_service_2_price}}</div></div>
+    <div class="kc" style="border-top-color:var(--pu)"><div class="kl">SERVICIO / PRODUCTO 3</div><div class="fl">Nombre:</div><div class="kv">{{ai_service_3_name}}</div><div class="fl" style="margin-top:6px">Precio / ticket:</div><div class="kv">{{ai_service_3_price}}</div></div>
+  </div>
+  <div class="fl gn">INFRAESTRUCTURA DE EJECUCION</div>
+  <div class="g3">
+    <div><div class="kl">Equipo interno</div><div class="fb">{{ai_team_internal}}</div></div>
+    <div><div class="kl">Agencia / Partner</div><div class="fb">{{ai_agency_partner}}</div></div>
+    <div><div class="kl">Herramientas actuales</div><div class="fb">{{ai_current_tools}}</div></div>
+  </div>
+  <div class="fl">CONTEXTO ADICIONAL RELEVANTE</div><div class="fb lg">{{ai_additional_context}}</div>
+  <div class="ft">Plan Anual de Marketing -- Plantilla Profesional &bull; Pagina 4 de 50 &bull; CONFIDENCIAL</div>
+</div>
+
+<!-- P5: 02 FODA -->
+<div class="p">
+  <div class="st"><span class="n">02</span> ANALISIS DE SITUACION -- FODA / SWOT</div><div class="sd"></div>
+  <p style="font-size:13px;color:var(--tx2);margin-bottom:20px">Herramienta estrategica para diagnosticar la posicion actual del negocio antes de definir la estrategia.</p>
+  <div class="g2">
+    <div class="pc swot" style="border-top-color:var(--or)"><div class="fl or">F &nbsp;FORTALEZAS</div><p style="font-size:11px;color:var(--tx2);margin-bottom:8px">Interno -- Positivo. Que hace bien el negocio?</p><div class="fb lg">{{ai_foda_strengths}}</div></div>
+    <div class="pc swot" style="border-top-color:var(--cy)"><div class="fl cy">O &nbsp;OPORTUNIDADES</div><p style="font-size:11px;color:var(--tx2);margin-bottom:8px">Externo -- Positivo. Que tendencias puede aprovechar?</p><div class="fb lg">{{ai_foda_opportunities}}</div></div>
+    <div class="pc swot" style="border-top-color:var(--mg)"><div class="fl mg">D &nbsp;DEBILIDADES</div><p style="font-size:11px;color:var(--tx2);margin-bottom:8px">Interno -- Negativo. Que le falta al negocio?</p><div class="fb lg">{{ai_foda_weaknesses}}</div></div>
+    <div class="pc swot" style="border-top-color:var(--pu)"><div class="fl pu">A &nbsp;AMENAZAS</div><p style="font-size:11px;color:var(--tx2);margin-bottom:8px">Externo -- Negativo. Que factores externos perjudican?</p><div class="fb lg">{{ai_foda_threats}}</div></div>
+  </div>
+  <div class="fl yl">SINTESIS ESTRATEGICA -- Que dice el FODA sobre la estrategia a seguir?</div><div class="fb lg">{{ai_foda_synthesis}}</div>
+  <div class="ft">Plan Anual de Marketing -- Plantilla Profesional &bull; Pagina 5 de 50 &bull; CONFIDENCIAL</div>
+</div>
+
+<!-- P6: 03 MARKET ANALYSIS - TRENDS -->
+<div class="p">
+  <div class="st"><span class="n">03</span> ANALISIS DE MERCADO -- TENDENCIAS &amp; CONTEXTO</div><div class="sd"></div>
+  <div class="fl">CONTEXTO DEL SECTOR / INDUSTRIA</div><div class="fb lg">{{ai_market_context}}</div>
+  <div class="fl or">TENDENCIAS CLAVE DEL MERCADO</div>
+  <div class="g3">
+    <div class="kc" style="border-top-color:var(--or)"><div class="kl">TENDENCIA 1</div><div class="kv">{{ai_market_trend_1}}</div></div>
+    <div class="kc" style="border-top-color:var(--bl)"><div class="kl">TENDENCIA 2</div><div class="kv">{{ai_market_trend_2}}</div></div>
+    <div class="kc" style="border-top-color:var(--pu)"><div class="kl">TENDENCIA 3</div><div class="kv">{{ai_market_trend_3}}</div></div>
+    <div class="kc" style="border-top-color:var(--cy)"><div class="kl">TENDENCIA 4</div><div class="kv">{{ai_market_trend_4}}</div></div>
+    <div class="kc" style="border-top-color:var(--mg)"><div class="kl">TENDENCIA 5</div><div class="kv">{{ai_market_trend_5}}</div></div>
+    <div class="kc" style="border-top-color:var(--gn)"><div class="kl">TENDENCIA 6</div><div class="kv">{{ai_market_trend_6}}</div></div>
+  </div>
+  <div class="fl gn">DRIVERS DE CRECIMIENTO DEL MERCADO</div><div class="fb lg">{{ai_market_growth_drivers}}</div>
+  <div class="fl mg">RIESGOS Y FACTORES QUE FRENAN EL MERCADO</div><div class="fb">{{ai_market_risks}}</div>
+  <div class="ft">Plan Anual de Marketing -- Plantilla Profesional &bull; Pagina 6 de 50 &bull; CONFIDENCIAL</div>
+</div>
+
+<!-- P7: 03B MARKET SIZE -->
+<div class="p">
+  <div class="st"><span class="n">03</span> ANALISIS DE MERCADO -- TAMANO &amp; OPORTUNIDADES</div><div class="sd"></div>
+  <h3 style="margin-bottom:12px">TAMANO DE MERCADO</h3>
+  <div class="g3">
+    <div class="kc" style="border-top-color:var(--or)"><div class="kl">TAM - Mercado Total Disponible</div><div class="fl">Valor estimado:</div><div class="kv">{{ai_tam_value}}</div></div>
+    <div class="kc" style="border-top-color:var(--bl)"><div class="kl">SAM - Mercado Disponible & Servible</div><div class="fl">Valor estimado:</div><div class="kv">{{ai_sam_value}}</div></div>
+    <div class="kc" style="border-top-color:var(--pu)"><div class="kl">SOM - Mercado Obtenible Realista</div><div class="fl">Valor estimado:</div><div class="kv">{{ai_som_value}}</div></div>
+  </div>
+  <div class="fl mg">SEGMENTOS DE MERCADO</div>
+  <div class="g4">
+    <div class="kc" style="border-top-color:var(--or)"><div class="kl">SEGMENTO 1</div><div class="fl">Nombre:</div><div class="kv">{{ai_segment_1_name}}</div><div class="fl" style="margin-top:4px">Potencial:</div><div class="kv">{{ai_segment_1_potential}}</div></div>
+    <div class="kc" style="border-top-color:var(--bl)"><div class="kl">SEGMENTO 2</div><div class="fl">Nombre:</div><div class="kv">{{ai_segment_2_name}}</div><div class="fl" style="margin-top:4px">Potencial:</div><div class="kv">{{ai_segment_2_potential}}</div></div>
+    <div class="kc" style="border-top-color:var(--pu)"><div class="kl">SEGMENTO 3</div><div class="fl">Nombre:</div><div class="kv">{{ai_segment_3_name}}</div><div class="fl" style="margin-top:4px">Potencial:</div><div class="kv">{{ai_segment_3_potential}}</div></div>
+    <div class="kc" style="border-top-color:var(--cy)"><div class="kl">SEGMENTO 4</div><div class="fl">Nombre:</div><div class="kv">{{ai_segment_4_name}}</div><div class="fl" style="margin-top:4px">Potencial:</div><div class="kv">{{ai_segment_4_potential}}</div></div>
+  </div>
+  <div class="fl gn">OPORTUNIDADES ESPECIFICAS IDENTIFICADAS</div>
+  <div class="g3"><div><div class="kl">Oportunidad 1:</div><div class="fb">{{ai_opportunity_1}}</div></div><div><div class="kl">Oportunidad 2:</div><div class="fb">{{ai_opportunity_2}}</div></div><div><div class="kl">Oportunidad 3:</div><div class="fb">{{ai_opportunity_3}}</div></div></div>
+  <div class="fl cy">POSICIONAMIENTO OBJETIVO EN EL MERCADO</div><div class="fb lg">{{ai_market_positioning}}</div>
+  <div class="ft">Plan Anual de Marketing -- Plantilla Profesional &bull; Pagina 7 de 50 &bull; CONFIDENCIAL</div>
+</div>
+
+<!-- P8: 04 MARKET INTELLIGENCE -->
+<div class="p">
+  <div class="st"><span class="n">04</span> MARKET INTELLIGENCE -- PANORAMA COMPETITIVO</div><div class="sd"></div>
+  <div class="cn"><strong>SECCION DE USO INTERNO</strong> -- Completada por el consultor mediante investigacion de mercado online. <span class="cb" style="float:right">INVESTIGACION CONSULTOR</span></div>
+  <h3 style="margin-bottom:12px">MAPA DE COMPETIDORES POR TIPO</h3>
+  <div class="g2">
+    <div class="pc" style="border-top-color:var(--or)"><div class="fl or">COMPETIDORES DIRECTOS</div><p style="font-size:11px;color:var(--tx2);margin-bottom:8px">Ofrecen el mismo producto/servicio al mismo segmento.</p><div class="fb lg">{{ai_competitors_direct}}</div></div>
+    <div class="pc" style="border-top-color:var(--bl)"><div class="fl bl">COMPETIDORES INDIRECTOS</div><p style="font-size:11px;color:var(--tx2);margin-bottom:8px">Satisfacen la misma necesidad de forma diferente.</p><div class="fb lg">{{ai_competitors_indirect}}</div></div>
+    <div class="pc" style="border-top-color:var(--mg)"><div class="fl mg">SUSTITUTOS</div><p style="font-size:11px;color:var(--tx2);margin-bottom:8px">Alternativas que podrian reemplazarlo.</p><div class="fb lg">{{ai_competitors_substitutes}}</div></div>
+    <div class="pc" style="border-top-color:var(--gn)"><div class="fl gn">NUEVOS ENTRANTES</div><p style="font-size:11px;color:var(--tx2);margin-bottom:8px">Actores que podrian entrar al mercado.</p><div class="fb lg">{{ai_competitors_new_entrants}}</div></div>
+  </div>
+  <div class="fl cy">CONCLUSIONES DEL PANORAMA COMPETITIVO</div><div class="fb lg">{{ai_competitive_conclusions}}</div>
+  <div class="g2"><div><div class="fl">FECHA DE INVESTIGACION</div><div class="fb">{{current_date}}</div></div><div><div class="fl">ANALISTA RESPONSABLE</div><div class="fb">{{manual_analyst_name}}</div></div></div>
+  <div class="ft">Plan Anual de Marketing -- Plantilla Profesional &bull; Pagina 8 de 50 &bull; CONFIDENCIAL</div>
+</div>
+
+<!-- P9-11: 05 BENCHMARK - Simplified to key section -->
+<div class="p">
+  <div class="st"><span class="n">05</span> BENCHMARK COMPETITIVO -- TABLA COMPARATIVA</div><div class="sd"></div>
+  <div style="text-align:right;margin-bottom:12px"><span class="cb">USO INTERNO -- CONSULTOR</span></div>
+  <div class="fl">NOMBRES DE LOS COMPETIDORES IDENTIFICADOS</div>
+  <div class="g4" style="margin-bottom:20px">
+    <div><div class="kl or" style="color:var(--or)">CLIENTE / NUESTRA MARCA</div><div class="fb">{{client_name}}</div></div>
+    <div><div class="kl bl" style="color:var(--bl)">COMPETIDOR 1</div><div class="fb">{{ai_competitor_1_name}}</div></div>
+    <div><div class="kl pu" style="color:var(--pu)">COMPETIDOR 2</div><div class="fb">{{ai_competitor_2_name}}</div></div>
+    <div><div class="kl mg" style="color:var(--mg)">COMPETIDOR 3</div><div class="fb">{{ai_competitor_3_name}}</div></div>
+  </div>
+  <div class="fl mg">VENTAJA COMPETITIVA SOSTENIBLE</div><div class="fb lg">{{ai_competitive_advantage}}</div>
+  <div class="fl gn">WHITESPACE -- OPORTUNIDAD NO EXPLOTADA POR LA COMPETENCIA</div><div class="fb lg">{{ai_whitespace_opportunity}}</div>
+  <div class="fl or">OPORTUNIDADES DIGITALES DETECTADAS</div><div class="fb lg">{{ai_digital_opportunities}}</div>
+  <div class="ft">Plan Anual de Marketing -- Plantilla Profesional &bull; Paginas 9-11 de 50 &bull; CONFIDENCIAL</div>
+</div>
+
+<!-- P12-14: 06 BUYER PERSONAS -->
+<div class="p">
+  <div class="st"><span class="n">06</span> BUYER PERSONAS -- PERFILES DETALLADOS</div><div class="sd"></div>
+  <!-- Persona 1 -->
+  <div class="pc" style="border-top-color:var(--or);margin-bottom:24px">
+    <div class="g2"><div><div class="fl or">PERSONA 1</div><div class="fl">Nombre / Arquetipo:</div><div class="fb">{{ai_persona_1_name}}</div></div><div><div class="fl">Frase que lo define:</div><div class="fb" style="margin-top:18px">{{ai_persona_1_phrase}}</div></div></div>
+    <div class="g2">
+      <div><h4 style="color:var(--or);margin-bottom:8px">PERFIL DEMOGRAFICO</h4>
+        <div class="g2"><div><div class="fl">Edad</div><div class="fb">{{ai_persona_1_age}}</div></div><div><div class="fl">Genero</div><div class="fb">{{ai_persona_1_gender}}</div></div></div>
+        <div class="fl">Ubicacion / Ciudad</div><div class="fb">{{ai_persona_1_location}}</div>
+        <div class="fl">Nivel socioeconomico</div><div class="fb">{{ai_persona_1_nse}}</div>
+        <div class="fl">Ocupacion / Cargo</div><div class="fb">{{ai_persona_1_occupation}}</div>
+        <div class="fl">Industria / Sector</div><div class="fb">{{ai_persona_1_industry}}</div>
+      </div>
+      <div><h4 style="color:var(--pu);margin-bottom:8px">PERFIL PSICOGRAFICO</h4>
+        <div class="fl">Que le preocupa / Pain principal?</div><div class="fb">{{ai_persona_1_pain}}</div>
+        <div class="fl">Que aspira / desea lograr?</div><div class="fb">{{ai_persona_1_aspiration}}</div>
+        <div class="fl">Que valores tiene?</div><div class="fb">{{ai_persona_1_values}}</div>
+        <div class="fl">Que medios consume?</div><div class="fb">{{ai_persona_1_media}}</div>
+        <div class="fl">Como toma decisiones de compra?</div><div class="fb">{{ai_persona_1_buying_behavior}}</div>
+      </div>
+    </div>
+    <h4 style="margin-bottom:8px">COMPORTAMIENTO DIGITAL Y DE COMPRA</h4>
+    <div class="g3">
+      <div class="kc" style="border-top-color:var(--or)"><div class="kl or" style="color:var(--or)">Canal donde nos encuentra</div><div class="kv">{{ai_persona_1_channel}}</div></div>
+      <div class="kc" style="border-top-color:var(--bl)"><div class="kl bl" style="color:var(--bl)">Red social mas activa</div><div class="kv">{{ai_persona_1_social}}</div></div>
+      <div class="kc" style="border-top-color:var(--mg)"><div class="kl mg" style="color:var(--mg)">Trigger de compra</div><div class="kv">{{ai_persona_1_trigger}}</div></div>
+    </div>
+    <div class="g2">
+      <div class="kc" style="border-top-color:var(--mg)"><div class="fl mg">OBJECIONES TIPICAS</div><div class="kv">{{ai_persona_1_objections}}</div></div>
+      <div class="kc" style="border-top-color:var(--gn)"><div class="fl gn">MENSAJES QUE LE RESONARIAN</div><div class="kv">{{ai_persona_1_messages}}</div></div>
+    </div>
+  </div>
+  <p style="font-size:12px;color:var(--tx2);font-style:italic">Nota: Personas 2 y 3 siguen la misma estructura con variables {{ai_persona_2_*}} y {{ai_persona_3_*}}.</p>
+  <div class="ft">Plan Anual de Marketing -- Plantilla Profesional &bull; Paginas 12-14 de 50 &bull; CONFIDENCIAL</div>
+</div>
+
+<!-- P15: 07 CUSTOMER JOURNEY -->
+<div class="p">
+  <div class="st"><span class="n">07</span> CUSTOMER JOURNEY MAP -- RECORRIDO DEL CLIENTE</div><div class="sd"></div>
+  <p style="font-size:13px;color:var(--tx2);margin-bottom:20px">Documenta que piensa, siente y hace el cliente en cada etapa desde que conoce la marca hasta que la recomienda.</p>
+  <div class="g6">
+    <div class="kc" style="border-top-color:var(--or)"><div style="background:var(--or);color:#fff;padding:8px;text-align:center;font-size:12px;font-weight:700;border-radius:4px;margin-bottom:8px">AWARENESS<br><span style="font-weight:400;font-size:10px">El cliente descubre la marca</span></div>
+      <div class="fl">Como nos encuentra?</div><div class="kv">{{ai_journey_awareness_how}}</div>
+      <div class="fl">Que piensa y siente?</div><div class="kv">{{ai_journey_awareness_feels}}</div>
+      <div class="fl">Pain points</div><div class="kv">{{ai_journey_awareness_pain}}</div>
+    </div>
+    <div class="kc" style="border-top-color:var(--bl)"><div style="background:var(--bl);color:#fff;padding:8px;text-align:center;font-size:12px;font-weight:700;border-radius:4px;margin-bottom:8px">CONSIDERATION<br><span style="font-weight:400;font-size:10px">Evalua opciones</span></div>
+      <div class="fl">Como nos encuentra?</div><div class="kv">{{ai_journey_consideration_how}}</div>
+      <div class="fl">Que piensa y siente?</div><div class="kv">{{ai_journey_consideration_feels}}</div>
+      <div class="fl">Pain points</div><div class="kv">{{ai_journey_consideration_pain}}</div>
+    </div>
+    <div class="kc" style="border-top-color:var(--pu)"><div style="background:var(--pu);color:#fff;padding:8px;text-align:center;font-size:12px;font-weight:700;border-radius:4px;margin-bottom:8px">DECISION<br><span style="font-weight:400;font-size:10px">Decide comprar</span></div>
+      <div class="fl">Touchpoints</div><div class="kv">{{ai_journey_decision_touchpoints}}</div>
+      <div class="fl">Que piensa y siente?</div><div class="kv">{{ai_journey_decision_feels}}</div>
+      <div class="fl">Pain points</div><div class="kv">{{ai_journey_decision_pain}}</div>
+    </div>
+    <div class="kc" style="border-top-color:var(--cy)"><div style="background:var(--cy);color:#000;padding:8px;text-align:center;font-size:12px;font-weight:700;border-radius:4px;margin-bottom:8px">ONBOARDING<br><span style="font-weight:400;font-size:10px">Primera experiencia</span></div>
+      <div class="fl">Touchpoints</div><div class="kv">{{ai_journey_onboarding_touchpoints}}</div>
+      <div class="fl">Que piensa y siente?</div><div class="kv">{{ai_journey_onboarding_feels}}</div>
+      <div class="fl">Pain points</div><div class="kv">{{ai_journey_onboarding_pain}}</div>
+    </div>
+    <div class="kc" style="border-top-color:var(--mg)"><div style="background:var(--mg);color:#fff;padding:8px;text-align:center;font-size:12px;font-weight:700;border-radius:4px;margin-bottom:8px">RETENTION<br><span style="font-weight:400;font-size:10px">Uso continuo</span></div>
+      <div class="fl">Touchpoints</div><div class="kv">{{ai_journey_retention_touchpoints}}</div>
+      <div class="fl">Que piensa y siente?</div><div class="kv">{{ai_journey_retention_feels}}</div>
+      <div class="fl">Pain points</div><div class="kv">{{ai_journey_retention_pain}}</div>
+    </div>
+    <div class="kc" style="border-top-color:var(--yl)"><div style="background:var(--yl);color:#000;padding:8px;text-align:center;font-size:12px;font-weight:700;border-radius:4px;margin-bottom:8px">ADVOCACY<br><span style="font-weight:400;font-size:10px">Recomienda</span></div>
+      <div class="fl">Touchpoints</div><div class="kv">{{ai_journey_advocacy_touchpoints}}</div>
+      <div class="fl">Que piensa y siente?</div><div class="kv">{{ai_journey_advocacy_feels}}</div>
+      <div class="fl">Oportunidad</div><div class="kv">{{ai_journey_advocacy_opportunity}}</div>
+    </div>
+  </div>
+  <div class="fl yl">MOMENTO DE LA VERDAD -- En que etapa se gana o se pierde el cliente?</div><div class="fb lg">{{ai_customer_journey_moment_of_truth}}</div>
+  <div class="ft">Plan Anual de Marketing -- Plantilla Profesional &bull; Pagina 15 de 50 &bull; CONFIDENCIAL</div>
+</div>
+
+<!-- P16-17: 08 BRAND - Simplified -->
+<div class="p">
+  <div class="st"><span class="n">08</span> BRAND &amp; VALUE PROPOSITION -- TERRITORIO DE MARCA</div><div class="sd"></div>
+  <div class="fl or">TERRITORIO DE MARCA</div><div class="fb lg">{{ai_brand_territory}}</div>
+  <h3 style="margin-bottom:12px">PILARES DE DIFERENCIACION</h3>
+  <div class="g3">
+    <div class="pc" style="border-top-color:var(--or)"><div style="background:var(--or);color:#fff;padding:6px;text-align:center;font-size:12px;font-weight:700;border-radius:4px;margin-bottom:8px">PILAR 1 -- RACIONAL<br><span style="font-weight:400;font-size:10px">Que hace mejor que nadie?</span></div><div class="fb lg">{{ai_pillar_rational}}</div></div>
+    <div class="pc" style="border-top-color:var(--pu)"><div style="background:var(--pu);color:#fff;padding:6px;text-align:center;font-size:12px;font-weight:700;border-radius:4px;margin-bottom:8px">PILAR 2 -- EMOCIONAL<br><span style="font-weight:400;font-size:10px">Que hace sentir al cliente?</span></div><div class="fb lg">{{ai_pillar_emotional}}</div></div>
+    <div class="pc" style="border-top-color:var(--cy)"><div style="background:var(--cy);color:#000;padding:6px;text-align:center;font-size:12px;font-weight:700;border-radius:4px;margin-bottom:8px">PILAR 3 -- EXPERIENCIA<br><span style="font-weight:400;font-size:10px">Como es trabajar con ellos?</span></div><div class="fb lg">{{ai_pillar_experience}}</div></div>
+  </div>
+  <div class="fl mg">PROPUESTA DE VALOR (CANVAS)</div>
+  <div class="g3">
+    <div class="kc" style="border-top-color:var(--cy)"><div class="kl">TRABAJOS del cliente</div><div class="kv" style="min-height:80px">{{ai_value_canvas_jobs}}</div></div>
+    <div class="kc" style="border-top-color:var(--mg)"><div class="kl">DOLORES que resuelve</div><div class="kv" style="min-height:80px">{{ai_value_canvas_pains}}</div></div>
+    <div class="kc" style="border-top-color:var(--gn)"><div class="kl">GANANCIAS que genera</div><div class="kv" style="min-height:80px">{{ai_value_canvas_gains}}</div></div>
+  </div>
+  <div class="ft">Plan Anual de Marketing -- Plantilla Profesional &bull; Paginas 16-17 de 50 &bull; CONFIDENCIAL</div>
+</div>
+
+<!-- P18-19: 09 CONTENT STRATEGY -->
+<div class="p">
+  <div class="st"><span class="n">09</span> ESTRATEGIA DE CONTENIDOS -- FRAMEWORK</div><div class="sd"></div>
+  <div class="fl or">OBJETIVO DE CONTENIDOS:</div><div class="fb">{{ai_content_objective}}</div>
+  <h3 style="margin-bottom:12px">PILARES DE CONTENIDO (Temas principales)</h3>
+  <div class="g4">
+    <div class="kc" style="border-top-color:var(--or)"><div class="fl or">PILAR 1</div><div class="fl">Tema / categoria:</div><div class="kv">{{ai_content_pillar_1}}</div></div>
+    <div class="kc" style="border-top-color:var(--bl)"><div class="fl bl">PILAR 2</div><div class="fl">Tema / categoria:</div><div class="kv">{{ai_content_pillar_2}}</div></div>
+    <div class="kc" style="border-top-color:var(--pu)"><div class="fl pu">PILAR 3</div><div class="fl">Tema / categoria:</div><div class="kv">{{ai_content_pillar_3}}</div></div>
+    <div class="kc" style="border-top-color:var(--cy)"><div class="fl cy">PILAR 4</div><div class="fl">Tema / categoria:</div><div class="kv">{{ai_content_pillar_4}}</div></div>
+  </div>
+  <p style="font-size:12px;color:var(--tx2);font-style:italic;margin-bottom:20px">Secciones de formatos por canal, calendario y metricas de contenido incluidas en las paginas completas del plan.</p>
+  <div class="ft">Plan Anual de Marketing -- Plantilla Profesional &bull; Paginas 18-19 de 50 &bull; CONFIDENCIAL</div>
+</div>
+
+<!-- P20-24: 10 ROADMAP -->
+<div class="p">
+  <div class="st"><span class="n">10</span> STRATEGIC ROADMAP {{ai_plan_year}} -- VISION GENERAL</div><div class="sd"></div>
+  <div class="g3" style="margin-bottom:20px">
+    <div><div class="fl or">OBJETIVO ANUAL:</div><div class="fb">{{ai_annual_objective}}</div></div>
+    <div><div class="fl bl">Meta numerica:</div><div class="fb">{{ai_annual_numeric_target}}</div></div>
+    <div><div class="fl pu">Crecimiento %:</div><div class="fb">{{ai_annual_growth_pct}}</div></div>
+  </div>
+  <div class="g4">
+    <div><div class="qh" style="background:var(--or)"><h3>Q1</h3><div class="pd">Enero - Marzo</div></div><div class="qb">
+      <div class="fl">META NUMERICA</div><div class="fb">{{ai_q1_numeric_target}}</div>
+      <div class="fl">OBJETIVO PRINCIPAL</div><div class="fb">{{ai_q1_objective}}</div>
+      <div class="fl">TACTICA #1</div><div class="fb">{{ai_q1_tactic_1}}</div>
+      <div class="fl">TACTICA #2</div><div class="fb">{{ai_q1_tactic_2}}</div>
+      <div class="fl">CANAL PRIORITARIO</div><div class="fb">{{ai_q1_channel}}</div>
+      <div class="fl">KPI DEL TRIMESTRE</div><div class="fb">{{ai_q1_kpi}}</div>
+    </div></div>
+    <div><div class="qh" style="background:var(--bl)"><h3>Q2</h3><div class="pd">Abril - Junio</div></div><div class="qb">
+      <div class="fl">META NUMERICA</div><div class="fb">{{ai_q2_numeric_target}}</div>
+      <div class="fl">OBJETIVO PRINCIPAL</div><div class="fb">{{ai_q2_objective}}</div>
+      <div class="fl">TACTICA #1</div><div class="fb">{{ai_q2_tactic_1}}</div>
+      <div class="fl">TACTICA #2</div><div class="fb">{{ai_q2_tactic_2}}</div>
+      <div class="fl">CANAL PRIORITARIO</div><div class="fb">{{ai_q2_channel}}</div>
+      <div class="fl">KPI DEL TRIMESTRE</div><div class="fb">{{ai_q2_kpi}}</div>
+    </div></div>
+    <div><div class="qh" style="background:var(--pu)"><h3>Q3</h3><div class="pd">Julio - Septiembre</div></div><div class="qb">
+      <div class="fl">META NUMERICA</div><div class="fb">{{ai_q3_numeric_target}}</div>
+      <div class="fl">OBJETIVO PRINCIPAL</div><div class="fb">{{ai_q3_objective}}</div>
+      <div class="fl">TACTICA #1</div><div class="fb">{{ai_q3_tactic_1}}</div>
+      <div class="fl">TACTICA #2</div><div class="fb">{{ai_q3_tactic_2}}</div>
+      <div class="fl">CANAL PRIORITARIO</div><div class="fb">{{ai_q3_channel}}</div>
+      <div class="fl">KPI DEL TRIMESTRE</div><div class="fb">{{ai_q3_kpi}}</div>
+    </div></div>
+    <div><div class="qh" style="background:var(--cy)"><h3>Q4</h3><div class="pd">Octubre - Diciembre</div></div><div class="qb">
+      <div class="fl">META NUMERICA</div><div class="fb">{{ai_q4_numeric_target}}</div>
+      <div class="fl">OBJETIVO PRINCIPAL</div><div class="fb">{{ai_q4_objective}}</div>
+      <div class="fl">TACTICA #1</div><div class="fb">{{ai_q4_tactic_1}}</div>
+      <div class="fl">TACTICA #2</div><div class="fb">{{ai_q4_tactic_2}}</div>
+      <div class="fl">CANAL PRIORITARIO</div><div class="fb">{{ai_q4_channel}}</div>
+      <div class="fl">KPI DEL TRIMESTRE</div><div class="fb">{{ai_q4_kpi}}</div>
+    </div></div>
+  </div>
+  <p style="font-size:12px;color:var(--tx2);font-style:italic">Nota: Los planes detallados semana-a-semana para cada Q se incluyen en las paginas 21-24 del plan completo, siguiendo la misma estructura con variables {{ai_q[N]_week_[W]}}.</p>
+  <div class="ft">Plan Anual de Marketing -- Plantilla Profesional &bull; Paginas 20-24 de 50 &bull; CONFIDENCIAL</div>
+</div>
+
+<!-- P25-36: Sections 11-15 Consolidated -->
+<div class="p">
+  <div class="st"><span class="n">11-15</span> PAID MEDIA, OWNED MEDIA, SALES, LAUNCH &amp; BUDGET</div><div class="sd"></div>
+
+  <h3 style="margin-bottom:12px">11 - PLAN DE MEDIOS PAGADOS</h3>
+  <div class="g2" style="margin-bottom:20px">
+    <div><div class="fl or">OBJETIVO DE PAID MEDIA:</div><div class="fb">{{ai_paid_media_objective}}</div></div>
+    <div><div class="fl bl">Presupuesto total/mes:</div><div class="fb">{{ai_paid_media_monthly_budget}}</div></div>
+  </div>
+
+  <h3 style="margin-bottom:12px">12 - PLAN OWNED & EARNED MEDIA</h3>
+  <div class="g2" style="margin-bottom:20px">
+    <div><div class="fl pu">ESTRATEGIA SEO</div><div class="fb">{{ai_seo_strategy}}</div></div>
+    <div><div class="fl cy">EMAIL MARKETING</div><div class="fb">{{ai_email_strategy}}</div></div>
+    <div><div class="fl mg">REDES SOCIALES ORGANICO</div><div class="fb">{{ai_social_strategy}}</div></div>
+    <div><div class="fl gn">EARNED MEDIA & PR</div><div class="fb">{{ai_earned_media_strategy}}</div></div>
+  </div>
+
+  <h3 style="margin-bottom:12px">13 - HABILITACION COMERCIAL</h3>
+  <div class="fl or">PROCESO DE VENTAS (PIPELINE)</div><div class="fb lg">{{ai_sales_process}}</div>
+
+  <h3 style="margin-bottom:12px">14 - PLAN DE LANZAMIENTO</h3>
+  <div class="g2" style="margin-bottom:20px">
+    <div><div class="fl bl">PRODUCTO / SERVICIO A LANZAR:</div><div class="fb">{{ai_launch_product_name}}</div></div>
+    <div><div class="fl pu">Fecha de lanzamiento objetivo:</div><div class="fb">{{ai_launch_date}}</div></div>
+  </div>
+
+  <h3 style="margin-bottom:12px">15 - PRESUPUESTO ANUAL</h3>
+  <div class="g3">
+    <div><div class="fl or">PRESUPUESTO TOTAL ANUAL:</div><div class="fb">{{ai_budget_annual_total}}</div></div>
+    <div><div class="fl bl">MONEDA:</div><div class="fb">{{ai_budget_currency}}</div></div>
+    <div><div class="fl pu">ANO:</div><div class="fb">{{ai_plan_year}}</div></div>
+  </div>
+  <p style="font-size:12px;color:var(--tx2);font-style:italic">Nota: Las tablas mensuales detalladas, distribucion por canal con ROI esperado, y escenarios financieros se incluyen en las paginas 34-36 del plan completo.</p>
+  <div class="ft">Plan Anual de Marketing -- Plantilla Profesional &bull; Paginas 25-36 de 50 &bull; CONFIDENCIAL</div>
+</div>
+
+<!-- P37-43: Sections 16-18 -->
+<div class="p">
+  <div class="st"><span class="n">16</span> MEASUREMENT FRAMEWORK -- KPIs PRINCIPALES</div><div class="sd"></div>
+  <div class="fl or">NORTH STAR METRIC -- LA METRICA QUE TODO LO GUIA</div><div class="fb">{{ai_north_star_metric}}</div>
+  <h3 style="margin:20px 0 12px">KPIs CRITICAS</h3>
+  <div class="g4">
+    <div class="mc" style="border-top-color:var(--or)"><div class="mn" style="color:var(--or)">CAC</div><div class="md">Costo Adquisicion</div><div class="kl">META:</div><div class="kv">{{ai_kpi_cac_target}}</div><div class="kl" style="margin-top:4px">ACTUAL:</div><div class="kv">{{ai_kpi_cac_current}}</div></div>
+    <div class="mc" style="border-top-color:var(--bl)"><div class="mn" style="color:var(--bl)">LTV</div><div class="md">Life Time Value</div><div class="kl">META:</div><div class="kv">{{ai_kpi_ltv_target}}</div><div class="kl" style="margin-top:4px">ACTUAL:</div><div class="kv">{{ai_kpi_ltv_current}}</div></div>
+    <div class="mc" style="border-top-color:var(--pu)"><div class="mn" style="color:var(--pu)">ROAS</div><div class="md">Retorno en Publicidad</div><div class="kl">META:</div><div class="kv">{{ai_kpi_roas_target}}</div><div class="kl" style="margin-top:4px">ACTUAL:</div><div class="kv">{{ai_kpi_roas_current}}</div></div>
+    <div class="mc" style="border-top-color:var(--cy)"><div class="mn" style="color:var(--cy)">NPS</div><div class="md">Net Promoter Score</div><div class="kl">META:</div><div class="kv">{{ai_kpi_nps_target}}</div><div class="kl" style="margin-top:4px">ACTUAL:</div><div class="kv">{{ai_kpi_nps_current}}</div></div>
+  </div>
+
+  <h3 style="margin:20px 0 12px">18 - RETENCION Y REFERIDOS</h3>
+  <div class="fl gn">ESTRATEGIA DE RETENCION</div><div class="fb lg">{{ai_retention_strategy}}</div>
+  <div class="fl mg">PROGRAMA DE REFERIDOS</div><div class="fb lg">{{ai_referral_program}}</div>
+  <div class="ft">Plan Anual de Marketing -- Plantilla Profesional &bull; Paginas 37-43 de 50 &bull; CONFIDENCIAL</div>
+</div>
+
+<!-- P44-45: Sections 19-20 -->
+<div class="p">
+  <div class="st"><span class="n">19</span> GESTION DE CRISIS Y REPUTACION DIGITAL</div><div class="sd"></div>
+  <div class="fl mg">PROTOCOLO DE GESTION DE CRISIS</div><div class="fb lg">{{ai_crisis_protocol}}</div>
+
+  <div class="st" style="margin-top:30px"><span class="n">20</span> ESTRATEGIA DE EXPANSION -- NUEVOS MERCADOS</div><div class="sd"></div>
+  <div class="fl cy">HAY EXPANSION PLANIFICADA ESTE ANO?</div><div class="fb lg">{{ai_expansion_planned}}</div>
+  <div class="ft">Plan Anual de Marketing -- Plantilla Profesional &bull; Paginas 44-45 de 50 &bull; CONFIDENCIAL</div>
+</div>
+
+<!-- P46-47: 21 CONCLUSIONS -->
+<div class="p">
+  <div class="st"><span class="n">21</span> CONCLUSIONES ESTRATEGICAS &amp; PROXIMOS PASOS</div><div class="sd"></div>
+  <div class="fl or">RESUMEN EJECUTIVO FINAL</div><div class="fb lg">{{ai_executive_summary_final}}</div>
+  <div class="fl cy">TOP 5 PRIORIDADES DE MARKETING {{ai_plan_year}}</div>
+  <div style="margin-bottom:20px">
+    <div style="display:flex;align-items:center;gap:12px;margin-bottom:8px"><div style="width:32px;height:32px;border-radius:50%;background:var(--or);display:flex;align-items:center;justify-content:center;font-weight:700;flex-shrink:0">1</div><div class="fb" style="flex:1;margin-bottom:0">{{ai_priority_1}}</div></div>
+    <div style="display:flex;align-items:center;gap:12px;margin-bottom:8px"><div style="width:32px;height:32px;border-radius:50%;background:var(--bl);display:flex;align-items:center;justify-content:center;font-weight:700;flex-shrink:0">2</div><div class="fb" style="flex:1;margin-bottom:0">{{ai_priority_2}}</div></div>
+    <div style="display:flex;align-items:center;gap:12px;margin-bottom:8px"><div style="width:32px;height:32px;border-radius:50%;background:var(--pu);display:flex;align-items:center;justify-content:center;font-weight:700;flex-shrink:0">3</div><div class="fb" style="flex:1;margin-bottom:0">{{ai_priority_3}}</div></div>
+    <div style="display:flex;align-items:center;gap:12px;margin-bottom:8px"><div style="width:32px;height:32px;border-radius:50%;background:var(--cy);display:flex;align-items:center;justify-content:center;font-weight:700;flex-shrink:0">4</div><div class="fb" style="flex:1;margin-bottom:0">{{ai_priority_4}}</div></div>
+    <div style="display:flex;align-items:center;gap:12px;margin-bottom:8px"><div style="width:32px;height:32px;border-radius:50%;background:var(--mg);display:flex;align-items:center;justify-content:center;font-weight:700;flex-shrink:0">5</div><div class="fb" style="flex:1;margin-bottom:0">{{ai_priority_5}}</div></div>
+  </div>
+  <div class="fl gn">FECHA DE KICKOFF Y RESPONSABLE GENERAL DEL PLAN</div>
+  <div class="g2"><div><div class="fl">Fecha de kickoff:</div><div class="fb">{{ai_kickoff_date}}</div></div><div><div class="fl">Responsable general:</div><div class="fb">{{ai_plan_general_owner}}</div></div></div>
+  <div class="ft">Plan Anual de Marketing -- Plantilla Profesional &bull; Paginas 46-47 de 50 &bull; CONFIDENCIAL</div>
+</div>
+
+<!-- P48-50: 22 RISKS + 23 GLOSSARY -->
+<div class="p">
+  <div class="st"><span class="n">22</span> REGISTRO DE RIESGOS DEL PLAN DE MARKETING</div><div class="sd"></div>
+  <p style="font-size:13px;color:var(--tx2);margin-bottom:20px">Identifica y planifica contingencias para los principales riesgos que podrian impactar el plan.</p>
+  <div class="fl">MATRIZ DE RIESGOS</div>
+  <div style="display:grid;grid-template-columns:2fr 1fr 1fr 1fr 3fr;gap:4px;margin-bottom:8px">
+    <div style="background:var(--bg2);padding:8px;font-size:11px;font-weight:700">RIESGO</div>
+    <div style="background:var(--or);padding:8px;font-size:11px;font-weight:700;color:#fff;text-align:center">IMPACTO</div>
+    <div style="background:var(--bl);padding:8px;font-size:11px;font-weight:700;color:#fff;text-align:center">PROB.</div>
+    <div style="background:var(--pu);padding:8px;font-size:11px;font-weight:700;color:#fff;text-align:center">NIVEL</div>
+    <div style="background:var(--bg2);padding:8px;font-size:11px;font-weight:700">PLAN DE CONTINGENCIA</div>
+  </div>
+  <div class="risk-row"><div class="fb" style="margin-bottom:0">{{ai_risk_1_name}}</div><div class="fb" style="margin-bottom:0">{{ai_risk_1_impact}}</div><div class="fb" style="margin-bottom:0">{{ai_risk_1_prob}}</div><div class="risk-badge risk-alto">{{ai_risk_1_level}}</div><div class="fb" style="margin-bottom:0">{{ai_risk_1_contingency}}</div></div>
+  <div class="risk-row"><div class="fb" style="margin-bottom:0">{{ai_risk_2_name}}</div><div class="fb" style="margin-bottom:0">{{ai_risk_2_impact}}</div><div class="fb" style="margin-bottom:0">{{ai_risk_2_prob}}</div><div class="risk-badge risk-alto">{{ai_risk_2_level}}</div><div class="fb" style="margin-bottom:0">{{ai_risk_2_contingency}}</div></div>
+  <div class="risk-row"><div class="fb" style="margin-bottom:0">{{ai_risk_3_name}}</div><div class="fb" style="margin-bottom:0">{{ai_risk_3_impact}}</div><div class="fb" style="margin-bottom:0">{{ai_risk_3_prob}}</div><div class="risk-badge risk-medio">{{ai_risk_3_level}}</div><div class="fb" style="margin-bottom:0">{{ai_risk_3_contingency}}</div></div>
+  <div class="risk-row"><div class="fb" style="margin-bottom:0">{{ai_risk_4_name}}</div><div class="fb" style="margin-bottom:0">{{ai_risk_4_impact}}</div><div class="fb" style="margin-bottom:0">{{ai_risk_4_prob}}</div><div class="risk-badge risk-medio">{{ai_risk_4_level}}</div><div class="fb" style="margin-bottom:0">{{ai_risk_4_contingency}}</div></div>
+  <div class="risk-row"><div class="fb" style="margin-bottom:0">{{ai_risk_5_name}}</div><div class="fb" style="margin-bottom:0">{{ai_risk_5_impact}}</div><div class="fb" style="margin-bottom:0">{{ai_risk_5_prob}}</div><div class="risk-badge risk-bajo">{{ai_risk_5_level}}</div><div class="fb" style="margin-bottom:0">{{ai_risk_5_contingency}}</div></div>
+
+  <div class="ft">Plan Anual de Marketing -- Plantilla Profesional &bull; Paginas 48-50 de 50 &bull; CONFIDENCIAL</div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Diagnostico Financiero - Version Ejecutiva - {{client_name}}</title>
+  <style>
+    :root { --primary: #0d3b66; --accent: #f4a261; --bg: #fff; --text: #1a1a2e; --border: #ddd; --header-bg: #f8f9fa; --section-bg: #eef2f7; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color: var(--text); line-height: 1.6; max-width: 900px; margin: 0 auto; padding: 40px 20px; }
+    .cover { text-align: center; margin-bottom: 40px; padding: 40px 20px; border: 2px solid var(--primary); }
+    .cover h1 { font-size: 1.5rem; color: var(--primary); margin-bottom: 4px; }
+    .cover .subtitle { font-size: 1rem; color: #555; margin-bottom: 8px; }
+    .cover .scope { font-size: 0.85rem; color: #777; }
+    .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border: 1px solid var(--border); margin-bottom: 24px; }
+    .info-cell { padding: 8px 14px; border-bottom: 1px solid var(--border); font-size: 0.9rem; }
+    .info-cell:nth-child(odd) { border-right: 1px solid var(--border); }
+    .info-cell .label { font-weight: 600; font-size: 0.8rem; color: #777; }
+    h1 { font-size: 1.3rem; color: var(--primary); margin: 30px 0 12px; border-bottom: 2px solid var(--accent); padding-bottom: 6px; }
+    h2 { font-size: 1.05rem; color: var(--primary); margin: 16px 0 8px; }
+    p { margin-bottom: 10px; font-size: 0.95rem; }
+    .kpi-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 12px; }
+    .kpi-card { background: var(--primary); color: #fff; padding: 14px 10px; text-align: center; border-radius: 4px; }
+    .kpi-card .value { font-size: 1.3rem; font-weight: 700; }
+    .kpi-card .unit { font-size: 0.7rem; color: rgba(255,255,255,0.7); }
+    .kpi-card .label { font-size: 0.7rem; text-transform: uppercase; margin-top: 4px; color: var(--accent); }
+    table.data-table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
+    table.data-table th { background: var(--primary); color: #fff; padding: 7px 10px; text-align: left; font-size: 0.8rem; }
+    table.data-table td { padding: 5px 10px; border: 1px solid var(--border); font-size: 0.8rem; }
+    table.data-table tr:nth-child(even) { background: var(--header-bg); }
+    .trend-up { color: #28a745; }
+    .trend-down { color: #dc3545; }
+    .findings-box { border: 1px solid var(--border); padding: 14px 18px; margin-bottom: 16px; }
+    .findings-box h3 { font-size: 0.9rem; color: var(--primary); margin-bottom: 8px; border-bottom: 1px solid var(--border); padding-bottom: 4px; }
+    .findings-box .item { margin-bottom: 6px; font-size: 0.9rem; padding-left: 8px; border-left: 3px solid var(--accent); margin-left: 4px; }
+    .findings-box.strengths { border-left: 4px solid #28a745; }
+    .findings-box.risks { border-left: 4px solid #dc3545; }
+    .caveats { background: #f8d7da; border: 1px solid #f5c6cb; padding: 14px 18px; font-size: 0.8rem; line-height: 1.5; margin-top: 30px; }
+    @media print { body { padding: 20px; } .cover { page-break-after: always; } }
+  </style>
+</head>
+<body>
+
+  <!-- COVER -->
+  <div class="cover">
+    <h1>DIAGNOSTICO FINANCIERO INTEGRAL</h1>
+    <div class="subtitle">VERSION EJECUTIVA &mdash; HALLAZGOS CLAVE Y RECOMENDACIONES</div>
+    <div class="scope">&lt; 10 Paginas &middot; Enfoque Ejecutivo</div>
+  </div>
+
+  <!-- CLIENT INFO -->
+  <div class="info-grid">
+    <div class="info-cell"><div class="label">Empresa</div>{{client_name}}</div>
+    <div class="info-cell"><div class="label">Fecha de Analisis</div>{{current_date}}</div>
+    <div class="info-cell"><div class="label">Periodo</div>{{ai_financial_period}}</div>
+    <div class="info-cell"><div class="label">Analista</div>{{branding_company_name}}</div>
+    <div class="info-cell"><div class="label">Industria</div>{{client_industry}}</div>
+    <div class="info-cell"><div class="label">Moneda / Unidad</div>{{ai_financial_currency_unit}}</div>
+  </div>
+
+  <!-- 1. RESUMEN EJECUTIVO -->
+  <h1>1. RESUMEN EJECUTIVO</h1>
+  <p>El presente diagnostico financiero evalua el desempeno economico-financiero de {{client_name}} durante el periodo {{ai_financial_period}}, con base en los estados financieros proporcionados por la direccion general.</p>
+  <p><strong>OPINION GENERAL DEL ANALISTA:</strong> {{ai_financial_analyst_opinion}}</p>
+
+  <h2>1.1 KPIs Ejecutivos &mdash; Ano Actual</h2>
+  <div class="kpi-grid">
+    <div class="kpi-card"><div class="value">{{ai_financial_kpi_revenue}}</div><div class="unit">Miles MXN</div><div class="label">INGRESOS NETOS</div></div>
+    <div class="kpi-card"><div class="value">{{ai_financial_kpi_ebitda}}</div><div class="unit">Miles MXN</div><div class="label">EBITDA</div></div>
+    <div class="kpi-card"><div class="value">{{ai_financial_kpi_ebitda_margin}}</div><div class="unit">% sobre ventas</div><div class="label">MARGEN EBITDA</div></div>
+    <div class="kpi-card"><div class="value">{{ai_financial_kpi_net_income}}</div><div class="unit">Miles MXN</div><div class="label">UTILIDAD NETA</div></div>
+  </div>
+  <div class="kpi-grid">
+    <div class="kpi-card"><div class="value">{{ai_ratio_current}}</div><div class="unit">veces</div><div class="label">RAZON CIRCULANTE</div></div>
+    <div class="kpi-card"><div class="value">{{ai_ratio_net_debt_ebitda}}</div><div class="unit">veces</div><div class="label">DEUDA NETA/EBITDA</div></div>
+    <div class="kpi-card"><div class="value">{{ai_ratio_roe}}</div><div class="unit">retorno s/capital</div><div class="label">ROE</div></div>
+    <div class="kpi-card"><div class="value">{{ai_ratio_cce}}</div><div class="unit">ciclo efectivo</div><div class="label">CCE (DIAS)</div></div>
+  </div>
+
+  <!-- 2. ANALISIS DE TENDENCIAS -->
+  <h1>2. ANALISIS DE TENDENCIAS &mdash; EVOLUCION 3 ANOS</h1>
+
+  <h2>2.1 Estado de Resultados &mdash; Resumen</h2>
+  <table class="data-table">
+    <thead>
+      <tr><th>CONCEPTO</th><th>ANO -2</th><th>ANO -1</th><th>ANO ACTUAL</th><th>VAR. % -1&rarr;0</th><th>TEND.</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Ingresos Netos</td><td>{{ai_financial_pl_revenue_y2}}</td><td>{{ai_financial_pl_revenue_y1}}</td><td>{{ai_financial_pl_revenue_y0}}</td><td>{{ai_financial_pl_revenue_var}}</td><td>{{ai_financial_pl_revenue_trend}}</td></tr>
+      <tr><td>Costo de Ventas</td><td>{{ai_financial_pl_cogs_y2}}</td><td>{{ai_financial_pl_cogs_y1}}</td><td>{{ai_financial_pl_cogs_y0}}</td><td>{{ai_financial_pl_cogs_var}}</td><td></td></tr>
+      <tr><td>Utilidad Bruta</td><td>{{ai_financial_pl_gross_y2}}</td><td>{{ai_financial_pl_gross_y1}}</td><td>{{ai_financial_pl_gross_y0}}</td><td>{{ai_financial_pl_gross_var}}</td><td>{{ai_financial_pl_gross_trend}}</td></tr>
+      <tr><td>% Margen Bruto</td><td>{{ai_financial_pl_gm_y2}}</td><td>{{ai_financial_pl_gm_y1}}</td><td>{{ai_financial_pl_gm_y0}}</td><td>{{ai_financial_pl_gm_var}}</td><td></td></tr>
+      <tr><td>Gastos Operacion</td><td>{{ai_financial_pl_opex_y2}}</td><td>{{ai_financial_pl_opex_y1}}</td><td>{{ai_financial_pl_opex_y0}}</td><td>{{ai_financial_pl_opex_var}}</td><td></td></tr>
+      <tr><td>EBIT</td><td>{{ai_financial_pl_ebit_y2}}</td><td>{{ai_financial_pl_ebit_y1}}</td><td>{{ai_financial_pl_ebit_y0}}</td><td>{{ai_financial_pl_ebit_var}}</td><td>{{ai_financial_pl_ebit_trend}}</td></tr>
+      <tr><td>% Margen EBIT</td><td>{{ai_financial_pl_em_y2}}</td><td>{{ai_financial_pl_em_y1}}</td><td>{{ai_financial_pl_em_y0}}</td><td>{{ai_financial_pl_em_var}}</td><td></td></tr>
+      <tr><td>EBITDA</td><td>{{ai_financial_pl_ebitda_y2}}</td><td>{{ai_financial_pl_ebitda_y1}}</td><td>{{ai_financial_pl_ebitda_y0}}</td><td>{{ai_financial_pl_ebitda_var}}</td><td>{{ai_financial_pl_ebitda_trend}}</td></tr>
+      <tr><td>% Margen EBITDA</td><td>{{ai_financial_pl_ebitdam_y2}}</td><td>{{ai_financial_pl_ebitdam_y1}}</td><td>{{ai_financial_pl_ebitdam_y0}}</td><td>{{ai_financial_pl_ebitdam_var}}</td><td></td></tr>
+      <tr><td>Utilidad Neta</td><td>{{ai_financial_pl_ni_y2}}</td><td>{{ai_financial_pl_ni_y1}}</td><td>{{ai_financial_pl_ni_y0}}</td><td>{{ai_financial_pl_ni_var}}</td><td>{{ai_financial_pl_ni_trend}}</td></tr>
+      <tr><td>% Margen Neto</td><td>{{ai_financial_pl_nm_y2}}</td><td>{{ai_financial_pl_nm_y1}}</td><td>{{ai_financial_pl_nm_y0}}</td><td>{{ai_financial_pl_nm_var}}</td><td></td></tr>
+    </tbody>
+  </table>
+
+  <h2>2.2 Balance &mdash; Estructura</h2>
+  <table class="data-table">
+    <thead>
+      <tr><th>CONCEPTO</th><th>ANO -2</th><th>ANO -1</th><th>ANO ACTUAL</th><th>% ACT. TOTAL</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Activo Circulante</td><td>{{ai_financial_bs_ca_y2}}</td><td>{{ai_financial_bs_ca_y1}}</td><td>{{ai_financial_bs_ca_y0}}</td><td>{{ai_financial_bs_ca_pct}}</td></tr>
+      <tr><td>Efectivo</td><td>{{ai_financial_bs_cash_y2}}</td><td>{{ai_financial_bs_cash_y1}}</td><td>{{ai_financial_bs_cash_y0}}</td><td>{{ai_financial_bs_cash_pct}}</td></tr>
+      <tr><td>CxC Clientes</td><td>{{ai_financial_bs_ar_y2}}</td><td>{{ai_financial_bs_ar_y1}}</td><td>{{ai_financial_bs_ar_y0}}</td><td>{{ai_financial_bs_ar_pct}}</td></tr>
+      <tr><td>Inventarios</td><td>{{ai_financial_bs_inv_y2}}</td><td>{{ai_financial_bs_inv_y1}}</td><td>{{ai_financial_bs_inv_y0}}</td><td>{{ai_financial_bs_inv_pct}}</td></tr>
+      <tr><td>Activo No Circulante</td><td>{{ai_financial_bs_nca_y2}}</td><td>{{ai_financial_bs_nca_y1}}</td><td>{{ai_financial_bs_nca_y0}}</td><td>{{ai_financial_bs_nca_pct}}</td></tr>
+      <tr style="font-weight:700;"><td>ACTIVO TOTAL</td><td>{{ai_financial_bs_ta_y2}}</td><td>{{ai_financial_bs_ta_y1}}</td><td>{{ai_financial_bs_ta_y0}}</td><td>100%</td></tr>
+      <tr><td>Pasivo Circulante</td><td>{{ai_financial_bs_cl_y2}}</td><td>{{ai_financial_bs_cl_y1}}</td><td>{{ai_financial_bs_cl_y0}}</td><td>{{ai_financial_bs_cl_pct}}</td></tr>
+      <tr><td>Pasivo No Circulante</td><td>{{ai_financial_bs_ncl_y2}}</td><td>{{ai_financial_bs_ncl_y1}}</td><td>{{ai_financial_bs_ncl_y0}}</td><td>{{ai_financial_bs_ncl_pct}}</td></tr>
+      <tr style="font-weight:700;"><td>PASIVO TOTAL</td><td>{{ai_financial_bs_tl_y2}}</td><td>{{ai_financial_bs_tl_y1}}</td><td>{{ai_financial_bs_tl_y0}}</td><td>{{ai_financial_bs_tl_pct}}</td></tr>
+      <tr style="font-weight:700;"><td>CAPITAL CONTABLE</td><td>{{ai_financial_bs_eq_y2}}</td><td>{{ai_financial_bs_eq_y1}}</td><td>{{ai_financial_bs_eq_y0}}</td><td>{{ai_financial_bs_eq_pct}}</td></tr>
+    </tbody>
+  </table>
+
+  <!-- 3. RATIOS FINANCIEROS -->
+  <h1>3. RATIOS FINANCIEROS CLAVE</h1>
+
+  <table class="data-table">
+    <thead>
+      <tr><th>RATIO</th><th>ANO -2</th><th>ANO -1</th><th>ANO ACT.</th><th>BENCHMARK</th><th>SENAL</th><th>ESTADO</th></tr>
+    </thead>
+    <tbody>
+      <tr style="background:var(--section-bg); font-weight:700;"><td colspan="7">LIQUIDEZ</td></tr>
+      <tr><td>Razon Circulante</td><td>{{ai_ratio_current_y2}}</td><td>{{ai_ratio_current_y1}}</td><td>{{ai_ratio_current_y0}}</td><td>&ge; 1.5x-2.0x</td><td>{{ai_ratio_current_signal}}</td><td>{{ai_ratio_current_status}}</td></tr>
+      <tr><td>Prueba Acida</td><td>{{ai_ratio_acid_y2}}</td><td>{{ai_ratio_acid_y1}}</td><td>{{ai_ratio_acid_y0}}</td><td>&ge; 1.0x</td><td>{{ai_ratio_acid_signal}}</td><td>{{ai_ratio_acid_status}}</td></tr>
+      <tr style="background:var(--section-bg); font-weight:700;"><td colspan="7">SOLVENCIA</td></tr>
+      <tr><td>Deuda/Capital (D/E)</td><td>{{ai_ratio_de_y2}}</td><td>{{ai_ratio_de_y1}}</td><td>{{ai_ratio_de_y0}}</td><td>&lt; 1.5x-2.0x</td><td>{{ai_ratio_de_signal}}</td><td>{{ai_ratio_de_status}}</td></tr>
+      <tr><td>Deuda Neta/EBITDA</td><td>{{ai_ratio_nd_ebitda_y2}}</td><td>{{ai_ratio_nd_ebitda_y1}}</td><td>{{ai_ratio_nd_ebitda_y0}}</td><td>&lt; 3.0x</td><td>{{ai_ratio_nd_ebitda_signal}}</td><td>{{ai_ratio_nd_ebitda_status}}</td></tr>
+      <tr><td>Cobertura Intereses</td><td>{{ai_ratio_icr_y2}}</td><td>{{ai_ratio_icr_y1}}</td><td>{{ai_ratio_icr_y0}}</td><td>&ge; 3.0x</td><td>{{ai_ratio_icr_signal}}</td><td>{{ai_ratio_icr_status}}</td></tr>
+      <tr style="background:var(--section-bg); font-weight:700;"><td colspan="7">EFICIENCIA</td></tr>
+      <tr><td>Dias CxC (DSO)</td><td>{{ai_ratio_dso_y2}}</td><td>{{ai_ratio_dso_y1}}</td><td>{{ai_ratio_dso_y0}}</td><td>30-60 dias</td><td>{{ai_ratio_dso_signal}}</td><td>{{ai_ratio_dso_status}}</td></tr>
+      <tr><td>Dias Inventario (DIO)</td><td>{{ai_ratio_dio_y2}}</td><td>{{ai_ratio_dio_y1}}</td><td>{{ai_ratio_dio_y0}}</td><td>Sectorial</td><td>{{ai_ratio_dio_signal}}</td><td>{{ai_ratio_dio_status}}</td></tr>
+      <tr><td>Dias CxP (DPO)</td><td>{{ai_ratio_dpo_y2}}</td><td>{{ai_ratio_dpo_y1}}</td><td>{{ai_ratio_dpo_y0}}</td><td>30-60 dias</td><td>{{ai_ratio_dpo_signal}}</td><td>{{ai_ratio_dpo_status}}</td></tr>
+      <tr><td>CCE (DSO+DIO-DPO)</td><td>{{ai_ratio_cce_y2}}</td><td>{{ai_ratio_cce_y1}}</td><td>{{ai_ratio_cce_y0}}</td><td>&lt; 60 dias</td><td>{{ai_ratio_cce_signal}}</td><td>{{ai_ratio_cce_status}}</td></tr>
+      <tr style="background:var(--section-bg); font-weight:700;"><td colspan="7">RENTABILIDAD</td></tr>
+      <tr><td>Margen Bruto</td><td>{{ai_ratio_gm_y2}}</td><td>{{ai_ratio_gm_y1}}</td><td>{{ai_ratio_gm_y0}}</td><td>Sectorial</td><td>{{ai_ratio_gm_signal}}</td><td>{{ai_ratio_gm_status}}</td></tr>
+      <tr><td>Margen EBIT</td><td>{{ai_ratio_em_y2}}</td><td>{{ai_ratio_em_y1}}</td><td>{{ai_ratio_em_y0}}</td><td>Sectorial</td><td>{{ai_ratio_em_signal}}</td><td>{{ai_ratio_em_status}}</td></tr>
+      <tr><td>Margen Neto</td><td>{{ai_ratio_nm_y2}}</td><td>{{ai_ratio_nm_y1}}</td><td>{{ai_ratio_nm_y0}}</td><td>Sectorial</td><td>{{ai_ratio_nm_signal}}</td><td>{{ai_ratio_nm_status}}</td></tr>
+      <tr><td>ROE</td><td>{{ai_ratio_roe_y2}}</td><td>{{ai_ratio_roe_y1}}</td><td>{{ai_ratio_roe_y0}}</td><td>&ge; 10%</td><td>{{ai_ratio_roe_signal}}</td><td>{{ai_ratio_roe_status}}</td></tr>
+    </tbody>
+  </table>
+
+  <!-- 4. HALLAZGOS CLAVE -->
+  <h1>4. HALLAZGOS CLAVE</h1>
+
+  <div class="findings-box strengths">
+    <h3>FORTALEZAS IDENTIFICADAS</h3>
+    <div class="item">{{ai_financial_strength_1}}</div>
+    <div class="item">{{ai_financial_strength_2}}</div>
+    <div class="item">{{ai_financial_strength_3}}</div>
+    <div class="item">{{ai_financial_strength_4}}</div>
+  </div>
+
+  <div class="findings-box risks">
+    <h3>AREAS DE ATENCION Y RIESGOS IDENTIFICADOS</h3>
+    <div class="item">{{ai_financial_risk_1}}</div>
+    <div class="item">{{ai_financial_risk_2}}</div>
+    <div class="item">{{ai_financial_risk_3}}</div>
+    <div class="item">{{ai_financial_risk_4}}</div>
+  </div>
+
+  <!-- 5. RECOMENDACIONES EJECUTIVAS -->
+  <h1>5. RECOMENDACIONES EJECUTIVAS</h1>
+
+  <table class="data-table">
+    <thead>
+      <tr><th>#</th><th>RECOMENDACION</th><th>PLAZO</th><th>IMPACTO ESPERADO</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>1</td><td>{{ai_recommendation_1}}</td><td>Inmediato (0-3m)</td><td>{{ai_recommendation_1_impact}}</td></tr>
+      <tr><td>2</td><td>{{ai_recommendation_2}}</td><td>Corto plazo (3-6m)</td><td>{{ai_recommendation_2_impact}}</td></tr>
+      <tr><td>3</td><td>{{ai_recommendation_3}}</td><td>Corto plazo (3-6m)</td><td>{{ai_recommendation_3_impact}}</td></tr>
+      <tr><td>4</td><td>{{ai_recommendation_4}}</td><td>Mediano plazo (6-12m)</td><td>{{ai_recommendation_4_impact}}</td></tr>
+      <tr><td>5</td><td>{{ai_recommendation_5}}</td><td>Mediano plazo (6-18m)</td><td>{{ai_recommendation_5_impact}}</td></tr>
+    </tbody>
+  </table>
+
+  <!-- 6. CAVEATS -->
+  <h1>6. CAVEATS Y LIMITACIONES</h1>
+  <div class="caveats">
+    <strong>LIMITACIONES DEL PRESENTE DIAGNOSTICO FINANCIERO</strong><br><br>
+    Este diagnostico se basa exclusivamente en la informacion proporcionada por el cliente y no constituye una auditoria de estados financieros.<br><br>
+    Los hallazgos, ratios y recomendaciones son de naturaleza indicativa. No representan asesoria legal, fiscal ni de inversion.<br><br>
+    {{branding_company_name}} no asume responsabilidad por decisiones tomadas con base en este analisis si la informacion suministrada resulta inexacta o incompleta.<br><br>
+    Los benchmarks sectoriales provienen de fuentes publicas a la fecha del analisis; pueden diferir del desempeno real de la industria.<br><br>
+    Cualquier proyeccion incluida asume condiciones de mercado similares a las observadas; los resultados reales pueden diferir materialmente.
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,60 @@
+{
+  "template_id": "ti-questionnaire",
+  "name": "Cuestionario de Calificacion Tecnologica",
+  "service_line": "TI",
+  "type": "questionnaire",
+  "version": "1.0",
+  "source_file": "Copia de 01_Cuestionario_Calificacion_Tecnologica.docx",
+  "variables": {
+    "client_info": {
+      "client_name": { "type": "string", "source": "client_record", "description": "Nombre de la empresa / cliente" },
+      "client_industry": { "type": "string", "source": "client_record", "description": "Industria o sector del cliente" },
+      "current_date": { "type": "date", "source": "system", "description": "Fecha de aplicacion del cuestionario" },
+      "branding_company_name": { "type": "string", "source": "org_settings", "description": "Nombre de la consultora" },
+      "document_folio": { "type": "string", "source": "system", "description": "Folio del expediente (CCU-AAAA-NNN)" }
+    },
+    "questionnaire_responses": {
+      "q01_selected": { "type": "string", "source": "user_input", "description": "Respuesta P01 - Inventario de activos" },
+      "q02_selected": { "type": "string", "source": "user_input", "description": "Respuesta P02 - Antiguedad infraestructura" },
+      "q03_selected": { "type": "string", "source": "user_input", "description": "Respuesta P03 - Monitoreo proactivo" },
+      "q04_selected": { "type": "string", "source": "user_input", "description": "Respuesta P04 - Backup RPO/RTO" },
+      "q05_selected": { "type": "string", "source": "user_input", "description": "Respuesta P05 - Usuarios/endpoints" },
+      "q06_selected": { "type": "string", "source": "user_input", "description": "Respuesta P06 - Auditoria seguridad" },
+      "q07_selected": { "type": "string", "source": "user_input", "description": "Respuesta P07 - MFA" },
+      "q08_selected": { "type": "string", "source": "user_input", "description": "Respuesta P08 - IR Plan" },
+      "q09_selected": { "type": "string", "source": "user_input", "description": "Respuesta P09 - Gestion de parches" },
+      "q10_selected": { "type": "string", "source": "user_input", "description": "Respuesta P10 - Licencias software" },
+      "q11_selected": { "type": "string", "source": "user_input", "description": "Respuesta P11 - Frecuencia caidas" },
+      "q12_selected": { "type": "string", "source": "user_input", "description": "Respuesta P12 - MTTR" },
+      "q13_selected": { "type": "string", "source": "user_input", "description": "Respuesta P13 - Personal TI" },
+      "q14_selected": { "type": "string", "source": "user_input", "description": "Respuesta P14 - SLAs proveedores" },
+      "q15_selected": { "type": "string", "source": "user_input", "description": "Respuesta P15 - Documentacion procesos" },
+      "q16_selected": { "type": "string", "source": "user_input", "description": "Respuesta P16 - IT Roadmap" },
+      "q17_selected": { "type": "string", "source": "user_input", "description": "Respuesta P17 - Presupuesto TI" },
+      "q18_selected": { "type": "string", "source": "user_input", "description": "Respuesta P18 - Transformacion digital" },
+      "q19_selected": { "type": "string", "source": "user_input", "description": "Respuesta P19 - Gobernanza TI" },
+      "q20_selected": { "type": "string", "source": "user_input", "description": "Respuesta P20 - Objetivo consultoria" }
+    },
+    "scoring": {
+      "ai_score_infrastructure": { "type": "number", "source": "calculated", "description": "Puntaje Seccion A Infraestructura (0-25)" },
+      "ai_score_security": { "type": "number", "source": "calculated", "description": "Puntaje Seccion B Seguridad (0-25)" },
+      "ai_score_pain_points": { "type": "number", "source": "calculated", "description": "Puntaje Seccion C Puntos de Dolor (0-25)" },
+      "ai_score_business_objectives": { "type": "number", "source": "calculated", "description": "Puntaje Seccion D Objetivos de Negocio (0-25)" },
+      "ai_score_total": { "type": "number", "source": "calculated", "description": "Puntaje total (0-100)" }
+    },
+    "ai_generated": {
+      "ai_consultant_observations": { "type": "text", "source": "ai", "description": "Observaciones del consultor generadas por AI" }
+    }
+  },
+  "sections": [
+    "Instrucciones de Aplicacion",
+    "Seccion A - Infraestructura (P01-P05)",
+    "Seccion B - Seguridad (P06-P10)",
+    "Seccion C - Puntos de Dolor (P11-P15)",
+    "Seccion D - Objetivos de Negocio (P16-P20)",
+    "Resumen de Puntuacion y Ruta de Servicio",
+    "Matriz de Scoring",
+    "Observaciones del Consultor",
+    "Matriz RACI"
+  ]
+}
