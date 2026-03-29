@@ -5,9 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Diagnostico Financiero - Version Ejecutiva - {{client_name}}</title>
   <style>
-    :root { --primary: #0d3b66; --accent: #f4a261; --bg: #fff; --text: #1a1a2e; --border: #ddd; --header-bg: #f8f9fa; --section-bg: #eef2f7; }
+  :root {
+    --brand-primary: {{branding_primary_color}};
+    --brand-secondary: {{branding_secondary_color}};
+    --brand-accent: {{branding_accent_color}};
+    --brand-font: {{branding_font_family}};
+  }
+    :root { --primary: {{branding_primary_color}}; --accent: {{branding_secondary_color}}; --bg: #fff; --text: #1a1a2e; --border: #ddd; --header-bg: #f8f9fa; --section-bg: #eef2f7; }
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color: var(--text); line-height: 1.6; max-width: 900px; margin: 0 auto; padding: 40px 20px; }
+    body { font-family: var(--brand-font, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif); color: var(--text); line-height: 1.6; max-width: 900px; margin: 0 auto; padding: 40px 20px; }
     .cover { text-align: center; margin-bottom: 40px; padding: 40px 20px; border: 2px solid var(--primary); }
     .cover h1 { font-size: 1.5rem; color: var(--primary); margin-bottom: 4px; }
     .cover .subtitle { font-size: 1rem; color: #555; margin-bottom: 8px; }
@@ -36,6 +42,7 @@
     .findings-box.strengths { border-left: 4px solid #28a745; }
     .findings-box.risks { border-left: 4px solid #dc3545; }
     .caveats { background: #f8d7da; border: 1px solid #f5c6cb; padding: 14px 18px; font-size: 0.8rem; line-height: 1.5; margin-top: 30px; }
+    table, .kpi-grid, .findings-box, .info-grid { page-break-inside: avoid; }
     @media print { body { padding: 20px; } .cover { page-break-after: always; } }
   </style>
 </head>

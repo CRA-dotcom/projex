@@ -25,6 +25,13 @@ export type TemplateContext = {
     annualAmount: number;
   };
   manual?: Record<string, string>;
+  branding?: {
+    primary_color: string;
+    secondary_color: string;
+    accent_color: string;
+    font_family: string;
+    company_name: string;
+  };
 };
 
 export type TemplateVariable = {
@@ -45,6 +52,15 @@ export function resolveTemplate(
   const resolved: ResolvedVariable[] = [];
   const missing: string[] = [];
   let html = htmlTemplate;
+
+  // Replace branding variables first (they're in the CSS, not in the variables array)
+  if (context.branding) {
+    html = html.replace(/\{\{branding_primary_color\}\}/g, context.branding.primary_color || '#1a1a2e');
+    html = html.replace(/\{\{branding_secondary_color\}\}/g, context.branding.secondary_color || '#6c63ff');
+    html = html.replace(/\{\{branding_accent_color\}\}/g, context.branding.accent_color || '#22c55e');
+    html = html.replace(/\{\{branding_font_family\}\}/g, context.branding.font_family || 'IBM Plex Sans, sans-serif');
+    html = html.replace(/\{\{branding_company_name\}\}/g, context.branding.company_name || 'Projex');
+  }
 
   for (const variable of variables) {
     const { key, source, required } = variable;
@@ -164,6 +180,15 @@ export function generateSampleContext(
       });
     context.manual = manual;
   }
+
+  // Always include sample branding
+  context.branding = {
+    primary_color: '#1a1a2e',
+    secondary_color: '#6c63ff',
+    accent_color: '#22c55e',
+    font_family: 'IBM Plex Sans, sans-serif',
+    company_name: 'Projex',
+  };
 
   return context;
 }

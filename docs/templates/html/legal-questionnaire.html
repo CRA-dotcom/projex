@@ -5,21 +5,27 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Cuestionario de Onboarding - Gobierno Corporativo</title>
 <style>
+  :root {
+    --brand-primary: {{branding_primary_color}};
+    --brand-secondary: {{branding_secondary_color}};
+    --brand-accent: {{branding_accent_color}};
+    --brand-font: {{branding_font_family}};
+  }
   @page { margin: 2cm; size: letter; }
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { font-family: Georgia, 'Times New Roman', serif; color: #1a1a1a; line-height: 1.6; font-size: 11pt; }
+  body { font-family: var(--brand-font, Georgia, 'Times New Roman', serif); color: #1a1a1a; line-height: 1.6; font-size: 11pt; }
   .page-break { page-break-before: always; }
 
   /* Header bar */
-  .header-bar { background: #1a1a1a; color: #fff; padding: 8px 20px; font-size: 8pt; display: flex; justify-content: space-between; }
-  .header-bar .left { font-weight: bold; color: #b8860b; }
+  .header-bar { background: var(--brand-primary); color: #fff; padding: 8px 20px; font-size: 8pt; display: flex; justify-content: space-between; }
+  .header-bar .left { font-weight: bold; color: var(--brand-secondary); }
 
   /* Cover */
   .cover { text-align: center; padding: 80px 40px 40px; }
-  .cover .subtitle { font-size: 12pt; letter-spacing: 3px; color: #b8860b; text-transform: uppercase; }
+  .cover .subtitle { font-size: 12pt; letter-spacing: 3px; color: var(--brand-secondary); text-transform: uppercase; }
   .cover h1 { font-size: 24pt; font-weight: bold; margin: 20px 0 8px; }
-  .cover h2 { font-size: 13pt; font-weight: normal; font-style: italic; color: #b8860b; margin-bottom: 20px; }
-  .cover .divider { width: 80px; height: 3px; background: #b8860b; margin: 20px auto; }
+  .cover h2 { font-size: 13pt; font-weight: normal; font-style: italic; color: var(--brand-secondary); margin-bottom: 20px; }
+  .cover .divider { width: 80px; height: 3px; background: var(--brand-secondary); margin: 20px auto; }
   .cover .intro { text-align: justify; max-width: 600px; margin: 20px auto; font-size: 10pt; color: #333; }
 
   /* Client info table */
@@ -34,9 +40,9 @@
   p { margin-bottom: 12px; text-align: justify; }
 
   /* Section headers */
-  h1.section { font-size: 16pt; color: #1a1a1a; border-bottom: 3px solid #b8860b; padding-bottom: 8px; margin: 40px 0 8px; }
+  h1.section { font-size: 16pt; color: #1a1a1a; border-bottom: 3px solid var(--brand-secondary); padding-bottom: 8px; margin: 40px 0 8px; }
   .section-desc { font-size: 10pt; color: #666; font-style: italic; margin-bottom: 20px; }
-  h2.question-label { font-size: 11pt; color: #b8860b; margin: 28px 0 4px; text-transform: uppercase; }
+  h2.question-label { font-size: 11pt; color: var(--brand-secondary); margin: 28px 0 4px; text-transform: uppercase; }
   .question-text { font-weight: bold; margin-bottom: 4px; }
   .question-hint { font-size: 9pt; color: #666; font-style: italic; margin-bottom: 8px; }
 
@@ -51,7 +57,7 @@
 
   /* Tables */
   table.data { width: 100%; border-collapse: collapse; margin: 12px 0 20px; font-size: 9.5pt; }
-  table.data th { background: #1a1a1a; color: #fff; text-align: left; padding: 8px 10px; font-weight: bold; }
+  table.data th { background: var(--brand-primary); color: #fff; text-align: left; padding: 8px 10px; font-weight: bold; }
   table.data td { padding: 8px 10px; border-bottom: 1px solid #ddd; }
   table.data tr:nth-child(even) td { background: #f9f7f2; }
 
@@ -61,7 +67,7 @@
   .dr-item .dr-title { font-weight: bold; font-size: 10pt; }
   .dr-item .dr-priority { font-size: 8pt; font-weight: bold; text-transform: uppercase; }
   .dr-item .dr-priority.obligatorio { color: #c0392b; }
-  .dr-item .dr-priority.recomendado { color: #b8860b; }
+  .dr-item .dr-priority.recomendado { color: var(--brand-secondary); }
   .dr-item .dr-desc { font-size: 9pt; color: #555; margin-bottom: 8px; }
   .dr-item .dr-status { font-size: 9pt; }
 
@@ -72,8 +78,9 @@
 
   /* Footer */
   .footer { text-align: center; font-size: 7.5pt; color: #999; margin-top: 40px; border-top: 1px solid #ddd; padding-top: 10px; }
-  .page-num { text-align: right; font-size: 8pt; color: #b8860b; margin-top: 20px; }
+  .page-num { text-align: right; font-size: 8pt; color: var(--brand-secondary); margin-top: 20px; }
 
+  table, .content, .sig-block, .alert { page-break-inside: avoid; }
   @media print {
     body { font-size: 10.5pt; }
     .cover { page-break-after: always; }
@@ -84,11 +91,11 @@
   }
 
   /* Instructions box */
-  .instructions { background: #f9f7f2; border-left: 3px solid #b8860b; padding: 12px 16px; margin: 16px 0; font-size: 10pt; }
+  .instructions { background: #f9f7f2; border-left: 3px solid var(--brand-secondary); padding: 12px 16px; margin: 16px 0; font-size: 10pt; }
 
   /* Data Room box */
-  .dr-location { border: 2px solid #1a1a1a; padding: 16px; margin: 20px 0; }
-  .dr-location h3 { font-size: 10pt; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px; background: #1a1a1a; color: #fff; padding: 6px 12px; margin: -16px -16px 12px; }
+  .dr-location { border: 2px solid var(--brand-primary); padding: 16px; margin: 20px 0; }
+  .dr-location h3 { font-size: 10pt; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px; background: var(--brand-primary); color: #fff; padding: 6px 12px; margin: -16px -16px 12px; }
 </style>
 </head>
 <body>

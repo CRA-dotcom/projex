@@ -5,58 +5,64 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Propuesta Econ&oacute;mica &mdash; {{branding_company_name}}</title>
   <style>
+    :root {
+      --brand-primary: {{branding_primary_color}};
+      --brand-secondary: {{branding_secondary_color}};
+      --brand-accent: {{branding_accent_color}};
+      --brand-font: {{branding_font_family}};
+    }
     /* ===== RESET & BASE ===== */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 11pt; color: #222; background: #fff; }
+    body { font-family: var(--brand-font, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif); font-size: 11pt; color: #222; background: #fff; }
 
     /* ===== PAGE ===== */
     .page { width: 210mm; min-height: 297mm; margin: 0 auto; padding: 0; position: relative; page-break-after: always; }
 
     /* ===== HEADER ===== */
-    .header { background: #2d3e50; color: #fff; padding: 24px 32px 18px; display: flex; justify-content: space-between; align-items: flex-start; }
+    .header { background: var(--brand-primary); color: #fff; padding: 24px 32px 18px; display: flex; justify-content: space-between; align-items: flex-start; }
     .header-left h1 { font-size: 22pt; font-weight: 800; letter-spacing: 1px; }
     .header-left .subtitle { font-size: 10pt; opacity: 0.85; margin-top: 2px; }
     .header-left .tagline { font-size: 9pt; opacity: 0.7; margin-top: 1px; }
-    .header-right { background: #e67e22; color: #fff; padding: 12px 20px; text-align: center; border-radius: 2px; }
+    .header-right { background: var(--brand-secondary); color: #fff; padding: 12px 20px; text-align: center; border-radius: 2px; }
     .header-right h2 { font-size: 14pt; font-weight: 700; }
     .header-right .badge-sub { font-size: 9pt; margin-top: 4px; }
 
     /* ===== FOOTER ===== */
-    .footer { background: #2d3e50; color: #fff; padding: 8px 32px; font-size: 8pt; display: flex; justify-content: space-between; position: absolute; bottom: 0; left: 0; right: 0; }
+    .footer { background: var(--brand-primary); color: #fff; padding: 8px 32px; font-size: 8pt; display: flex; justify-content: space-between; position: absolute; bottom: 0; left: 0; right: 0; }
 
     /* ===== CONTENT ===== */
     .content { padding: 20px 32px 60px; }
 
     /* ===== SECTION HEADERS ===== */
-    .section-title { background: #e67e22; color: #fff; font-size: 10pt; font-weight: 700; padding: 6px 14px; margin: 18px 0 10px; border-radius: 2px; }
-    .section-title.dark { background: #2d3e50; }
+    .section-title { background: var(--brand-secondary); color: #fff; font-size: 10pt; font-weight: 700; padding: 6px 14px; margin: 18px 0 10px; border-radius: 2px; }
+    .section-title.dark { background: var(--brand-primary); }
 
     /* ===== METADATA ROW ===== */
     .meta-row { display: flex; gap: 16px; margin-bottom: 14px; flex-wrap: wrap; }
     .meta-field { display: flex; align-items: center; gap: 6px; font-size: 10pt; }
     .meta-field label { font-weight: 700; white-space: nowrap; }
-    .meta-field .value { border-bottom: 1.5px solid #e67e22; min-width: 120px; padding: 2px 6px; color: #333; }
+    .meta-field .value { border-bottom: 1.5px solid var(--brand-secondary); min-width: 120px; padding: 2px 6px; color: #333; }
     .meta-field .value.wide { min-width: 260px; }
 
     /* ===== TABLE ===== */
     table { width: 100%; border-collapse: collapse; margin: 8px 0 14px; font-size: 9.5pt; }
-    table th { background: #2d3e50; color: #fff; padding: 7px 10px; text-align: left; font-weight: 600; }
+    table th { background: var(--brand-primary); color: #fff; padding: 7px 10px; text-align: left; font-weight: 600; }
     table td { padding: 6px 10px; border: 1px solid #ddd; }
     table tr:nth-child(even) td { background: #f8f8f8; }
 
-    .freq-mensual { background: #e67e22; color: #fff; padding: 2px 10px; border-radius: 2px; font-size: 8.5pt; font-weight: 600; display: inline-block; }
+    .freq-mensual { background: var(--brand-secondary); color: #fff; padding: 2px 10px; border-radius: 2px; font-size: 8.5pt; font-weight: 600; display: inline-block; }
     .freq-trimestral { background: #e74c3c; color: #fff; padding: 2px 10px; border-radius: 2px; font-size: 8.5pt; font-weight: 600; display: inline-block; }
     .freq-anual { background: #27ae60; color: #fff; padding: 2px 10px; border-radius: 2px; font-size: 8.5pt; font-weight: 600; display: inline-block; }
 
     .totals-row td { font-weight: 700; background: #f0f0f0 !important; text-align: right; }
-    .grand-total td { background: #2d3e50 !important; color: #fff; font-weight: 800; font-size: 10.5pt; }
+    .grand-total td { background: var(--brand-primary) !important; color: #fff; font-weight: 800; font-size: 10.5pt; }
     .iva-row td { background: #3498db !important; color: #fff; font-weight: 700; }
-    .total-iva-row td { background: #e67e22 !important; color: #fff; font-weight: 800; font-size: 11pt; }
+    .total-iva-row td { background: var(--brand-secondary) !important; color: #fff; font-weight: 800; font-size: 11pt; }
 
     /* ===== BULLET LIST ===== */
     .ans-list { list-style: none; padding: 0; margin: 10px 0; }
     .ans-list li { padding: 5px 0 5px 24px; position: relative; font-size: 9.5pt; line-height: 1.5; }
-    .ans-list li::before { content: ''; width: 10px; height: 10px; background: #e67e22; border-radius: 50%; position: absolute; left: 0; top: 9px; }
+    .ans-list li::before { content: ''; width: 10px; height: 10px; background: var(--brand-secondary); border-radius: 50%; position: absolute; left: 0; top: 9px; }
 
     /* ===== PAYMENT ===== */
     .checkbox-row { display: flex; gap: 20px; align-items: center; font-size: 10pt; margin: 6px 0; }
@@ -71,13 +77,14 @@
     /* ===== SIGNATURE BLOCK ===== */
     .sig-container { display: flex; gap: 24px; margin-top: 14px; }
     .sig-block { flex: 1; border: 1px solid #ccc; padding: 14px; }
-    .sig-block .sig-header { background: #2d3e50; color: #fff; text-align: center; padding: 6px; font-size: 9.5pt; font-weight: 700; margin: -14px -14px 12px; }
+    .sig-block .sig-header { background: var(--brand-primary); color: #fff; text-align: center; padding: 6px; font-size: 9.5pt; font-weight: 700; margin: -14px -14px 12px; }
     .sig-block .sig-area { height: 70px; border-bottom: 1px solid #999; margin-bottom: 4px; }
     .sig-block .sig-label { text-align: center; font-size: 8pt; color: #888; }
     .sig-block .sig-field { display: flex; gap: 6px; align-items: center; font-size: 9pt; margin-top: 6px; }
     .sig-block .sig-field label { font-weight: 700; }
-    .sig-block .sig-field .value { border-bottom: 1px solid #e67e22; flex: 1; min-height: 16px; }
+    .sig-block .sig-field .value { border-bottom: 1px solid var(--brand-secondary); flex: 1; min-height: 16px; }
 
+    table, .kpi-container, .sig-container, .section-title { page-break-inside: avoid; }
     @media print {
       .page { margin: 0; width: 100%; }
     }

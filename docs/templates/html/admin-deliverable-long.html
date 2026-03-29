@@ -5,9 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Manual de Procedimientos y Politicas Administrativas</title>
   <style>
-    :root{--bg:#f8f9fa;--green:#2d6a4f;--green-l:#40916c;--green-bg:rgba(45,106,79,.05);--red:#c62828;--red-bg:rgba(198,40,40,.08);--text:#1a1a1a;--text2:#666;--border:#e0e0e0;--inp:#f0f4f0}
+  :root {
+    --brand-primary: {{branding_primary_color}};
+    --brand-secondary: {{branding_secondary_color}};
+    --brand-accent: {{branding_accent_color}};
+    --brand-font: {{branding_font_family}};
+  }
+    :root{--bg:#f8f9fa;--green:{{branding_primary_color}};--green-l:{{branding_secondary_color}};--green-bg:rgba(45,106,79,.05);--red:#c62828;--red-bg:rgba(198,40,40,.08);--text:#1a1a1a;--text2:#666;--border:#e0e0e0;--inp:#f0f4f0}
     *{margin:0;padding:0;box-sizing:border-box}
-    body{font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+    body{font-family:var(--brand-font,'Segoe UI',Tahoma,Geneva,Verdana,sans-serif);background:var(--bg);color:var(--text);line-height:1.6}
     .page{max-width:900px;margin:0 auto;padding:40px 30px;page-break-after:always}.page:last-child{page-break-after:avoid}
     .hdr{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--border);padding-bottom:12px;margin-bottom:30px;font-size:12px}
     .hdr .brand{font-weight:700;color:var(--green)}.hdr .conf{color:var(--red);font-weight:700;text-transform:uppercase;letter-spacing:1px}
@@ -56,6 +62,7 @@
     .sign-table th{background:var(--green);color:#fff;padding:10px 14px;font-size:11px;text-transform:uppercase;text-align:left}
     .sign-table td{padding:10px 14px;font-size:13px;border-bottom:1px solid var(--border)}
     .ft{display:flex;justify-content:space-between;font-size:11px;color:var(--text2);margin-top:30px;padding-top:12px;border-top:1px solid var(--border)}
+    table, .policy-box, .process-card, .info-table, .cover { page-break-inside: avoid; }
     @media print{body{background:#fff}}
   </style>
 </head>

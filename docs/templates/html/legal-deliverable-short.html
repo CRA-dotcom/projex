@@ -5,27 +5,33 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Executive Governance Brief</title>
 <style>
+  :root {
+    --brand-primary: {{branding_primary_color}};
+    --brand-secondary: {{branding_secondary_color}};
+    --brand-accent: {{branding_accent_color}};
+    --brand-font: {{branding_font_family}};
+  }
   @page { margin: 2cm; size: letter; }
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { font-family: Georgia, 'Times New Roman', serif; color: #1a1a1a; line-height: 1.6; font-size: 10.5pt; }
+  body { font-family: var(--brand-font, Georgia, 'Times New Roman', serif); color: #1a1a1a; line-height: 1.6; font-size: 10.5pt; }
   .page-break { page-break-before: always; }
 
   /* Cover */
   .cover { text-align: center; padding: 60px 40px; min-height: 40vh; }
-  .cover-box { border: 2px solid #1a1a1a; padding: 40px; max-width: 600px; margin: 0 auto; }
+  .cover-box { border: 2px solid var(--brand-primary); padding: 40px; max-width: 600px; margin: 0 auto; }
   .cover .brand { font-size: 20pt; font-weight: bold; letter-spacing: 3px; }
   .cover h1 { font-size: 16pt; margin: 8px 0; }
   .cover h2 { font-size: 11pt; font-weight: normal; color: #666; }
   .cover .version { font-size: 8pt; color: #999; margin-top: 20px; }
 
   /* Summary banner */
-  .summary-banner { display: flex; gap: 0; margin: 20px 0 30px; border: 2px solid #1a1a1a; }
-  .summary-left { flex: 1; background: #1a1a1a; color: #fff; padding: 20px; text-align: center; }
-  .summary-left .score { font-size: 28pt; font-weight: bold; color: #b8860b; }
+  .summary-banner { display: flex; gap: 0; margin: 20px 0 30px; border: 2px solid var(--brand-primary); }
+  .summary-left { flex: 1; background: var(--brand-primary); color: #fff; padding: 20px; text-align: center; }
+  .summary-left .score { font-size: 28pt; font-weight: bold; color: var(--brand-secondary); }
   .summary-left .score-label { font-size: 9pt; text-transform: uppercase; letter-spacing: 1px; margin-top: 4px; }
-  .summary-left .level { font-size: 10pt; color: #b8860b; margin-top: 4px; }
+  .summary-left .level { font-size: 10pt; color: var(--brand-secondary); margin-top: 4px; }
   .summary-right { flex: 1.5; padding: 16px 20px; }
-  .summary-right h3 { font-size: 9pt; text-transform: uppercase; letter-spacing: 1px; color: #b8860b; margin-bottom: 8px; }
+  .summary-right h3 { font-size: 9pt; text-transform: uppercase; letter-spacing: 1px; color: var(--brand-secondary); margin-bottom: 8px; }
   .summary-right .stat { font-size: 10pt; margin-bottom: 4px; }
   .summary-right .stat strong { color: #c0392b; }
 
@@ -34,15 +40,15 @@
   p { margin-bottom: 10px; text-align: justify; }
 
   /* Headers */
-  h1 { font-size: 15pt; color: #1a1a1a; border-bottom: 2px solid #b8860b; padding-bottom: 6px; margin: 30px 0 14px; }
-  h2 { font-size: 12pt; color: #b8860b; margin: 20px 0 10px; }
+  h1 { font-size: 15pt; color: #1a1a1a; border-bottom: 2px solid var(--brand-secondary); padding-bottom: 6px; margin: 30px 0 14px; }
+  h2 { font-size: 12pt; color: var(--brand-secondary); margin: 20px 0 10px; }
 
   /* Meta line */
   .meta-line { font-size: 9pt; color: #666; text-align: center; margin: 10px 0 30px; }
 
   /* Tables */
   table { width: 100%; border-collapse: collapse; margin: 14px 0 20px; font-size: 9.5pt; }
-  th { background: #1a1a1a; color: #fff; text-align: left; padding: 8px 10px; font-weight: bold; }
+  th { background: var(--brand-primary); color: #fff; text-align: left; padding: 8px 10px; font-weight: bold; }
   td { padding: 7px 10px; border-bottom: 1px solid #ddd; vertical-align: top; }
   tr:nth-child(even) td { background: #f9f7f2; }
 
@@ -54,7 +60,7 @@
 
   /* Scorecard */
   .scorecard td:nth-child(2) { text-align: center; font-weight: bold; }
-  .scorecard tr:last-child td { background: #f0ead6; font-weight: bold; border-top: 2px solid #b8860b; }
+  .scorecard tr:last-child td { background: #f0ead6; font-weight: bold; border-top: 2px solid var(--brand-secondary); }
 
   /* Alert box */
   .alert { border-left: 4px solid #c0392b; background: #fdf2f2; padding: 12px 16px; margin: 16px 0; font-size: 10pt; }
@@ -63,6 +69,7 @@
   /* Footer */
   .footer { text-align: center; font-size: 7.5pt; color: #999; margin-top: 40px; border-top: 1px solid #ddd; padding-top: 10px; }
 
+  table, .content, .sig-block, .alert { page-break-inside: avoid; }
   @media print {
     body { font-size: 10pt; }
     .cover { page-break-after: always; }

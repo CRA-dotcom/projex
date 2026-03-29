@@ -5,10 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Plan Anual de Marketing - Plantilla Profesional</title>
   <style>
+  :root {
+    --brand-primary: {{branding_primary_color}};
+    --brand-secondary: {{branding_secondary_color}};
+    --brand-accent: {{branding_accent_color}};
+    --brand-font: {{branding_font_family}};
+  }
     :root {
-      --bg-dark: #1a1a2e;
+      --bg-dark: {{branding_primary_color}};
       --bg-card: #16213e;
-      --accent-orange: #ff6b35;
+      --accent-orange: {{branding_secondary_color}};
       --accent-blue: #3a86ff;
       --accent-purple: #7b2ff7;
       --accent-cyan: #00d4ff;
@@ -20,7 +26,7 @@
       --border-color: #2a2a4a;
     }
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: var(--bg-dark); color: var(--text-primary); line-height: 1.6; }
+    body { font-family: var(--brand-font, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif); background: var(--bg-dark); color: var(--text-primary); line-height: 1.6; }
     .page { max-width: 960px; margin: 0 auto; padding: 40px 30px; page-break-after: always; }
     .page:last-child { page-break-after: avoid; }
     .header-bar { width: 60px; height: 4px; background: var(--accent-orange); margin-bottom: 8px; }
@@ -107,6 +113,7 @@
     .tag.blue { background: var(--accent-blue); color: #fff; }
     .tag.purple { background: var(--accent-purple); color: #fff; }
     .tag.cyan { background: var(--accent-cyan); color: #fff; }
+    table, .kc, .g2, .g3, .g4, .quarter-card { page-break-inside: avoid; }
     @media print { body { background: #fff; color: #000; } .field-box, .kpi-value, td .cell { border: 1px solid #ccc; background: #f9f9f9; } }
   </style>
 </head>

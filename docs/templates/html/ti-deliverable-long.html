@@ -5,9 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Diagnostico Tecnologico Profundo - {{client_name}}</title>
   <style>
-    :root { --primary: #1a1a2e; --accent: #e94560; --bg: #fff; --text: #1a1a2e; --border: #ddd; --header-bg: #f8f9fa; --section-bg: #f0f2f5; }
+  :root {
+    --brand-primary: {{branding_primary_color}};
+    --brand-secondary: {{branding_secondary_color}};
+    --brand-accent: {{branding_accent_color}};
+    --brand-font: {{branding_font_family}};
+  }
+    :root { --primary: {{branding_primary_color}}; --accent: {{branding_secondary_color}}; --bg: #fff; --text: #1a1a2e; --border: #ddd; --header-bg: #f8f9fa; --section-bg: #f0f2f5; }
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color: var(--text); line-height: 1.6; max-width: 900px; margin: 0 auto; padding: 40px 20px; }
+    body { font-family: var(--brand-font, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif); color: var(--text); line-height: 1.6; max-width: 900px; margin: 0 auto; padding: 40px 20px; }
     .cover { text-align: center; margin-bottom: 40px; padding: 40px 20px; border: 2px solid var(--primary); }
     .cover .tag { font-size: 0.85rem; letter-spacing: 3px; color: var(--accent); margin-bottom: 8px; }
     .cover h1 { font-size: 1.6rem; margin-bottom: 4px; }
@@ -41,6 +47,7 @@
     .signatures { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--border); }
     .sig-block { text-align: center; }
     .sig-line { border-top: 1px solid var(--text); margin-top: 60px; padding-top: 8px; font-size: 0.85rem; }
+    table, .section-banner, .score-grid, .score-total { page-break-inside: avoid; }
     @media print { body { padding: 20px; } .cover { page-break-after: always; } h1 { page-break-before: auto; } }
   </style>
 </head>

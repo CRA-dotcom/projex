@@ -5,16 +5,22 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Propuesta de Servicios - Gobierno Corporativo</title>
 <style>
+  :root {
+    --brand-primary: {{branding_primary_color}};
+    --brand-secondary: {{branding_secondary_color}};
+    --brand-accent: {{branding_accent_color}};
+    --brand-font: {{branding_font_family}};
+  }
   @page { margin: 2cm; size: letter; }
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { font-family: Georgia, 'Times New Roman', serif; color: #1a1a1a; line-height: 1.6; font-size: 11pt; }
+  body { font-family: var(--brand-font, Georgia, 'Times New Roman', serif); color: #1a1a1a; line-height: 1.6; font-size: 11pt; }
   .page-break { page-break-before: always; }
 
   /* Cover page */
   .cover { text-align: center; padding: 120px 40px 60px; min-height: 90vh; display: flex; flex-direction: column; justify-content: center; }
   .cover .brand { font-size: 28pt; font-weight: bold; letter-spacing: 4px; color: #1a1a1a; }
-  .cover .subtitle { font-size: 12pt; letter-spacing: 3px; color: #b8860b; margin-top: 8px; text-transform: uppercase; }
-  .cover .divider { width: 80px; height: 3px; background: #b8860b; margin: 40px auto; }
+  .cover .subtitle { font-size: 12pt; letter-spacing: 3px; color: var(--brand-secondary); margin-top: 8px; text-transform: uppercase; }
+  .cover .divider { width: 80px; height: 3px; background: var(--brand-secondary); margin: 40px auto; }
   .cover h1 { font-size: 22pt; font-weight: bold; color: #1a1a1a; margin-bottom: 8px; }
   .cover h2 { font-size: 14pt; font-weight: normal; color: #333; margin-bottom: 30px; }
   .cover .tagline { font-size: 10pt; color: #666; font-style: italic; line-height: 1.8; max-width: 500px; margin: 0 auto 40px; }
@@ -24,8 +30,8 @@
   .cover-meta td { padding: 4px 16px; text-align: left; }
 
   /* Headers */
-  h1 { font-size: 16pt; color: #1a1a1a; border-bottom: 2px solid #b8860b; padding-bottom: 8px; margin: 30px 0 16px; }
-  h2 { font-size: 13pt; color: #b8860b; margin: 24px 0 12px; }
+  h1 { font-size: 16pt; color: #1a1a1a; border-bottom: 2px solid var(--brand-secondary); padding-bottom: 8px; margin: 30px 0 16px; }
+  h2 { font-size: 13pt; color: var(--brand-secondary); margin: 24px 0 12px; }
   h3 { font-size: 11pt; color: #333; margin: 16px 0 8px; }
 
   /* Content */
@@ -36,7 +42,7 @@
 
   /* Tables */
   table { width: 100%; border-collapse: collapse; margin: 16px 0 24px; font-size: 10pt; }
-  th { background: #1a1a1a; color: #fff; text-align: left; padding: 10px 12px; font-weight: bold; }
+  th { background: var(--brand-primary); color: #fff; text-align: left; padding: 10px 12px; font-weight: bold; }
   td { padding: 8px 12px; border-bottom: 1px solid #ddd; vertical-align: top; }
   tr:nth-child(even) td { background: #f9f7f2; }
   .table-highlight td { font-weight: bold; background: #f0ead6; }
@@ -49,6 +55,7 @@
   /* Footer */
   .footer { text-align: center; font-size: 8pt; color: #999; margin-top: 60px; border-top: 1px solid #ddd; padding-top: 12px; }
 
+  table, .content, .sig-block, .alert { page-break-inside: avoid; }
   @media print {
     body { font-size: 10.5pt; }
     .cover { page-break-after: always; }

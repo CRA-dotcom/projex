@@ -5,9 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Plan Anual de Marketing - Plantilla Profesional (50 pags)</title>
   <style>
-    :root{--bg:#1a1a2e;--bg2:#16213e;--or:#ff6b35;--bl:#3a86ff;--pu:#7b2ff7;--cy:#00d4ff;--mg:#ff2d95;--gn:#00c897;--yl:#ffc107;--tx:#fff;--tx2:#b0b0b0;--inp:#fde8d8;--brd:#2a2a4a}
+  :root{--brand-primary:{{branding_primary_color}};--brand-secondary:{{branding_secondary_color}};--brand-accent:{{branding_accent_color}};--brand-font:{{branding_font_family}}}
+    :root{--bg:{{branding_primary_color}};--bg2:#16213e;--or:{{branding_secondary_color}};--bl:#3a86ff;--pu:#7b2ff7;--cy:#00d4ff;--mg:#ff2d95;--gn:#00c897;--yl:#ffc107;--tx:#fff;--tx2:#b0b0b0;--inp:#fde8d8;--brd:#2a2a4a}
     *{margin:0;padding:0;box-sizing:border-box}
-    body{font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;background:var(--bg);color:var(--tx);line-height:1.6}
+    body{font-family:var(--brand-font,'Segoe UI',Tahoma,Geneva,Verdana,sans-serif);background:var(--bg);color:var(--tx);line-height:1.6}
     .p{max-width:960px;margin:0 auto;padding:40px 30px;page-break-after:always}.p:last-child{page-break-after:avoid}
     .hb{width:60px;height:4px;background:var(--or);margin-bottom:8px}
     .dl{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:2px;margin-bottom:4px}
@@ -45,6 +46,7 @@
     .risk-row{display:grid;grid-template-columns:2fr 1fr 1fr 1fr 3fr;gap:8px;margin-bottom:8px;align-items:center}
     .risk-badge{padding:4px 10px;border-radius:4px;font-size:11px;font-weight:700;text-align:center;color:#fff}
     .risk-alto{background:#e74c3c}.risk-medio{background:#f39c12}.risk-bajo{background:#27ae60}
+    table, .kc, .g2, .g3, .g4, .quarter-card { page-break-inside: avoid; }
     @media print{body{background:#fff;color:#000}.fb,.kv,td .c{border:1px solid #ccc;background:#f9f9f9}}
   </style>
 </head>

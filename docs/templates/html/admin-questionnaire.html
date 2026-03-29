@@ -5,9 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cuestionario de Diagnostico Integral - Administracion</title>
   <style>
-    :root{--bg:#f8f9fa;--bg2:#fff;--green:#2d6a4f;--green-light:#40916c;--green-bg:rgba(45,106,79,.05);--red:#c62828;--red-bg:rgba(198,40,40,.08);--text:#1a1a1a;--text2:#666;--border:#e0e0e0;--accent:#388e3c}
+  :root {
+    --brand-primary: {{branding_primary_color}};
+    --brand-secondary: {{branding_secondary_color}};
+    --brand-accent: {{branding_accent_color}};
+    --brand-font: {{branding_font_family}};
+  }
+    :root{--bg:#f8f9fa;--bg2:#fff;--green:{{branding_primary_color}};--green-light:{{branding_secondary_color}};--green-bg:rgba(45,106,79,.05);--red:#c62828;--red-bg:rgba(198,40,40,.08);--text:#1a1a1a;--text2:#666;--border:#e0e0e0;--accent:{{branding_accent_color}}}
     *{margin:0;padding:0;box-sizing:border-box}
-    body{font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+    body{font-family:var(--brand-font,'Segoe UI',Tahoma,Geneva,Verdana,sans-serif);background:var(--bg);color:var(--text);line-height:1.6}
     .page{max-width:900px;margin:0 auto;padding:40px 30px;page-break-after:always}.page:last-child{page-break-after:avoid}
     .header{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--border);padding-bottom:12px;margin-bottom:30px;font-size:12px}
     .header .brand{font-weight:700;color:var(--green)}
@@ -44,6 +50,7 @@
     .impact-box{background:var(--green-bg);border-left:4px solid var(--green);padding:16px 20px;margin-top:20px}
     .impact-box h4{color:var(--green);margin-bottom:6px}
     .impact-box p{font-size:13px;color:var(--text2)}
+    table, .policy-box, .process-card, .info-table, .cover { page-break-inside: avoid; }
     @media print{body{background:#fff}}
   </style>
 </head>
