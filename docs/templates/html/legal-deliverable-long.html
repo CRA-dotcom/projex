@@ -63,6 +63,14 @@
   /* Footer */
   .footer { text-align: center; font-size: 7.5pt; color: #999; margin-top: 50px; border-top: 1px solid #ddd; padding-top: 10px; }
 
+  @media print {
+    body { font-size: 10pt; }
+    .cover { page-break-after: always; }
+    .content { padding: 10px 20px; }
+    .page-break { page-break-before: always; }
+    th, .risk-critico, .risk-alto, .risk-medio, .risk-bajo, .table-total td { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
+
   /* TOC */
   .toc { list-style: none; margin: 0; padding: 0; }
   .toc li { padding: 4px 0; border-bottom: 1px dotted #ccc; font-size: 10pt; }

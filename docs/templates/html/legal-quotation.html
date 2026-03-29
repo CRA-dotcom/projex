@@ -48,6 +48,14 @@
 
   /* Footer */
   .footer { text-align: center; font-size: 8pt; color: #999; margin-top: 60px; border-top: 1px solid #ddd; padding-top: 12px; }
+
+  @media print {
+    body { font-size: 10.5pt; }
+    .cover { page-break-after: always; }
+    .content { padding: 10px 20px; }
+    .page-break { page-break-before: always; }
+    th, .table-highlight td { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
 </style>
 </head>
 <body>
