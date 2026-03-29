@@ -14,6 +14,15 @@ export const listGlobal = query({
   },
 });
 
+export const listAllForAdmin = query({
+  args: {},
+  handler: async (ctx) => {
+    const { requireSuperAdmin } = await import("../../lib/authHelpers");
+    await requireSuperAdmin(ctx);
+    return await ctx.db.query("services").collect();
+  },
+});
+
 export const listByOrg = query({
   args: {},
   handler: async (ctx) => {

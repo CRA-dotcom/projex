@@ -35,3 +35,11 @@ export const getById = query({
     return org;
   },
 });
+
+export const getByIdForAdmin = query({
+  args: { id: v.id("organizations") },
+  handler: async (ctx, args) => {
+    await requireSuperAdmin(ctx);
+    return await ctx.db.get(args.id);
+  },
+});

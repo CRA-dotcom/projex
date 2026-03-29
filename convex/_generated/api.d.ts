@@ -13,6 +13,7 @@ import type * as functions_clients_mutations from "../functions/clients/mutation
 import type * as functions_clients_queries from "../functions/clients/queries.js";
 import type * as functions_cron_monthlyCheck from "../functions/cron/monthlyCheck.js";
 import type * as functions_cron_overdueCheck from "../functions/cron/overdueCheck.js";
+import type * as functions_dashboard_queries from "../functions/dashboard/queries.js";
 import type * as functions_email_send from "../functions/email/send.js";
 import type * as functions_monthlyAssignments_billingQueries from "../functions/monthlyAssignments/billingQueries.js";
 import type * as functions_monthlyAssignments_mutations from "../functions/monthlyAssignments/mutations.js";
@@ -45,6 +46,7 @@ declare const fullApi: ApiFromModules<{
   "functions/clients/queries": typeof functions_clients_queries;
   "functions/cron/monthlyCheck": typeof functions_cron_monthlyCheck;
   "functions/cron/overdueCheck": typeof functions_cron_overdueCheck;
+  "functions/dashboard/queries": typeof functions_dashboard_queries;
   "functions/email/send": typeof functions_email_send;
   "functions/monthlyAssignments/billingQueries": typeof functions_monthlyAssignments_billingQueries;
   "functions/monthlyAssignments/mutations": typeof functions_monthlyAssignments_mutations;

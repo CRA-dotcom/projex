@@ -46,6 +46,7 @@ export const update = mutation({
     id: v.id("organizations"),
     name: v.optional(v.string()),
     plan: v.optional(v.union(v.literal("basic"), v.literal("pro"), v.literal("enterprise"))),
+    assignedServiceIds: v.optional(v.array(v.id("services"))),
   },
   handler: async (ctx, args) => {
     await requireSuperAdmin(ctx);
