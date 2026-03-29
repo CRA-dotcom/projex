@@ -1,4 +1,5 @@
 import { internalAction, internalQuery } from "../../_generated/server";
+import { v } from "convex/values";
 import { internal } from "../../_generated/api";
 
 /**
@@ -18,6 +19,23 @@ export const listAllPendingAssignments = internalQuery({
         month: a.month,
         year: a.year,
       }));
+  },
+});
+
+/**
+ * Internal query: resolve client names for overdue items.
+ */
+export const resolveClientNames = internalQuery({
+  args: {
+    clientIds: v.array(v.id("clients")),
+  },
+  handler: async (ctx, args) => {
+    const names: Record<string, string> = {};
+    for (const id of args.clientIds) {
+      const client = await ctx.db.get(id);
+      names[id] = client?.name ?? "Desconocido";
+    }
+    return names;
   },
 });
 
@@ -59,7 +77,57 @@ export const run: ReturnType<typeof internalAction> = internalAction({
       summary
     );
 
-    // TODO (Sprint 9): Send email notifications to org admins
+    // Send alert emails to org admins for each org with overdue items
+    if (overdue.length > 0) {
+      // Resolve client names
+      const uniqueClientIds = [
+        ...new Set(overdue.map((a: { clientId: any }) => a.clientId)),
+      ];
+      const clientNames = await ctx.runQuery(
+        internal.functions.cron.overdueCheck.resolveClientNames,
+        { clientIds: uniqueClientIds as any }
+      );
+
+      // Group overdue items by org for email content
+      const overdueByOrg: Record<
+        string,
+        Array<{ clientName: string; serviceName: string; month: number; year: number }>
+      > = {};
+      for (const a of overdue) {
+        if (!overdueByOrg[a.orgId]) {
+          overdueByOrg[a.orgId] = [];
+        }
+        overdueByOrg[a.orgId].push({
+          clientName: clientNames[a.clientId] ?? "Desconocido",
+          serviceName: a.serviceName,
+          month: a.month,
+          year: a.year,
+        });
+      }
+
+      for (const [orgId, items] of Object.entries(overdueByOrg)) {
+        const itemsList = items
+          .map(
+            (i) =>
+              `<li>${i.clientName} - ${i.serviceName} (${i.month}/${i.year})</li>`
+          )
+          .join("");
+
+        await ctx.scheduler.runAfter(
+          0,
+          internal.functions.email.send.sendEmailInternal,
+          {
+            to: "admin@projex-platform.com", // In production, resolve org admin email from Clerk
+            subject: `Alerta: Entregables vencidos - ${items.length} pendientes`,
+            html: `<p>Alerta: Hay ${items.length} entregables vencidos para su organización.</p><ul>${itemsList}</ul>`,
+          }
+        );
+      }
+
+      console.log(
+        `[overdueCheck] Sent overdue alert emails to ${Object.keys(overdueByOrg).length} org(s)`
+      );
+    }
 
     return summary;
   },
