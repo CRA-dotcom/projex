@@ -32,6 +32,8 @@ import type * as functions_projections_mutations from "../functions/projections/
 import type * as functions_projections_queries from "../functions/projections/queries.js";
 import type * as functions_questionnaires_mutations from "../functions/questionnaires/mutations.js";
 import type * as functions_questionnaires_queries from "../functions/questionnaires/queries.js";
+import type * as functions_quotations_mutations from "../functions/quotations/mutations.js";
+import type * as functions_quotations_queries from "../functions/quotations/queries.js";
 import type * as functions_services_backfill from "../functions/services/backfill.js";
 import type * as functions_services_mutations from "../functions/services/mutations.js";
 import type * as functions_services_queries from "../functions/services/queries.js";
@@ -72,6 +74,8 @@ declare const fullApi: ApiFromModules<{
   "functions/projections/queries": typeof functions_projections_queries;
   "functions/questionnaires/mutations": typeof functions_questionnaires_mutations;
   "functions/questionnaires/queries": typeof functions_questionnaires_queries;
+  "functions/quotations/mutations": typeof functions_quotations_mutations;
+  "functions/quotations/queries": typeof functions_quotations_queries;
   "functions/services/backfill": typeof functions_services_backfill;
   "functions/services/mutations": typeof functions_services_mutations;
   "functions/services/queries": typeof functions_services_queries;
