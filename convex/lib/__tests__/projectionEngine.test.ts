@@ -5,6 +5,8 @@ import {
   generateEvenSeasonality,
   calculateProjection,
   validateServiceLimits,
+  DEFAULT_ENGINE_CONFIG,
+  type EngineConfig,
   type ServiceConfig,
   type MonthlyData,
   type ProjectionInput,
@@ -389,5 +391,182 @@ describe("calculateProjection - grand total", () => {
     });
     const result = calculateProjection(input);
     expect(result.grandTotal).toBeCloseTo(120_000);
+  });
+});
+
+// ---------------------------------------------------------------------------
+// 10. EngineConfig - fixed calculation mode
+// ---------------------------------------------------------------------------
+
+describe("calculateProjection - fixed calculation mode", () => {
+  const fixedConfig: EngineConfig = {
+    calculationMode: "fixed",
+    commissionMode: "proportional",
+    seasonalityEnabled: true,
+  };
+
+  it("uses fixedMonthlyAmount for each active service (no weight normalization)", () => {
+    const input = makeInput({
+      annualSales: 1_200_000,
+      totalBudget: 120_000,
+      commissionRate: 0.05,
+      services: [
+        makeService({ serviceId: "svc-1", serviceName: "SEO", chosenPct: 0.3, fixedMonthlyAmount: 2000 }),
+        makeService({ serviceId: "svc-2", serviceName: "PPC", chosenPct: 0.2, fixedMonthlyAmount: 3000 }),
+        makeService({ serviceId: "svc-com", serviceName: "Comisiones", chosenPct: 0.05 }),
+      ],
+    });
+
+    const result = calculateProjection(input, fixedConfig);
+
+    const seo = result.services.find((s) => s.serviceName === "SEO")!;
+    expect(seo.annualAmount).toBeCloseTo(2000 * 12);
+    expect(seo.normalizedWeight).toBe(0);
+    seo.monthlyAmounts.forEach((m) => {
+      expect(m.adjustedAmount).toBeCloseTo(2000);
+      expect(m.baseAmount).toBeCloseTo(2000);
+    });
+
+    const ppc = result.services.find((s) => s.serviceName === "PPC")!;
+    expect(ppc.annualAmount).toBeCloseTo(3000 * 12);
+    ppc.monthlyAmounts.forEach((m) => {
+      expect(m.adjustedAmount).toBeCloseTo(3000);
+    });
+  });
+
+  it("defaults to 0 when fixedMonthlyAmount is not set", () => {
+    const input = makeInput({
+      services: [
+        makeService({ serviceId: "svc-1", serviceName: "SEO", chosenPct: 0.3 }), // no fixedMonthlyAmount
+        makeService({ serviceId: "svc-com", serviceName: "Comisiones", chosenPct: 0.05 }),
+      ],
+    });
+
+    const result = calculateProjection(input, fixedConfig);
+
+    const seo = result.services.find((s) => s.serviceName === "SEO")!;
+    expect(seo.annualAmount).toBe(0);
+    seo.monthlyAmounts.forEach((m) => {
+      expect(m.adjustedAmount).toBe(0);
+    });
+  });
+
+  it("does not apply FE adjustment in fixed mode", () => {
+    const monthlySales = [80, 120, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100];
+    const annual = monthlySales.reduce((a, b) => a + b, 0);
+
+    const input = makeInput({
+      annualSales: annual,
+      totalBudget: 500,
+      commissionRate: 0.1,
+      services: [
+        makeService({ serviceId: "svc-1", serviceName: "SEO", chosenPct: 0.3, fixedMonthlyAmount: 100 }),
+        makeService({ serviceId: "svc-com", serviceName: "Comisiones", chosenPct: 0.1 }),
+      ],
+      seasonalityData: generateSeasonalityData(monthlySales, annual),
+    });
+
+    const result = calculateProjection(input, fixedConfig);
+    const seo = result.services.find((s) => s.serviceName === "SEO")!;
+
+    // Even though FE factors differ, fixed mode always uses fixedMonthlyAmount
+    seo.monthlyAmounts.forEach((m) => {
+      expect(m.adjustedAmount).toBeCloseTo(100);
+    });
+  });
+});
+
+// ---------------------------------------------------------------------------
+// 11. EngineConfig - fixed_monthly commission mode
+// ---------------------------------------------------------------------------
+
+describe("calculateProjection - fixed_monthly commission mode", () => {
+  it("calculates fixed monthly commission as commissionRate * totalBudget / 12", () => {
+    const monthlySales = [80, 120, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100];
+    const annual = monthlySales.reduce((a, b) => a + b, 0);
+    const rate = 0.1;
+    const budget = 600;
+
+    const input = makeInput({
+      annualSales: annual,
+      totalBudget: budget,
+      commissionRate: rate,
+      services: [
+        makeService({ serviceId: "svc-com", serviceName: "Comisiones", chosenPct: rate }),
+      ],
+      seasonalityData: generateSeasonalityData(monthlySales, annual),
+    });
+
+    const fixedCommConfig: EngineConfig = {
+      calculationMode: "weighted",
+      commissionMode: "fixed_monthly",
+      seasonalityEnabled: true,
+    };
+
+    const result = calculateProjection(input, fixedCommConfig);
+    const comService = result.services.find((s) => s.serviceName === "Comisiones")!;
+
+    const expectedMonthly = rate * budget / 12; // 0.1 * 600 / 12 = 5
+    comService.monthlyAmounts.forEach((m) => {
+      expect(m.adjustedAmount).toBeCloseTo(expectedMonthly);
+    });
+  });
+});
+
+// ---------------------------------------------------------------------------
+// 12. EngineConfig - seasonalityEnabled = false
+// ---------------------------------------------------------------------------
+
+describe("calculateProjection - seasonalityEnabled false", () => {
+  it("forces all FE factors to 1 when seasonalityEnabled is false", () => {
+    const monthlySales = [80, 120, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100];
+    const annual = monthlySales.reduce((a, b) => a + b, 0);
+
+    const input = makeInput({
+      annualSales: annual,
+      totalBudget: 1200,
+      commissionRate: 0,
+      services: [
+        makeService({ serviceId: "svc-1", serviceName: "SEO", chosenPct: 1.0 }),
+      ],
+      seasonalityData: generateSeasonalityData(monthlySales, annual),
+    });
+
+    const noSeasonConfig: EngineConfig = {
+      calculationMode: "weighted",
+      commissionMode: "proportional",
+      seasonalityEnabled: false,
+    };
+
+    const result = calculateProjection(input, noSeasonConfig);
+    const seo = result.services.find((s) => s.serviceName === "SEO")!;
+
+    // With seasonality disabled, all adjusted amounts should equal the base (1200/12 = 100)
+    seo.monthlyAmounts.forEach((m) => {
+      expect(m.feFactor).toBe(1);
+      expect(m.adjustedAmount).toBeCloseTo(100);
+    });
+  });
+});
+
+// ---------------------------------------------------------------------------
+// 13. EngineConfig - backward compatibility (no config passed)
+// ---------------------------------------------------------------------------
+
+describe("calculateProjection - backward compatibility", () => {
+  it("produces identical results when config is undefined vs explicit default", () => {
+    const input = makeInput();
+    const resultNoConfig = calculateProjection(input);
+    const resultDefault = calculateProjection(input, DEFAULT_ENGINE_CONFIG);
+
+    expect(resultNoConfig.annualCommissions).toBeCloseTo(resultDefault.annualCommissions);
+    expect(resultNoConfig.remainingBudget).toBeCloseTo(resultDefault.remainingBudget);
+    expect(resultNoConfig.grandTotal).toBeCloseTo(resultDefault.grandTotal);
+
+    for (let i = 0; i < resultNoConfig.services.length; i++) {
+      expect(resultNoConfig.services[i].annualAmount).toBeCloseTo(
+        resultDefault.services[i].annualAmount
+      );
+    }
   });
 });

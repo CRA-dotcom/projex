@@ -12,6 +12,19 @@ export type ServiceConfig = {
   maxPct: number;
   chosenPct: number;
   isActive: boolean;
+  fixedMonthlyAmount?: number;
+};
+
+export type EngineConfig = {
+  calculationMode: "weighted" | "fixed";
+  commissionMode: "proportional" | "fixed_monthly";
+  seasonalityEnabled: boolean;
+};
+
+export const DEFAULT_ENGINE_CONFIG: EngineConfig = {
+  calculationMode: "weighted",
+  commissionMode: "proportional",
+  seasonalityEnabled: true,
 };
 
 export type MonthlyData = {
@@ -98,9 +111,18 @@ export function generateEvenSeasonality(annualSales: number): MonthlyData[] {
  * Main projection calculation.
  * Replicates Excel Hoja 3 (Matriz de Proyección) logic.
  */
-export function calculateProjection(input: ProjectionInput): ProjectionResult {
+export function calculateProjection(
+  input: ProjectionInput,
+  config?: EngineConfig
+): ProjectionResult {
+  const resolvedConfig = config ?? DEFAULT_ENGINE_CONFIG;
   const { annualSales, totalBudget, commissionRate, services, seasonalityData } =
     input;
+
+  // Apply seasonality override: when disabled, force all FE factors to 1
+  const effectiveSeasonality: MonthlyData[] = resolvedConfig.seasonalityEnabled
+    ? seasonalityData
+    : seasonalityData.map((m) => ({ ...m, feFactor: 1 }));
 
   // Step 1: Annual commissions
   const annualCommissions = annualSales * commissionRate;
@@ -130,7 +152,7 @@ export function calculateProjection(input: ProjectionInput): ProjectionResult {
         isActive: false,
         normalizedWeight: 0,
         annualAmount: 0,
-        monthlyAmounts: seasonalityData.map((m) => ({
+        monthlyAmounts: effectiveSeasonality.map((m) => ({
           month: m.month,
           baseAmount: 0,
           feFactor: m.feFactor,
@@ -140,8 +162,30 @@ export function calculateProjection(input: ProjectionInput): ProjectionResult {
     }
 
     if (service.serviceName === "Comisiones") {
+      if (resolvedConfig.commissionMode === "fixed_monthly") {
+        // Fixed monthly commission: commissionRate * totalBudget / 12 per month
+        const fixedMonthly = commissionRate * totalBudget / 12;
+        const monthlyAmounts: MonthlyAmount[] = effectiveSeasonality.map((m) => ({
+          month: m.month,
+          baseAmount: fixedMonthly,
+          feFactor: m.feFactor,
+          adjustedAmount: fixedMonthly,
+        }));
+
+        return {
+          serviceId: service.serviceId,
+          serviceName: service.serviceName,
+          type: service.type,
+          chosenPct: commissionRate,
+          isActive: true,
+          normalizedWeight: 0,
+          annualAmount: annualCommissions,
+          monthlyAmounts,
+        };
+      }
+
       // Comisiones: proportional to monthly sales, not normalized
-      const monthlyAmounts: MonthlyAmount[] = seasonalityData.map((m) => {
+      const monthlyAmounts: MonthlyAmount[] = effectiveSeasonality.map((m) => {
         const monthlyCommission = m.monthlySales * commissionRate;
         return {
           month: m.month,
@@ -163,12 +207,36 @@ export function calculateProjection(input: ProjectionInput): ProjectionResult {
       };
     }
 
+    if (resolvedConfig.calculationMode === "fixed") {
+      // Fixed mode: use fixedMonthlyAmount, no weight normalization, no FE adjustment
+      const fixedMonthly = service.fixedMonthlyAmount ?? 0;
+      const annualAmount = fixedMonthly * 12;
+
+      const monthlyAmounts: MonthlyAmount[] = effectiveSeasonality.map((m) => ({
+        month: m.month,
+        baseAmount: fixedMonthly,
+        feFactor: m.feFactor,
+        adjustedAmount: fixedMonthly,
+      }));
+
+      return {
+        serviceId: service.serviceId,
+        serviceName: service.serviceName,
+        type: service.type,
+        chosenPct: service.chosenPct,
+        isActive: true,
+        normalizedWeight: 0,
+        annualAmount,
+        monthlyAmounts,
+      };
+    }
+
     // Normal service: weight-based distribution
     const normalizedWeight = totalWeight > 0 ? service.chosenPct / totalWeight : 0;
     const annualAmount = remainingBudget * normalizedWeight;
     const monthlyBase = annualAmount / 12;
 
-    const monthlyAmounts: MonthlyAmount[] = seasonalityData.map((m) => ({
+    const monthlyAmounts: MonthlyAmount[] = effectiveSeasonality.map((m) => ({
       month: m.month,
       baseAmount: monthlyBase,
       feFactor: m.feFactor,
@@ -188,7 +256,7 @@ export function calculateProjection(input: ProjectionInput): ProjectionResult {
   });
 
   // Step 6: Monthly totals
-  const monthlyTotals = seasonalityData.map((m) => ({
+  const monthlyTotals = effectiveSeasonality.map((m) => ({
     month: m.month,
     total: serviceAllocations.reduce(
       (sum, s) =>
